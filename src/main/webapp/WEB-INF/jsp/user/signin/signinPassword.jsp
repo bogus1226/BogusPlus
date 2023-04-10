@@ -21,10 +21,10 @@
 		
 		<section class="main-contents">
 			<h5 class="pt-5"><b>비밀번호를 입력하세요</b></h5>
-			<div class="textGray mt-3">이 이메일과 비밀번호로 보거스+ 계정에 로그인하여<br>좋아하는 영화를 시청하실수 있습니다.</div>
-			<input type="text" class="form-control mt-4" placeholder="비밀번호">
+			<div class="textGray mt-2">이 이메일과 비밀번호로 보거스+ 계정에 로그인하여<br>좋아하는 영화를 시청하실수 있습니다.</div>
+			<input type="text" class="form-control mt-3" placeholder="비밀번호">
 			<div class="textGray mt-1">(대소문자 구분)</div>
-			<button type="button" class="btn btn-block mt-4">로그인</button>
+			<button type="button" class="blueBtn btn btn-block mt-3">로그인</button>
 			<div class="mt-4">
 				<a href="#">비밀번호 찾기</a>
 			</div>

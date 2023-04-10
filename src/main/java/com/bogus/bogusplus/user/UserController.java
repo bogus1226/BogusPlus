@@ -25,4 +25,28 @@ public class UserController {
 		
 		return "user/signup/signupEmail";
 	}
+	
+	@GetMapping("/signup/password/view")
+	public String signupPassword() {
+		
+		return "user/signup/signupPassword";
+	}
+	
+	@GetMapping("/signup/catalogue/view")
+	public String signupCatalogue() {
+		
+		return "user/signup/signupCatalogue";
+	}
+	
+	@GetMapping("/signup/icon/view")
+	public String signupIcon() {
+		
+		return "user/signup/signupIcon";
+	}
+	
+	@GetMapping("/signup/nickName/view")
+	public String signupNickName() {
+		
+		return "user/signup/signupNickName";
+	}
 }

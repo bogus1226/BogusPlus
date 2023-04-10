@@ -21,9 +21,9 @@
 		
 		<section class="main-contents">
 			<h5 class="pt-5"><b>이메일 주소로 로그인하세요</b></h5>
-			<div class="textGray mt-3">이 이메일과 비밀번호로 보거스+ 계정에 로그인하여<br>좋아하는 영화를 시청하실수 있습니다.</div>
-			<input type="text" class="form-control mt-4" placeholder="이메일">
-			<button type="button" class="btn btn-block mt-4">다음</button>
+			<div class="textGray mt-2">이 이메일과 비밀번호로 보거스+ 계정에 로그인하여<br>좋아하는 영화를 시청하실수 있습니다.</div>
+			<input type="text" class="form-control mt-3" placeholder="이메일">
+			<button type="button" class="blueBtn btn btn-block mt-3">다음</button>
 			<div class="d-flex mt-4">
 				<div class="textGray">보거스+에 처음이신가요?</div>
 				<a class="ml-2" href="#">가입하기</a>

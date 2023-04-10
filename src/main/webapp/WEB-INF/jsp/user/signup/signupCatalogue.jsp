@@ -13,36 +13,21 @@
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@700&display=swap" rel="stylesheet">
 	<link rel="stylesheet" href="/static/css/style.css" type="text/css">
-<title>회원가입 (이메일)</title>
+<title>회원가입 (카탈로그)</title>
 </head>
 <body>
 	<div id="wrap">
 		<c:import url="/WEB-INF/jsp/include/header.jsp"/>
 		
 		<section class="main-contents">
-			<div class="textGray pt-5 small">1/2단계</div>
-			<h5><b>이메일을 입력하세요</b></h5>
-			<div class="textGray mt-2">이 이메일과 비밀번호로 보거스+ 계정에 로그인하여<br>좋아하는 영화를 시청하실수 있습니다.</div>
-			<input type="text" class="form-control mt-3" placeholder="이메일">
-			<div class="form-check mt-3">
-			  <input class="form-check-input" type="checkbox">
-			  <label class="form-check-label textGray">
-			      예, 보거스+에 관한  최신 소식, 특별 혜택 및 기타 정보를 받아<br>보겠습니다.
-			  </label>
+			<h5 class="pt-5"><b>카탈로그 전체에 액세스하세요</b></h5>
+			<div class="textGray mt-2">
+				<div><b>컨텐츠 등급을 19+ 등급으로 설정하세요</b></div>
+				<div class="mt-1">- 카탈로그 전체를 볼 수 있게됩니다</div>
+				<div>- 콘텐츠 등급은 '프로필 수정'에서 얼마든지 변경하실 수 있습니다</div>
 			</div>
-			<div class="form-check mt-2">
-			  <input class="form-check-input" type="checkbox">
-			  <label class="form-check-label textGray">
-			      본인은 만 19세 이상이며 보거스+ 이용약관에 동의합니다.
-			  </label>
-			</div>
-			<div class="form-check mt-2">
-			  <input class="form-check-input" type="checkbox">
-			  <label class="form-check-label textGray">
-			      보거스+의 개인정보 수집 및 이용에 동의합니다.
-			  </label>
-			</div>
-			<button type="button" class="blueBtn btn btn-block mt-3">동의하고 진행하기</button>
+			<button type="button" class="blueBtn btn btn-block mt-3">카탈로그 전체</button>
+			<button type="button" class="grayBtn btn btn-block mt-3">나중에</button>
 		</section>
 		
 		<c:import url="/WEB-INF/jsp/include/footer.jsp"/>
