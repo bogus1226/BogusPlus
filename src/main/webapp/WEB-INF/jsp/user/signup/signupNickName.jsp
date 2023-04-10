@@ -29,7 +29,7 @@
 					<div class="textGray">어린이를 위해 엄선된 콘텐츠과 기능</div>
 				</div>
 				<label class="switch">
-          			<input type="checkbox" class="primary">
+          			<input type="checkbox" class="agreeSwitch">
           			<span class="slider round"></span>
        			</label>
 			</div>

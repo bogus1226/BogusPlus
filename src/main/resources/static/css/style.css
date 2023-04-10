@@ -179,7 +179,7 @@ a:hover {
   transition: .2s;
 }
 
-input.primary:checked + .slider {
+input.agreeSwitch:checked + .slider {
   background-color:#0072d2;
 }
 
