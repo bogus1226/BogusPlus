@@ -13,30 +13,104 @@
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@700&display=swap" rel="stylesheet">
 	<link rel="stylesheet" href="/static/css/style.css" type="text/css">
+	<link rel="stylesheet" href="/static/css/toggleSwitch.css" type="text/css">
 <title>회원가입 (아이콘)</title>
 </head>
 <body>
 	<div id="wrap">
 		<c:import url="/WEB-INF/jsp/include/header.jsp"/>
 		
-		<section class="main-contents">
-			<h5 class="pt-5"><b>닉네임 설정</b></h5>
-			<input type="text" class="form-control mt-3" placeholder="닉네임">
-			<hr>
-			<div class="d-flex justify-content-between">
-				<div>
-					<div class="textGray">키즈 프로필</div>
-					<div class="textGray">어린이를 위해 엄선된 콘텐츠과 기능</div>
+		<form method="POST" action="/user/signup/catalogue/view">
+			<section class="main-contents">
+				<h5 class="pt-5"><b>닉네임 설정</b></h5>
+				<input type="text" class="form-control mt-3" placeholder="닉네임" id="nickNameInput">
+				<div class="textRed mt-1 d-none" id="nickNameNoneText">닉네임을 입력해주세요</div>
+				<div class="textRed mt-1 d-none" id="nickNameCountText">3글자 이상 입력해주세요</div>
+				<div class="textRed mt-1 d-none" id="nickNameSpaceText">공백없이 입력해주세요</div>
+				<hr>
+				<div class="d-flex justify-content-between">
+					<div>
+						<div class="textGray">키즈 프로필</div>
+						<div class="textGray">어린이를 위해 엄선된 콘텐츠과 기능</div>
+					</div>
+					<label class="switch">
+	          			<input type="checkbox" class="agreeSwitch" id="agreeSwitchInput">
+	          			<span class="slider round"></span>
+	       			</label>
 				</div>
-				<label class="switch">
-          			<input type="checkbox" class="agreeSwitch">
-          			<span class="slider round"></span>
-       			</label>
-			</div>
-			<button type="button" class="blueBtn btn btn-block mt-3">저장</button>
-		</section>
+				<button type="button" class="blueBtn btn btn-block mt-3" id="saveBtn" data-email="${email}" data-password="${password}" data-catalogue="${catalogue}" data-icon="${icon}">저장</button>
+			</section>
+		</form>
 		
 		<c:import url="/WEB-INF/jsp/include/footer.jsp"/>
 	</div>
 </body>
+<script>
+	$(document).ready(function(){
+		
+		var kid = 0;
+		
+		$("#nickNameInput").on("input", function(){
+			$("#nickNameNoneText").addClass("d-none");
+			$("#nickNameCountText").addClass("d-none");
+			$("#nickNameSpaceText").addClass("d-none");
+		});
+		
+		$("input[type=checkbox][id=agreeSwitchInput]").change(function() {
+			 if ($(this).is(":checked")) {
+				kid = 1;
+	        }
+	        else {
+	        	kid = 0;
+	        }
+		});
+		
+		$("#saveBtn").on("click", function() {
+			
+			let email = $(this).data("email");
+			let password = $(this).data("password");
+			let catalogue = $(this).data("catalogue");
+			let icon = $(this).data("icon");
+			let nickName = $("#nickNameInput").val();
+			
+					
+			if(nickName == "") {
+				$("#nickNameNoneText").removeClass("d-none");
+				return;
+			} else if(nickName.length < 3) {
+				$("#nickNameCountText").removeClass("d-none");
+				return;
+			} else if(nickName.search(/\s/) != -1) {
+				$("#nickNameSpaceText").removeClass("d-none");
+				return;
+			} 
+			
+			$.ajax({
+				type:"post"
+				, url:"/user/signup"
+				, data:{
+					"email":email
+					, "password":password
+					, "catalogue":catalogue
+					, "icon":icon
+					, "nickName":nickName
+					, "kid":kid}
+				, success:function(data){
+					if(data.result == "success") {
+						location.href = "/user/signup/pin/view";
+					} else {
+						alert("회원가입 실패");
+					}	
+				}
+				, error:function(){
+					alert("회원가입 에러");
+				}
+				
+			});
+			
+		    
+		});
+		
+	});
+</script>
 </html>

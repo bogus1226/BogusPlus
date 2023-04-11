@@ -23,13 +23,14 @@
 			<h5 class="pt-5 mb-1"><b>프로필 잠금 PIN으로 엑세스를<br>제한 할까요?</b></h5>
 			<div class="textGray">4자리 PIN을 설정하세요</div>
 			<div class="pin-contents mt-2">
-				<input type="text" class="pin pinBox text-center mr-2" maxlength="1">
-				<input type="text" class="pin pinBox text-center mr-2" maxlength="1">
-				<input type="text" class="pin pinBox text-center mr-2" maxlength="1">
-				<input type="text" class="pin pinBox text-center" maxlength="1">
+				<input type="text" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" class="pin pinBox text-center mr-2" maxlength="1" id="pin1">
+				<input type="text" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" class="pin pinBox text-center mr-2" maxlength="1" id="pin2">
+				<input type="text" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" class="pin pinBox text-center mr-2" maxlength="1" id="pin3">
+				<input type="text" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" class="pin pinBox text-center mr-2" maxlength="1" id="pin4">
 			</div>
-			<button type="button" class="blueBtn btn btn-block mt-3">프로필 PIN 설정</button>
-			<button type="button" class="grayBtn btn btn-block mt-3">나중에</button>
+			<div class="textRed mt-1 d-none" id="pinText">4자리를 모두 입력해주세요</div>
+			<button type="button" class="blueBtn btn btn-block mt-3" data-userid="${user.id}" id="pinSetBtn">프로필 PIN 설정</button>
+			<a href="/user/signin/email/view" type="button" class="grayBtn btn btn-block mt-3">나중에</a>
 			<div class="textGray mt-2">PIN은 '프로필 수정'에서 언제든지 설정하실 수 있습니다.</div>
 		</section>
 		
@@ -39,14 +40,53 @@
 <script>
 	$(document).ready(function(){
 		
-		$(".pin").on("keyup", function() {
-
+		$(".pin").on("input", function() {
+			
+			$("#pinText").addClass("d-none");
+			
 		    if(this.value.length == 1) {
 		    	$(this).next().focus();   
-		    	}	
+		    } else {
+		    	$(this).prev().focus();
+		    }
+		    
+
 		    
 		});
 		
+		$("#pinSetBtn").on("click", function(){
+			
+			let userId = $(this).data("userid");
+			let pin1 = $("#pin1").val();
+			let pin2 = $("#pin2").val();
+			let pin3 = $("#pin3").val();
+			let pin4 = $("#pin4").val();
+			let pin = pin1 + pin2 + pin3 + pin4;
+			
+			if(pin1 == "" || pin2 == "" || pin3 == "" || pin4 == "") {
+				$("#pinText").removeClass("d-none");
+			}
+			
+			
+			
+			$.ajax({
+				type:"post"
+				, url:"/user/pin/update"
+				, data:{"pin":pin, "userId":userId}
+				, success:function(data){
+					if(data.result == "success") {
+						location.href = "/user/signin/email/view";
+					} else {
+						console.log("2차 비밀번호 설정 실패");
+					}	
+				}
+				, error:function(){
+					console.log("2차 비밀번호 설정 에러");
+				}
+				
+			});	
+			
+		});
 	});
 </script>
 </html>

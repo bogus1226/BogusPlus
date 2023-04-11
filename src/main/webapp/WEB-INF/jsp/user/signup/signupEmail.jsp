@@ -27,12 +27,13 @@
 			<!-- 이메일 입력 공간 및 유효성검사 문구 -->
 			<input type="text" class="form-control mt-3" placeholder="이메일" id="emailInput">
 			<div class="textRed mt-1 d-none" id="emailText">이메일 양식을 확인해주세요</div>
+			<div class="textRed mt-1 d-none" id="emailIsDuplicateText">중복된 이메일이 있습니다</div>
 			
 			<!-- 소식 및 특별 혜택 동의 -->
 			<div class="form-check mt-3">
 			  <input class="form-check-input" type="checkbox" id="newsAgreeCheckInput" name="check">
 			  <label class="form-check-label textGray">
-			      예, 보거스+에 관한 최신 소식, 특별 혜택 및 기타 정보를 받아 보겠습니다.
+			      보거스+에 관한 최신 소식, 특별 혜택 및 기타 정보를 받아 보겠습니다.
 			  </label>
 			</div>
 			
@@ -65,8 +66,9 @@
 	$(document).ready(function(){
 		
 		// 이메일 입력공간에 키가 입력되면 유효성검사 문구를 숨긴다.
-		$("#emailInput").on("keyup", function(){
+		$("#emailInput").on("input", function(){
 			$("#emailText").addClass("d-none");
+			$("#emailIsDuplicateText").addClass("d-none");
 		});
 		
 		$("#agreeBtn").on("click", function() {
@@ -110,21 +112,36 @@
 			}
 			
 			if(regEmail.test(email)){
-					$("#emailText").addClass("d-none");
-					if(count == 2) {
-						window.location.href ="/user/signup/password/view?email="+email
-					} else {
-						return;
-					}
-				 } else{     
-					$("#emailText").removeClass("d-none");
+				
+				$("#emailText").addClass("d-none");
+				
+				if(count == 2) {
+					$.ajax({
+						type:"get"
+						, url:"/user/isDuplicate"
+						, data:{"email":email}
+						, success:function(data){
+							if(!data.isDuplicate) {
+								location.href = "/user/signup/password/view?email="+email;
+							} else if(data.isDuplicate) {
+								$("#emailIsDuplicateText").removeClass("d-none");
+							} else {
+								console.log("중복확인 실패");
+							}	
+						}
+						, error:function(){
+							console.log("중복확인 에러");
+						}
+						
+					});	
+				} else {
 					return;
 				}
-			
-			
-			
-		    
-		    
+						
+			} else{     
+				$("#emailText").removeClass("d-none");
+				return;
+			}	    
 		});
 		
 	});

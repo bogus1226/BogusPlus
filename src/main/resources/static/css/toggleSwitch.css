@@ -1,0 +1,47 @@
+@charset "UTF-8";
+
+/* 저작권 (c) 2013 Bootsnipp.com */
+
+.switch {
+  position:relative;
+  width:43px;
+  height:15px;
+}
+
+.switch input {display:none;}
+
+.slider {
+  position:absolute;
+  cursor:pointer;
+  top:0;
+  left:0;
+  right:0;
+  bottom:0;
+  background-color:#4b4e5a;
+}
+
+.slider:before {
+  position:absolute;
+  content:"";
+  height:22px;
+  width:22px;
+  bottom:-3.5px;
+  background-color:#cacaca;
+  transition: .2s;
+}
+
+input.agreeSwitch:checked + .slider {
+  background-color:#0072d2;
+}
+
+input:checked + .slider:before {
+  transform:translateX(22px);
+}
+
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}

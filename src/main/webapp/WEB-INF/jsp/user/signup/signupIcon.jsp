@@ -31,7 +31,11 @@
 				<div>
 					<div>보거스+ 추천</div>
 					<div class="d-flex mt-2">
-						<a href="#" class="circle"></a>
+						<form method="post" action="/user/signup/nickName/view?email=${email}&catalogue=${catalogue}">
+							<input type="text" value="${password}" class="d-none" name="password">
+							<input type="text" value="/static/image/ironman.jpg" class="d-none" name="icon">
+							<button type="submit" class="btn circle p-0"><img src="/static/image/ironman.jpg"></button>
+						</form>
 						<a href="#" class="circle ml-3"></a>
 						<a href="#" class="circle ml-3"></a>
 						<a href="#" class="circle ml-3"></a>

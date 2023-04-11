@@ -19,16 +19,20 @@
 	<div id="wrap">
 		<c:import url="/WEB-INF/jsp/include/header.jsp"/>
 		
-		<section class="main-contents">
-			<h5 class="pt-5"><b>카탈로그 전체에 액세스하세요</b></h5>
-			<div class="textGray mt-2">
-				<div><b>컨텐츠 등급을 19+ 등급으로 설정하세요</b></div>
-				<div class="mt-1">- 카탈로그 전체를 볼 수 있게됩니다</div>
-				<div>- 콘텐츠 등급은 '프로필 수정'에서 얼마든지 변경하실 수 있습니다</div>
-			</div>
-			<button type="button" class="blueBtn btn btn-block mt-3">카탈로그 전체</button>
-			<button type="button" class="grayBtn btn btn-block mt-3">나중에</button>
-		</section>
+		<form method="post" action="/user/signup/icon/view?email=${email}">
+			<section class="main-contents">
+				<h5 class="pt-5"><b>카탈로그 전체에 액세스하세요</b></h5>
+				<div class="textGray mt-2">
+					<div><b>컨텐츠 등급을 19+ 등급으로 설정하세요</b></div>
+					<div class="mt-1">- 카탈로그 전체를 볼 수 있게됩니다</div>
+					<div>- 콘텐츠 등급은 '프로필 수정'에서 얼마든지 변경하실 수 있습니다</div>
+				</div>
+				<input type="text" value="${password}" class="d-none" name="password">
+				<button type="submit" class="blueBtn btn btn-block mt-3" name="catalogue" value="19">카탈로그 전체</button>
+				<button type="submit" class="grayBtn btn btn-block mt-3" name="catalogue" value="12">나중에</button>
+				<div class="textGray mt-2">'나중에'를 선택하면 콘텐츠 등급이 12+ 등급으로 설정되며<br>다른 영화와 시리즈에 대한 액세스가 제한됩니다.</div>
+			</section>
+		</form>
 		
 		<c:import url="/WEB-INF/jsp/include/footer.jsp"/>
 	</div>

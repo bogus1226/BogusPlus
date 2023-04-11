@@ -19,25 +19,76 @@
 	<div id="wrap">
 		<c:import url="/WEB-INF/jsp/include/header.jsp"/>
 		
-		<section class="main-contents">
-			<div class="textGray pt-5 small">2/2단계</div>
-			<h5><b>비밀번호를 생성하세요</b></h5>
-			<div class="textGray mt-2">이 이메일과 비밀번호로 보거스+ 계정에 로그인하여<br>좋아하는 영화를 시청하실수 있습니다.</div>
-			<input type="text" class="form-control mt-3" placeholder="비밀번호">
-			<div class="passwordRule mt-2">알파벳, 숫자, 특수 문자 3가지를 모두 포함해 총 8자(대소문자 구분)<br>이상이어야 합니다.</div>
-			<div class="loginEmail d-flex mt-2">
-				<div class="lengthLine"></div>
-				<div class="emailInfo ml-2 d-flex align-items-center">
-					<div class="ml-2">
-						<div class="emailInfoText"><b>로그인에 사용할 이메일:</b></div>
-						<div>bogus@gmail.com</div>
+		<form method="post" action="/user/signup/catalogue/view?email=${email}">
+			<section class="main-contents">
+				<div class="textGray pt-5 small">2/2단계</div>
+				<h5><b>비밀번호를 생성하세요</b></h5>
+				<div class="textGray mt-2">이 이메일과 비밀번호로 보거스+ 계정에 로그인하여<br>좋아하는 영화를 시청하실수 있습니다.</div>
+				<input type="password" class="form-control mt-3" placeholder="비밀번호" maxlength="8" id="passwordInput" name="password">
+				<div class="textRed mt-1 d-none" id="lengthText">8자리까지 입력해주세요</div>
+				<div class="textRed mt-1 d-none" id="spaceText">공백없이 입력해주세요</div>
+				<div class="textRed mt-1 d-none" id="engText">알파벳을 포함해주세요</div>
+				<div class="textRed mt-1 d-none" id="numText">숫자를 포함해주세요</div>
+				<div class="textRed mt-1 d-none" id="speText">특수 문자를 포합해주세요</div>
+				<div class="passwordRule mt-2">알파벳, 숫자, 특수 문자 3가지를 모두 포함해 총 8자(대소문자 구분)<br>이상이어야 합니다.</div>
+				<div class="loginEmail d-flex mt-2">
+					<div class="lengthLine"></div>
+					<div class="emailInfo ml-2 d-flex align-items-center">
+						<div class="ml-2">
+							<div class="emailInfoText"><b>로그인에 사용할 이메일:</b></div>
+							<div>${email}</div>
+						</div>
 					</div>
 				</div>
-			</div>
-			<button type="button" class="blueBtn btn btn-block mt-3">가입하기</button>
-		</section>
-		
+				<button type="button" class="blueBtn btn btn-block mt-3" id="joinBtn" data-email="${email}">가입하기</button>
+				<button type="submit" class="d-none" id="submitBtn"></button>
+			</section>
+		</form>
 		<c:import url="/WEB-INF/jsp/include/footer.jsp"/>
 	</div>
 </body>
+<script>
+	$(document).ready(function(){
+		
+		$("#passwordInput").on("input", function(){
+			$("#lengthText").addClass("d-none");
+			$("#spaceText").addClass("d-none");
+			$("#engText").addClass("d-none");
+			$("#numText").addClass("d-none");
+			$("#speText").addClass("d-none");
+		});
+		
+		$("#joinBtn").on("click", function(){
+			
+			let email = $(this).data("email");
+			
+			let password = $("#passwordInput").val();
+			let number = password.search(/[0-9]/g); 
+			let english = password.search(/[a-z]/ig); 
+			let special = password.search(/[`~!@@#$%^&*|₩₩₩'₩";:₩/?]/gi); 
+			 
+			if(password.length < 8){
+				$("#lengthText").removeClass("d-none");
+				return false;
+			} else if(password.search(/\s/) != -1) {
+				$("#spaceText").removeClass("d-none");
+				return false;
+			} else if(english < 0) {
+				$("#engText").removeClass("d-none");
+				 return false;
+			} else if(number < 0) {
+				$("#numText").removeClass("d-none");
+				return false;
+			} else if(special < 0) {
+				$("#speText").removeClass("d-none");
+				return false;
+			} else {
+				$("#submitBtn").click();
+			}
+
+		});
+		
+		
+	});
+</script>
 </html>
