@@ -23,29 +23,110 @@
 			<div class="textGray pt-5 small">1/2단계</div>
 			<h5><b>이메일을 입력하세요</b></h5>
 			<div class="textGray mt-2">이 이메일과 비밀번호로 보거스+ 계정에 로그인하여<br>좋아하는 영화를 시청하실수 있습니다.</div>
-			<input type="text" class="form-control mt-3" placeholder="이메일">
+			
+			<!-- 이메일 입력 공간 및 유효성검사 문구 -->
+			<input type="text" class="form-control mt-3" placeholder="이메일" id="emailInput">
+			<div class="textRed mt-1 d-none" id="emailText">이메일 양식을 확인해주세요</div>
+			
+			<!-- 소식 및 특별 혜택 동의 -->
 			<div class="form-check mt-3">
-			  <input class="form-check-input" type="checkbox">
+			  <input class="form-check-input" type="checkbox" id="newsAgreeCheckInput" name="check">
 			  <label class="form-check-label textGray">
-			      예, 보거스+에 관한  최신 소식, 특별 혜택 및 기타 정보를 받아<br>보겠습니다.
+			      예, 보거스+에 관한 최신 소식, 특별 혜택 및 기타 정보를 받아 보겠습니다.
 			  </label>
 			</div>
+			
+			<!-- 이용약관 동의 및 안내문구 -->
 			<div class="form-check mt-2">
-			  <input class="form-check-input" type="checkbox">
+			  <input class="form-check-input" type="checkbox" id="ageCheckInput" name="check">
 			  <label class="form-check-label textGray">
-			      본인은 만 19세 이상이며 보거스+ 이용약관에 동의합니다.
+			      본인은 만 19세 이상이며 이용약관에 동의합니다.
 			  </label>
+			  <div class="textRed d-none" id="ageCheckText">계속 진행하려면 동의해야 합니다</div>
 			</div>
+			
+			<!-- 개인정보 동의 및 안내문구 -->
 			<div class="form-check mt-2">
-			  <input class="form-check-input" type="checkbox">
+			  <input class="form-check-input" type="checkbox" id="infoCollectCheckInput" name="check">
 			  <label class="form-check-label textGray">
 			      보거스+의 개인정보 수집 및 이용에 동의합니다.
 			  </label>
+			  <div class="textRed d-none" id="infoCollectCheckText">계속 진행하려면 동의해야 합니다</div>
 			</div>
-			<button type="button" class="blueBtn btn btn-block mt-3">동의하고 진행하기</button>
+			
+			
+			<button type="button" class="blueBtn btn btn-block mt-3" id="agreeBtn">동의하고 진행하기</button>
 		</section>
 		
 		<c:import url="/WEB-INF/jsp/include/footer.jsp"/>
 	</div>
 </body>
+<script>
+	$(document).ready(function(){
+		
+		// 이메일 입력공간에 키가 입력되면 유효성검사 문구를 숨긴다.
+		$("#emailInput").on("keyup", function(){
+			$("#emailText").addClass("d-none");
+		});
+		
+		$("#agreeBtn").on("click", function() {
+			
+			let email = $("#emailInput").val();
+			
+			// 이메일 유효성검사 정규식 표현
+			var regEmail = /^([0-9a-zA-Z_\.-]+)@([0-9a-zA-Z_-]+)(\.[0-9a-zA-Z_-]+){1,2}$/;
+			
+			
+			$("input[type=checkbox][id=ageCheckInput]").change(function() {
+				 if ($(this).is(":checked")) {
+					 $("#ageCheckText").addClass("d-none");
+		        }
+		        else {
+		        	$("#ageCheckText").removeClass("d-none");
+		        }
+			});
+			
+			$("input[type=checkbox][id=infoCollectCheckInput]").change(function() {
+				 if ($(this).is(":checked")) {
+					 $("#infoCollectCheckText").addClass("d-none");
+		        }
+		        else {
+		        	$("#infoCollectCheckText").removeClass("d-none");
+		        }
+			});
+			
+			let count = 0;
+			
+			if($("#ageCheckInput").is(":checked")) {
+				count++;
+			} else {
+				$("#ageCheckText").removeClass("d-none");
+			}
+			
+			if($("#infoCollectCheckInput").is(":checked")) {
+				count++;
+			} else {
+				$("#infoCollectCheckText").removeClass("d-none");
+			}
+			
+			if(regEmail.test(email)){
+					$("#emailText").addClass("d-none");
+					if(count == 2) {
+						window.location.href ="/user/signup/password/view?email="+email
+					} else {
+						return;
+					}
+				 } else{     
+					$("#emailText").removeClass("d-none");
+					return;
+				}
+			
+			
+			
+		    
+		    
+		});
+		
+	});
+</script>
 </html>

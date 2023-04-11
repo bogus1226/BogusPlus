@@ -33,11 +33,31 @@ hr {
 	font-size:small;
 }
 
+.textRed {
+	color:#e54e48;
+	font-size:12px;
+}
+
 .main-contents > .form-control {
 	background-color:rgb(48, 51, 62);
 	height:45px;
 	color:white;
 }
+
+.pin-contents > .pinBox {
+	width:45px;
+	height:70px;	
+	border:none;
+	background-color:rgb(48, 51, 62);
+	color:white;
+	font-size:25px;
+}
+
+.pin-contents > input:focus {
+	outline:none;
+}
+
+
 
 .btn:active, .btn:focus { 
 	outline:none !important; 

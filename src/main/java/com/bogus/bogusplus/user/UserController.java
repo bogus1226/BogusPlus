@@ -3,6 +3,7 @@ package com.bogus.bogusplus.user;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @RequestMapping("/user")
@@ -27,7 +28,8 @@ public class UserController {
 	}
 	
 	@GetMapping("/signup/password/view")
-	public String signupPassword() {
+	public String signupPassword(
+			@RequestParam("email") String email) {
 		
 		return "user/signup/signupPassword";
 	}
@@ -48,5 +50,11 @@ public class UserController {
 	public String signupNickName() {
 		
 		return "user/signup/signupNickName";
+	}
+	
+	@GetMapping("/signup/pin/view")
+	public String signupPin() {
+		
+		return "user/signup/signupPin";
 	}
 }
