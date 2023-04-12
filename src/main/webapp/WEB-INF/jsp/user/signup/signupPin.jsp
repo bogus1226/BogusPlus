@@ -23,10 +23,10 @@
 			<h5 class="pt-5 mb-1"><b>프로필 잠금 PIN으로 엑세스를<br>제한 할까요?</b></h5>
 			<div class="textGray">4자리 PIN을 설정하세요</div>
 			<div class="pin-contents mt-2">
-				<input type="text" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" class="pin pinBox text-center mr-2" maxlength="1" id="pin1">
-				<input type="text" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" class="pin pinBox text-center mr-2" maxlength="1" id="pin2">
-				<input type="text" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" class="pin pinBox text-center mr-2" maxlength="1" id="pin3">
-				<input type="text" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" class="pin pinBox text-center mr-2" maxlength="1" id="pin4">
+				<input type="password" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" class="pin pinBox text-center mr-2" maxlength="1" id="pin1">
+				<input type="password" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" class="pin pinBox text-center mr-2" maxlength="1" id="pin2">
+				<input type="password" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" class="pin pinBox text-center mr-2" maxlength="1" id="pin3">
+				<input type="password" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" class="pin pinBox text-center mr-2" maxlength="1" id="pin4">
 			</div>
 			<div class="textRed mt-1 d-none" id="pinText">4자리를 모두 입력해주세요</div>
 			<button type="button" class="blueBtn btn btn-block mt-3" data-userid="${user.id}" id="pinSetBtn">프로필 PIN 설정</button>
@@ -40,18 +40,16 @@
 <script>
 	$(document).ready(function(){
 		
-		$(".pin").on("input", function() {
+		$(".pin").on("keydown", function(event) {
 			
-			$("#pinText").addClass("d-none");
-			
-		    if(this.value.length == 1) {
+			var keyCode = event.keyCode;
+				
+		    if(this.value.length == 1 && keyCode != 8) {
 		    	$(this).next().focus();   
-		    } else {
+		    } else if(this.value.length != 1 && keyCode == 8) {
 		    	$(this).prev().focus();
 		    }
-		    
-
-		    
+   
 		});
 		
 		$("#pinSetBtn").on("click", function(){
