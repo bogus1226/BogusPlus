@@ -11,7 +11,7 @@ public class User {
 	private String icon;
 	private String nickName;
 	private int kid;
-	private int pin;
+	private String pin;
 	private int manager;
 	private Date createdAt;
 	private Date updatedAt;
@@ -58,10 +58,10 @@ public class User {
 	public void setKid(int kid) {
 		this.kid = kid;
 	}
-	public int getPin() {
+	public String getPin() {
 		return pin;
 	}
-	public void setPin(int pin) {
+	public void setPin(String pin) {
 		this.pin = pin;
 	}
 	public int getManager() {

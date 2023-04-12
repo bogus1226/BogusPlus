@@ -66,7 +66,7 @@
 	$(document).ready(function(){
 		
 		// 이메일 입력공간에 키가 입력되면 유효성검사 문구를 숨긴다.
-		$("#emailInput").on("input", function(){
+		$("#emailInput").on("keyup", function(){
 			$("#emailText").addClass("d-none");
 			$("#emailIsDuplicateText").addClass("d-none");
 		});

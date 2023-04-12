@@ -4,6 +4,27 @@
 
 <mapper namespace="com.bogus.bogusplus.user.dao.UserDAO">
 
+	<select id="selectCountSignin" parameterType="map" resultType="com.bogus.bogusplus.user.model.User">
+		SELECT
+			`id`
+			, `email`
+			, `password`
+			, `catalogue`
+			, `icon`
+			, `nickName`
+			, `kid`
+			, `pin`
+			, `manager`
+			, `createdAt`
+			, `updatedAt`
+		FROM
+			`user`
+		WHERE
+			`email` = #{email}
+		AND
+			`password` = #{password}
+	</select>
+
 	<insert id="insertUser" parameterType="com.bogus.bogusplus.user.model.User"
 	useGeneratedKeys="true" keyProperty="id">
 		INSERT INTO

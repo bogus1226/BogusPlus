@@ -18,7 +18,11 @@ public class UserController {
 	}
 	
 	@GetMapping("/signin/password/view")
-	public String signinPassword() {
+	public String signinPassword(
+			@RequestParam("email") String email
+			, Model model) {
+		
+		model.addAttribute("email", email);
 		
 		return "user/signin/signinPassword";
 	}

@@ -3,12 +3,13 @@ package com.bogus.bogusplus.user;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.bogus.bogusplus.user.bo.UserBO;
@@ -20,6 +21,28 @@ public class UserRestController {
 	
 	@Autowired
 	private UserBO userBO;
+	
+	@PostMapping("/signin")
+	public Map<String, Object> signin(
+			@RequestParam("email") String email
+			, @RequestParam("password") String password
+			, HttpSession session) {
+		
+		User user = userBO.signin(email, password);
+		
+		Map<String, Object> resultMap = new HashMap<>();
+		if(user != null) {
+			resultMap.put("result", "success");
+			
+			session.setAttribute("userId", user.getId());
+			session.setAttribute("userName", user.getNickName());
+		} else {
+			resultMap.put("result", "fail");
+		}
+			resultMap.put("EmailResult", userBO.EmailIsDuplicate(email));
+		
+		return resultMap;
+	}
 
 	@PostMapping("/signup")
 	public Map<String, Object> signup(
@@ -50,7 +73,7 @@ public class UserRestController {
 	
 	@PostMapping("/add/catalogue") 
 	public Map<String, String> addCatalogue(
-			@RequestParam("catalogue") String catalogue
+			@RequestParam("catalogue") int catalogue
 			, @RequestParam("userId") int userId) {
 		
 		int count = userBO.addCatalogue(catalogue, userId);

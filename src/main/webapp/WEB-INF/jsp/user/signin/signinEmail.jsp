@@ -19,18 +19,63 @@
 	<div id="wrap">
 		<c:import url="/WEB-INF/jsp/include/header.jsp"/>
 		
-		<section class="main-contents">
-			<h5 class="pt-5"><b>이메일 주소로 로그인하세요</b></h5>
-			<div class="textGray mt-2">이 이메일과 비밀번호로 보거스+ 계정에 로그인하여<br>좋아하는 영화를 시청하실수 있습니다.</div>
-			<input type="text" class="form-control mt-3" placeholder="이메일">
-			<button type="button" class="blueBtn btn btn-block mt-3">다음</button>
-			<div class="d-flex mt-4">
-				<div class="textGray">보거스+에 처음이신가요?</div>
-				<a class="ml-2" href="#">가입하기</a>
-			</div>
-		</section>
+		<form id="signinEmailForm">
+			<section class="main-contents">
+				<h5 class="pt-5"><b>이메일 주소로 로그인하세요</b></h5>
+				<div class="textGray mt-2">이 이메일과 비밀번호로 보거스+ 계정에 로그인하여<br>좋아하는 영화를 시청하실수 있습니다.</div>
+				<input type="text" class="form-control mt-3" placeholder="이메일" id="emailInput">
+				<div class="textRed mt-1 d-none" id="emailSpaceText">이메일을 입력해주세요</div>
+				<div class="textRed mt-1 d-none" id="emailIsDuplicateText">일치하는 이메일이 없습니다</div>
+				<button type="submit" class="blueBtn btn btn-block mt-3">다음</button>
+				<div class="d-flex mt-4">
+					<div class="textGray">보거스+에 처음이신가요?</div>
+					<a class="ml-2" href="/user/signup/email/view">가입하기</a>
+				</div>
+			</section>
+		</form>
 		
 		<c:import url="/WEB-INF/jsp/include/footer.jsp"/>
 	</div>
 </body>
+<script>
+	$(document).ready(function(){
+		
+		$("#emailInput").on("input", function(){
+			$("#emailSpaceText").addClass("d-none");
+			$("#emailIsDuplicateText").addClass("d-none");
+		});
+		
+		$("#signinEmailForm").on("submit", function(e){
+			
+			e.preventDefault();
+			
+			let email = $("#emailInput").val();
+			
+			if(email == "") {
+				$("#emailSpaceText").removeClass("d-none");
+				return;
+			}
+			
+			$.ajax({
+				type:"get"
+				, url:"/user/isDuplicate"
+				, data:{"email":email}
+				, success:function(data){
+					if(!data.isDuplicate) {
+						$("#emailIsDuplicateText").removeClass("d-none");
+					} else if(data.isDuplicate) {
+						location.href = "/user/signin/password/view?email="+email;
+					} else {
+						console.log("중복확인 실패");
+					}	
+				}
+				, error:function(){
+					console.log("중복확인 에러");
+				}
+				
+			});	 
+			
+		});
+	});
+</script>
 </html>

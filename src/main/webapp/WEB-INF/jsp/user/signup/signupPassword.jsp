@@ -48,7 +48,7 @@
 <script>
 	$(document).ready(function(){
 		
-		$("#passwordInput").on("input", function(){
+		$("#passwordInput").on("keyup", function(){
 			$("#lengthText").addClass("d-none");
 			$("#spaceText").addClass("d-none");
 			$("#engText").addClass("d-none");

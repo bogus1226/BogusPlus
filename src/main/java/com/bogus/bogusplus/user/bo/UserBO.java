@@ -13,6 +13,13 @@ public class UserBO {
 	@Autowired
 	private UserDAO userDAO;
 	
+	public User signin(String email, String password) {
+		
+		String encryptPassword = EncryptService.md5(password);
+		
+		return userDAO.selectCountSignin(email, encryptPassword);
+	}
+	
 	public String encryptPassword(String password) {
 		String encryptPassword = EncryptService.md5(password);
 		
@@ -24,7 +31,7 @@ public class UserBO {
 		return userDAO.insertUser(user);
 	}
 	
-	public int addCatalogue(String catalogue, int userId) {
+	public int addCatalogue(int catalogue, int userId) {
 		
 		return userDAO.updateCatalogue(catalogue, userId);
 	}
