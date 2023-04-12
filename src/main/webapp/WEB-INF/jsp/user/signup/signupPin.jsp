@@ -29,7 +29,7 @@
 				<input type="password" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" class="pin pinBox text-center mr-2" maxlength="1" id="pin4">
 			</div>
 			<div class="textRed mt-1 d-none" id="pinText">4자리를 모두 입력해주세요</div>
-			<button type="button" class="blueBtn btn btn-block mt-3" data-userid="${user.id}" id="pinSetBtn">프로필 PIN 설정</button>
+			<button type="button" class="blueBtn btn btn-block mt-3" id="pinSetBtn">프로필 PIN 설정</button>
 			<a href="/user/signin/email/view" type="button" class="grayBtn btn btn-block mt-3">나중에</a>
 			<div class="textGray mt-2">PIN은 '프로필 수정'에서 언제든지 설정하실 수 있습니다.</div>
 		</section>
@@ -41,6 +41,8 @@
 	$(document).ready(function(){
 		
 		$(".pin").on("keydown", function(event) {
+			
+			$("#pinText").addClass("d-none");
 			
 			var keyCode = event.keyCode;
 				
@@ -54,7 +56,7 @@
 		
 		$("#pinSetBtn").on("click", function(){
 			
-			let userId = $(this).data("userid");
+			let userId = ${userId};
 			let pin1 = $("#pin1").val();
 			let pin2 = $("#pin2").val();
 			let pin3 = $("#pin3").val();
@@ -63,13 +65,14 @@
 			
 			if(pin1 == "" || pin2 == "" || pin3 == "" || pin4 == "") {
 				$("#pinText").removeClass("d-none");
+				return;
 			}
 			
 			
 			
 			$.ajax({
 				type:"post"
-				, url:"/user/pin/update"
+				, url:"/user/add/pin"
 				, data:{"pin":pin, "userId":userId}
 				, success:function(data){
 					if(data.result == "success") {

@@ -26,8 +26,8 @@
 				<div class="mt-1">- 카탈로그 전체를 볼 수 있게됩니다</div>
 				<div>- 콘텐츠 등급은 '프로필 수정'에서 얼마든지 변경하실 수 있습니다</div>
 			</div>
-			<button type="button" class="blueBtn btn btn-block mt-3" id="catalogueAllBtn">카탈로그 전체</button>
-			<button type="button" class="grayBtn btn btn-block mt-3" id="laterBtn">나중에</button>
+			<button type="button" class="blueBtn btn btn-block mt-3 selectBtn" data-catalogue="19">카탈로그 전체</button>
+			<button type="button" class="grayBtn btn btn-block mt-3 selectBtn" data-catalogue="12">나중에</button>
 			<div class="textGray mt-2">'나중에'를 선택하면 콘텐츠 등급이 12+ 등급으로 설정되며<br>다른 영화와 시리즈에 대한 액세스가 제한됩니다.</div>
 		</section>
 		
@@ -37,54 +37,43 @@
 <script>
 	$(document).ready(function(){
 		
-		$("#catalogueAllBtn").on("click", function(){
+		$(".selectBtn").on("click", function(){
 			
-			let catalogue = 19;
+			userId = ${userId};
+			
+			let catalogue = $(this).data("catalogue");
 			
 			$.ajax({
-				type:"get"
+				type:"post"
 				, url:"/user/add/catalogue"
-				, data:{"catalogue":catalogue}
+				, data:{"catalogue":catalogue, "userId":userId}
 				, success:function(data){
 					if(data.result == "success") {
-						location.href = "/user/signup/icon/view";
+						let form = document.createElement("form");
+						
+						let object = document.createElement("input");
+						
+						object.setAttribute("type", "hidden");
+						object.setAttribute("name", "userId");
+						object.setAttribute("value", userId);
+						
+						form.appendChild(object);
+						form.setAttribute("method", "post");
+						form.setAttribute("action", "/user/signup/icon/view");
+						
+						document.body.appendChild(form);
+						form.submit();
 					} else {
-						alert("카탈로그 추가 실패");
+						console.log("카탈로그 추가 실패");
 					}	
 				}
 				, error:function(){
-					alert("카탈로그 추가 에러");
+					console.log("카탈로그 추가 에러");
 				}
 				
 			});
 			
-		});
-		
-		$("#laterBtn").on("click", function(){
-			
-			let catalogue = 12;
-			
-			$.ajax({
-				type:"get"
-				, url:"/user/add/catalogue"
-				, data:{"catalogue":catalogue}
-				, success:function(data){
-					if(data.result == "success") {
-						location.href = "/user/signup/icon/view";
-					} else {
-						alert("카탈로그 추가 실패");
-					}	
-				}
-				, error:function(){
-					alert("카탈로그 추가 에러");
-				}
-				
-			});
-			
-		});
-			
-
-		
+		}); 		
 		
 	});
 </script>

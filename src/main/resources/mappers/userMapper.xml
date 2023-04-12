@@ -35,6 +35,37 @@
 			 `id` = #{id}
 	</update>
 	
+	<update id="updateIcon" parameterType="map">
+		UPDATE
+			`user`
+		SET
+			`icon` = #{icon}
+			, updatedAt = now()
+		WHERE
+			 `id` = #{id}
+	</update>
+	
+	<update id="updateNickName" parameterType="map">
+		UPDATE
+			`user`
+		SET
+			`nickName` = #{nickName}
+			, `kid` = #{kid}
+			, updatedAt = now()
+		WHERE
+			 `id` = #{id}
+	</update>
+	
+		<update id="updatePin" parameterType="map">
+		UPDATE
+			`user`
+		SET
+			`pin` = #{pin}
+			, updatedAt = now()
+		WHERE
+			 `id` = #{id}
+	</update>
+	
 	<select id="selectCountIsDuplicate" parameterType="String" resultType="int">
 		SELECT
 			count(1)
@@ -44,25 +75,6 @@
 			`email` = #{email}
 	</select>
 	
-	<select id="selectLastUser" resultType="com.bogus.bogusplus.user.model.User">
-		SELECT
-			`id`
-		FROM
-			`user`
-		ORDER BY
-			`id` DESC
-		LIMIT
-			1		
-	</select>
-	
-	<update id="updatePin" parameterType="map">
-		UPDATE
-			`user`
-		SET
-			`pin` = #{pin}
-			, updatedAt = now()
-		WHERE
-			 `id` = #{userId}
-	</update>
+
 	
 </mapper>

@@ -31,12 +31,8 @@
 				<div>
 					<div>보거스+ 추천</div>
 					<div class="d-flex mt-2">
-						<form method="post" action="/user/signup/nickName/view?email=${email}&catalogue=${catalogue}">
-							<input type="text" value="${password}" class="d-none" name="password">
-							<input type="text" value="/static/image/ironman.jpg" class="d-none" name="icon">
-							<button type="submit" class="btn circle p-0"><img src="/static/image/ironman.jpg"></button>
-						</form>
-						<a href="#" class="circle ml-3"></a>
+						<button type="button" class="iconBtn btn circle p-0" data-icon="/static/image/ironman.jpg"><img src="/static/image/ironman.jpg"></button>
+						<button type="button" class="iconBtn btn circle p-0 ml-3" data-icon="/static/image/spider.jpg"><img src="/static/image/spider.jpg"></button>
 						<a href="#" class="circle ml-3"></a>
 						<a href="#" class="circle ml-3"></a>
 						<a href="#" class="circle ml-3"></a>
@@ -81,4 +77,47 @@
 		<c:import url="/WEB-INF/jsp/include/footer.jsp"/>
 	</div>
 </body>
+<script>
+	$(document).ready(function(){
+		
+		$(".iconBtn").on("click", function(){
+			
+			userId = ${userId};
+			
+			let icon = $(this).data("icon");
+			
+			$.ajax({
+				type:"post"
+				, url:"/user/add/icon"
+				, data:{"icon":icon, "userId":userId}
+				, success:function(data){
+					if(data.result == "success") {
+						let form = document.createElement("form");
+						
+						let object = document.createElement("input");
+						
+						object.setAttribute("type", "hidden");
+						object.setAttribute("name", "userId");
+						object.setAttribute("value", userId);
+						
+						form.appendChild(object);
+						form.setAttribute("method", "post");
+						form.setAttribute("action", "/user/signup/nickName/view");
+						
+						document.body.appendChild(form);
+						form.submit();
+					} else {
+						console.log("아이콘 추가 실패");
+					}	
+				}
+				, error:function(){
+					console.log("아이콘 추가 에러");
+				}
+				
+			});
+			
+		}); 		
+		
+	});
+</script>
 </html>

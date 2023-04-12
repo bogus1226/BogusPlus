@@ -90,14 +90,28 @@
 				, data:{"email":email, "password":password}
 				, success:function(data){
 					if(data.result == "success") {
-						let userId = data.result.user.id;
-						location.href = "/user/signup/catalogue/view?userId="+userId;
+						let userId = data.user.id;
+						
+						let form = document.createElement("form");
+						
+						let object = document.createElement("input");
+						
+						object.setAttribute("type", "hidden");
+						object.setAttribute("name", "userId");
+						object.setAttribute("value", userId);
+						
+						form.appendChild(object);
+						form.setAttribute("method", "post");
+						form.setAttribute("action", "/user/signup/catalogue/view");
+						
+						document.body.appendChild(form);
+						form.submit();
 					} else {
-						alert("회원가입 실패");
+						console.log("회원가입 실패");
 					}	
 				}
 				, error:function(){
-					alert("회원가입 에러");
+					console.log("회원가입 에러");
 				}
 				
 			});

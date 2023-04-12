@@ -29,6 +29,24 @@ public class UserBO {
 		return userDAO.updateCatalogue(catalogue, userId);
 	}
 	
+	public int addIcon(String icon, int userId) {
+		
+		return userDAO.updateIcon(icon, userId);
+	}
+	
+	public int addNickName(String nickName, int kid, int userId) {
+		
+		return userDAO.updateNickName(nickName, kid, userId);
+	}
+	
+	public int addPin(String pin, int userId) {
+		
+		String encryptPin = EncryptService.md5(pin);
+		
+		return userDAO.updatePin(encryptPin, userId);
+		
+	}
+	
 	public boolean EmailIsDuplicate(String email) {
 		
 		int count = userDAO.selectCountIsDuplicate(email);
@@ -36,17 +54,5 @@ public class UserBO {
 		return count != 0;
 	}
 	
-	public User getLastUser() {
-		 
-		return userDAO.selectLastUser();
-	}
-	
-	public int updatePin(String pin, int userId) {
-		
-		String encryptPin = EncryptService.md5(pin);
-		
-		return userDAO.updatePin(encryptPin, userId);
-		
-		
-	}
+
 }

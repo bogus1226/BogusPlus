@@ -13,12 +13,21 @@ public interface UserDAO {
 	public int updateCatalogue(
 			@Param("catalogue") String catalogue
 			, @Param("id") int id);
-
-	public int selectCountIsDuplicate(@Param("email") String email);
 	
-	public User selectLastUser();
+	public int updateIcon(
+			@Param("icon") String icon
+			, @Param("id") int id);
+	
+	public int updateNickName(
+			@Param("nickName") String nickName
+			, @Param("kid") int kid
+			, @Param("id") int id);
 	
 	public int updatePin(
 			@Param("pin") String pin
-			,@Param("userId") int userId);
+			,@Param("id") int id);
+
+	public int selectCountIsDuplicate(@Param("email") String email);
+	
+
 }

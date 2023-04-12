@@ -67,9 +67,7 @@
 		
 		$("#saveBtn").on("click", function() {
 			
-			let email = $(this).data("email");
-			let password = $(this).data("password");
-			let catalogue = $(this).data("catalogue");
+			let userId = ${userId};
 			let icon = $(this).data("icon");
 			let nickName = $("#nickNameInput").val();
 			
@@ -87,23 +85,33 @@
 			
 			$.ajax({
 				type:"post"
-				, url:"/user/signup"
+				, url:"/user/add/nickName"
 				, data:{
-					"email":email
-					, "password":password
-					, "catalogue":catalogue
-					, "icon":icon
-					, "nickName":nickName
-					, "kid":kid}
+					"nickName":nickName
+					, "kid":kid
+					, "userId":userId}
 				, success:function(data){
 					if(data.result == "success") {
-						location.href = "/user/signup/pin/view";
+						let form = document.createElement("form");
+						
+						let object = document.createElement("input");
+						
+						object.setAttribute("type", "hidden");
+						object.setAttribute("name", "userId");
+						object.setAttribute("value", userId);
+						
+						form.appendChild(object);
+						form.setAttribute("method", "post");
+						form.setAttribute("action", "/user/signup/pin/view");
+						
+						document.body.appendChild(form);
+						form.submit();
 					} else {
-						alert("회원가입 실패");
+						console.log("닉네임 추가 실패");
 					}	
 				}
 				, error:function(){
-					alert("회원가입 에러");
+					console.log("닉네임 추가 에러");
 				}
 				
 			});
