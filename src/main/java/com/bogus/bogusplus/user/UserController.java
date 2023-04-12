@@ -46,46 +46,26 @@ public class UserController {
 		return "user/signup/signupPassword";
 	}
 	
-	@PostMapping("/signup/catalogue/view")
+	@GetMapping("/signup/catalogue/view")
 	public String signupCatalogue(
-			@RequestParam("email") String email
-			, @RequestParam("password") String password
+			@RequestParam("userId") int userId
 			, Model model) {
 		
-		String encryptPassword = userBO.encryptPassword(password);
+		User lastUser = userBO.getLastUser();
 		
-		model.addAttribute("email", email);
-		model.addAttribute("password", encryptPassword);
+		model.addAttribute("user", lastUser);
 		
 		return "user/signup/signupCatalogue";
 	}
 	
-	@PostMapping("/signup/icon/view")
-	public String signupIcon(
-			@RequestParam("email") String email
-			, @RequestParam("password") String password
-			, @RequestParam("catalogue") int catalogue
-			, Model model) {
-		
-		model.addAttribute("email", email);
-		model.addAttribute("password", password);
-		model.addAttribute("catalogue", catalogue);
-		
+	@GetMapping("/signup/icon/view")
+	public String signupIcon() {
+			
 		return "user/signup/signupIcon";
 	}
 	
 	@PostMapping("/signup/nickName/view")
-	public String signupNickName(
-			@RequestParam("email") String email
-			, @RequestParam("password") String password
-			, @RequestParam("catalogue") int catalogue
-			, @RequestParam("icon") String icon
-			, Model model) {
-		
-		model.addAttribute("email", email);
-		model.addAttribute("password", password);
-		model.addAttribute("catalogue", catalogue);
-		model.addAttribute("icon", icon);
+	public String signupNickName() {
 		
 		return "user/signup/signupNickName";
 	}

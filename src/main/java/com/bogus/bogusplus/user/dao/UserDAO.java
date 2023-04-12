@@ -8,13 +8,11 @@ import com.bogus.bogusplus.user.model.User;
 @Repository
 public interface UserDAO {
 	
-	public int insertUser(
-			@Param("email") String email
-			, @Param("password") String password
-			, @Param("catalogue") int catalogue
-			, @Param("icon") String icon
-			, @Param("nickName") String nickName
-			, @Param("kid") int kid);
+	public int insertUser(User user);
+	
+	public int updateCatalogue(
+			@Param("catalogue") String catalogue
+			, @Param("id") int id);
 
 	public int selectCountIsDuplicate(@Param("email") String email);
 	

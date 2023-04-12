@@ -14,21 +14,19 @@ public class UserBO {
 	private UserDAO userDAO;
 	
 	public String encryptPassword(String password) {
-		
 		String encryptPassword = EncryptService.md5(password);
 		
 		return encryptPassword;
 	}
 	
-	public int addUser(
-			String email
-			, String password
-			, int catalogue
-			, String icon
-			, String nickName
-			, int kid) {
+	public int addUser(User user) {
 		
-		return userDAO.insertUser(email, password, catalogue, icon, nickName, kid);
+		return userDAO.insertUser(user);
+	}
+	
+	public int addCatalogue(String catalogue, int userId) {
+		
+		return userDAO.updateCatalogue(catalogue, userId);
 	}
 	
 	public boolean EmailIsDuplicate(String email) {

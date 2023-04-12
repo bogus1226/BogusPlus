@@ -4,16 +4,13 @@
 
 <mapper namespace="com.bogus.bogusplus.user.dao.UserDAO">
 
-	<insert id="insertUser" parameterType="map">
+	<insert id="insertUser" parameterType="com.bogus.bogusplus.user.model.User"
+	useGeneratedKeys="true" keyProperty="id">
 		INSERT INTO
 			`user` 
 		(
 			`email`
 			, `password`
-			, `catalogue`
-			, `icon`
-			, `nickName`
-			, `kid`
 			, `manager`
 			, `createdAt`
 			, `updatedAt`
@@ -22,15 +19,21 @@
 		(
 			#{email}
 			, #{password}
-			, #{catalogue}
-			, #{icon}
-			, #{nickName}
-			, #{kid}
 			, 0
 			, now()
 			, now()
 		)
 	</insert>
+	
+	<update id="updateCatalogue" parameterType="map">
+		UPDATE
+			`user`
+		SET
+			`catalogue` = #{catalogue}
+			, updatedAt = now()
+		WHERE
+			 `id` = #{id}
+	</update>
 	
 	<select id="selectCountIsDuplicate" parameterType="String" resultType="int">
 		SELECT

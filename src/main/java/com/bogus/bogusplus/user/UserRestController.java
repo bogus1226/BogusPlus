@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.bogus.bogusplus.user.bo.UserBO;
+import com.bogus.bogusplus.user.model.User;
 
 @RestController
 @RequestMapping("/user")
@@ -20,15 +21,40 @@ public class UserRestController {
 	private UserBO userBO;
 
 	@PostMapping("/signup")
-	public Map<String, String> signup(
+	public Map<String, Object> signup(
 			@RequestParam("email") String email
-			, @RequestParam("password") String password
-			, @RequestParam("catalogue") int catalogue
-			, @RequestParam("icon") String icon
-			, @RequestParam("nickName") String nickName
-			, @RequestParam("kid") int kid) {
+			, @RequestParam("password") String password) {
 		
-		int count = userBO.addUser(email, password, catalogue, icon, nickName, kid);
+		String encryptPassword = userBO.encryptPassword(password);
+		
+		User user = new User();
+		
+		user.setEmail(email);
+		user.setPassword(encryptPassword);
+		
+		int count = userBO.addUser(user);
+		
+		Map<String, Object> resultMap = new HashMap<>();
+		
+		resultMap.put("user", user);
+		
+		if(count != 0) {
+			resultMap.put("result", "success");
+		} else {
+			resultMap.put("result", "fail");
+		}
+		
+		return resultMap;
+	}
+	
+	@GetMapping("/add/catalogue") 
+	public Map<String, String> addCatalogue(
+			@RequestParam("catalogue") String catalogue) {
+		
+		User user = userBO.getLastUser();
+		int userId = user.getId();
+		
+		int count = userBO.addCatalogue(catalogue, userId);
 		
 		Map<String, String> resultMap = new HashMap<>();
 		
