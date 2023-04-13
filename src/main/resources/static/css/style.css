@@ -180,4 +180,32 @@ a:hover {
     border-radius:50%;
 }
  
+#movieHeaderLink > a {
+	color:white;
+	font-size:20px;
+}
+
+#movieHeaderLink > a:hover {
+	color:#dbd9d9;
+}
+
+#movieHeaderLink > a:active {
+	color:#c9c7c7;
+}
+
+.nickName {
+	font-size:20px;
+	font-weight:bold;
+}
+
+.profileCircle {
+	 width:60px;
+   	 height:60px;
+   	 border-radius:50%;
+     background-color:rgb(224, 224, 224);
+     border:none;
+}
+
+
+
 
