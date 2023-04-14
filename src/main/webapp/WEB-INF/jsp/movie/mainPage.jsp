@@ -30,38 +30,289 @@
 			<div class="d-flex justify-content-between">
 				<div class="d-flex">
 					<div class="headerLogo ml-5 pt-2 mr-4">Bogus+</div>
-					<nav class="ml-5 pt-3 nav-item d-flex" id="movieHeaderLink">
-						<a href="#" class="nav-link">홈</a>
-						<a href="#" class="nav-link">검색</a>
-						<a href="#" class="nav-link">관심	콘텐츠</a>
-						<a href="#" class="nav-link">영화</a>
-						<a href="#" class="nav-link">수다</a>
+					<nav class="ml-5 pt-2 nav-item d-flex" id="movieHeaderLink">
+						<a href="#" class="nav-link"><i class="bi bi-house-fill mr-1"></i>홈</a>
+						<a href="#" class="nav-link"><i class="bi bi-search mr-1"></i>검색</a>
+						<a href="#" class="nav-link"><i class="bi bi-plus-lg mr-1"></i>관심콘텐츠</a>
+						<a href="#" class="nav-link"><i class="bi bi-caret-right-square-fill mr-1"></i>영화</a>
+						<a href="#" class="nav-link"><i class="bi bi-chat-fill mr-1"></i>수다 <span class="textYellow">(스포주의)</span></a>
 					</nav>
 				</div>
-				<div class="d-flex mt-2">
-					<div class="nickName pt-4 mr-2">보거스</div>
-					<div class="profileCircle mt-2 mr-3"></div>
+				<div class="profile-container">
+					<div class="profile mt-2 mr-2">
+						<hr class="m-0">
+						<div class="d-flex align-items-center">
+							<div class="nickName mt-2 mr-2">${userName}</div>
+							<div class="profileCircle mt-1"><img src="/static/image/groot.jpg"></div>
+						</div>
+						<hr class="m-0 mt-1">
+					</div>
+					<div>zz</div>
 				</div>
 			</div>
 		</header>
 		
-		<div class="swiper swiper-box mt-4">
-   			<div class="swiper-wrapper">
-        		<a href="" class="swiper-slide"><img src="/static/image/영화포스터1.jpg"></a>
-        		<a href="" class="swiper-slide"><img src="/static/image/영화포스터2.jpg"></a>
-        		<a href="" class="swiper-slide"><img src="/static/image/영화포스터1.jpg"></a>
-        		<a href="" class="swiper-slide"><img src="/static/image/영화포스터2.jpg"></a>
-        		<a href="" class="swiper-slide"><img src="/static/image/영화포스터1.jpg"></a>
-        		<a href="" class="swiper-slide"><img src="/static/image/영화포스터2.jpg"></a>
-        		<a href="" class="swiper-slide"><img src="/static/image/영화포스터1.jpg"></a>
-        		<a href="" class="swiper-slide"><img src="/static/image/영화포스터2.jpg"></a>
-        		<a href="" class="swiper-slide"><img src="/static/image/영화포스터1.jpg"></a>
-        		<a href="" class="swiper-slide"><img src="/static/image/영화포스터2.jpg"></a>
+		<div class="swiper swiper-box poster-contents mt-4">
+   			<div class="swiper-wrapper posterBox">
+        		<a href="#" class="swiper-slide"><img src="/static/image/영화포스터1.jpg"></a>
+        		<a href="#" class="swiper-slide"><img src="/static/image/영화포스터2.jpg"></a>
+        		<a href="#" class="swiper-slide"><img src="/static/image/영화포스터1.jpg"></a>
+        		<a href="#" class="swiper-slide"><img src="/static/image/영화포스터2.jpg"></a>
+        		<a href="#" class="swiper-slide"><img src="/static/image/영화포스터1.jpg"></a>
+        		<a href="#" class="swiper-slide"><img src="/static/image/영화포스터2.jpg"></a>
+        		<a href="#" class="swiper-slide"><img src="/static/image/영화포스터1.jpg"></a>
+        		<a href="#" class="swiper-slide"><img src="/static/image/영화포스터2.jpg"></a>
+        		<a href="#" class="swiper-slide"><img src="/static/image/영화포스터1.jpg"></a>
+        		<a href="#" class="swiper-slide"><img src="/static/image/영화포스터2.jpg"></a>
     		</div>
     		<div class="swiper-pagination mr-3"></div>
     		<div class="swiper-button-prev"></div>
     		<div class="swiper-button-next"></div>
 		</div>
+		
+		<section class="movie-contents">
+			<div class="movie-conteiner">
+				<div class="swiper swiper-content">
+					<div class="textWhite">시청 중인 콘텐츠</div>
+					<div class="swiper-wrapper contents d-flex mt-2">
+						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터1.jpg"></a>
+						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터2.jpg"></a>
+						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터1.jpg"></a>
+						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터2.jpg"></a>
+						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터1.jpg"></a>
+						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터2.jpg"></a>
+						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터1.jpg"></a>
+						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터2.jpg"></a>
+						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터1.jpg"></a>
+						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터2.jpg"></a>
+						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터1.jpg"></a>
+						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터2.jpg"></a>
+						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터1.jpg"></a>
+						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터2.jpg"></a>
+						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터1.jpg"></a>
+						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터2.jpg"></a>
+					</div>
+					<div class="swiper-button-prev"></div>
+    				<div class="swiper-button-next"></div>
+				</div>
+				
+				<div class="swiper swiper-content">
+					<div class="textWhite">한국 콘텐츠</div>
+					<div class="swiper-wrapper contents d-flex mt-2">
+						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터1.jpg"></a>
+						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터2.jpg"></a>
+						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터1.jpg"></a>
+						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터2.jpg"></a>
+						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터1.jpg"></a>
+						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터2.jpg"></a>
+						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터1.jpg"></a>
+						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터2.jpg"></a>
+						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터1.jpg"></a>
+						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터2.jpg"></a>
+						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터1.jpg"></a>
+						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터2.jpg"></a>
+						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터1.jpg"></a>
+						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터2.jpg"></a>
+						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터1.jpg"></a>
+						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터2.jpg"></a>
+					</div>
+					<div class="swiper-button-prev"></div>
+    				<div class="swiper-button-next"></div>
+				</div>
+				
+				<div class="swiper swiper-content">
+					<div class="textWhite">오늘의 <span class="logo">TOP</span> 콘텐츠</div>
+					<div class="swiper-wrapper contents d-flex mt-2">
+						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터1.jpg"></a>
+						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터2.jpg"></a>
+						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터1.jpg"></a>
+						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터2.jpg"></a>
+						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터1.jpg"></a>
+						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터2.jpg"></a>
+						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터1.jpg"></a>
+						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터2.jpg"></a>
+						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터1.jpg"></a>
+						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터2.jpg"></a>
+						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터1.jpg"></a>
+						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터2.jpg"></a>
+						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터1.jpg"></a>
+						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터2.jpg"></a>
+						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터1.jpg"></a>
+						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터2.jpg"></a>
+					</div>
+					<div class="swiper-button-prev"></div>
+    				<div class="swiper-button-next"></div>
+				</div>
+				
+				<div class="swiper swiper-content">
+					<div class="textWhite">애니메이션 영화</div>
+					<div class="swiper-wrapper contents d-flex mt-2">
+						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터1.jpg"></a>
+						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터2.jpg"></a>
+						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터1.jpg"></a>
+						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터2.jpg"></a>
+						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터1.jpg"></a>
+						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터2.jpg"></a>
+						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터1.jpg"></a>
+						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터2.jpg"></a>
+						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터1.jpg"></a>
+						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터2.jpg"></a>
+						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터1.jpg"></a>
+						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터2.jpg"></a>
+						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터1.jpg"></a>
+						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터2.jpg"></a>
+						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터1.jpg"></a>
+						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터2.jpg"></a>
+					</div>
+					<div class="swiper-button-prev"></div>
+    				<div class="swiper-button-next"></div>
+				</div>
+				
+				<div class="swiper swiper-content">
+					<div class="textWhite">액션 <span class="icon">&</span> 스릴러</div>
+					<div class="swiper-wrapper contents d-flex mt-2">
+						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터1.jpg"></a>
+						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터2.jpg"></a>
+						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터1.jpg"></a>
+						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터2.jpg"></a>
+						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터1.jpg"></a>
+						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터2.jpg"></a>
+						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터1.jpg"></a>
+						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터2.jpg"></a>
+						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터1.jpg"></a>
+						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터2.jpg"></a>
+						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터1.jpg"></a>
+						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터2.jpg"></a>
+						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터1.jpg"></a>
+						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터2.jpg"></a>
+						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터1.jpg"></a>
+						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터2.jpg"></a>
+					</div>
+					<div class="swiper-button-prev"></div>
+    				<div class="swiper-button-next"></div>
+				</div>
+				
+				<div class="swiper swiper-content">
+					<div class="textWhite">코미디</div>
+					<div class="swiper-wrapper contents d-flex mt-2">
+						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터1.jpg"></a>
+						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터2.jpg"></a>
+						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터1.jpg"></a>
+						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터2.jpg"></a>
+						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터1.jpg"></a>
+						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터2.jpg"></a>
+						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터1.jpg"></a>
+						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터2.jpg"></a>
+						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터1.jpg"></a>
+						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터2.jpg"></a>
+						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터1.jpg"></a>
+						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터2.jpg"></a>
+						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터1.jpg"></a>
+						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터2.jpg"></a>
+						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터1.jpg"></a>
+						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터2.jpg"></a>
+					</div>
+					<div class="swiper-button-prev"></div>
+    				<div class="swiper-button-next"></div>
+				</div>
+				
+				<div class="swiper swiper-content">
+					<div class="textWhite">로맨스</div>
+					<div class="swiper-wrapper contents d-flex mt-2">
+						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터1.jpg"></a>
+						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터2.jpg"></a>
+						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터1.jpg"></a>
+						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터2.jpg"></a>
+						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터1.jpg"></a>
+						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터2.jpg"></a>
+						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터1.jpg"></a>
+						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터2.jpg"></a>
+						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터1.jpg"></a>
+						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터2.jpg"></a>
+						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터1.jpg"></a>
+						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터2.jpg"></a>
+						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터1.jpg"></a>
+						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터2.jpg"></a>
+						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터1.jpg"></a>
+						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터2.jpg"></a>
+					</div>
+					<div class="swiper-button-prev"></div>
+    				<div class="swiper-button-next"></div>
+				</div>
+				
+				<div class="swiper swiper-content">
+					<div class="textWhite logo">SF</div>
+					<div class="swiper-wrapper contents d-flex mt-2">
+						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터1.jpg"></a>
+						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터2.jpg"></a>
+						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터1.jpg"></a>
+						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터2.jpg"></a>
+						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터1.jpg"></a>
+						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터2.jpg"></a>
+						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터1.jpg"></a>
+						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터2.jpg"></a>
+						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터1.jpg"></a>
+						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터2.jpg"></a>
+						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터1.jpg"></a>
+						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터2.jpg"></a>
+						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터1.jpg"></a>
+						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터2.jpg"></a>
+						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터1.jpg"></a>
+						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터2.jpg"></a>
+					</div>
+					<div class="swiper-button-prev"></div>
+    				<div class="swiper-button-next"></div>
+				</div>
+				
+				<div class="swiper swiper-content">
+					<div class="textWhite">호러</div>
+					<div class="swiper-wrapper contents d-flex mt-2">
+						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터1.jpg"></a>
+						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터2.jpg"></a>
+						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터1.jpg"></a>
+						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터2.jpg"></a>
+						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터1.jpg"></a>
+						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터2.jpg"></a>
+						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터1.jpg"></a>
+						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터2.jpg"></a>
+						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터1.jpg"></a>
+						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터2.jpg"></a>
+						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터1.jpg"></a>
+						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터2.jpg"></a>
+						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터1.jpg"></a>
+						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터2.jpg"></a>
+						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터1.jpg"></a>
+						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터2.jpg"></a>
+					</div>
+					<div class="swiper-button-prev"></div>
+    				<div class="swiper-button-next"></div>
+				</div>
+				
+				<div class="swiper swiper-content">
+					<div class="textWhite">픽사 애니메이션</div>
+					<div class="swiper-wrapper contents d-flex mt-2">
+						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터1.jpg"></a>
+						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터2.jpg"></a>
+						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터1.jpg"></a>
+						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터2.jpg"></a>
+						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터1.jpg"></a>
+						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터2.jpg"></a>
+						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터1.jpg"></a>
+						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터2.jpg"></a>
+						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터1.jpg"></a>
+						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터2.jpg"></a>
+						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터1.jpg"></a>
+						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터2.jpg"></a>
+						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터1.jpg"></a>
+						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터2.jpg"></a>
+						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터1.jpg"></a>
+						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터2.jpg"></a>
+					</div>
+					<div class="swiper-button-prev"></div>
+    				<div class="swiper-button-next"></div>
+				</div>
+			</div>
+		</section>
 		
 		<c:import url="/WEB-INF/jsp/include/footer.jsp"/>
 	</div>
@@ -70,6 +321,16 @@
 <script>
 
 	$(document).ready(function(){
+		
+		const swiperMovie = new Swiper(".swiper-content", {                 
+		    slidesPerView: 5.4,
+		    slidesPerGroup : 5,
+		    spaceBetween: 20,             
+		    navigation: {                      
+		        nextEl: ".swiper-button-next",
+		        prevEl: ".swiper-button-prev",
+		    },
+		})
 		
 		const swiper = new Swiper(".swiper-box", {
 		    loop: true,                        
