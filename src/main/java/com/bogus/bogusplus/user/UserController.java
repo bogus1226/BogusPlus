@@ -43,7 +43,7 @@ public class UserController {
 		return "user/signup/signupPassword";
 	}
 	
-	@PostMapping("/signup/catalogue/view")
+	@GetMapping("/signup/catalogue/view")
 	public String signupCatalogue(
 			@RequestParam("userId") int userId
 			, Model model) {
@@ -53,7 +53,7 @@ public class UserController {
 		return "user/signup/signupCatalogue";
 	}
 	
-	@PostMapping("/signup/icon/view")
+	@GetMapping("/signup/icon/view")
 	public String signupIcon(
 			@RequestParam("userId") int userId
 			, Model model) {
@@ -63,7 +63,7 @@ public class UserController {
 		return "user/signup/signupIcon";
 	}
 	
-	@PostMapping("/signup/nickName/view")
+	@GetMapping("/signup/nickName/view")
 	public String signupNickName(
 			@RequestParam("userId") int userId
 			, Model model) {
@@ -73,7 +73,7 @@ public class UserController {
 		return "user/signup/signupNickName";
 	}
 	
-	@PostMapping("/signup/pin/view")
+	@GetMapping("/signup/pin/view")
 	public String signupPin(
 			@RequestParam("userId") int userId
 			, Model model) {

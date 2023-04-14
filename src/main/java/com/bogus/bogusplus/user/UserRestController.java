@@ -71,7 +71,7 @@ public class UserRestController {
 		return resultMap;
 	}
 	
-	@PostMapping("/add/catalogue") 
+	@GetMapping("/add/catalogue") 
 	public Map<String, String> addCatalogue(
 			@RequestParam("catalogue") int catalogue
 			, @RequestParam("userId") int userId) {
@@ -89,7 +89,7 @@ public class UserRestController {
 		return resultMap;
 	}
 	
-	@PostMapping("/add/icon") 
+	@GetMapping("/add/icon") 
 	public Map<String, String> addIcon(
 			@RequestParam("icon") String icon
 			, @RequestParam("userId") int userId) {
@@ -107,7 +107,7 @@ public class UserRestController {
 		return resultMap;
 	}
 	
-	@PostMapping("/add/nickName") 
+	@GetMapping("/add/nickName") 
 	public Map<String, String> addNickName(
 			@RequestParam("nickName") String nickName
 			, @RequestParam("kid") int kid

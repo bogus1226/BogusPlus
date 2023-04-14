@@ -88,25 +88,12 @@
 			let icon = $(this).data("icon");
 			
 			$.ajax({
-				type:"post"
+				type:"get"
 				, url:"/user/add/icon"
 				, data:{"icon":icon, "userId":userId}
 				, success:function(data){
 					if(data.result == "success") {
-						let form = document.createElement("form");
-						
-						let object = document.createElement("input");
-						
-						object.setAttribute("type", "hidden");
-						object.setAttribute("name", "userId");
-						object.setAttribute("value", userId);
-						
-						form.appendChild(object);
-						form.setAttribute("method", "post");
-						form.setAttribute("action", "/user/signup/nickName/view");
-						
-						document.body.appendChild(form);
-						form.submit();
+						location.href = "/user/signup/nickName/view?userId=" + userId;
 					} else {
 						console.log("아이콘 추가 실패");
 					}	

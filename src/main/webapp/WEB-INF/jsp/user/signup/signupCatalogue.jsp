@@ -45,25 +45,12 @@
 			let catalogue = $(this).data("catalogue");
 			
 			$.ajax({
-				type:"post"
+				type:"get"
 				, url:"/user/add/catalogue"
 				, data:{"catalogue":catalogue, "userId":userId}
 				, success:function(data){
 					if(data.result == "success") {
-						let form = document.createElement("form");
-						
-						let object = document.createElement("input");
-						
-						object.setAttribute("type", "hidden");
-						object.setAttribute("name", "userId");
-						object.setAttribute("value", userId);
-						
-						form.appendChild(object);
-						form.setAttribute("method", "post");
-						form.setAttribute("action", "/user/signup/icon/view");
-						
-						document.body.appendChild(form);
-						form.submit();
+						location.href = "/user/signup/icon/view?userId=" + userId;
 					} else {
 						console.log("카탈로그 추가 실패");
 					}	

@@ -85,7 +85,7 @@
 			} 
 			
 			$.ajax({
-				type:"post"
+				type:"get"
 				, url:"/user/add/nickName"
 				, data:{
 					"nickName":nickName
@@ -93,20 +93,7 @@
 					, "userId":userId}
 				, success:function(data){
 					if(data.result == "success") {
-						let form = document.createElement("form");
-						
-						let object = document.createElement("input");
-						
-						object.setAttribute("type", "hidden");
-						object.setAttribute("name", "userId");
-						object.setAttribute("value", userId);
-						
-						form.appendChild(object);
-						form.setAttribute("method", "post");
-						form.setAttribute("action", "/user/signup/pin/view");
-						
-						document.body.appendChild(form);
-						form.submit();
+						location.href = "/user/signup/pin/view?userId=" + userId;
 					} else {
 						console.log("닉네임 추가 실패");
 					}	
