@@ -28,6 +28,8 @@ public class TmdbAPI {
 		List<TMDB> infoList = null;
 		List<Integer> genreList = null;
 		
+		TMDB tmdb = new TMDB();
+		
 		URL url = null;
     
 		try {
