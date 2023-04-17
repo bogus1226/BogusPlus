@@ -3,6 +3,9 @@ package com.bogus.bogusplus.tmdb.model;
 import java.util.Date;
 import java.util.List;
 
+import lombok.Data;
+
+@Data
 public class TMDB {
 
 	private boolean adult; // 성인
