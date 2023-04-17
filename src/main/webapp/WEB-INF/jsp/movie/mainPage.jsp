@@ -52,18 +52,15 @@
 			</div>
 		</header>
 		
+		<!-- 메인화면의 상단 인기영화 10개 슬라이드 포스터 -->
 		<div class="swiper swiper-box poster-contents mt-4">
    			<div class="swiper-wrapper posterBox">
-        		<a href="#" class="swiper-slide"><img src="/static/image/영화포스터1.jpg"></a>
-        		<a href="#" class="swiper-slide"><img src="/static/image/영화포스터2.jpg"></a>
-        		<a href="#" class="swiper-slide"><img src="/static/image/영화포스터1.jpg"></a>
-        		<a href="#" class="swiper-slide"><img src="/static/image/영화포스터2.jpg"></a>
-        		<a href="#" class="swiper-slide"><img src="/static/image/영화포스터1.jpg"></a>
-        		<a href="#" class="swiper-slide"><img src="/static/image/영화포스터2.jpg"></a>
-        		<a href="#" class="swiper-slide"><img src="/static/image/영화포스터1.jpg"></a>
-        		<a href="#" class="swiper-slide"><img src="/static/image/영화포스터2.jpg"></a>
-        		<a href="#" class="swiper-slide"><img src="/static/image/영화포스터1.jpg"></a>
-        		<a href="#" class="swiper-slide"><img src="/static/image/영화포스터2.jpg"></a>
+   				<c:forEach var="popularPosterList" items="${mainPagePopularPosterList}">
+        			<a href="#" class="swiper-slide">
+        				<img src="${popularPosterList.backdrop_path}">
+        				<span class="movie-title">${popularPosterList.title}<br><br><span class="movie-overview">${popularPosterList.overview}</span></span>
+        			</a>
+        		</c:forEach>
     		</div>
     		<div class="swiper-pagination mr-3"></div>
     		<div class="swiper-button-prev"></div>
