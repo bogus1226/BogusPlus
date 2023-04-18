@@ -16,13 +16,15 @@ import com.bogus.bogusplus.tmdb.model.TMDB;
 @Service
 public class TmdbBO {
 	
+	// json에 출력되는 언어 한국어
+	String language = "ko-KR";
+	
+	// TMDB 키 값
+	String key = "b878289678c05cf71128b06a698cc177";
+	
 	public List<TMDB> getMainPagePopularPosterList() {
 		
 		String result = "";
-		
-		String language = "ko-KR";
-		
-		String key = "b878289678c05cf71128b06a698cc177";
 
 		List<TMDB> infoList = null;
         
@@ -65,6 +67,70 @@ public class TmdbBO {
 		}
 		return infoList;
 	}
+	
+	
+	public List<TMDB> getMainPageKoreaMovieList() {
+		
+		int page = 1;
+		
+		String result = "";
+
+		List<TMDB> infoList = null;
+        
+		try {
+			
+			infoList = new ArrayList<TMDB>();
+				
+			String apiURL = null;
+			URL url = null;
+
+			BufferedReader bf;
+
+			bf = null;
+			
+			JSONParser jsonParser = null;
+			JSONObject jsonObject = null;
+			JSONArray list = null;
+				
+			for(int i = 0; i < 5; i++) {
+				
+				apiURL = "https://api.themoviedb.org/3/discover/movie?api_key=" + key
+						+ "&language=" + language + "&page=" + (i + 1) + "&sort_by=popularity.desc&"
+						+ "with_original_language=ko";
+				
+				url = new URL(apiURL);
+				
+				bf = new BufferedReader(new InputStreamReader(url.openStream(), "UTF-8"));
+				
+				result = bf.readLine();
+				
+				jsonParser = new JSONParser();
+				
+				jsonObject = (JSONObject) jsonParser.parse(result);
+				
+				list = (JSONArray) jsonObject.get("results");
+				
+				for(int j = 0; j < 20; j++) {
+					TMDB tmdb = new TMDB();
+					JSONObject contents = (JSONObject) list.get(j);
+					
+					String poster_path = String.valueOf(contents.get("poster_path"));
+					tmdb.setPoster_path("https://image.tmdb.org/t/p/w342/" + poster_path);
+					infoList.add(tmdb);
+				}		
+			}
+				
+				
+				
+
+		} catch (Exception e) {
+			
+			e.printStackTrace();
+		}
+		return infoList;
+	}
+	
+	
 
 
 }

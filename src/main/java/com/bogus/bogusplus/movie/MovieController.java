@@ -23,7 +23,11 @@ public class MovieController {
 		
 		List<TMDB> mainPagePopularPosterList = tmdbBO.getMainPagePopularPosterList();
 		
+		List<TMDB> mainpageKoreaMovieList = tmdbBO.getMainPageKoreaMovieList();
+		
 		model.addAttribute("mainPagePopularPosterList", mainPagePopularPosterList);
+		
+		model.addAttribute("mainpageKoreaMovieList", mainpageKoreaMovieList);
 		
 		return "movie/mainPage";
 	}

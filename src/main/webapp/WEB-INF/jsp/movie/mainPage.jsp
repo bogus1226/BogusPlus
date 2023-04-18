@@ -72,22 +72,9 @@
 				<div class="swiper swiper-content">
 					<div class="textWhite">시청 중인 콘텐츠</div>
 					<div class="swiper-wrapper contents d-flex mt-2">
-						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터1.jpg"></a>
-						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터2.jpg"></a>
-						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터1.jpg"></a>
-						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터2.jpg"></a>
-						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터1.jpg"></a>
-						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터2.jpg"></a>
-						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터1.jpg"></a>
-						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터2.jpg"></a>
-						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터1.jpg"></a>
-						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터2.jpg"></a>
-						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터1.jpg"></a>
-						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터2.jpg"></a>
-						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터1.jpg"></a>
-						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터2.jpg"></a>
-						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터1.jpg"></a>
-						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터2.jpg"></a>
+						<c:forEach var="koreaMovieList" items="${mainpageKoreaMovieList}">
+							<a href="#" class="movie-box swiper-slide"><img src="${koreaMovieList.poster_path}"></a>
+						</c:forEach>
 					</div>
 					<div class="swiper-button-prev"></div>
     				<div class="swiper-button-next"></div>
@@ -96,22 +83,9 @@
 				<div class="swiper swiper-content">
 					<div class="textWhite">한국 콘텐츠</div>
 					<div class="swiper-wrapper contents d-flex mt-2">
-						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터1.jpg"></a>
-						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터2.jpg"></a>
-						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터1.jpg"></a>
-						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터2.jpg"></a>
-						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터1.jpg"></a>
-						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터2.jpg"></a>
-						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터1.jpg"></a>
-						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터2.jpg"></a>
-						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터1.jpg"></a>
-						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터2.jpg"></a>
-						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터1.jpg"></a>
-						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터2.jpg"></a>
-						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터1.jpg"></a>
-						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터2.jpg"></a>
-						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터1.jpg"></a>
-						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터2.jpg"></a>
+						<c:forEach var="koreaMovieList" items="${mainpageKoreaMovieList}">
+							<a href="#" class="movie-box swiper-slide"><img src="${koreaMovieList.poster_path}"></a>
+						</c:forEach>
 					</div>
 					<div class="swiper-button-prev"></div>
     				<div class="swiper-button-next"></div>
@@ -320,8 +294,8 @@
 	$(document).ready(function(){
 		
 		const swiperMovie = new Swiper(".swiper-content", {                 
-		    slidesPerView: 5.4,
-		    slidesPerGroup : 5,
+		    slidesPerView: 7.5,
+		    slidesPerGroup : 7,
 		    spaceBetween: 20,             
 		    navigation: {                      
 		        nextEl: ".swiper-button-next",
