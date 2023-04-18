@@ -22,6 +22,8 @@ public class TmdbBO {
 	// TMDB 키 값
 	String key = "b878289678c05cf71128b06a698cc177";
 	
+	int provider = 337;
+	
 	public List<TMDB> getMainPagePopularPosterList() {
 		
 		String result = "";
@@ -31,8 +33,11 @@ public class TmdbBO {
 		try {
 
 			infoList = new ArrayList<TMDB>();
+			
+			
 
 			String apiURL = "https://api.themoviedb.org/3/movie/popular?api_key=" + key
+					+ "&with_watch_providers=" + provider + "&watch_region=KR&page&sort_by=release_date.desc" 
 					+ "&language=" + language;
 			
 			URL url = new URL(apiURL);
@@ -71,8 +76,6 @@ public class TmdbBO {
 	
 	public List<TMDB> getMainPageKoreaMovieList() {
 		
-		int page = 1;
-		
 		String result = "";
 
 		List<TMDB> infoList = null;
@@ -81,24 +84,32 @@ public class TmdbBO {
 			
 			infoList = new ArrayList<TMDB>();
 				
-			String apiURL = null;
-			URL url = null;
-
-			BufferedReader bf;
-
-			bf = null;
+			String apiURL = "https://api.themoviedb.org/3/discover/movie?api_key=" + key
+					+ "&language=" + language + "&page=" + 1 + "&sort_by=popularity.desc&"
+					+ "with_watch_providers=" + provider + "&watch_region=KR&"
+					+ "with_original_language=ko";
 			
-			JSONParser jsonParser = null;
-			JSONObject jsonObject = null;
-			JSONArray list = null;
+			URL forCountUrl = new URL(apiURL);
+			
+			BufferedReader bf;
+			
+			bf = new BufferedReader(new InputStreamReader(forCountUrl.openStream(), "UTF-8"));
+			
+			result = bf.readLine();
+			
+			JSONParser jsonParser = new JSONParser();
+			
+			JSONObject jsonObject = (JSONObject) jsonParser.parse(result);
+			
 				
 			for(int i = 0; i < 5; i++) {
-				
-				apiURL = "https://api.themoviedb.org/3/discover/movie?api_key=" + key
+					
+				String apiUpdateURL = "https://api.themoviedb.org/3/discover/movie?api_key=" + key
 						+ "&language=" + language + "&page=" + (i + 1) + "&sort_by=popularity.desc&"
+						+ "with_watch_providers=" + provider + "&watch_region=KR&"
 						+ "with_original_language=ko";
 				
-				url = new URL(apiURL);
+				URL url = new URL(apiUpdateURL);
 				
 				bf = new BufferedReader(new InputStreamReader(url.openStream(), "UTF-8"));
 				
@@ -108,7 +119,7 @@ public class TmdbBO {
 				
 				jsonObject = (JSONObject) jsonParser.parse(result);
 				
-				list = (JSONArray) jsonObject.get("results");
+				JSONArray list = (JSONArray) jsonObject.get("results");
 				
 				for(int j = 0; j < 20; j++) {
 					TMDB tmdb = new TMDB();
