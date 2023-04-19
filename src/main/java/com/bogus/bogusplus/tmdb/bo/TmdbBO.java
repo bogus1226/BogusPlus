@@ -4,7 +4,10 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -79,6 +82,10 @@ public class TmdbBO {
 		String result = "";
 
 		List<TMDB> infoList = null;
+		
+		Integer totalPage = null;
+		
+		Integer totalResult = null;
         
 		try {
 			
@@ -101,8 +108,11 @@ public class TmdbBO {
 			
 			JSONObject jsonObject = (JSONObject) jsonParser.parse(result);
 			
+			totalResult = Integer.parseInt(String.valueOf(jsonObject.get("total_results")));
+			
+			totalPage = Integer.parseInt(String.valueOf(jsonObject.get("total_pages")));
 				
-			for(int i = 0; i < 5; i++) {
+			for(int i = 0; i < totalPage; i++) {
 					
 				String apiUpdateURL = "https://api.themoviedb.org/3/discover/movie?api_key=" + key
 						+ "&language=" + language + "&page=" + (i + 1) + "&sort_by=popularity.desc&"
@@ -121,14 +131,29 @@ public class TmdbBO {
 				
 				JSONArray list = (JSONArray) jsonObject.get("results");
 				
-				for(int j = 0; j < 20; j++) {
-					TMDB tmdb = new TMDB();
-					JSONObject contents = (JSONObject) list.get(j);
+				if(totalResult > 20) {
+					for(int j = 0; j < totalResult; j++) {
+						TMDB tmdb = new TMDB();
+						JSONObject contents = (JSONObject) list.get(j);
+						
+						String poster_path = String.valueOf(contents.get("poster_path"));
+						tmdb.setPoster_path("https://image.tmdb.org/t/p/w342/" + poster_path);
+						infoList.add(tmdb);
+					}		
 					
-					String poster_path = String.valueOf(contents.get("poster_path"));
-					tmdb.setPoster_path("https://image.tmdb.org/t/p/w342/" + poster_path);
-					infoList.add(tmdb);
-				}		
+					totalResult-=20;
+					
+				} else {
+					for(int j = 0; j < totalResult; j++) {
+						TMDB tmdb = new TMDB();
+						JSONObject contents = (JSONObject) list.get(j);
+						
+						String poster_path = String.valueOf(contents.get("poster_path"));
+						tmdb.setPoster_path("https://image.tmdb.org/t/p/w342/" + poster_path);
+						infoList.add(tmdb);
+					}		
+				}
+				
 			}
 				
 				
@@ -139,6 +164,51 @@ public class TmdbBO {
 			e.printStackTrace();
 		}
 		return infoList;
+	}
+	
+	public Object test() {
+		
+		String result = "";
+		
+		//JSONObject totalPage = null;
+		
+		JSONObject jsonObject = null;
+		
+		Integer countMap = null;	
+        
+		try {
+			
+				
+			String apiURL = "https://api.themoviedb.org/3/discover/movie?api_key=" + key
+					+ "&language=" + language + "&page=" + 1 + "&sort_by=popularity.desc&"
+					+ "with_watch_providers=" + provider + "&watch_region=KR&"
+					+ "with_original_language=ko";
+			
+			URL forCountUrl = new URL(apiURL);
+			
+			BufferedReader bf;
+			
+			bf = new BufferedReader(new InputStreamReader(forCountUrl.openStream(), "UTF-8"));
+			
+			result = bf.readLine();
+			
+			JSONParser jsonParser = new JSONParser();
+				
+			jsonObject = (JSONObject) jsonParser.parse(result);	
+			
+			countMap = Integer.parseInt(String.valueOf(jsonObject.get("total_results")));
+			
+			
+
+
+		} catch (Exception e) {
+			
+			e.printStackTrace();
+			
+			
+		}
+		
+		return countMap;
 	}
 	
 	

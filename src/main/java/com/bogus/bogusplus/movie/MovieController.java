@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.bogus.bogusplus.tmdb.bo.TmdbBO;
 import com.bogus.bogusplus.tmdb.model.TMDB;
@@ -30,5 +31,16 @@ public class MovieController {
 		model.addAttribute("mainpageKoreaMovieList", mainpageKoreaMovieList);
 		
 		return "movie/mainPage";
+	}
+	
+	@GetMapping("/test")
+	@ResponseBody
+	public Object test(Model model) {
+		
+		
+		Object mainpageKoreaMovieList = tmdbBO.test();
+		
+		
+		return mainpageKoreaMovieList;
 	}
 }
