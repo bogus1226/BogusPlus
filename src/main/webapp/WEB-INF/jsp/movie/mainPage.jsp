@@ -72,12 +72,12 @@
 				<div class="swiper swiper-content">
 					<div class="textWhite">시청 중인 콘텐츠</div>
 					<div class="swiper-wrapper contents d-flex mt-2">
-						<c:forEach var="koreaMovieList" items="${mainpageKoreaMovieList}">
+						<c:forEach var="koreaMovieList" items="${mainpageKoreaMovieList}" varStatus="status">
 							<a href="#" class="movie-box swiper-slide"><img src="${koreaMovieList.poster_path}"></a>
 						</c:forEach>
 					</div>
 					<div class="swiper-button-prev"></div>
-    				<div class="swiper-button-next"></div>
+    				<div class="swiper-button-next movieNextBtn"></div>
 				</div>
 				
 				<div class="swiper swiper-content">
@@ -88,7 +88,7 @@
 						</c:forEach>
 					</div>
 					<div class="swiper-button-prev"></div>
-    				<div class="swiper-button-next"></div>
+    				<div class="swiper-button-next movieNextBtn"></div>
 				</div>
 				
 				<div class="swiper swiper-content">
@@ -292,6 +292,13 @@
 <script>
 
 	$(document).ready(function(){
+		
+		$(".movieNextBtn").on("click", function(){
+			
+			let status = $("#watchMovie").val;
+			console.log(status);
+			alert(status);
+		});
 		
 		const swiperMovie = new Swiper(".swiper-content", {                 
 		    slidesPerView: 7.5,

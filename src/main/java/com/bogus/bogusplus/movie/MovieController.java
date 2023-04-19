@@ -33,14 +33,4 @@ public class MovieController {
 		return "movie/mainPage";
 	}
 	
-	@GetMapping("/test")
-	@ResponseBody
-	public Object test(Model model) {
-		
-		
-		Object mainpageKoreaMovieList = tmdbBO.test();
-		
-		
-		return mainpageKoreaMovieList;
-	}
 }
