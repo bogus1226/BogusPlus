@@ -94,22 +94,9 @@
 				<div class="swiper swiper-content">
 					<div class="textWhite">오늘의 <span class="logo">TOP</span> 콘텐츠</div>
 					<div class="swiper-wrapper contents d-flex mt-2">
-						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터1.jpg"></a>
-						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터2.jpg"></a>
-						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터1.jpg"></a>
-						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터2.jpg"></a>
-						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터1.jpg"></a>
-						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터2.jpg"></a>
-						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터1.jpg"></a>
-						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터2.jpg"></a>
-						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터1.jpg"></a>
-						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터2.jpg"></a>
-						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터1.jpg"></a>
-						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터2.jpg"></a>
-						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터1.jpg"></a>
-						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터2.jpg"></a>
-						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터1.jpg"></a>
-						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터2.jpg"></a>
+						<c:forEach var="todayTopMovieList" items="${mainPageTodayTopMovieList}">
+							<a href="#" class="movie-box swiper-slide"><img src="${todayTopMovieList.poster_path}"></a>
+						</c:forEach>
 					</div>
 					<div class="swiper-button-prev"></div>
     				<div class="swiper-button-next"></div>
@@ -118,22 +105,9 @@
 				<div class="swiper swiper-content">
 					<div class="textWhite">애니메이션 영화</div>
 					<div class="swiper-wrapper contents d-flex mt-2">
-						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터1.jpg"></a>
-						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터2.jpg"></a>
-						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터1.jpg"></a>
-						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터2.jpg"></a>
-						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터1.jpg"></a>
-						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터2.jpg"></a>
-						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터1.jpg"></a>
-						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터2.jpg"></a>
-						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터1.jpg"></a>
-						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터2.jpg"></a>
-						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터1.jpg"></a>
-						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터2.jpg"></a>
-						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터1.jpg"></a>
-						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터2.jpg"></a>
-						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터1.jpg"></a>
-						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터2.jpg"></a>
+						<c:forEach var="animationMovieList" items="${mainPageAnimationMovieList}">
+							<a href="#" class="movie-box swiper-slide"><img src="${animationMovieList.poster_path}"></a>
+						</c:forEach>
 					</div>
 					<div class="swiper-button-prev"></div>
     				<div class="swiper-button-next"></div>
@@ -142,22 +116,9 @@
 				<div class="swiper swiper-content">
 					<div class="textWhite">액션 <span class="icon">&</span> 스릴러</div>
 					<div class="swiper-wrapper contents d-flex mt-2">
-						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터1.jpg"></a>
-						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터2.jpg"></a>
-						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터1.jpg"></a>
-						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터2.jpg"></a>
-						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터1.jpg"></a>
-						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터2.jpg"></a>
-						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터1.jpg"></a>
-						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터2.jpg"></a>
-						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터1.jpg"></a>
-						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터2.jpg"></a>
-						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터1.jpg"></a>
-						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터2.jpg"></a>
-						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터1.jpg"></a>
-						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터2.jpg"></a>
-						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터1.jpg"></a>
-						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터2.jpg"></a>
+						<c:forEach var="actionMovieList" items="${mainPageActionMovieList}">
+							<a href="#" class="movie-box swiper-slide"><img src="${actionMovieList.poster_path}"></a>
+						</c:forEach>
 					</div>
 					<div class="swiper-button-prev"></div>
     				<div class="swiper-button-next"></div>
@@ -166,22 +127,9 @@
 				<div class="swiper swiper-content">
 					<div class="textWhite">코미디</div>
 					<div class="swiper-wrapper contents d-flex mt-2">
-						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터1.jpg"></a>
-						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터2.jpg"></a>
-						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터1.jpg"></a>
-						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터2.jpg"></a>
-						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터1.jpg"></a>
-						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터2.jpg"></a>
-						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터1.jpg"></a>
-						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터2.jpg"></a>
-						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터1.jpg"></a>
-						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터2.jpg"></a>
-						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터1.jpg"></a>
-						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터2.jpg"></a>
-						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터1.jpg"></a>
-						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터2.jpg"></a>
-						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터1.jpg"></a>
-						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터2.jpg"></a>
+						<c:forEach var="comedyMovieList" items="${mainPageComedyMovieList}">
+							<a href="#" class="movie-box swiper-slide"><img src="${comedyMovieList.poster_path}"></a>
+						</c:forEach>
 					</div>
 					<div class="swiper-button-prev"></div>
     				<div class="swiper-button-next"></div>
@@ -190,22 +138,9 @@
 				<div class="swiper swiper-content">
 					<div class="textWhite">로맨스</div>
 					<div class="swiper-wrapper contents d-flex mt-2">
-						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터1.jpg"></a>
-						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터2.jpg"></a>
-						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터1.jpg"></a>
-						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터2.jpg"></a>
-						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터1.jpg"></a>
-						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터2.jpg"></a>
-						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터1.jpg"></a>
-						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터2.jpg"></a>
-						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터1.jpg"></a>
-						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터2.jpg"></a>
-						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터1.jpg"></a>
-						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터2.jpg"></a>
-						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터1.jpg"></a>
-						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터2.jpg"></a>
-						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터1.jpg"></a>
-						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터2.jpg"></a>
+						<c:forEach var="romanceMovieList" items="${mainPageRomanceMovieList}">
+							<a href="#" class="movie-box swiper-slide"><img src="${romanceMovieList.poster_path}"></a>
+						</c:forEach>
 					</div>
 					<div class="swiper-button-prev"></div>
     				<div class="swiper-button-next"></div>
@@ -214,22 +149,9 @@
 				<div class="swiper swiper-content">
 					<div class="textWhite logo">SF</div>
 					<div class="swiper-wrapper contents d-flex mt-2">
-						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터1.jpg"></a>
-						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터2.jpg"></a>
-						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터1.jpg"></a>
-						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터2.jpg"></a>
-						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터1.jpg"></a>
-						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터2.jpg"></a>
-						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터1.jpg"></a>
-						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터2.jpg"></a>
-						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터1.jpg"></a>
-						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터2.jpg"></a>
-						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터1.jpg"></a>
-						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터2.jpg"></a>
-						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터1.jpg"></a>
-						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터2.jpg"></a>
-						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터1.jpg"></a>
-						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터2.jpg"></a>
+						<c:forEach var="sfMovieList" items="${mainPageSFMovieList}">
+							<a href="#" class="movie-box swiper-slide"><img src="${sfMovieList.poster_path}"></a>
+						</c:forEach>
 					</div>
 					<div class="swiper-button-prev"></div>
     				<div class="swiper-button-next"></div>
@@ -238,51 +160,104 @@
 				<div class="swiper swiper-content">
 					<div class="textWhite">호러</div>
 					<div class="swiper-wrapper contents d-flex mt-2">
-						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터1.jpg"></a>
-						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터2.jpg"></a>
-						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터1.jpg"></a>
-						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터2.jpg"></a>
-						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터1.jpg"></a>
-						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터2.jpg"></a>
-						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터1.jpg"></a>
-						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터2.jpg"></a>
-						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터1.jpg"></a>
-						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터2.jpg"></a>
-						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터1.jpg"></a>
-						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터2.jpg"></a>
-						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터1.jpg"></a>
-						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터2.jpg"></a>
-						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터1.jpg"></a>
-						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터2.jpg"></a>
+						<c:forEach var="horrorMovieList" items="${mainPageHorrorMovieList}">
+							<a href="#" class="movie-box swiper-slide"><img src="${horrorMovieList.poster_path}"></a>
+						</c:forEach>
 					</div>
 					<div class="swiper-button-prev"></div>
     				<div class="swiper-button-next"></div>
 				</div>
 				
 				<div class="swiper swiper-content">
-					<div class="textWhite">픽사 애니메이션</div>
+					<div class="textWhite">가족</div>
 					<div class="swiper-wrapper contents d-flex mt-2">
-						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터1.jpg"></a>
-						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터2.jpg"></a>
-						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터1.jpg"></a>
-						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터2.jpg"></a>
-						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터1.jpg"></a>
-						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터2.jpg"></a>
-						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터1.jpg"></a>
-						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터2.jpg"></a>
-						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터1.jpg"></a>
-						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터2.jpg"></a>
-						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터1.jpg"></a>
-						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터2.jpg"></a>
-						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터1.jpg"></a>
-						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터2.jpg"></a>
-						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터1.jpg"></a>
-						<a href="#" class="movie-box swiper-slide"><img src="/static/image/영화포스터2.jpg"></a>
+						<c:forEach var="familyMovieList" items="${mainPageFamilyMovieList}">
+							<a href="#" class="movie-box swiper-slide"><img src="${familyMovieList.poster_path}"></a>
+						</c:forEach>
+					</div>
+					<div class="swiper-button-prev"></div>
+    				<div class="swiper-button-next"></div>
+				</div>
+				
+				<div class="swiper swiper-content">
+					<div class="textWhite">모험</div>
+					<div class="swiper-wrapper contents d-flex mt-2">
+						<c:forEach var="adventureMovieList" items="${mainPageAdventureMovieList}">
+							<a href="#" class="movie-box swiper-slide"><img src="${adventureMovieList.poster_path}"></a>
+						</c:forEach>
+					</div>
+					<div class="swiper-button-prev"></div>
+    				<div class="swiper-button-next"></div>
+				</div>
+				
+				<div class="swiper swiper-content">
+					<div class="textWhite">판타지</div>
+					<div class="swiper-wrapper contents d-flex mt-2">
+						<c:forEach var="fantasyMovieList" items="${mainPageFantasyMovieList}">
+							<a href="#" class="movie-box swiper-slide"><img src="${fantasyMovieList.poster_path}"></a>
+						</c:forEach>
+					</div>
+					<div class="swiper-button-prev"></div>
+    				<div class="swiper-button-next"></div>
+				</div>
+				
+				<div class="swiper swiper-content">
+					<div class="textWhite">전쟁</div>
+					<div class="swiper-wrapper contents d-flex mt-2">
+						<c:forEach var="warMovieList" items="${mainPageWarMovieList}">
+							<a href="#" class="movie-box swiper-slide"><img src="${warMovieList.poster_path}"></a>
+						</c:forEach>
+					</div>
+					<div class="swiper-button-prev"></div>
+    				<div class="swiper-button-next"></div>
+				</div>
+				
+				<div class="swiper swiper-content">
+					<div class="textWhite">모험</div>
+					<div class="swiper-wrapper contents d-flex mt-2">
+						<c:forEach var="musicMovieList" items="${mainPageMusicMovieList}">
+							<a href="#" class="movie-box swiper-slide"><img src="${musicMovieList.poster_path}"></a>
+						</c:forEach>
+					</div>
+					<div class="swiper-button-prev"></div>
+    				<div class="swiper-button-next"></div>
+				</div>
+				
+				<div class="swiper swiper-content">
+					<div class="textWhite">범죄</div>
+					<div class="swiper-wrapper contents d-flex mt-2">
+						<c:forEach var="crimeMovieList" items="${mainPageCrimeMovieList}">
+							<a href="#" class="movie-box swiper-slide"><img src="${crimeMovieList.poster_path}"></a>
+						</c:forEach>
+					</div>
+					<div class="swiper-button-prev"></div>
+    				<div class="swiper-button-next"></div>
+				</div>
+				
+				<div class="swiper swiper-content">
+					<div class="textWhite">다큐멘터리</div>
+					<div class="swiper-wrapper contents d-flex mt-2">
+						<c:forEach var="documentaryMovieList" items="${mainPageDocumentaryMovieList}">
+							<a href="#" class="movie-box swiper-slide"><img src="${documentaryMovieList.poster_path}"></a>
+						</c:forEach>
+					</div>
+					<div class="swiper-button-prev"></div>
+    				<div class="swiper-button-next"></div>
+				</div>
+				
+				<div class="swiper swiper-content">
+					<div class="textWhite">역사</div>
+					<div class="swiper-wrapper contents d-flex mt-2">
+						<c:forEach var="historyMovieList" items="${mainPageHistoryMovieList}">
+							<a href="#" class="movie-box swiper-slide"><img src="${historyMovieList.poster_path}"></a>
+						</c:forEach>
 					</div>
 					<div class="swiper-button-prev"></div>
     				<div class="swiper-button-next"></div>
 				</div>
 			</div>
+			
+			
 		</section>
 		
 		<c:import url="/WEB-INF/jsp/include/footer.jsp"/>
@@ -293,11 +268,25 @@
 
 	$(document).ready(function(){
 		
+		let click = null;
+		
 		$(".movieNextBtn").on("click", function(){
+			 click = 1;
+			 
+			 $.ajax({
+					type:"get"
+					, url:"/movie/mainpage/view"
+					, data:{"click":click}
+					, success:function(){
+						
+						click = null;
+					}
+					, error:function(){
+						alert("클릭 에러");
+					}
+					
+				});
 			
-			let status = $("#watchMovie").val;
-			console.log(status);
-			alert(status);
 		});
 		
 		const swiperMovie = new Swiper(".swiper-content", {                 

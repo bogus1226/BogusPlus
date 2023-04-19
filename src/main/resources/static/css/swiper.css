@@ -70,6 +70,11 @@
 	height:210px;
 }
 
+.contents > .swiper-slide > img:hover {
+	filter: brightness(0.5);
+}
+
+
 .movie-title:hover {
 	opacity: 1;
 }
@@ -103,7 +108,7 @@
 
 .swiper-content > .swiper-button-prev {
 	color:transparent;
-	width:70px;
+	width:103px;
 	height:210px;
 	margin-top:38px;
 	top:0%;
