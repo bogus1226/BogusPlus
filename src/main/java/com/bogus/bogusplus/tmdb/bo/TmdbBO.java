@@ -24,6 +24,8 @@ public class TmdbBO {
 	
 	int provider = 337;
 	
+	int mainPageMovieSize = 8;
+	
 	public List<TMDB> getMainPagePopularPosterList() {
 		
 		String result = "";
@@ -73,8 +75,7 @@ public class TmdbBO {
 		return infoList;
 	}
 	
-	// 다음버튼 누를시 영화 7개 추가 되게끔 테스트중
-	public List<TMDB> getMainPageKoreaMovieList(Integer click) {
+	public List<TMDB> getMainPageKoreaMovieList() {
 		
 		String result = "";
 
@@ -82,32 +83,12 @@ public class TmdbBO {
 		
 		int countList = 0;
 		
-		int page = 1;
-        
-		int count = 8;
-		
-		int pageUpCount = 20;
-		
-		if(click != null) {
-			
-			count+=7;
-			
-			if((count - pageUpCount) > 0) {
-				
-			} else if (count > pageUpCount) {	
-				page++;
-				pageUpCount+=20;
-			}
-
-		}
-		
-		
 		try {
 			
 			infoList = new ArrayList<TMDB>();
 				
 			String apiURL = "https://api.themoviedb.org/3/discover/movie?api_key=" + key
-					+ "&language=" + language + "&page=" + page + "&sort_by=popularity.desc&"
+					+ "&language=" + language + "&page=" + 1 + "&sort_by=popularity.desc&"
 					+ "with_watch_providers=" + provider + "&watch_region=KR&"
 					+ "with_original_language=ko";
 			
@@ -126,24 +107,9 @@ public class TmdbBO {
 			JSONArray list = (JSONArray) jsonObject.get("results");
 			
 			countList = list.size();
-			
-			if(click != null) {
-					
-				
-					for(int i = 0; i < count; i++) {
-						TMDB tmdb = new TMDB();
-						JSONObject contents = (JSONObject) list.get(i);
-						
-						String poster_path = String.valueOf(contents.get("poster_path"));
-						tmdb.setPoster_path("https://image.tmdb.org/t/p/w342/" + poster_path);
-						infoList.add(tmdb);
-					}		
-					
-				} 	
 
-			
-			if(countList > 8) {
-				for(int i = 0; i < count; i++) {
+			if(countList > mainPageMovieSize) {
+				for(int i = 0; i < mainPageMovieSize; i++) {
 					TMDB tmdb = new TMDB();
 					JSONObject contents = (JSONObject) list.get(i);
 					
@@ -203,8 +169,8 @@ public class TmdbBO {
 			
 			countList = list.size();
 			
-			if(countList > 8) {
-				for(int i = 0; i < 8; i++) {
+			if(countList > mainPageMovieSize) {
+				for(int i = 0; i < mainPageMovieSize; i++) {
 					TMDB tmdb = new TMDB();
 					JSONObject contents = (JSONObject) list.get(i);
 					
@@ -263,8 +229,8 @@ public class TmdbBO {
 			
 			countList = list.size();
 			
-			if(countList > 8) {
-				for(int i = 0; i < 8; i++) {
+			if(countList > mainPageMovieSize) {
+				for(int i = 0; i < mainPageMovieSize; i++) {
 					TMDB tmdb = new TMDB();
 					JSONObject contents = (JSONObject) list.get(i);
 					
@@ -293,6 +259,65 @@ public class TmdbBO {
 	}
 	
 	
+	// 버튼 클릭시 데이터 7개 추가로 가져오기
+	public List<TMDB> getClickNextBtn(Integer click) {
+		
+		String result = "";
+
+		List<TMDB> infoList = null;
+		
+		int countList = 0;
+		
+		int page = 1;
+		
+		int lastList = 8 + (click * 7);
+		
+		int startList = lastList - 6;
+		
+		
+		
+		try {
+			
+			infoList = new ArrayList<TMDB>();
+				
+			String apiURL = "https://api.themoviedb.org/3/discover/movie?api_key=" + key
+					+ "&language=" + language + "&page=" + page + "&sort_by=popularity.desc&"
+					+ "with_watch_providers=" + provider + "&watch_region=KR&"
+					+ "with_original_language=ko";
+			
+			URL url = new URL(apiURL);
+			
+			BufferedReader bf;
+			
+			bf = new BufferedReader(new InputStreamReader(url.openStream(), "UTF-8"));
+			
+			result = bf.readLine();
+			
+			JSONParser jsonParser = new JSONParser();
+			
+			JSONObject jsonObject = (JSONObject) jsonParser.parse(result);		
+			
+			JSONArray list = (JSONArray) jsonObject.get("results");
+			
+			countList = list.size();	
+			
+			
+			for(int i = 9; i <= 11; i++) {
+				TMDB tmdb = new TMDB();
+				JSONObject contents = (JSONObject) list.get(i);
+				
+				String poster_path = String.valueOf(contents.get("poster_path"));
+				tmdb.setPoster_path("https://image.tmdb.org/t/p/w342/" + poster_path);
+				infoList.add(tmdb);
+			}		
+				
+
+		} catch (Exception e) {
+			
+			e.printStackTrace();
+		}
+		return infoList;
+	}
 
 
 }

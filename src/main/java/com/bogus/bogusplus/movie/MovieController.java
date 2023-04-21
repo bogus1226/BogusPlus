@@ -24,9 +24,15 @@ public class MovieController {
 			@RequestParam(value = "click" , required = false) Integer click
 			,Model model) {
 		
+		List<TMDB> mainpageNextBtn = null;
+		
+		if(click != null) {
+			mainpageNextBtn = tmdbBO.getClickNextBtn(click);
+		}
+		
 		List<TMDB> mainPagePopularPosterList = tmdbBO.getMainPagePopularPosterList();
 		
-		List<TMDB> mainpageKoreaMovieList = tmdbBO.getMainPageKoreaMovieList(click);
+		List<TMDB> mainpageKoreaMovieList = tmdbBO.getMainPageKoreaMovieList();
 		
 		List<TMDB> mainPageTodayTopMovieList = tmdbBO.getMainPageTodayTopMovieList();
 		
@@ -59,6 +65,11 @@ public class MovieController {
 		List<TMDB> mainPageHistoryMovieList = tmdbBO.getMainPageGenresMovieList("36");
 		
 		model.addAttribute("mainPagePopularPosterList", mainPagePopularPosterList);
+		
+		// 테스트
+		if(click != null) {
+			model.addAttribute("mainpageKoreaMovieList", mainpageNextBtn);
+		}
 		
 		model.addAttribute("mainpageKoreaMovieList", mainpageKoreaMovieList);
 		

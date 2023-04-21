@@ -270,16 +270,17 @@
 		
 		let click = null;
 		
-		$(".movieNextBtn").on("click", function(){
+		$(".movieNextBtn").on("click", function(e){
 			 click = 1;
+			 
+			 console.log(e);
 			 
 			 $.ajax({
 					type:"get"
 					, url:"/movie/mainpage/view"
 					, data:{"click":click}
 					, success:function(){
-						
-						click = null;
+						alert("클릭 성공");
 					}
 					, error:function(){
 						alert("클릭 에러");
