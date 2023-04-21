@@ -24,7 +24,60 @@ public class TmdbBO {
 	
 	int provider = 337;
 	
-	int mainPageMovieSize = 8;
+	public void tmdbCalculator() {
+		
+	}
+	
+	
+	// 공통적인코드내용을 하나로 묶었다!
+	// TMDB 오픈 API URL 기준으로 값을 가져오는 코드!
+	public List<TMDB> apiGetTMDBInfo(String plusURL, int page) {
+		
+		List<TMDB> infoList = null;
+		
+		try {
+			
+			infoList = new ArrayList<TMDB>();
+				
+			String apiURL = "https://api.themoviedb.org/3/discover/movie?api_key=" + key
+					+ "&language=" + language + "&page=" + page + "&sort_by=popularity.desc&"
+					+ "with_watch_providers=" + provider + "&watch_region=KR&"
+					+ plusURL;
+			
+			URL url = new URL(apiURL);
+			
+			BufferedReader bf;
+			
+			bf = new BufferedReader(new InputStreamReader(url.openStream(), "UTF-8"));
+			
+			String result = bf.readLine();
+			
+			JSONParser jsonParser = new JSONParser();
+			
+			JSONObject jsonObject = (JSONObject) jsonParser.parse(result);		
+			
+			JSONArray list = (JSONArray) jsonObject.get("results");
+			
+			int countList = list.size();
+
+
+			for(int i = 0; i < countList; i++) {
+				TMDB tmdb = new TMDB();
+				JSONObject contents = (JSONObject) list.get(i);
+				
+				String poster_path = String.valueOf(contents.get("poster_path"));
+				tmdb.setPoster_path("https://image.tmdb.org/t/p/w342/" + poster_path);
+				infoList.add(tmdb);
+			}		
+
+		} catch (Exception e) {
+			
+			e.printStackTrace();
+		}
+		
+		return infoList;
+		
+	}
 	
 	public List<TMDB> getMainPagePopularPosterList() {
 		
@@ -76,191 +129,29 @@ public class TmdbBO {
 	}
 	
 	public List<TMDB> getMainPageKoreaMovieList() {
-		
-		String result = "";
 
-		List<TMDB> infoList = null;
+		List<TMDB> infoList = apiGetTMDBInfo("with_original_language=ko", 1);
 		
-		int countList = 0;
-		
-		try {
-			
-			infoList = new ArrayList<TMDB>();
-				
-			String apiURL = "https://api.themoviedb.org/3/discover/movie?api_key=" + key
-					+ "&language=" + language + "&page=" + 1 + "&sort_by=popularity.desc&"
-					+ "with_watch_providers=" + provider + "&watch_region=KR&"
-					+ "with_original_language=ko";
-			
-			URL url = new URL(apiURL);
-			
-			BufferedReader bf;
-			
-			bf = new BufferedReader(new InputStreamReader(url.openStream(), "UTF-8"));
-			
-			result = bf.readLine();
-			
-			JSONParser jsonParser = new JSONParser();
-			
-			JSONObject jsonObject = (JSONObject) jsonParser.parse(result);		
-			
-			JSONArray list = (JSONArray) jsonObject.get("results");
-			
-			countList = list.size();
-
-			if(countList > mainPageMovieSize) {
-				for(int i = 0; i < mainPageMovieSize; i++) {
-					TMDB tmdb = new TMDB();
-					JSONObject contents = (JSONObject) list.get(i);
-					
-					String poster_path = String.valueOf(contents.get("poster_path"));
-					tmdb.setPoster_path("https://image.tmdb.org/t/p/w342/" + poster_path);
-					infoList.add(tmdb);
-				}		
-				
-				
-			} else {
-				for(int i = 0; i < countList; i++) {
-					TMDB tmdb = new TMDB();
-					JSONObject contents = (JSONObject) list.get(i);
-					
-					String poster_path = String.valueOf(contents.get("poster_path"));
-					tmdb.setPoster_path("https://image.tmdb.org/t/p/w342/" + poster_path);
-					infoList.add(tmdb);
-				}		
-			}	
-
-		} catch (Exception e) {
-			
-			e.printStackTrace();
-		}
 		return infoList;
 	}
 	
 	public List<TMDB> getMainPageTodayTopMovieList() {
-		
-		String result = "";
 
-		List<TMDB> infoList = null;
+		List<TMDB> infoList = apiGetTMDBInfo(null, 1);
 		
-		int countList = 0;
-        
-		try {
-			
-			infoList = new ArrayList<TMDB>();
-				
-			String apiURL = "https://api.themoviedb.org/3/discover/movie?api_key=" + key
-					+ "&language=" + language + "&page=1&sort_by=popularity.desc&"
-					+ "with_watch_providers=" + provider + "&watch_region=KR&";
-			
-			URL url = new URL(apiURL);
-			
-			BufferedReader bf;
-			
-			bf = new BufferedReader(new InputStreamReader(url.openStream(), "UTF-8"));
-			
-			result = bf.readLine();
-			
-			JSONParser jsonParser = new JSONParser();
-			
-			JSONObject jsonObject = (JSONObject) jsonParser.parse(result);		
-			
-			JSONArray list = (JSONArray) jsonObject.get("results");
-			
-			countList = list.size();
-			
-			if(countList > mainPageMovieSize) {
-				for(int i = 0; i < mainPageMovieSize; i++) {
-					TMDB tmdb = new TMDB();
-					JSONObject contents = (JSONObject) list.get(i);
-					
-					String poster_path = String.valueOf(contents.get("poster_path"));
-					tmdb.setPoster_path("https://image.tmdb.org/t/p/w342/" + poster_path);
-					infoList.add(tmdb);
-				}		
-				
-				
-			} else {
-				for(int i = 0; i < countList; i++) {
-					TMDB tmdb = new TMDB();
-					JSONObject contents = (JSONObject) list.get(i);
-					
-					String poster_path = String.valueOf(contents.get("poster_path"));
-					tmdb.setPoster_path("https://image.tmdb.org/t/p/w342/" + poster_path);
-					infoList.add(tmdb);
-				}		
-			}	
-
-		} catch (Exception e) {
-			
-			e.printStackTrace();
-		}
 		return infoList;
 	}
 	
 	public List<TMDB> getMainPageGenresMovieList(String genres) {
-		
-		String result = "";
 
-		List<TMDB> infoList = null;
+		List<TMDB> infoList = apiGetTMDBInfo("with_genres=" + genres, 1);
 		
-		int countList = 0;
-        
-		try {
-			
-			infoList = new ArrayList<TMDB>();
-			String apiURL = "https://api.themoviedb.org/3/discover/movie?api_key=" + key
-					+ "&language=" + language + "&page=1&sort_by=popularity.desc&"
-					+ "with_watch_providers=" + provider + "&watch_region=KR&with_genres=" + genres;
-			
-			URL url = new URL(apiURL);
-			
-			BufferedReader bf;
-			
-			bf = new BufferedReader(new InputStreamReader(url.openStream(), "UTF-8"));
-			
-			result = bf.readLine();
-			
-			JSONParser jsonParser = new JSONParser();
-			
-			JSONObject jsonObject = (JSONObject) jsonParser.parse(result);		
-			
-			JSONArray list = (JSONArray) jsonObject.get("results");
-			
-			countList = list.size();
-			
-			if(countList > mainPageMovieSize) {
-				for(int i = 0; i < mainPageMovieSize; i++) {
-					TMDB tmdb = new TMDB();
-					JSONObject contents = (JSONObject) list.get(i);
-					
-					String poster_path = String.valueOf(contents.get("poster_path"));
-					tmdb.setPoster_path("https://image.tmdb.org/t/p/w342/" + poster_path);
-					infoList.add(tmdb);
-				}		
-				
-				
-			} else {
-				for(int i = 0; i < countList; i++) {
-					TMDB tmdb = new TMDB();
-					JSONObject contents = (JSONObject) list.get(i);
-					
-					String poster_path = String.valueOf(contents.get("poster_path"));
-					tmdb.setPoster_path("https://image.tmdb.org/t/p/w342/" + poster_path);
-					infoList.add(tmdb);
-				}		
-			}	
-
-		} catch (Exception e) {
-			
-			e.printStackTrace();
-		}
 		return infoList;
 	}
 	
 	
-	// 버튼 클릭시 데이터 7개 추가로 가져오기
-	public List<TMDB> getClickNextBtn(Integer click) {
+	// 버튼 클릭시 데이터 20개 추가로 가져오기
+	public List<TMDB> getClickNextInfo(int click, int movieInfo) {
 		
 		String result = "";
 
@@ -268,22 +159,59 @@ public class TmdbBO {
 		
 		int countList = 0;
 		
-		int page = 1;
+		int page = click + 1;
 		
-		int lastList = 8 + (click * 7);
+		String genres = null;
 		
-		int startList = lastList - 6;
+		String apiURL = "https://api.themoviedb.org/3/discover/movie?api_key=" + key
+				+ "&language=" + language + "&page=1&sort_by=popularity.desc&"
+				+ "with_watch_providers=" + provider + "&watch_region=KR&with_genres=" + genres;
+		
+//		if(movieInfo == 1) {
+//			apiURL = "https://api.themoviedb.org/3/discover/movie?api_key=" + key
+//					+ "&language=" + language + "&page=" + page + "&sort_by=popularity.desc&"
+//					+ "with_watch_providers=" + provider + "&watch_region=KR&"
+//					+ "with_original_language=ko";
+//		} else if(movieInfo == 2) {
+//			apiURL = "https://api.themoviedb.org/3/discover/movie?api_key=" + key
+//					+ "&language=" + language + "&page=1&sort_by=popularity.desc&"
+//					+ "with_watch_providers=" + provider + "&watch_region=KR&";
+//		} else if(movieInfo == 3) {
+//			genres = "16";
+//		} else if(movieInfo == 4) {
+//			genres = "28,53";
+//		} else if(movieInfo == 5) {
+//			genres = "35";
+//		} else if(movieInfo == 6) {
+//			genres = "10749";
+//		} else if(movieInfo == 7) {
+//			genres = "878";
+//		} else if(movieInfo == 8) {
+//			genres = "27";
+//		} else if(movieInfo == 9) {
+//			genres = "10751";
+//		} else if(movieInfo == 10) {
+//			genres = "12";
+//		} else if(movieInfo == 11) {
+//			genres = "14";
+//		} else if(movieInfo == 12) {
+//			genres = "10752";
+//		} else if(movieInfo == 13) {
+//			genres = "10402";
+//		} else if(movieInfo == 14) {
+//			genres = "80";
+//		} else if(movieInfo == 15) {
+//			genres = "99";
+//		} else if(movieInfo == 16) {
+//			genres = "36";
+//		}
+		
 		
 		
 		
 		try {
 			
 			infoList = new ArrayList<TMDB>();
-				
-			String apiURL = "https://api.themoviedb.org/3/discover/movie?api_key=" + key
-					+ "&language=" + language + "&page=" + page + "&sort_by=popularity.desc&"
-					+ "with_watch_providers=" + provider + "&watch_region=KR&"
-					+ "with_original_language=ko";
 			
 			URL url = new URL(apiURL);
 			
@@ -302,7 +230,7 @@ public class TmdbBO {
 			countList = list.size();	
 			
 			
-			for(int i = 9; i <= 11; i++) {
+			for(int i = 0; i < countList; i++) {
 				TMDB tmdb = new TMDB();
 				JSONObject contents = (JSONObject) list.get(i);
 				

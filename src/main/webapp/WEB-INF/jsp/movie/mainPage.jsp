@@ -77,7 +77,7 @@
 						</c:forEach>
 					</div>
 					<div class="swiper-button-prev"></div>
-    				<div class="swiper-button-next movieNextBtn"></div>
+    				<div class="swiper-button-next movieNextBtn" data-movie-info="1"></div>
 				</div>
 				
 				<div class="swiper swiper-content">
@@ -88,7 +88,7 @@
 						</c:forEach>
 					</div>
 					<div class="swiper-button-prev"></div>
-    				<div class="swiper-button-next movieNextBtn"></div>
+    				<div class="swiper-button-next movieNextBtn" data-movie-info="1"></div>
 				</div>
 				
 				<div class="swiper swiper-content">
@@ -99,7 +99,7 @@
 						</c:forEach>
 					</div>
 					<div class="swiper-button-prev"></div>
-    				<div class="swiper-button-next"></div>
+    				<div class="swiper-button-next movieNextBtn" data-movie-info="2"></div>
 				</div>
 				
 				<div class="swiper swiper-content">
@@ -110,7 +110,7 @@
 						</c:forEach>
 					</div>
 					<div class="swiper-button-prev"></div>
-    				<div class="swiper-button-next"></div>
+    				<div class="swiper-button-next movieNextBtn" data-movie-info="3"></div>
 				</div>
 				
 				<div class="swiper swiper-content">
@@ -121,7 +121,7 @@
 						</c:forEach>
 					</div>
 					<div class="swiper-button-prev"></div>
-    				<div class="swiper-button-next"></div>
+    				<div class="swiper-button-next movieNextBtn" data-movie-info="4"></div>
 				</div>
 				
 				<div class="swiper swiper-content">
@@ -132,7 +132,7 @@
 						</c:forEach>
 					</div>
 					<div class="swiper-button-prev"></div>
-    				<div class="swiper-button-next"></div>
+    				<div class="swiper-button-next movieNextBtn" data-movie-info="5"></div>
 				</div>
 				
 				<div class="swiper swiper-content">
@@ -143,7 +143,7 @@
 						</c:forEach>
 					</div>
 					<div class="swiper-button-prev"></div>
-    				<div class="swiper-button-next"></div>
+    				<div class="swiper-button-next movieNextBtn" data-movie-info="6"></div>
 				</div>
 				
 				<div class="swiper swiper-content">
@@ -154,7 +154,7 @@
 						</c:forEach>
 					</div>
 					<div class="swiper-button-prev"></div>
-    				<div class="swiper-button-next"></div>
+    				<div class="swiper-button-next movieNextBtn" data-movie-info="7"></div>
 				</div>
 				
 				<div class="swiper swiper-content">
@@ -165,7 +165,7 @@
 						</c:forEach>
 					</div>
 					<div class="swiper-button-prev"></div>
-    				<div class="swiper-button-next"></div>
+    				<div class="swiper-button-next movieNextBtn" data-movie-info="8"></div>
 				</div>
 				
 				<div class="swiper swiper-content">
@@ -176,7 +176,7 @@
 						</c:forEach>
 					</div>
 					<div class="swiper-button-prev"></div>
-    				<div class="swiper-button-next"></div>
+    				<div class="swiper-button-next movieNextBtn" data-movie-info="9"></div>
 				</div>
 				
 				<div class="swiper swiper-content">
@@ -187,7 +187,7 @@
 						</c:forEach>
 					</div>
 					<div class="swiper-button-prev"></div>
-    				<div class="swiper-button-next"></div>
+    				<div class="swiper-button-next movieNextBtn" data-movie-info="10"></div>
 				</div>
 				
 				<div class="swiper swiper-content">
@@ -198,7 +198,7 @@
 						</c:forEach>
 					</div>
 					<div class="swiper-button-prev"></div>
-    				<div class="swiper-button-next"></div>
+    				<div class="swiper-button-next movieNextBtn" data-movie-info="11"></div>
 				</div>
 				
 				<div class="swiper swiper-content">
@@ -209,18 +209,18 @@
 						</c:forEach>
 					</div>
 					<div class="swiper-button-prev"></div>
-    				<div class="swiper-button-next"></div>
+    				<div class="swiper-button-next movieNextBtn" data-movie-info="12"></div>
 				</div>
 				
 				<div class="swiper swiper-content">
-					<div class="textWhite">모험</div>
+					<div class="textWhite">음악</div>
 					<div class="swiper-wrapper contents d-flex mt-2">
 						<c:forEach var="musicMovieList" items="${mainPageMusicMovieList}">
 							<a href="#" class="movie-box swiper-slide"><img src="${musicMovieList.poster_path}"></a>
 						</c:forEach>
 					</div>
 					<div class="swiper-button-prev"></div>
-    				<div class="swiper-button-next"></div>
+    				<div class="swiper-button-next movieNextBtn" data-movie-info="13"></div>
 				</div>
 				
 				<div class="swiper swiper-content">
@@ -231,7 +231,7 @@
 						</c:forEach>
 					</div>
 					<div class="swiper-button-prev"></div>
-    				<div class="swiper-button-next"></div>
+    				<div class="swiper-button-next movieNextBtn" data-movie-info="14"></div>
 				</div>
 				
 				<div class="swiper swiper-content">
@@ -242,7 +242,7 @@
 						</c:forEach>
 					</div>
 					<div class="swiper-button-prev"></div>
-    				<div class="swiper-button-next"></div>
+    				<div class="swiper-button-next movieNextBtn" data-movie-info="15"></div>
 				</div>
 				
 				<div class="swiper swiper-content">
@@ -253,7 +253,7 @@
 						</c:forEach>
 					</div>
 					<div class="swiper-button-prev"></div>
-    				<div class="swiper-button-next"></div>
+    				<div class="swiper-button-next movieNextBtn" data-movie-info="16"></div>
 				</div>
 			</div>
 			
@@ -270,23 +270,32 @@
 		
 		let click = null;
 		
-		$(".movieNextBtn").on("click", function(e){
+		$(".movieNextBtn").on("click", function(){
 			 click = 1;
 			 
-			 console.log(e);
+			 let movieInfo = $(this).data("movie-info");
 			 
-			 $.ajax({
+			 
+			 
+/* 			 $.ajax({
 					type:"get"
-					, url:"/movie/mainpage/view"
+					, url:"/movie/nextList"
 					, data:{"click":click}
-					, success:function(){
-						alert("클릭 성공");
+					, success:function(data){
+						if(data.result == "success") {
+							//alert("리스트추가 성공");	
+							var nextMovieList = data.nextList;
+							
+							//$("h1").after("<div>Hello</div>");
+						} else {
+							alert("리스트추가 실패");
+						}
 					}
 					, error:function(){
-						alert("클릭 에러");
+						alert("리스트추가 에러");
 					}
 					
-				});
+				}); */
 			
 		});
 		
