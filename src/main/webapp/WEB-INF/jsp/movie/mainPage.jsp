@@ -341,7 +341,6 @@
 				});
 			}
 			
-			console.log(backList);
 			
 			 
 			 
