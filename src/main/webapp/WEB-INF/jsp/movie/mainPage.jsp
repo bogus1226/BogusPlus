@@ -76,8 +76,8 @@
 							<a href="#" class="movie-box swiper-slide"><img src="${koreaMovieList.poster_path}"></a>
 						</c:forEach>
 					</div>
-					<div class="swiper-button-prev"></div>
-    				<div class="swiper-button-next movieNextBtn" data-movie-info="1"></div>
+					<div class="swiper-button-prev movieBackBtn" data-movie-info="0"></div>
+    				<div class="swiper-button-next movieNextBtn" data-movie-info="0"></div>
 				</div>
 				
 				<div class="swiper swiper-content">
@@ -87,7 +87,7 @@
 							<a href="#" class="movie-box swiper-slide"><img src="${koreaMovieList.poster_path}"></a>
 						</c:forEach>
 					</div>
-					<div class="swiper-button-prev"></div>
+					<div class="swiper-button-prev movieBackBtn" data-movie-info="1"></div>
     				<div class="swiper-button-next movieNextBtn" data-movie-info="1"></div>
 				</div>
 				
@@ -98,18 +98,18 @@
 							<a href="#" class="movie-box swiper-slide"><img src="${todayTopMovieList.poster_path}"></a>
 						</c:forEach>
 					</div>
-					<div class="swiper-button-prev"></div>
+					<div class="swiper-button-prev movieBackBtn" data-movie-info="2"></div>
     				<div class="swiper-button-next movieNextBtn" data-movie-info="2"></div>
 				</div>
 				
 				<div class="swiper swiper-content">
 					<div class="textWhite">애니메이션 영화</div>
-					<div class="swiper-wrapper contents d-flex mt-2">
+					<div class="swiper-wrapper contents d-flex mt-2" id="append">
 						<c:forEach var="animationMovieList" items="${mainPageAnimationMovieList}">
 							<a href="#" class="movie-box swiper-slide"><img src="${animationMovieList.poster_path}"></a>
 						</c:forEach>
 					</div>
-					<div class="swiper-button-prev"></div>
+					<div class="swiper-button-prev movieBackBtn" data-movie-info="3"></div>
     				<div class="swiper-button-next movieNextBtn" data-movie-info="3"></div>
 				</div>
 				
@@ -120,7 +120,7 @@
 							<a href="#" class="movie-box swiper-slide"><img src="${actionMovieList.poster_path}"></a>
 						</c:forEach>
 					</div>
-					<div class="swiper-button-prev"></div>
+					<div class="swiper-button-prev movieBackBtn" data-movie-info="4"></div>
     				<div class="swiper-button-next movieNextBtn" data-movie-info="4"></div>
 				</div>
 				
@@ -131,7 +131,7 @@
 							<a href="#" class="movie-box swiper-slide"><img src="${comedyMovieList.poster_path}"></a>
 						</c:forEach>
 					</div>
-					<div class="swiper-button-prev"></div>
+					<div class="swiper-button-prev movieBackBtn" data-movie-info="5"></div>
     				<div class="swiper-button-next movieNextBtn" data-movie-info="5"></div>
 				</div>
 				
@@ -142,7 +142,7 @@
 							<a href="#" class="movie-box swiper-slide"><img src="${romanceMovieList.poster_path}"></a>
 						</c:forEach>
 					</div>
-					<div class="swiper-button-prev"></div>
+					<div class="swiper-button-prev movieBackBtn" data-movie-info="6"></div>
     				<div class="swiper-button-next movieNextBtn" data-movie-info="6"></div>
 				</div>
 				
@@ -153,7 +153,7 @@
 							<a href="#" class="movie-box swiper-slide"><img src="${sfMovieList.poster_path}"></a>
 						</c:forEach>
 					</div>
-					<div class="swiper-button-prev"></div>
+					<div class="swiper-button-prev movieBackBtn" data-movie-info="7"></div>
     				<div class="swiper-button-next movieNextBtn" data-movie-info="7"></div>
 				</div>
 				
@@ -164,7 +164,7 @@
 							<a href="#" class="movie-box swiper-slide"><img src="${horrorMovieList.poster_path}"></a>
 						</c:forEach>
 					</div>
-					<div class="swiper-button-prev"></div>
+					<div class="swiper-button-prev movieBackBtn" data-movie-info="8"></div>
     				<div class="swiper-button-next movieNextBtn" data-movie-info="8"></div>
 				</div>
 				
@@ -175,7 +175,7 @@
 							<a href="#" class="movie-box swiper-slide"><img src="${familyMovieList.poster_path}"></a>
 						</c:forEach>
 					</div>
-					<div class="swiper-button-prev"></div>
+					<div class="swiper-button-prev movieBackBtn" data-movie-info="9"></div>
     				<div class="swiper-button-next movieNextBtn" data-movie-info="9"></div>
 				</div>
 				
@@ -186,7 +186,7 @@
 							<a href="#" class="movie-box swiper-slide"><img src="${adventureMovieList.poster_path}"></a>
 						</c:forEach>
 					</div>
-					<div class="swiper-button-prev"></div>
+					<div class="swiper-button-prev movieBackBtn" data-movie-info="10"></div>
     				<div class="swiper-button-next movieNextBtn" data-movie-info="10"></div>
 				</div>
 				
@@ -197,7 +197,7 @@
 							<a href="#" class="movie-box swiper-slide"><img src="${fantasyMovieList.poster_path}"></a>
 						</c:forEach>
 					</div>
-					<div class="swiper-button-prev"></div>
+					<div class="swiper-button-prev movieBackBtn" data-movie-info="11"></div>
     				<div class="swiper-button-next movieNextBtn" data-movie-info="11"></div>
 				</div>
 				
@@ -208,7 +208,7 @@
 							<a href="#" class="movie-box swiper-slide"><img src="${warMovieList.poster_path}"></a>
 						</c:forEach>
 					</div>
-					<div class="swiper-button-prev"></div>
+					<div class="swiper-button-prev movieBackBtn" data-movie-info="12"></div>
     				<div class="swiper-button-next movieNextBtn" data-movie-info="12"></div>
 				</div>
 				
@@ -219,7 +219,7 @@
 							<a href="#" class="movie-box swiper-slide"><img src="${musicMovieList.poster_path}"></a>
 						</c:forEach>
 					</div>
-					<div class="swiper-button-prev"></div>
+					<div class="swiper-button-prev movieBackBtn" data-movie-info="13"></div>
     				<div class="swiper-button-next movieNextBtn" data-movie-info="13"></div>
 				</div>
 				
@@ -230,7 +230,7 @@
 							<a href="#" class="movie-box swiper-slide"><img src="${crimeMovieList.poster_path}"></a>
 						</c:forEach>
 					</div>
-					<div class="swiper-button-prev"></div>
+					<div class="swiper-button-prev movieBackBtn" data-movie-info="14"></div>
     				<div class="swiper-button-next movieNextBtn" data-movie-info="14"></div>
 				</div>
 				
@@ -241,7 +241,7 @@
 							<a href="#" class="movie-box swiper-slide"><img src="${documentaryMovieList.poster_path}"></a>
 						</c:forEach>
 					</div>
-					<div class="swiper-button-prev"></div>
+					<div class="swiper-button-prev movieBackBtn" data-movie-info="15"></div>
     				<div class="swiper-button-next movieNextBtn" data-movie-info="15"></div>
 				</div>
 				
@@ -252,7 +252,7 @@
 							<a href="#" class="movie-box swiper-slide"><img src="${historyMovieList.poster_path}"></a>
 						</c:forEach>
 					</div>
-					<div class="swiper-button-prev"></div>
+					<div class="swiper-button-prev movieBackBtn" data-movie-info="16"></div>
     				<div class="swiper-button-next movieNextBtn" data-movie-info="16"></div>
 				</div>
 			</div>
@@ -268,25 +268,68 @@
 
 	$(document).ready(function(){
 		
-		let click = null;
+		var movieNumberList = ["0", "1", "2", "16", "28,53", "35", "10749", "878", "27", "10751" 
+			,"12", "14", "10752" ,"10402", "80", "99", "36"];
+		
+		var clickList = new Array(17);
+		
+		var backList = new Array(17);
+		
+		$(".movieBackBtn").on("click",  function(){
+			let movieInfo = $(this).data("movie-info");
+			
+			let backCount = backList[movieInfo];
+			
+			if(backCount == null) {
+				backCount = 0;
+			}
+			
+			backList[movieInfo] = backCount + 1;
+			
+			console.log(backList);
+		});
 		
 		$(".movieNextBtn").on("click", function(){
-			 click = 1;
-			 
-			 let movieInfo = $(this).data("movie-info");
-			 
-			 
-			 
-/* 			 $.ajax({
+			
+			let movieInfo = $(this).data("movie-info");
+			
+			let clickCount = clickList[movieInfo];
+			
+			if(clickCount == null) {
+				clickCount = 0;
+			}
+			
+			clickList[movieInfo] = clickCount + 1;
+			
+			let backCount = backList[movieInfo];
+			
+			if(backCount > 0) {
+				backList[movieInfo] = backCount - 1; 
+			} 
+			
+			if(backCount == 0 || backCount == null) {
+				
+				let click = clickList[movieInfo];
+				
+				let movieNumber = movieNumberList[movieInfo];
+				
+				$.ajax({
 					type:"get"
 					, url:"/movie/nextList"
-					, data:{"click":click}
+					, data:{"click":click, "movieInfo":movieNumber}
 					, success:function(data){
 						if(data.result == "success") {
 							//alert("리스트추가 성공");	
-							var nextMovieList = data.nextList;
 							
-							//$("h1").after("<div>Hello</div>");
+							let list = data.nextList;
+							alert("click: " + click + " , movieNumber : " + movieNumber + " , length : " + list.length);
+							
+							for (var i = 0; i < list.length; i++) {
+								let aTagInfo = "<a href=\"#\" class=\"movie-box swiper-slide\"><img src=" + list[i].poster_path + "></a>"
+								
+								$("#append").append(aTagInfo);
+							};
+							
 						} else {
 							alert("리스트추가 실패");
 						}
@@ -294,8 +337,14 @@
 					, error:function(){
 						alert("리스트추가 에러");
 					}
-					
-				}); */
+						
+				});
+			}
+			
+			console.log(backList);
+			
+			 
+			 
 			
 		});
 		

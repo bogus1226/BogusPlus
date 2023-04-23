@@ -23,7 +23,7 @@ public class MovieRestController {
 	@GetMapping("/nextList")
 	public Map<String, Object> nextMovieList(
 			@RequestParam("click") int click
-			, @RequestParam("movieInfo") int movieInfo) {
+			, @RequestParam("movieInfo") String movieInfo) {
 		
 		Map<String, Object> resultMap = new HashMap<>();
 		
