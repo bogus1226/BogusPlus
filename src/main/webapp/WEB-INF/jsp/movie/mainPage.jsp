@@ -38,6 +38,8 @@
 						<a href="#" class="nav-link"><i class="bi bi-chat-fill mr-1"></i>수다 <span class="textYellow">(스포주의)</span></a>
 					</nav>
 				</div>
+				
+			
 				<div class="profile-container">
 					<div class="profile mt-2 mr-2">
 						<hr class="m-0">
@@ -47,8 +49,14 @@
 						</div>
 						<hr class="m-0 mt-1">
 					</div>
-					<div>zz</div>
+					
+					<div>프로필 수정</div>
+					<div>달력</div>
+					<div>로그아웃</div>
 				</div>
+				
+				
+			
 			</div>
 		</header>
 		
