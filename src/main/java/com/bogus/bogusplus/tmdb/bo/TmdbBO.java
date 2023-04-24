@@ -31,6 +31,7 @@ public class TmdbBO {
 	
 	// 공통코드안의 공통코드!
 	// url 입력했을때나오는 results 값 가져오는 코드
+	// list값 가져오는 코드
 	public JSONArray tmdbCalculator(String apiURL) throws UnsupportedEncodingException, IOException, ParseException  {
 		
 		URL url = new URL(apiURL);
@@ -53,6 +54,7 @@ public class TmdbBO {
 	
 	// 공통적인코드내용을 하나로 묶었다!
 	// TMDB 오픈 API URL 기준으로 값을 가져오는 코드!
+	// infoList 값 가져오는 코드
 	public List<TMDB> apiGetTMDBInfo(String plusURL, int page) {
 		
 		List<TMDB> infoList = null;
