@@ -39,24 +39,35 @@
 					</nav>
 				</div>
 				
-			
-				<div class="profile-container">
-					<div class="profile mt-2 mr-2">
-						<hr class="m-0">
-						<div class="d-flex align-items-center">
-							<div class="nickName mt-2 mr-2">${userName}</div>
-							<div class="profileCircle mt-1"><img src="/static/image/groot.jpg"></div>
+				<div class="profile mt-2 mr-4" id="profile">
+					<hr class="m-0">
+					<div class="d-flex align-items-center">
+						<div class="nickName mt-2 mr-1 ml-1">${userName}</div>
+						<div class="profileCircle mt-1 ml-3"><img src="/static/image/groot.jpg"></div>
+					</div>
+					<hr class="m-0 mt-1">
+				</div>  
+	
+				<div class="profile-container d-none" id="profile-container">	 
+					<div class="d-flex justify-content-end">
+						<div>
+							<div class="profile mt-2 mr-4" id="profile">
+								<hr class="m-0">
+								<div class="d-flex align-items-center">
+									<div class="nickName mt-2 mr-1 ml-1">${userName}</div>
+									<div class="profileCircle mt-1 ml-3"><img src="/static/image/groot.jpg"></div>
+								</div>
+								<hr class="m-0 mt-1">
+							</div> 
 						</div>
-						<hr class="m-0 mt-1">
 					</div>
 					
-					<div>프로필 수정</div>
-					<div>달력</div>
-					<div>로그아웃</div>
+					<div class="profileText ml-3 mt-5">
+						<div>프로필 수정</div>
+						<div class="mt-2">달력</div>
+						<a class="mt-2" href="/user/signout">로그아웃</a>
+					</div>
 				</div>
-				
-				
-			
 			</div>
 		</header>
 		
@@ -276,6 +287,29 @@
 
 	$(document).ready(function(){
 		
+		$("#profile-container").hover(
+			function() {
+				$("#profile-container").removeClass("d-none");
+				$("#profile").addClass("d-none");
+			},
+			function() {
+				$("#profile-container").addClass("d-none");
+				$("#profile").removeClass("d-none");
+			}
+		);
+		
+		
+		$("#profile").hover(
+			function() {
+				$("#profile-container").removeClass("d-none");
+				$("#profile").addClass("d-none");
+			},
+			function() {
+				$("#profile-container").addClass("d-none");
+				$("#profile").removeClass("d-none");
+			}
+		);
+		
 		var movieNumberList = ["0", "1", "2", "16", "28,53", "35", "10749", "878", "27", "10751" 
 			,"12", "14", "10752" ,"10402", "80", "99", "36"];
 		
@@ -360,16 +394,33 @@
 			
 		});
 		
-		const swiperMovie = new Swiper(".swiper-content", {                 
+		
+		
+		var swiperMovie = new Swiper(".swiper-content", {                 
 		    slidesPerView: 7.5,
 		    slidesPerGroup : 7,
 		    spaceBetween: 20,  
 		    observer: true,	
+		    
 		    navigation: {                      
 		        nextEl: ".swiper-button-next",
 		        prevEl: ".swiper-button-prev",
 		    },
-		})
+		    
+		    on: {
+		        slideChange: function () {
+		          if (swiperMovie.isEnd) {
+		            swiperMovie.params.slidesPerView = 7;
+		            swiperMovie.update();
+		          } else {
+		            swiperMovie.params.slidesPerView = 7.5;
+		            swiperMovie.update();
+		          }
+		        },
+		      },
+		});
+		
+		
 		
 		const swiper = new Swiper(".swiper-box", {
 		    loop: true,                        
@@ -387,7 +438,7 @@
 		        nextEl: ".swiper-button-next",
 		        prevEl: ".swiper-button-prev",
 		    },
-		})
+		});
 		
 		$(".swiper-box").each(function(elem, target){
 		    var swp = target.swiper;

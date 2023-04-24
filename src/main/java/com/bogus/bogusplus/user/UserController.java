@@ -1,5 +1,8 @@
 package com.bogus.bogusplus.user;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -80,6 +83,17 @@ public class UserController {
 		model.addAttribute("userId", userId);
 		
 		return "user/signup/signupPin";
+	}
+	
+	@GetMapping("/signout")
+	public String signout(HttpServletRequest request) {
+		
+		HttpSession session = request.getSession();
+        
+        session.removeAttribute("userId");
+        session.removeAttribute("userName");
+        
+        return "redirect:/user/signin/email/view"; 
 	}
 	
 

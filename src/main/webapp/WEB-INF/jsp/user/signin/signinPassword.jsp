@@ -64,7 +64,7 @@
 				, data:{"email":email, "password":password}
 				, success:function(data){
 					if(data.result == "success") {
-						alert("로그인 성공!!");
+						location.href = "/movie/mainpage/view";
 					} else if(data.EmailResult) {
 						$("#passwordIsDuplicateText").removeClass("d-none");
 					} else {
