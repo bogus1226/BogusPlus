@@ -26,4 +26,13 @@
 		)
 	</insert>
 	
+	<select id="infoIsDuplicate" parameterType="int" resultType="int">
+		SELECT
+			count(1)
+		FROM
+			`suda`
+		WHERE
+			`userId` = #{userId}
+	</select>
+	
 </mapper>

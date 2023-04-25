@@ -11,5 +11,6 @@ public interface SudaDAO {
 			, @Param("introduce") String introduce
 			, @Param("type") String type
 			, @Param("userId") int userId);
-		
+	
+	public int infoIsDuplicate(@Param("userId") int userId);
 }

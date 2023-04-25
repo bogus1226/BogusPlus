@@ -9,7 +9,7 @@
 						<a href="#" class="nav-link"><i class="bi bi-search mr-1"></i>검색</a>
 						<a href="#" class="nav-link"><i class="bi bi-plus-lg mr-1"></i>관심콘텐츠</a>
 						<a href="#" class="nav-link"><i class="bi bi-caret-right-square-fill mr-1"></i>영화</a>
-						<a href="#" class="nav-link"><i class="bi bi-chat-fill mr-1"></i>수다 <span class="textYellow">(스포주의)</span></a>
+						<a href="/suda/info/isDuplicate" class="nav-link"><i class="bi bi-chat-fill mr-1"></i>수다 <span class="textYellow">(스포주의)</span></a>
 					</nav>
 				</div>
 				

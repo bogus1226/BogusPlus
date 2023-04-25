@@ -15,4 +15,11 @@ public class SudaBO {
 		
 		return sudaDAO.inputInfo(mbti, introduce, type, userId);
 	}
+	
+	public Boolean infoIsDuplicate(int userId) {
+		
+		int count = sudaDAO.infoIsDuplicate(userId);
+		
+		return count!=0;
+	}
 }

@@ -16,7 +16,7 @@
 	<link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@700&display=swap" rel="stylesheet">
 	<!-- stylesheet -->
 	<link rel="stylesheet" href="/static/css/style.css" type="text/css">
-<title>영화 메인화면</title>
+<title>수다 정보입력</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" />
 </head>
 <body>
@@ -41,6 +41,29 @@
 <script>
 
 	$(document).ready(function(){
+		
+		$("#profile-container").hover(
+			function() {
+				$("#profile-container").removeClass("d-none");
+				$("#profile").addClass("d-none");
+			},
+			function() {
+				$("#profile-container").addClass("d-none");
+				$("#profile").removeClass("d-none");
+			}
+		);
+			
+			
+		$("#profile").hover(
+			function() {
+				$("#profile-container").removeClass("d-none");
+				$("#profile").addClass("d-none");
+			},
+			function() {
+				$("#profile-container").addClass("d-none");
+				$("#profile").removeClass("d-none");
+			}
+		);
 		
 		$("#mbtiInput").on("input", function(){
 			$("#mbtiText").addClass("d-none");

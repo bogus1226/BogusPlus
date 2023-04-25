@@ -24,7 +24,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" />
 </head>
 <body>
-	<div id="wrap movie-wrap">
+	<div id="movie-wrap">
 		<c:import url="/WEB-INF/jsp/include/main-header.jsp"/>
 		
 		<!-- 메인화면의 상단 인기영화 10개 슬라이드 포스터 -->
@@ -327,8 +327,7 @@
 								
 								if(list[i].poster_path != null) {
 									
-									var aTagInfo = "<a href=\"#\" class=\"movie-box swiper-slide\"><img src=\"" + list[i].poster_path + "\"></a>";
-									console.log(aTagInfo);
+									var aTagInfo = "<a href=\"#\" class=\"movie-box swiper-slide\"><img src=" + list[i].poster_path + "></a>";
 									
 									$(appendNumber).append(aTagInfo);
 								}

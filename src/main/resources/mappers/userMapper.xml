@@ -77,7 +77,7 @@
 			 `id` = #{id}
 	</update>
 	
-		<update id="updatePin" parameterType="map">
+	<update id="updatePin" parameterType="map">
 		UPDATE
 			`user`
 		SET

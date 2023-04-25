@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bogus.bogusplus.suda.cafe.dao.CafeDAO">
+
+	<insert id="insertCafe" parameterType="map">
+		INSERT INTO
+			`cafe` 
+		(
+			`userId`
+			, `name`
+			, `createdAt`
+			, `updatedAt`
+		)
+		VALUE
+		(
+			#{userId}
+			, #{name}
+			, now()
+			, now()
+		)
+	</insert>
+	
+	<select id="isduplicateCafe" parameterType="int" resultType="int">
+		SELECT
+			count(1)
+		FROM
+			`cafe`
+		WHERE
+			`userId` = #{userId}
+	</select>
+	
+	<select id="selectCafeInfo" parameterType="int" resultType="com.bogus.bogusplus.suda.cafe.model.Cafe">
+		SELECT
+			`id`
+			, `userId`
+			, `name`
+			, `createdAt`
+			, `updatedAt`
+		FROM
+			`cafe`
+		WHERE
+			`userId` = #{userId}
+	</select>
+	
+	<select id="selectSearchCafeInfo" parameterType="String" resultType="com.bogus.bogusplus.suda.cafe.model.Cafe">
+		SELECT
+			`name`
+		FROM
+			`cafe`
+		WHERE
+			`name` Like #{search}
+	</select>
+	
+	
+	
+
+	
+</mapper>
