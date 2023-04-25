@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bogus.bogusplus.suda.dao.SudaDAO">
+
+	<insert id="inputInfo" parameterType="map">
+		INSERT INTO
+			`suda` 
+		(
+			`userId`
+			, `mbti`
+			, `introduce`
+			, `type`
+			, `createdAt`
+			, `updatedAt`
+		)
+		VALUE
+		(
+			#{userId}
+			, #{mbti}
+			, #{introduce}
+			, #{type}
+			, now()
+			, now()
+		)
+	</insert>
+	
+</mapper>

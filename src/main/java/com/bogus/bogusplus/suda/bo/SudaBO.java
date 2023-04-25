@@ -1,0 +1,18 @@
+package com.bogus.bogusplus.suda.bo;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.bogus.bogusplus.suda.dao.SudaDAO;
+
+@Service
+public class SudaBO {
+	
+	@Autowired
+	private SudaDAO sudaDAO;
+
+	public int inputInfo(String mbti, String introduce, String type, int userId) {
+		
+		return sudaDAO.inputInfo(mbti, introduce, type, userId);
+	}
+}
