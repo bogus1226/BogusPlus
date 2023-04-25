@@ -92,6 +92,7 @@ public class UserController {
         
         session.removeAttribute("userId");
         session.removeAttribute("userName");
+        session.removeAttribute("userIcon");
         
         return "redirect:/user/signin/email/view"; 
 	}
