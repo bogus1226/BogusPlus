@@ -49,7 +49,7 @@
 				<c:otherwise>
 					<div class="my-cafe">
 						<div class="fontBMJUA mt-5 text-center"><span class="myText">My</span> 카페</div>
-						<a href="#" class="hotCafeBox btn btn-block textWhite mt-2">${name}</a>
+						<a href="/suda/cafe/mainpage/view?cafeId=${cafeId}" class="hotCafeBox btn btn-block textWhite mt-2">${name}</a>
 					</div>
 				</c:otherwise>
 			</c:choose>
@@ -64,11 +64,8 @@
 <script>
 
 	$(document).ready(function(){
-		
-		
-		$("#cafeSearchInput").on("input", function(){
 			
-			$(".searchInfo").empty();
+		$("#cafeSearchInput").on("input", function(){
 			
 			let cafeSearch = $("#cafeSearchInput").val();
 			
@@ -88,11 +85,13 @@
 					if(data.result == "success") {
 						console.log("검색 성공");
 						
+						$(".searchInfo").empty();
+						
 						let list = data.searchList;
 						
 						for (var i = 0; i < list.length; i++) {
 							
-							var aTagInfo = "<a href=\"#\" class=\"hotCafeBox btn btn-block textWhite mt-3\">" + list[i].name + "</a>";
+							var aTagInfo = "<a href=\"/suda/cafe/mainpage/view?cafeId=" + list[i].id + "\"" + "class=\"hotCafeBox btn btn-block textWhite mt-3\">" + list[i].name + "</a>";
 							
 							$(".searchInfo").append(aTagInfo);
 							

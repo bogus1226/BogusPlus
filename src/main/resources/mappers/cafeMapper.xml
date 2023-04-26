@@ -46,11 +46,28 @@
 	
 	<select id="selectSearchCafeInfo" parameterType="String" resultType="com.bogus.bogusplus.suda.cafe.model.Cafe">
 		SELECT
-			`name`
+			`id`
+			, `userId`
+			, `name`
+			, `createdAt`
+			, `updatedAt`
 		FROM
 			`cafe`
 		WHERE
 			`name` Like #{search}
+	</select>
+	
+	<select id="selectCafeById" parameterType="int" resultType="com.bogus.bogusplus.suda.cafe.model.Cafe">
+		SELECT
+			`id`
+			, `userId`
+			, `name`
+			, `createdAt`
+			, `updatedAt`
+		FROM
+			`cafe`
+		WHERE
+			`id` = #{id}
 	</select>
 	
 	

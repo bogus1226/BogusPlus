@@ -20,7 +20,7 @@
 						<div class="profileCircle mt-1 ml-3"><img src="${userIcon}"></div>
 					</div>
 					<hr class="m-0 mt-1">
-				</div>  
+				</div> 
 	
 				<div class="profile-container d-none" id="profile-container">	 
 					<div class="d-flex justify-content-end">

@@ -33,5 +33,6 @@ public interface UserDAO {
 
 	public int selectCountIsDuplicate(@Param("email") String email);
 	
-
+	public User selectUserById(@Param("id") int id);
+	
 }

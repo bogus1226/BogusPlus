@@ -61,5 +61,10 @@ public class UserBO {
 		return count != 0;
 	}
 	
+	public User getUserById(int userId) {
+		
+		return userDAO.selectUserById(userId);
+	}
+	
 
 }

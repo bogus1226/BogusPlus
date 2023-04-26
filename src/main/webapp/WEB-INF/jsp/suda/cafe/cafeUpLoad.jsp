@@ -20,7 +20,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" />
 </head>
 <body>
-	<div id="movie-wrap wrap">
+	<div id="wrap">
 		<c:import url="/WEB-INF/jsp/include/main-header.jsp"/>
 		
 		<section class="post-container d-flex">
@@ -28,17 +28,24 @@
 			<div class="writingBtn-container"></div>
 			
 			<section class="suda-main-contents">
-				<div class="fontBMJUA text-center">마블에 진심인 사람 <span class="myText">글쓰기</span></div>
+				<div class="fontBMJUA text-center">${cafe.name } <span class="myText">글쓰기</span></div>
 				
 				<nav class="pt-2 nav-item d-flex" id="postNavLink">
 					<a class="nav-link"><span class="select">수다</span></a>
 					<a href="#" class="nav-link">함께하기</a>
 				</nav>
 				
-				<textarea rows="7" class="form-control mt-3"></textarea>
+				<textarea rows="7" class="form-control mt-3 fontBMJUA" placeholder="게시물 내용" id="contentArea"></textarea>
+				<div class="textRed mt-1 d-none" id="contentText">내용을 입력해주세요</div>
+				<div class="d-flex justify-content-between upload-last">
 				
-				<div class="d-flex">
-					<i class="bi bi-image iconGray"></i>
+					<div class="image-file-input d-flex">
+						<i id="imageIcon" class="bi bi-image iconGray mt-1"></i>
+						<div class="imageText"></div>
+						<input id="fileInput" type="file" class="d-none">
+					</div>
+					
+					<button type="button" class="btn blueBtn mt-3" id="saveBtn" data-userid="${userId}" data-cafeid="${cafeId}">저장</button>
 				</div>
 			</section>
 		</section>
@@ -54,6 +61,66 @@
 <script>
 
 	$(document).ready(function(){
+		
+		$("#contentArea").on("input", function(){
+			$("#contentText").addClass("d-none");
+		});
+		
+		$("#saveBtn").on("click", function(){
+			let userId = $(this).data("userid");
+			let content = $("#contentArea").val();
+			let file = $("#fileInput")[0];
+			let cafeId = $(this).data("cafeid");
+
+			if(content.trim() == "") {
+				$("#contentText").removeClass("d-none");
+				return;
+			}
+			
+			content = content.replace("\n", "<br>");
+			
+			var formData = new FormData();
+			formData.append("userId", userId);
+			formData.append("content", content);
+			formData.append("file", file.files[0]);
+			formData.append("cafeId", cafeId);
+
+			$.ajax({
+				type:"post"
+				, url:"/suda/cafe/post/create"
+				, data:formData
+				, enctype:"multipart/form-data" 
+				, processData:false 
+				, contentType:false 
+				, success:function(data){
+					if(data.result == "success") {
+						location.href = "/suda/cafe/mainpage/view?cafeId=" + cafeId;
+					} else {
+						alert("글쓰기 실패");
+					}	
+				}
+				, error:function(){
+					alert("글쓰기 에러");
+				}
+				
+			});
+			
+		});
+		
+		$("#fileInput").on("change", function(){			
+			
+			$(".imageText").empty();
+			
+			let name = $(this).val();
+			name = name.substring(12);
+			
+			$(".imageText").append(name);
+
+		});
+		
+		$("#imageIcon").on("click", function(){	
+			$("#fileInput").click();
+		});		
 		
 		
 		$("#profile-container").hover(

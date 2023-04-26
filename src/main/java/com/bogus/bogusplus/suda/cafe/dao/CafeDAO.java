@@ -19,4 +19,8 @@ public interface CafeDAO {
 	public Cafe selectCafeInfo(@Param("userId") int userId);
 	
 	public List<Cafe> selectSearchCafeInfo(@Param("search") String search);
+	
+	public Cafe selectCafeById(@Param("id") int id);
+	
+
 }

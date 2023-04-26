@@ -1,4 +1,4 @@
-package com.bogus.bogusplus.suda.cafe;
+package com.bogus.bogusplus.suda.cafe.post.comment;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -6,30 +6,28 @@ import java.util.Map;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.multipart.MultipartFile;
 
-import com.bogus.bogusplus.suda.cafe.bo.CafeBO;
+import com.bogus.bogusplus.suda.cafe.post.comment.bo.CommentBO;
 
 @RestController
-@RequestMapping("/suda/cafe")
-public class CafeRestContoller {
+@RequestMapping("/suda/cafe/post/comment")
+public class CommentRestController {
 	
 	@Autowired
-	private CafeBO cafeBO;
+	private CommentBO commentBO;
 
-	@GetMapping("/create")
-	public Map<String, String> addCafe(
-			@RequestParam("name") String name
+	@PostMapping("/add") 
+	public Map<String, String> commentAdd(
+			@RequestParam("postId") int postId
+			, @RequestParam("comment") String comment
 			, HttpSession session) {
-		
 		Integer userId = (Integer)session.getAttribute("userId");
 		
-		int count = cafeBO.addCafe(name, userId);
+		int count = commentBO.commentAdd(userId, postId, comment);
 		
 		Map<String, String> resultMap = new HashMap<>();
 		
@@ -38,11 +36,6 @@ public class CafeRestContoller {
 		} else {
 			resultMap.put("result", "fail");
 		}
-		
 		return resultMap;
 	}
-	
-
-	
-	
 }

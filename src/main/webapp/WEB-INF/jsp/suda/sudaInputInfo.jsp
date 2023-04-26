@@ -102,7 +102,7 @@
 				, data:{"mbti":mbti, "introduce":introduce, "type":type}
 				, success:function(data){
 					if(data.result == "success") {
-						alert("수다 정보입력 성공");
+						location.href = "/suda/mainpage/view";
 					} else {
 						console.log("수다 정보입력 실패");
 					}	

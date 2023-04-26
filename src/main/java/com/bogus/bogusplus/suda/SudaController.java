@@ -56,6 +56,7 @@ public class SudaController {
 		
 		if(cafe != null) {
 			model.addAttribute("name", cafe.getName());
+			model.addAttribute("cafeId", cafe.getId());
 		}
 		
 		return "suda/sudaMainPage";

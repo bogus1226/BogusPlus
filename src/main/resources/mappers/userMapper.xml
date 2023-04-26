@@ -96,6 +96,24 @@
 			`email` = #{email}
 	</select>
 	
-
+	<select id="selectUserById" parameterType="int" resultType="com.bogus.bogusplus.user.model.User">
+		SELECT
+			`id`
+			, `email`
+			, `password`
+			, `catalogue` 
+			, `icon`
+			, `nickName`
+			, `kid`
+			, `pin`
+			, `manager`
+			, `createdAt`
+			, `updatedAt`
+		FROM
+			`user`
+		WHERE
+			`id` = #{id}
+	</select>
 	
+
 </mapper>
