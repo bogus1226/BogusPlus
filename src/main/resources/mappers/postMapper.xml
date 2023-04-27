@@ -39,6 +39,32 @@
 			`post`
 		WHERE
 			`cafeId` = #{cafeId}
+		ORDER BY
+			`id`
+		DESC
+	</select>
+	
+	<delete id="deletePost" parameterType="int">
+		DELETE
+		FROM
+			`post`
+		WHERE
+			`id` = #{id}
+	</delete>
+	
+	<select id="selecetPostInfo" parameterType="int" resultType="com.bogus.bogusplus.suda.cafe.post.model.Post">
+		SELECT
+			`id`
+			, `userId`
+			, `cafeId`
+			, `imagePath`
+			, `content`
+			, `createdAt`
+			, `updatedAt`
+		FROM
+			`post`
+		WHERE
+			`id` = #{id}
 	</select>
 	
 </mapper>

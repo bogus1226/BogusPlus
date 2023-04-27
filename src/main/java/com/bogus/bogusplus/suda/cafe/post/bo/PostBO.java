@@ -68,4 +68,19 @@ public class PostBO {
 		
 	}
 	
+	public int deletePost(int postId) {
+		
+		Post post = postDAO.selecetPostInfo(postId);
+		
+		if(post.getImagePath() != null) {
+			FileManagerService.removeFile(post.getImagePath());
+		}
+			
+		commentBO.commentDeleteByPostId(postId);
+		
+		return postDAO.deletePost(postId);
+	}
+	
+
+	
 }

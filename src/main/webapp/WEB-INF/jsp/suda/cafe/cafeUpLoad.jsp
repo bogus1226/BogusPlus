@@ -25,10 +25,43 @@
 		
 		<section class="post-container d-flex">
 		
-			<div class="writingBtn-container"></div>
+			<div class="preview bg-info">
+				<div class="previewBox sudaPost mt-2 mb-4">
+					<div class="post-header d-flex align-items-center justify-content-between">
+						<div class="userName ml-3">보거스</div>
+					</div>
+					
+					<c:choose>
+						<c:when test="${!empty postDetail.imagePath}">
+							<div class="post-image">
+								<img src="${postDetail.imagePath}">
+							</div>
+						</c:when>
+						
+						<c:otherwise>
+							<hr class="mt-1 mb-0">
+						</c:otherwise>
+					</c:choose>
+					
+					<div class="post-text-container d-flex">
+						<div class="post-text-icon"></div>
+						<div class="post-text d-flex justify-content-center">
+							<div class="textWhite mt-2">안녕하세요</div>
+						</div>
+						
+						<div class="post-text-icon mt-2 d-flex justify-content-end align-items-end">
+							<i class="bi bi-caret-down-fill iconBtn mr-2"></i>
+						</div>
+		
+					</div>
+					
+					<hr class="mt-1 mb-3">
+					
+				</div>
+			</div>
 			
 			<section class="suda-main-contents">
-				<div class="fontBMJUA text-center">${cafe.name } <span class="myText">글쓰기</span></div>
+				<div class="fontBMJUA text-center">${cafe.name} <span class="myText">글쓰기</span></div>
 				
 				<nav class="pt-2 nav-item d-flex" id="postNavLink">
 					<a class="nav-link"><span class="select">수다</span></a>
@@ -51,10 +84,8 @@
 		</section>
 		
 
-			
-
-		
 		<c:import url="/WEB-INF/jsp/include/footer.jsp"/>
+
 	</div>
 </body>
 

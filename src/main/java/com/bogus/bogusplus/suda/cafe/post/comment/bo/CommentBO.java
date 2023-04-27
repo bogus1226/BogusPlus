@@ -23,4 +23,14 @@ public class CommentBO {
 		
 		return commentDAO.selectCommentList(postId);
 	}
+	
+	public int commentDelete(int commentId) {
+		
+		return commentDAO.deleteComment(commentId);
+	}
+	
+	public int commentDeleteByPostId(int postId) {
+		
+		return commentDAO.deleteCommentByPostId(postId);
+	}
 }

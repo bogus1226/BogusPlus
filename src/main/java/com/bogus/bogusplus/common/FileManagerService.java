@@ -12,7 +12,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 public class FileManagerService {
 	
-	public static final String FILE_UPLOAD_PATH = "C:\\Users\\user\\Desktop\\programing\\bogudPlus\\upload\\sudaPostImages";
+	//public static final String FILE_UPLOAD_PATH = "C:\\Users\\user\\Desktop\\programing\\bogudPlus\\upload\\sudaPostImages";
+	public static final String FILE_UPLOAD_PATH = "D:\\bogus\\bogusPlus\\upload\\sudaPostImages";
 	
 	
 	private static Logger logger = LoggerFactory.getLogger(FileManagerService.class);
@@ -64,7 +65,7 @@ public class FileManagerService {
 			return false;
 		}
 		
-		String fullFilePath = FILE_UPLOAD_PATH + filePath.replace("/images", "");
+		String fullFilePath = FILE_UPLOAD_PATH + filePath.replace("/sudaPostImages", "");
 		Path path = Paths.get(fullFilePath);
 		
 		if(Files.exists(path)) {

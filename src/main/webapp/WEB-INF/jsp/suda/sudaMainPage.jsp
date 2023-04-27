@@ -20,7 +20,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" />
 </head>
 <body>
-	<div id="movie-wrap wrap">
+	<div id="wrap">
 		<c:import url="/WEB-INF/jsp/include/main-header.jsp"/>
 		
 		<div id="searchLine">
