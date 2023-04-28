@@ -25,8 +25,6 @@
 	<c:import url="/WEB-INF/jsp/include/main-header.jsp"/>
 		
 	<section class="post-container d-flex">
-		
-		<div class="writingBtn-container"></div>
 			
 		<section class="suda-main-contents">
 			<div class="fontBMJUA text-center">${cafe.name}</div>
@@ -101,9 +99,9 @@
 							
 							<div class="post-comment-button d-flex justify-content-center">
 								<div class="input-group col-8 comment-button-box">
-									<input type="text" class="form-control" placeholder="내용을 입력해주세요" id="commentInput">
+									<input type="text" class="form-control" placeholder="내용을 입력해주세요" id="commentInput${postDetail.id}">
 									<div class="input-group-append">
-										<button class="btn grayBtn" type="button" id="commentBtn" data-postid="${postDetail.id}">댓글</button>
+										<button class="btn grayBtn commentBtn" type="button" data-postid="${postDetail.id}">댓글</button>
 									</div>
 								</div>
 							</div>
@@ -201,9 +199,12 @@
 			});	
 		});
 		
-		$("#commentBtn").on("click", function(){
-			let comment = $("#commentInput").val();
+		$(".commentBtn").on("click", function(){
+			
 			let postId = $(this).data("postid");
+			
+			let comment = $("#commentInput" + postId).val();
+			
 			if(comment.trim() == "") {
 				return;
 			}

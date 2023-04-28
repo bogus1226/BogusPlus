@@ -407,13 +407,29 @@ a:hover {
 
 .preview {
 	width:30%;
-	height:200px;
+	padding-left:20px;
+	padding-right:20px;
+}
+
+.preview-image > img {
+	width:100%;
+	height:230px;
+	margin:0;
+}
+
+.previewPost {
+	margin:auto;
 }
 
 
 .suda-main-contents {
 	width:40%;
+	margin:auto;
 }
+
+.previw-container > .suda-main-contents {
+	margin:0;
+} 
 
 #postNavLink > a {
 	color:rgb(158, 158, 158);
@@ -469,6 +485,7 @@ a:hover {
 }
 
 
+
 .post-text {
 	width:80%;
 }
@@ -504,6 +521,7 @@ a:hover {
 	color:white;
 	border:2px solid rgb(64, 66, 74);
 	resize: none;
+	word-wrap: break-all;
 }
 
 .form-control:focus {
@@ -553,11 +571,15 @@ a:hover {
 	color:rgb(158, 158, 158);
 }
 
-
 .redBtn {
 	background-color:#c93443;
 	color:white;
 	font-weight:bold;
+}
+
+.image-file-input > .redBtn {
+	height:32px;
+	margin-top:20px;
 }
 
 .redBtn:hover {
@@ -576,3 +598,11 @@ a:hover {
 .modal-footer {
 	border:none;
 }
+
+.textPlaceHolder {
+	color:rgb(158, 158, 158);
+	font-size:20px;
+	font-family: 'BMJUA';
+}
+
+

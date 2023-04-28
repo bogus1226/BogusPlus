@@ -23,39 +23,28 @@
 	<div id="wrap">
 		<c:import url="/WEB-INF/jsp/include/main-header.jsp"/>
 		
-		<section class="post-container d-flex">
+		<section class="post-container previw-container d-flex">
 		
-			<div class="preview bg-info">
-				<div class="previewBox sudaPost mt-2 mb-4">
+			<div class="preview">
+				<div class="textWhite text-center mt-5">미리보기</div>
+				
+				<div class="previewBox sudaPost previewPost mt-2 mb-4">
 					<div class="post-header d-flex align-items-center justify-content-between">
-						<div class="userName ml-3">보거스</div>
+						<div class="userName ml-3">${userName}</div>
 					</div>
 					
-					<c:choose>
-						<c:when test="${!empty postDetail.imagePath}">
-							<div class="post-image">
-								<img src="${postDetail.imagePath}">
-							</div>
-						</c:when>
-						
-						<c:otherwise>
-							<hr class="mt-1 mb-0">
-						</c:otherwise>
-					</c:choose>
-					
+					<div class="preview-image d-none">
+						<img id="viewImage" src="">
+					</div>
+
+					<hr id="preview-hr" class="mt-1 mb-0">
+
 					<div class="post-text-container d-flex">
 						<div class="post-text-icon"></div>
 						<div class="post-text d-flex justify-content-center">
-							<div class="textWhite mt-2">안녕하세요</div>
+							<div class="previewText textWhite mt-1"><span class="textPlaceHolder">내용을 입력해주세요</span></div>
 						</div>
-						
-						<div class="post-text-icon mt-2 d-flex justify-content-end align-items-end">
-							<i class="bi bi-caret-down-fill iconBtn mr-2"></i>
-						</div>
-		
 					</div>
-					
-					<hr class="mt-1 mb-3">
 					
 				</div>
 			</div>
@@ -68,7 +57,7 @@
 					<a href="#" class="nav-link">함께하기</a>
 				</nav>
 				
-				<textarea rows="7" class="form-control mt-3 fontBMJUA" placeholder="게시물 내용" id="contentArea"></textarea>
+				<textarea cols="25" rows="7" class="form-control mt-3 fontBMJUA" placeholder="게시물 내용" id="contentArea"></textarea>
 				<div class="textRed mt-1 d-none" id="contentText">내용을 입력해주세요</div>
 				<div class="d-flex justify-content-between upload-last">
 				
@@ -76,6 +65,7 @@
 						<i id="imageIcon" class="bi bi-image iconGray mt-1"></i>
 						<div class="imageText"></div>
 						<input id="fileInput" type="file" class="d-none">
+						<button type="button" class="btn btn-sm redBtn ml-2 deleteBtn d-none"><i class="bi bi-trash3-fill"></i></button>
 					</div>
 					
 					<button type="button" class="btn blueBtn mt-3" id="saveBtn" data-userid="${userId}" data-cafeid="${cafeId}">저장</button>
@@ -93,8 +83,30 @@
 
 	$(document).ready(function(){
 		
+		$(".deleteBtn").on("click", function(){
+			$(".deleteBtn").addClass("d-none");
+			$("#preview-hr").removeClass("d-none");
+			$(".preview-image").addClass("d-none");
+			$("#fileInput").val("");
+			$(".imageText").empty();
+		});
+		
 		$("#contentArea").on("input", function(){
 			$("#contentText").addClass("d-none");
+			
+			$(".previewText").empty();
+			
+			let content = $(this).val();
+			
+			content = content.replaceAll("\n", "<br>");
+			content = content.replaceAll("\u0020", "&nbsp;");
+			
+			$(".previewText").append(content);
+			
+			if(content.trim() == "") {
+				$(".previewText").empty();
+				$(".previewText").append("<span class=\"textPlaceHolder\">내용을 입력해주세요</span>");
+			} 
 		});
 		
 		$("#saveBtn").on("click", function(){
@@ -108,7 +120,8 @@
 				return;
 			}
 			
-			content = content.replace("\n", "<br>");
+			content = content.replaceAll("\n", "<br>");
+			content = content.replaceAll("\u0020", "&nbsp;");
 			
 			var formData = new FormData();
 			formData.append("userId", userId);
@@ -138,15 +151,33 @@
 			
 		});
 		
-		$("#fileInput").on("change", function(){			
+		$("#fileInput").on("change", function(){		
+			
+			$(".deleteBtn").removeClass("d-none");
+			
+			$("#preview-hr").addClass("d-none");
+			$(".preview-image").removeClass("d-none");
+			
 			
 			$(".imageText").empty();
 			
-			let name = $(this).val();
-			name = name.substring(12);
+			var file = document.getElementById("fileInput");
 			
-			$(".imageText").append(name);
-
+			var filePath = file.files[0];
+			
+			var fileName = filePath.name;
+			
+			$(".imageText").append(fileName);
+			
+			var reader = new FileReader();
+			
+			reader.onload = function(e) {
+				 $("#viewImage").attr("src", e.target.result);
+			}
+			
+			reader.readAsDataURL(filePath);
+			
+			
 		});
 		
 		$("#imageIcon").on("click", function(){	
