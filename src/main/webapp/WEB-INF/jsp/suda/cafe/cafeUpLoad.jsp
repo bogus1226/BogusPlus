@@ -25,7 +25,7 @@
 		
 		<section class="post-container previw-container d-flex">
 		
-			<div class="preview">
+			<div class="preview d-none ml-5">
 				<div class="textWhite text-center mt-5">미리보기</div>
 				
 				<div class="previewBox sudaPost previewPost mt-2 mb-4">
@@ -42,10 +42,9 @@
 					<div class="post-text-container d-flex">
 						<div class="post-text-icon"></div>
 						<div class="post-text d-flex justify-content-center">
-							<div class="previewText textWhite mt-1"><span class="textPlaceHolder">내용을 입력해주세요</span></div>
+							<div class="previewText textWhite mt-1" style=word-break:break-all;><span class="textPlaceHolder">내용을 입력해주세요</span></div>
 						</div>
 					</div>
-					
 				</div>
 			</div>
 			
@@ -54,13 +53,13 @@
 				
 				<nav class="pt-2 nav-item d-flex" id="postNavLink">
 					<a class="nav-link"><span class="select">수다</span></a>
-					<a href="#" class="nav-link">함께하기</a>
+					<a href="/suda/cafe/upload/together/view?cafeId=${cafe.id}" class="nav-link">함께하기</a>
+					<button type="button" class="btn btn-sm aTagBtn" id="previewBtn">미리보기</button>
 				</nav>
 				
 				<textarea cols="25" rows="7" class="form-control mt-3 fontBMJUA" placeholder="게시물 내용" id="contentArea"></textarea>
 				<div class="textRed mt-1 d-none" id="contentText">내용을 입력해주세요</div>
 				<div class="d-flex justify-content-between upload-last">
-				
 					<div class="image-file-input d-flex">
 						<i id="imageIcon" class="bi bi-image iconGray mt-1"></i>
 						<div class="imageText"></div>
@@ -82,6 +81,18 @@
 <script>
 
 	$(document).ready(function(){
+		
+		let previewNumber = 0;
+		
+		$("#previewBtn").on("click", function(){
+			if(previewNumber == 0) {
+				$(".preview").removeClass("d-none");
+				previewNumber = 1;
+			} else {
+				$(".preview").addClass("d-none");
+				previewNumber = 0;
+			}
+		});
 		
 		$(".deleteBtn").on("click", function(){
 			$(".deleteBtn").addClass("d-none");

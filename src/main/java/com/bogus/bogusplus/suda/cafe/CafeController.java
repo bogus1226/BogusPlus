@@ -66,5 +66,22 @@ public class CafeController {
 		
 		return "suda/cafe/cafeUpLoad";
 	}
+	
+	@GetMapping("/upload/together/view")
+	public String cafeUploadTogether(
+			@RequestParam("cafeId") int cafeId
+			, HttpSession session
+			, Model model) {
+		
+		Integer userId = (Integer)session.getAttribute("userId");
+		
+		Cafe cafe = cafeBO.getCafeById(cafeId);
+		
+		model.addAttribute("userId", userId);
+		model.addAttribute("cafeId", cafeId);
+		model.addAttribute("cafe", cafe);
+		
+		return "suda/cafe/cafeUploadTogether";
+	}
 
 }

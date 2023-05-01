@@ -66,7 +66,7 @@
 							<div class="post-text-container d-flex">
 								<div class="post-text-icon"></div>
 								<div class="post-text d-flex justify-content-center">
-									<div class="textWhite mt-2">${postDetail.content}</div>
+									<div class="textWhite mt-2" style=word-break:break-all;>${postDetail.content}</div>
 								</div>
 								
 								<div class="post-text-icon mt-2 d-flex justify-content-end align-items-end">
