@@ -360,6 +360,41 @@ a:hover {
 	height:85px;
 }
 
+.search {
+	position: absolute;
+	top: 10px;
+	left: 10px;
+	z-index: 1;
+	background-color: transparent;
+	padding: 5px;
+	border-radius: 5px;
+	border: 1px solid transparent;
+	
+}
+
+.search, .input-group-append > input {
+	font-family: 'BMJUA';
+	background-color:#40424a;
+	color:white;
+}
+
+.search > .form-control:focus {
+	box-shadow:none;
+	outline:none;
+}
+
+.search > input::placeholder {
+	font-weight:normal;
+}
+
+.infoWindow {
+	padding:10px;
+	min-width:200px;
+	line-height:150%;
+	font-family: 'BMJUA';
+}
+
+
 #searchLine > input:focus {
 	outline:none;
 	border:none;
