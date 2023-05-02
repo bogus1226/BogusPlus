@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bogus.bogusplus.suda.cafe.together.dao.TogetherDAO">
+
+	<insert id="insertTogether" parameterType="map">
+		INSERT INTO
+			`together` 
+		(
+			`userId`
+			, `cafeId`
+			, `title`
+			, `placeName`
+			, `placeAddressX`
+			, `placeAddressY`
+			, `date`
+			, `content`
+			, `createdAt`
+			, `updatedAt`
+		)
+		VALUE
+		(
+			#{userId}
+			, #{cafeId}
+			, #{title}
+			, #{placeName}
+			, #{placeAddressX}
+			, #{placeAddressY}
+			, #{date}
+			, #{content}
+			, now()
+			, now()
+		)
+	</insert>
+	
+	
+</mapper>

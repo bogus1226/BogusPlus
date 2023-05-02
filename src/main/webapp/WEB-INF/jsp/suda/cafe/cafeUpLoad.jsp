@@ -42,7 +42,7 @@
 					<div class="post-text-container d-flex">
 						<div class="post-text-icon"></div>
 						<div class="post-text d-flex justify-content-center">
-							<div class="previewText textWhite mt-1" style=word-break:break-all;><span class="textPlaceHolder">내용을 입력해주세요</span></div>
+							<div class="previewText textWhite mt-1" style="word-break:break-all;"><span class="textPlaceHolder">내용을 입력해주세요</span></div>
 						</div>
 					</div>
 				</div>
@@ -67,7 +67,7 @@
 						<button type="button" class="btn btn-sm redBtn ml-2 deleteBtn d-none"><i class="bi bi-trash3-fill"></i></button>
 					</div>
 					
-					<button type="button" class="btn blueBtn mt-3" id="saveBtn" data-userid="${userId}" data-cafeid="${cafeId}">저장</button>
+					<button type="button" class="btn blueBtn mt-3" id="saveBtn" data-cafeid="${cafeId}">저장</button>
 				</div>
 			</section>
 		</section>
@@ -121,7 +121,6 @@
 		});
 		
 		$("#saveBtn").on("click", function(){
-			let userId = $(this).data("userid");
 			let content = $("#contentArea").val();
 			let file = $("#fileInput")[0];
 			let cafeId = $(this).data("cafeid");
@@ -135,7 +134,6 @@
 			content = content.replaceAll("\u0020", "&nbsp;");
 			
 			var formData = new FormData();
-			formData.append("userId", userId);
 			formData.append("content", content);
 			formData.append("file", file.files[0]);
 			formData.append("cafeId", cafeId);

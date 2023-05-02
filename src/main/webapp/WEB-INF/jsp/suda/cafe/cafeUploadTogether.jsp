@@ -16,9 +16,13 @@
 	<link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@700&display=swap" rel="stylesheet">
 	<!-- stylesheet -->
 	<link rel="stylesheet" href="/static/css/style.css" type="text/css">
+	<link rel="stylesheet" href="/static/css/datePicker.css" type="text/css">
 	<!-- 네이버 map API -->
 	<script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=b5vyxgh7co&submodules=geocoder"></script>
 	<script type="text/javascript" src="/static/js/naver.js"></script>
+	<!-- 데이트 피커 -->
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
 <title>까페 글쓰기(함께하기)</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" />
 </head>
@@ -38,18 +42,29 @@
 					<button type="button" class="btn btn-sm aTagBtn" id="previewBtn">미리보기</button>
 				</nav>
 				
-				<input type="text" class="form-control fontBMJUA" placeholder="제목을 입력해주세요">
-				<div class="d-flex justify-content-between mt-2">
-					<div class="choosePlace d-flex align-items-center col-5">
+				<input type="text" class="form-control fontBMJUA" id="titleInput" placeholder="제목을 입력해주세요">
+				<div class="textRed mt-1 d-none" id="titleText">제목을 입력해주세요!</div>
+				<div class="d-flex mt-2">
+					<div class="choosePlace d-flex align-items-center col-8">
 						<i class="bi bi-geo-alt placeIcon" id="placeBtn"></i>
-						<div class="fontBMJUA mt-2 ml-2">장소 선택</div>
+						<div class="fontBMJUA mt-2 ml-2 placeSelect">장소 선택</div>
 					</div>
 					
 					<div class="choosePlace d-flex align-items-center col-5">
 						<i class="bi bi-calendar calendarIcon"></i>
-						<div class="fontBMJUA mt-2 ml-2">날짜 선택</div>
+						<input type="text" id="datepicker" class="datepicker-input">
+						<div class="fontBMJUA mt-2 ml-2 calendarSelect">날짜 선택</div>
+					</div>	
+				</div>
+				
+				<div class="d-flex">
+					<div class="choosePlace d-flex align-items-center col-8">
+						<div class="textRed d-none" id="placeSelectText">장소를 선택해주세요!</div>
 					</div>
 					
+					<div class="choosePlace d-flex align-items-center col-5">
+						<div class="textRed d-none" id="dateSelcetText">날짜를 선택해주세요!</div>
+					</div>	
 				</div>
 				
 				<div class="textArea-container d-none">
@@ -57,7 +72,7 @@
 					<div class="textRed mt-1 d-none" id="contentText">내용을 입력해주세요</div>
 					
 					<div class="d-flex justify-content-end">
-						<button type="button" class="btn blueBtn mt-3" id="saveBtn" data-userid="${userId}" data-cafeid="${cafeId}">저장</button>
+						<button type="button" class="btn blueBtn mt-3" id="saveBtn" data-cafeid="${cafeId}">저장</button>
 					</div>
 				</div>
 			   
@@ -66,15 +81,16 @@
 			<div style="width:1140px;margin:auto;" class="placeBox mt-2 mb-5">
 				<div id="map" style="width:1140px;height:600px;">
 			        <div class="input-group search col-4">
-						<input id="address" type="text" class="form-control" placeholder="검색할 주소" value="불정로 6">
+						<input id="address" type="text" class="form-control" placeholder="검색할 주소">
 						<div class="input-group-append">
 							<input id="submit" type="button" class="btn" value="검색">
 						</div>
 					</div>
+					<div class="placeText textRed d-none">주소를 정확히 입력해주세요!</div>
 		    	</div>
 		    	
 		    	<div class="d-flex justify-content-end mt-2">
-		    		<button type="button" class="btn blueBtn">저장</button>
+		    		<button type="button" class="btn blueBtn" id="placeSaveBtn">저장</button>
 		    		<button type="button" class="btn grayBtn ml-3" id="deleteBtn">취소</button>
 		    	</div>
 			</div>
@@ -89,6 +105,145 @@
 <script>
 
 	$(document).ready(function(){
+		
+		$("#titleInput").on("input", function(){
+			$("#titleText").addClass("d-none");
+		});
+		
+		$("#contentArea").on("input", function(){
+			$("#contentText").addClass("d-none");
+		});
+		
+		var dateString = null;
+		
+		$("#saveBtn").on("click", function(){
+			
+			var placeAddressList = placeAddress.split(",");
+			
+			if(placeAddressList != null) {
+				var placeAddressX = placeAddressList[0];
+				var placeAddressY = placeAddressList[1];
+			}
+			
+			if(dateString != null) {
+				var date = dateString;
+			}
+			
+			let cafeId = $(this).data("cafeid");
+			
+			let content = $("#contentArea").val();
+			
+			content = content.replaceAll("\n", "<br>");
+			content = content.replaceAll("\u0020", "&nbsp;");
+			
+			let title = $("#titleInput").val();
+			
+			let placeName = placeString;
+			
+			if(title.trim() == "") {
+				$("#titleText").removeClass("d-none");
+				return;
+			}
+			
+			let placeSelectString = $(".placeSelect").text();
+			
+			if(placeSelectString == "장소 선택" && dateString == null) {
+				$("#placeSelectText").removeClass("d-none");
+				$("#dateSelcetText").removeClass("d-none");
+				return;
+			}
+			
+			if(placeSelectString == "장소 선택") {
+				$("#placeSelectText").removeClass("d-none");
+				return;
+			}
+			
+			if(dateString == null) {
+				$("#dateSelcetText").removeClass("d-none");
+				return;
+			}
+			
+			if(content.trim() == "") {
+				$("#contentText").removeClass("d-none");
+				return;
+			}
+			
+			alert(cafeId + "\n" + title + "\n" + placeName + "\n" + placeAddressX + "\n" + placeAddressY + "\n" + date + "\n" + content + "\n")
+			
+			$.ajax({
+				type:"post"
+				, url:"/suda/cafe/together/create"
+				, data:{"cafeId":cafeId
+					, "title":title
+					, "placeName":placeName
+					, "placeAddressX":placeAddressX
+					, "placeAddressY":placeAddressY
+					, "date":date
+					, "content":content}
+				, success:function(data){
+					if(data.result == "success") {
+						location.href = "/suda/cafe/mainpage/view?cafeId=" + cafeId;
+					} else {
+						console.log("함께하기 저장 실패");
+					}	
+				}
+				, error:function(){
+					console.log("함께하기 저장 에러");
+				}
+				
+			});	
+			
+			
+			
+			
+		});
+		
+		
+		$("#datepicker").datepicker({minDate:0});
+		
+		$.datepicker.setDefaults({
+			  dateFormat: "yy-mm-dd",
+			  monthNames: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+			  dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'],
+			  showMonthAfterYear: true,
+			  yearSuffix: '년'
+			});
+		 
+		$(".calendarIcon").on("click", function(){
+			 $("#datepicker").datepicker("show").addClass("datepicker");
+		});
+		
+		$("#datepicker").on("change", function(){
+			
+			$("#dateSelcetText").addClass("d-none");
+			
+			dateString = $(this).val();
+			
+			var dateList = dateString.split("-");
+			
+			$(".calendarSelect").empty();
+			$(".calendarSelect").append(dateList[0] + "년 " + dateList[1] + "월 " + dateList[2] + "일"); 
+			
+		});
+		
+		
+		$("#address").on("input", function(){
+			$(".placeText").addClass("d-none");
+		});
+		
+		$("#placeSaveBtn").on("click", function(){
+			
+			if(placeString != null) {
+				$("#placeSelectText").addClass("d-none");
+				
+				$(".placeSelect").empty();
+				$(".placeSelect").append(placeString); 
+				
+				$(".textArea-container").removeClass("d-none");
+				$(".placeBox").addClass("d-none");
+				placeSelectNumber = 1;
+			}
+		});
 		
 		let placeSelectNumber = 0;
 		
@@ -129,7 +284,11 @@
 
 		naver.maps.onJSContentLoaded = initGeocoder;
 		
+		var placeString = null;
+		
+		var placeAddress = null;
 
+		// 주소선택
  		function searchCoordinateToAddress(latlng) {
 
 		    infoWindow.close();
@@ -142,7 +301,7 @@
 		        ].join(',')
 		    }, function(status, response) {
 		        if (status === naver.maps.Service.Status.ERROR) {
-		            return alert('Something Wrong!');
+		            return console.log("주소 선택 에러!");
 		        }
 
 		        var items = response.v2.results,
@@ -163,21 +322,28 @@
 		            htmlAddresses.join('<br />'),
 		            '</div>'
 		        ].join('\n'));
-
+				
+		        placeString = address;
+		        let placeX = latlng.x;
+		        let placeY = latlng.y;
+		        placeAddress = placeX + "," + placeY;
 		        infoWindow.open(map, latlng);
 		    });
 		}
  		
+ 		
+ 		// 주소 검색
 		function searchAddressToCoordinate(address) {
 		    naver.maps.Service.geocode({
 		        query: address
 		    }, function(status, response) {
 		        if (status === naver.maps.Service.Status.ERROR) {
-		            return alert("검색 에러!");
+		        	return console.log("주소 검색 에러!");
 		        }
 
 		        if (response.v2.meta.totalCount === 0) {
-		            return alert("검색결과 : " + response.v2.meta.totalCount + "\n주소로 검색해주세요!");
+		        	$(".placeText").removeClass("d-none");
+		            return ;
 		        }
 
 		        var htmlAddresses = [],
@@ -202,7 +368,12 @@
 		            htmlAddresses.join('<br />'),
 		            '</div>'
 		        ].join('\n'));
-
+				
+		        placeString = item.roadAddress;
+		        
+		        let placeX = point.x;
+		        let placeY = point.y;
+		        placeAddress = placeX + "," + placeY;
 		        map.setCenter(point);
 		        infoWindow.open(map, point);
 		       
@@ -235,6 +406,17 @@
 		
 				
 		$("#profile").hover(
+			function() {
+				$("#profile-container").removeClass("d-none");
+				$("#profile").addClass("d-none");
+			},
+			function() {
+				$("#profile-container").addClass("d-none");
+				$("#profile").removeClass("d-none");
+			}
+		);
+		
+		$("#profile-container").hover(
 			function() {
 				$("#profile-container").removeClass("d-none");
 				$("#profile").addClass("d-none");

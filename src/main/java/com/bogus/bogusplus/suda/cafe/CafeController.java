@@ -53,14 +53,10 @@ public class CafeController {
 	@GetMapping("/upload/view")
 	public String cafeUpLoad(
 			@RequestParam("cafeId") int cafeId
-			, HttpSession session
 			, Model model) {
-		
-		Integer userId = (Integer)session.getAttribute("userId");
 		
 		Cafe cafe = cafeBO.getCafeById(cafeId);
 		
-		model.addAttribute("userId", userId);
 		model.addAttribute("cafeId", cafeId);
 		model.addAttribute("cafe", cafe);
 		
@@ -70,14 +66,11 @@ public class CafeController {
 	@GetMapping("/upload/together/view")
 	public String cafeUploadTogether(
 			@RequestParam("cafeId") int cafeId
-			, HttpSession session
 			, Model model) {
 		
-		Integer userId = (Integer)session.getAttribute("userId");
 		
 		Cafe cafe = cafeBO.getCafeById(cafeId);
 		
-		model.addAttribute("userId", userId);
 		model.addAttribute("cafeId", cafeId);
 		model.addAttribute("cafe", cafe);
 		

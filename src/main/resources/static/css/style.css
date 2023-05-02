@@ -252,9 +252,25 @@ input::placeholder {
 	color:rgb(26, 188, 156);
 }
 
+.placeIcon:hover {
+	color:#27d9b6;
+}
+
+.placeIcon:active {
+	color:#15967d;
+}
+
 .calendarIcon {
 	font-size:40px;
 	color:white;
+}
+
+.calendarIcon:hover {
+	color:#bab8b8;
+}
+
+.calendarIcon:active {
+	color:#8c8c8c;
 }
 
 .choosePlace > .fontBMJUA {
@@ -372,8 +388,15 @@ a:hover {
 	background-color: transparent;
 	padding: 5px;
 	border-radius: 5px;
-	border: 1px solid transparent;
-	
+	border: 1px solid transparent;	
+}
+
+.placeText {
+	position: absolute;
+	top: 60px;
+	left: 20px;
+	z-index: 1;
+	font-weight:bold;
 }
 
 .search, .input-group-append > input {
@@ -656,6 +679,8 @@ a:hover {
 	color:white;
 	font-weight:bold;
 }
+
+
 
 .image-file-input > .redBtn {
 	height:32px;
