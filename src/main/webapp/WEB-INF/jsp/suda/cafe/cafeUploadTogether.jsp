@@ -18,6 +18,7 @@
 	<link rel="stylesheet" href="/static/css/style.css" type="text/css">
 	<!-- 네이버 map API -->
 	<script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=b5vyxgh7co&submodules=geocoder"></script>
+	<script type="text/javascript" src="/static/js/naver.js"></script>
 <title>까페 글쓰기(함께하기)</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" />
 </head>
@@ -40,9 +41,7 @@
 				<input type="text" class="form-control fontBMJUA" placeholder="제목을 입력해주세요">
 				<div class="d-flex justify-content-between mt-2">
 					<div class="choosePlace d-flex align-items-center col-5">
-						<!-- Button trigger modal -->
-						<i class="bi bi-geo-alt placeIcon" data-toggle="modal" data-target="#selectBtns"></i>
-						<!-- Button trigger modal -->
+						<i class="bi bi-geo-alt placeIcon" id="placeBtn"></i>
 						<div class="fontBMJUA mt-2 ml-2">장소 선택</div>
 					</div>
 					
@@ -52,65 +51,86 @@
 					</div>
 					
 				</div>
-				<textarea cols="25" rows="7" class="form-control mt-3 fontBMJUA" placeholder="내용을 입력해주세요" id="contentArea"></textarea>
-				<div class="textRed mt-1 d-none" id="contentText">내용을 입력해주세요</div>
 				
-				<div class="d-flex justify-content-end">
-					<button type="button" class="btn blueBtn mt-3" id="saveBtn" data-userid="${userId}" data-cafeid="${cafeId}">저장</button>
+				<div class="textArea-container d-none">
+					<textarea cols="25" rows="7" class="form-control mt-3 fontBMJUA" placeholder="내용을 입력해주세요" id="contentArea"></textarea>
+					<div class="textRed mt-1 d-none" id="contentText">내용을 입력해주세요</div>
+					
+					<div class="d-flex justify-content-end">
+						<button type="button" class="btn blueBtn mt-3" id="saveBtn" data-userid="${userId}" data-cafeid="${cafeId}">저장</button>
+					</div>
 				</div>
-				
-				 
-			    
 			   
 			</section>
 			
+			<div style="width:1140px;margin:auto;" class="placeBox mt-2 mb-5">
+				<div id="map" style="width:1140px;height:600px;">
+			        <div class="input-group search col-4">
+						<input id="address" type="text" class="form-control" placeholder="검색할 주소" value="불정로 6">
+						<div class="input-group-append">
+							<input id="submit" type="button" class="btn" value="검색">
+						</div>
+					</div>
+		    	</div>
+		    	
+		    	<div class="d-flex justify-content-end mt-2">
+		    		<button type="button" class="btn blueBtn">저장</button>
+		    		<button type="button" class="btn grayBtn ml-3" id="deleteBtn">취소</button>
+		    	</div>
+			</div>
+			
 			
 		</section>
-		
 
 		<c:import url="/WEB-INF/jsp/include/footer.jsp"/>
-
 	</div>
-
 </body>
-
-<!-- Modal -->
-<div class="modal fade" id="selectBtns" >
-  <div class="modal-dialog modal-dialog-centered ">
-    <div class="modal-content">
-      <div class="modal-body modal-xl">
-      	<div id="map" style="width:1140px;height:600px;">
-	         <div class="input-group search col-4">
-				<input id="address" type="text" class="form-control" placeholder="검색할 주소" value="불정로 6">
-				<div class="input-group-append">
-					<input id="submit" type="button" class="btn" value="검색">
-				</div>
-			</div>
-	    </div>
-      </div>
-    </div>
-  </div>
-</div>
-<!-- Modal -->
 
 <script>
 
 	$(document).ready(function(){
 		
-		// 네이버 API
+		let placeSelectNumber = 0;
+		
+		$("#deleteBtn").on("click", function(){
+			$(".textArea-container").removeClass("d-none");
+			$(".placeBox").addClass("d-none");
+			placeSelectNumber = 1;
+		});
+		
+		$("#placeBtn").on("click", function(){
+			
+			if(placeSelectNumber == 0) {
+				$(".textArea-container").removeClass("d-none");
+				$(".placeBox").addClass("d-none");
+				placeSelectNumber = 1;
+			} else {
+				$(".textArea-container").addClass("d-none");
+				$(".placeBox").removeClass("d-none");
+				placeSelectNumber = 0;
+			}
+			
+		});
+		
+		// 네이버 API 자바스크립트
 		var map = new naver.maps.Map("map", {
 		    center: new naver.maps.LatLng(37.3595316, 127.1052133),
 		    zoom: 15,
 		    mapTypeControl: true
+		    
 		});
+		
 
 		var infoWindow = new naver.maps.InfoWindow({
-		    anchorSkew: true
+		    anchorSkew: true,
 		});
 
-		map.setCursor('pointer');
+		map.setCursor("pointer");
 
-		function searchCoordinateToAddress(latlng) {
+		naver.maps.onJSContentLoaded = initGeocoder;
+		
+
+ 		function searchCoordinateToAddress(latlng) {
 
 		    infoWindow.close();
 
@@ -147,17 +167,17 @@
 		        infoWindow.open(map, latlng);
 		    });
 		}
-
+ 		
 		function searchAddressToCoordinate(address) {
 		    naver.maps.Service.geocode({
 		        query: address
 		    }, function(status, response) {
 		        if (status === naver.maps.Service.Status.ERROR) {
-		            return alert('Something Wrong!');
+		            return alert("검색 에러!");
 		        }
 
 		        if (response.v2.meta.totalCount === 0) {
-		            return alert('totalCount' + response.v2.meta.totalCount);
+		            return alert("검색결과 : " + response.v2.meta.totalCount + "\n주소로 검색해주세요!");
 		        }
 
 		        var htmlAddresses = [],
@@ -185,9 +205,10 @@
 
 		        map.setCenter(point);
 		        infoWindow.open(map, point);
+		       
 		    });
 		}
-
+		
 		function initGeocoder() {
 		    map.addListener('click', function(e) {
 		        searchCoordinateToAddress(e.coord);
@@ -198,6 +219,7 @@
 
 		        if (keyCode === 13) { // Enter Key
 		            searchAddressToCoordinate($('#address').val());
+		        
 		        }
 		    });
 
@@ -209,83 +231,8 @@
 
 		    searchAddressToCoordinate('정자동 178-1');
 		}
-
-		function makeAddress(item) {
-		    if (!item) {
-		        return;
-		    }
-
-		    var name = item.name,
-		        region = item.region,
-		        land = item.land,
-		        isRoadAddress = name === 'roadaddr';
-
-		    var sido = '', sigugun = '', dongmyun = '', ri = '', rest = '';
-
-		    if (hasArea(region.area1)) {
-		        sido = region.area1.name;
-		    }
-
-		    if (hasArea(region.area2)) {
-		        sigugun = region.area2.name;
-		    }
-
-		    if (hasArea(region.area3)) {
-		        dongmyun = region.area3.name;
-		    }
-
-		    if (hasArea(region.area4)) {
-		        ri = region.area4.name;
-		    }
-
-		    if (land) {
-		        if (hasData(land.number1)) {
-		            if (hasData(land.type) && land.type === '2') {
-		                rest += '산';
-		            }
-
-		            rest += land.number1;
-
-		            if (hasData(land.number2)) {
-		                rest += ('-' + land.number2);
-		            }
-		        }
-
-		        if (isRoadAddress === true) {
-		            if (checkLastString(dongmyun, '면')) {
-		                ri = land.name;
-		            } else {
-		                dongmyun = land.name;
-		                ri = '';
-		            }
-
-		            if (hasAddition(land.addition0)) {
-		                rest += ' ' + land.addition0.value;
-		            }
-		        }
-		    }
-
-		    return [sido, sigugun, dongmyun, ri, rest].join(' ');
-		}
-
-		function hasArea(area) {
-		    return !!(area && area.name && area.name !== '');
-		}
-
-		function hasData(data) {
-		    return !!(data && data !== '');
-		}
-
-		function checkLastString (word, lastString) {
-		    return new RegExp(lastString + '$').test(word);
-		}
-
-		function hasAddition (addition) {
-		    return !!(addition && addition.value);
-		}
-
-		naver.maps.onJSContentLoaded = initGeocoder;
 		// 네이버 API
+		
 				
 		$("#profile").hover(
 			function() {

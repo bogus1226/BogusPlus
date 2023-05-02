@@ -243,6 +243,10 @@ input::placeholder {
  	font-weight:normal;
 }
 
+.placeModal > .modal-dialog {
+	max-width:1175px;
+}
+
 .placeIcon {
 	font-size:40px;
 	color:rgb(26, 188, 156);
@@ -587,6 +591,13 @@ a:hover {
 }
 
 .suda-main-contents > .form-control {
+	background-color:rgb(64, 66, 74);
+	color:white;
+	border:2px solid rgb(64, 66, 74);
+	resize: none;
+}
+
+.textArea-container  > .form-control {
 	background-color:rgb(64, 66, 74);
 	color:white;
 	border:2px solid rgb(64, 66, 74);
