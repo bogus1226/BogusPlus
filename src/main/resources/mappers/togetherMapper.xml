@@ -34,5 +34,37 @@
 		)
 	</insert>
 	
+	<select id="selectGetTogetherList" parameterType="map" resultType="com.bogus.bogusplus.suda.cafe.together.model.Together">
+		SELECT
+			`id`
+			, `userId`
+			, `cafeId`
+			, `title`
+			, `placeName`
+			, `placeAddressX`
+			, `placeAddressY`
+			, `date`
+			, `content`
+			, `createdAt`
+			, `updatedAt`
+		FROM
+			`together`
+		WHERE
+			`userId` != #{userId}
+		AND
+			`cafeId` = #{cafeId}
+	</select>
+	
+	<select id="selectCountTogetherStatus" parameterType="map" resultType="int">
+		SELECT
+			count(1)
+		FROM
+			`status`
+		WHERE
+			`userId` = #{userId}
+		AND
+			`togetherId` = #{togetherId}
+	</select>
+	
 	
 </mapper>

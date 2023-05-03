@@ -1,7 +1,12 @@
 package com.bogus.bogusplus.suda.cafe.together.dao;
 
+import java.util.Date;
+import java.util.List;
+
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
+
+import com.bogus.bogusplus.suda.cafe.together.model.Together;
 
 @Repository
 public interface TogetherDAO {
@@ -13,6 +18,14 @@ public interface TogetherDAO {
 			, @Param("placeName") String placeName
 			, @Param("placeAddressX") String placeAddressX
 			, @Param("placeAddressY") String placeAddressY
-			, @Param("date") String date
+			, @Param("date") Date date
 			, @Param("content") String content);
+	
+	public List<Together> selectGetTogetherList(
+			@Param("userId") int userId
+			, @Param("cafeId") int cafeId);
+	
+	public int selectCountTogetherStatus(
+			@Param("userId") int userId
+			, @Param("togetherId") int togetherId);
 }

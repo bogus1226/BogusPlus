@@ -16,7 +16,7 @@
 	<link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@700&display=swap" rel="stylesheet">
 	<!-- stylesheet -->
 	<link rel="stylesheet" href="/static/css/style.css" type="text/css">
-<title>까페 메인페이지</title>
+<title>함께하기</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" />
 </head>
 <body>
@@ -30,8 +30,8 @@
 			<div class="fontBMJUA text-center">${cafe.name}</div>
 				
 			<nav class="pt-2 nav-item d-flex" id="postNavLink">
-				<a class="nav-link"><span class="select">수다</span></a>
-				<a href="/suda/cafe/together/view?cafeId=${cafeId}" class="nav-link">함께하기</a>
+				<a href="/suda/cafe/mainpage/view?cafeId=${cafeId}" class="nav-link">수다</a>
+				<a class="nav-link"><span class="select">함께하기</span></a>
 				<a href="#" class="nav-link">대기중</a>
 				<a href="#" class="nav-link">참석완료</a>
 				<a href="#" class="nav-link">MyPage</a>
@@ -39,72 +39,71 @@
 			</nav>
 				
 			<c:choose>
-				<c:when test="${!empty postDetail}">
-					<c:forEach var="postDetail" items="${postDetail}">
+				<c:when test="${!empty togetherList}">
+					<c:forEach var="togetherList" items="${togetherList}">
 						<div class="sudaPost mt-2 mb-4">
-							<div class="post-header d-flex align-items-center justify-content-between">
-								<div class="userName ml-3">${postDetail.nickName}</div>
-								<c:if test="${postDetail.userId eq userId}">
-									<!-- Button trigger modal -->
-									<i class="bi bi-three-dots btn iconBtn iconSelectBtns" data-toggle="modal" data-target="#selectBtns" data-postid="${postDetail.id}"></i>
-									<!-- Button trigger modal -->
-								</c:if>
+							<div class="post-header d-flex align-items-center">
+								<div class="userName pl-3 nickNameSpace">${togetherList.nickName}</div>
+								<div class="textYellow attendSpace text-center">참석인원 (${togetherList.statusCount})</div>
 							</div>
+				
+							<hr class="mt-1 mb-0">
 							
-							<c:choose>
-								<c:when test="${!empty postDetail.imagePath}">
-									<div class="post-image">
-										<img src="${postDetail.imagePath}">
-									</div>
-								</c:when>
-								
-								<c:otherwise>
-									<hr class="mt-1 mb-0">
-								</c:otherwise>
-							</c:choose>
-							
+							<!-- 제목 -->
 							<div class="post-text-container d-flex">
 								<div class="post-text-icon"></div>
 								<div class="post-text d-flex justify-content-center">
-									<div class="textWhite mt-2" style="word-break:break-all;">${postDetail.content}</div>
-								</div>
-								
-								<div class="post-text-icon mt-2 d-flex justify-content-end align-items-end">
-									<i class="bi bi-caret-down-fill iconBtn mr-2"></i>
-								</div>
-								
-							</div>
-							
-							<hr class="mt-1 mb-3">
-							
-							<c:forEach var="comment" items="${postDetail.commentList}">
-								<div class="post-comment-container d-flex justify-content-between">
-									<div class="d-flex">
-										<div class="post-userName">
-											<div class="textWhite ml-3">${comment.nickName}</div>
-										</div>
-										
-										<div class="post-comment ml-2">
-											<div class="commentText">${comment.comment}</div>
-										</div>
-									</div>
-									
-									<c:if test="${comment.userId eq userId}">
-										<button type="button" class="btn btn-sm mr-2 redBtn deleteBtn" data-id="${comment.id}">삭제</button>
-									</c:if>
-								</div>
-								
-								<hr class="mt-2">
-							</c:forEach>
-							
-							<div class="post-comment-button d-flex justify-content-center">
-								<div class="input-group col-8 comment-button-box">
-									<input type="text" class="form-control" placeholder="내용을 입력해주세요" id="commentInput${postDetail.id}">
-									<div class="input-group-append">
-										<button class="btn grayBtn commentBtn" type="button" data-postid="${postDetail.id}">댓글</button>
-									</div>
+									<div class="textWhite mt-2" style="word-break:break-all;">${togetherList.title}</div>
 								</div>
 							</div>
+							
+							<!-- 장소 -->
+							<div class="post-text-container d-flex">
+								<div class="post-text-icon"></div>
+								<div class="post-text d-flex align-items-center">
+									<i class="bi bi-geo-alt placeIcon" id="placeBtn"></i>
+									<div class="textWhite ml-1">장소</div>
+									<div class="togetherTextGray ml-3" style="word-break:break-all;">${togetherList.placeName}</div>
+								</div>
+							</div>
+							
+							<!-- 날짜 -->
+							<div class="post-text-container d-flex">
+								<div class="post-text-icon"></div>
+								<div class="post-text d-flex post-text-padding">
+									<div class="textWhite mt-3">날짜</div>
+									<div class="togetherTextGray mt-3 ml-3" style="word-break:break-all;">${togetherList.date}</div>
+								</div>
+							</div>
+							
+							<!-- MBTI -->
+							<div class="post-text-container d-flex">
+								<div class="post-text-icon"></div>
+								<div class="post-text d-flex post-text-padding">
+									<div class="textWhite mt-3">MBTI</div>
+									<div class="togetherTextGray mt-3 ml-3" style="word-break:break-all;">ENFJ</div>
+								</div>
+							</div>
+							
+							<!-- 내용 -->
+							<div class="post-text-container d-flex mt-3">
+								<div class="post-text-icon"></div>
+								<div class="post-text d-flex justify-content-center post-text-background">
+									<div class="textWhite mt-2 pl-4 pr-4" style="word-break:break-all;">${togetherList.title}</div>
+								</div>
+							</div>
+							
+							<!-- 참석하기 버튼 -->
+							<div class="post-text-container d-flex mt-3 pb-3">
+								<div class="post-text-icon"></div>
+								<div class="post-text d-flex justify-content-end">
+									<button type="button" class="btn btn-sm btn-primary">참석하기</button>
+								</div>
+							</div>
+							
+						
+							
+							
 						</div>
 					</c:forEach>
 				</c:when>

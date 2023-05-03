@@ -15,6 +15,8 @@ import com.bogus.bogusplus.suda.cafe.bo.CafeBO;
 import com.bogus.bogusplus.suda.cafe.model.Cafe;
 import com.bogus.bogusplus.suda.cafe.post.bo.PostBO;
 import com.bogus.bogusplus.suda.cafe.post.model.PostDetail;
+import com.bogus.bogusplus.suda.cafe.together.bo.TogetherBO;
+import com.bogus.bogusplus.suda.cafe.together.model.TogetherDetail;
 
 
 @Controller
@@ -26,6 +28,9 @@ public class CafeController {
 	
 	@Autowired
 	private CafeBO cafeBO;
+	
+	@Autowired
+	private TogetherBO togetherBO;
 	
 	@GetMapping("/mainpage/view")
 	public String cafeMainPage(
@@ -76,5 +81,27 @@ public class CafeController {
 		
 		return "suda/cafe/cafeUploadTogether";
 	}
-
+	
+	@GetMapping("/together/view")
+	public String cafeTogetherPage(
+			@RequestParam("cafeId") int cafeId
+			, HttpSession session
+			, Model model) {
+		
+		Integer userId = (Integer)session.getAttribute("userId");
+		
+		List<TogetherDetail> togetherList = togetherBO.getTogetherList(userId, cafeId);
+		
+		Cafe cafe = cafeBO.getCafeById(cafeId);
+		
+		if(togetherList != null) {
+			model.addAttribute("togetherList", togetherList);
+		}
+		
+		model.addAttribute("cafeId", cafeId);
+		model.addAttribute("userId", userId);
+		model.addAttribute("cafe", cafe);
+		
+		return "suda/cafe/cafeTogetherPage";
+	}
 }

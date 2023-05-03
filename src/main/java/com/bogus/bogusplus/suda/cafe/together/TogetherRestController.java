@@ -1,11 +1,13 @@
 package com.bogus.bogusplus.suda.cafe.together;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -27,7 +29,7 @@ public class TogetherRestController {
 			, @RequestParam("placeName") String placeName
 			, @RequestParam("placeAddressX") String placeAddressX
 			, @RequestParam("placeAddressY") String placeAddressY
-			, @RequestParam("date") String date
+			, @RequestParam("date") @DateTimeFormat(pattern="yy년 MM월 dd일") Date date
 			, @RequestParam("content") String content
 			, HttpSession session) {
 		

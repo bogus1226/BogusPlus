@@ -39,7 +39,6 @@
 				<nav class="pt-2 nav-item d-flex" id="postNavLink">	
 					<a href="/suda/cafe/upload/view?cafeId=${cafe.id}" class="nav-link">수다</a>
 					<a class="nav-link"><span class="select">함께하기</span></a>
-					<button type="button" class="btn btn-sm aTagBtn" id="previewBtn">미리보기</button>
 				</nav>
 				
 				<input type="text" class="form-control fontBMJUA" id="titleInput" placeholder="제목을 입력해주세요">
@@ -168,7 +167,6 @@
 				return;
 			}
 			
-			alert(cafeId + "\n" + title + "\n" + placeName + "\n" + placeAddressX + "\n" + placeAddressY + "\n" + date + "\n" + content + "\n")
 			
 			$.ajax({
 				type:"post"
@@ -202,7 +200,7 @@
 		$("#datepicker").datepicker({minDate:0});
 		
 		$.datepicker.setDefaults({
-			  dateFormat: "yy-mm-dd",
+			  dateFormat: "yy년 mm월 dd일",
 			  monthNames: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
 			  dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'],
 			  showMonthAfterYear: true,
@@ -219,10 +217,7 @@
 			
 			dateString = $(this).val();
 			
-			var dateList = dateString.split("-");
-			
-			$(".calendarSelect").empty();
-			$(".calendarSelect").append(dateList[0] + "년 " + dateList[1] + "월 " + dateList[2] + "일"); 
+			$(".calendarSelect").text(dateString);
 			
 		});
 		
@@ -276,10 +271,6 @@
 		});
 		
 
-		var infoWindow = new naver.maps.InfoWindow({
-		    anchorSkew: true,
-		});
-
 		map.setCursor("pointer");
 
 		naver.maps.onJSContentLoaded = initGeocoder;
@@ -287,121 +278,13 @@
 		var placeString = null;
 		
 		var placeAddress = null;
-
-		// 주소선택
- 		function searchCoordinateToAddress(latlng) {
-
-		    infoWindow.close();
-
-		    naver.maps.Service.reverseGeocode({
-		        coords: latlng,
-		        orders: [
-		            naver.maps.Service.OrderType.ADDR,
-		            naver.maps.Service.OrderType.ROAD_ADDR
-		        ].join(',')
-		    }, function(status, response) {
-		        if (status === naver.maps.Service.Status.ERROR) {
-		            return console.log("주소 선택 에러!");
-		        }
-
-		        var items = response.v2.results,
-		            address = '',
-		            htmlAddresses = [];
-
-		        for (var i=0, ii=items.length, item, addrType; i<ii; i++) {
-		            item = items[i];
-		            address = makeAddress(item) || '';
-		            addrType = item.name === 'roadaddr' ? '[도로명 주소]' : '[지번 주소]';
-
-		            htmlAddresses.push((i+1) +'. '+ addrType +' '+ address);
-		        }
-
-		        infoWindow.setContent([
-		            '<div class="infoWindow">',
-		            '<h4 style="margin-top:5px;">검색 주소 : '+ address +'</h4><br />',
-		            htmlAddresses.join('<br />'),
-		            '</div>'
-		        ].join('\n'));
-				
-		        placeString = address;
-		        let placeX = latlng.x;
-		        let placeY = latlng.y;
-		        placeAddress = placeX + "," + placeY;
-		        infoWindow.open(map, latlng);
-		    });
-		}
- 		
- 		
- 		// 주소 검색
-		function searchAddressToCoordinate(address) {
-		    naver.maps.Service.geocode({
-		        query: address
-		    }, function(status, response) {
-		        if (status === naver.maps.Service.Status.ERROR) {
-		        	return console.log("주소 검색 에러!");
-		        }
-
-		        if (response.v2.meta.totalCount === 0) {
-		        	$(".placeText").removeClass("d-none");
-		            return ;
-		        }
-
-		        var htmlAddresses = [],
-		            item = response.v2.addresses[0],
-		            point = new naver.maps.Point(item.x, item.y);
-
-		        if (item.roadAddress) {
-		            htmlAddresses.push('[도로명 주소] ' + item.roadAddress);
-		        }
-
-		        if (item.jibunAddress) {
-		            htmlAddresses.push('[지번 주소] ' + item.jibunAddress);
-		        }
-
-		        if (item.englishAddress) {
-		            htmlAddresses.push('[영문명 주소] ' + item.englishAddress);
-		        }
-
-		        infoWindow.setContent([
-		            '<div class="infoWindow">',
-		            '<h4 style="margin-top:5px;">검색 주소 : '+ address +'</h4><br />',
-		            htmlAddresses.join('<br />'),
-		            '</div>'
-		        ].join('\n'));
-				
-		        placeString = item.roadAddress;
-		        
-		        let placeX = point.x;
-		        let placeY = point.y;
-		        placeAddress = placeX + "," + placeY;
-		        map.setCenter(point);
-		        infoWindow.open(map, point);
-		       
-		    });
-		}
 		
-		function initGeocoder() {
-		    map.addListener('click', function(e) {
-		        searchCoordinateToAddress(e.coord);
-		    });
+		naverMap(map, function(coordinate, addressName){
+			placeString = addressName;
+			placeAddress = coordinate;
+		});
 
-		    $('#address').on('keydown', function(e) {
-		        var keyCode = e.which;
 
-		        if (keyCode === 13) { // Enter Key
-		            searchAddressToCoordinate($('#address').val());
-		        
-		        }
-		    });
-
-		    $('#submit').on('click', function(e) {
-		        e.preventDefault();
-
-		        searchAddressToCoordinate($('#address').val());
-		    });
-
-		    searchAddressToCoordinate('정자동 178-1');
-		}
 		// 네이버 API
 		
 				
