@@ -18,7 +18,7 @@
 	<link rel="stylesheet" href="/static/css/style.css" type="text/css">
 	<!-- 네이버 map API -->
 	<script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=b5vyxgh7co&submodules=geocoder"></script>
-<title>함께하기</title>
+<title>함께하기(대기중)</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" />
 </head>
 <body>
@@ -33,8 +33,8 @@
 				
 			<nav class="pt-2 nav-item d-flex" id="postNavLink">
 				<a href="/suda/cafe/mainpage/view?cafeId=${cafeId}" class="nav-link">수다</a>
-				<a class="nav-link"><span class="select">함께하기</span></a>
-				<a href="/suda/cafe/waiting/view?cafeId=${cafeId}" class="nav-link">대기중</a>
+				<a href="/suda/cafe/together/view?cafeId=${cafeId}" class="nav-link">함께하기</a>
+				<a class="nav-link"><span class="select">대기중</span></a>
 				<a href="#" class="nav-link">참석완료</a>
 				<a href="/suda/cafe/mypage/view?cafeId=${cafeId}" class="nav-link">MyPage</a>
 				<a href="/suda/cafe/upload/view?cafeId=${cafeId}" class="nav-link">글쓰기</a>
@@ -98,11 +98,11 @@
 								</div>
 							</div>
 							
-							<!-- 참석하기 버튼 -->
+							<!-- 취소 버튼 -->
 							<div class="post-text-container d-flex mt-3 pb-3">
 								<div class="post-text-icon"></div>
-								<div class="post-text d-flex justify-content-end">
-									<button type="button" class="btn btn-primary attendBtn" data-togetherid="${togetherList.id}">참석하기</button>
+								<div class="post-text d-flex justify-content-start">
+									<button type="button" class="btn deleteBtn btn-secondary" data-togetherid="${togetherList.id}">취소</button>
 								</div>
 							</div>
 							
@@ -172,13 +172,13 @@
 			
 		});
 		
-		$(".attendBtn").on("click", function(){
+		$(".deleteBtn").on("click", function(){
 			
 			let togetherId = $(this).data("togetherid");
 			
 			$.ajax({
 				type:"get"
-				, url:"/suda/cafe/together/attend"
+				, url:"/suda/cafe/together/notAttend"
 				, data:{"togetherId":togetherId}
 				, success:function(data){
 					if(data.result == "success") {

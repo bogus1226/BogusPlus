@@ -6,6 +6,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
+import com.bogus.bogusplus.suda.cafe.together.model.Status;
 import com.bogus.bogusplus.suda.cafe.together.model.Together;
 
 @Repository
@@ -26,6 +27,17 @@ public interface TogetherDAO {
 			, @Param("cafeId") int cafeId);
 	
 	public int selectCountTogetherStatus(
+			@Param("togetherId") int togetherId);
+	
+	public Status getStatus(
 			@Param("userId") int userId
 			, @Param("togetherId") int togetherId);
+	
+	public int insertAttendStatus(
+			@Param("togetherId") int togetherId
+			,@Param("userId") int userId);
+	
+	public int deleteAttendStatus(
+			@Param("togetherId") int togetherId
+			,@Param("userId") int userId);
 }

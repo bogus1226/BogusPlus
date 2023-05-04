@@ -368,6 +368,14 @@ a:hover {
 	font-size:small;
 }
 
+.placeBox > .modal-dialog{
+	max-width:1185px;
+}
+
+.placeBox > .modal-dialog > .modal-content{
+	height:700px;
+}
+
 .post-text-padding {
 	padding-left:40px;
 }

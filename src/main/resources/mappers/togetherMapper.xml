@@ -53,6 +53,9 @@
 			`userId` != #{userId}
 		AND
 			`cafeId` = #{cafeId}
+		ORDER BY
+			`id`
+		DESC
 	</select>
 	
 	<select id="selectCountTogetherStatus" parameterType="map" resultType="int">
@@ -61,10 +64,56 @@
 		FROM
 			`status`
 		WHERE
-			`userId` = #{userId}
-		AND
 			`togetherId` = #{togetherId}
 	</select>
+	
+	<select id="getStatus" parameterType="map" resultType="com.bogus.bogusplus.suda.cafe.together.model.Status">
+		SELECT
+			`id`
+			, `userId`
+			, `togetherId`
+			, `status`
+			, `createdAt`
+			, `updatedAt`
+		FROM
+			`status`
+		WHERE
+			`togetherId` = #{togetherId}
+		AND
+			`userId` = #{userId}
+	</select>
+	
+	<insert id="insertAttendStatus" parameterType="map">
+		INSERT INTO
+			`status` 
+		(
+			`id`
+			, `userId`
+			, `togetherId`
+			, `status`
+			, `createdAt`
+			, `updatedAt`
+		)
+		VALUE
+		(
+			`id`
+			, #{userId}
+			, #{togetherId}
+			, 1
+			, `createdAt`
+			, `updatedAt`
+		)
+	</insert>
+	
+	<delete id="deleteAttendStatus" parameterType="map">
+		DELETE FROM
+			`status`
+		WHERE
+			`togetherId` = #{togetherId}
+		AND
+			`userId` = #{userId}
+	</delete>
+	
 	
 	
 </mapper>

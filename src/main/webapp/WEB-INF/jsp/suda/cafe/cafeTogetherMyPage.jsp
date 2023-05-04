@@ -18,7 +18,7 @@
 	<link rel="stylesheet" href="/static/css/style.css" type="text/css">
 	<!-- 네이버 map API -->
 	<script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=b5vyxgh7co&submodules=geocoder"></script>
-<title>함께하기</title>
+<title>함께하기(마이페이지)</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" />
 </head>
 <body>
@@ -33,10 +33,10 @@
 				
 			<nav class="pt-2 nav-item d-flex" id="postNavLink">
 				<a href="/suda/cafe/mainpage/view?cafeId=${cafeId}" class="nav-link">수다</a>
-				<a class="nav-link"><span class="select">함께하기</span></a>
+				<a href="/suda/cafe/together/view?cafeId=${cafeId}" class="nav-link">함께하기</a>
 				<a href="/suda/cafe/waiting/view?cafeId=${cafeId}" class="nav-link">대기중</a>
 				<a href="#" class="nav-link">참석완료</a>
-				<a href="/suda/cafe/mypage/view?cafeId=${cafeId}" class="nav-link">MyPage</a>
+				<a class="nav-link"><span class="select">MyPage</span></a>
 				<a href="/suda/cafe/upload/view?cafeId=${cafeId}" class="nav-link">글쓰기</a>
 			</nav>
 				
@@ -91,24 +91,34 @@
 							</div>
 							
 							<!-- 내용 -->
-							<div class="post-text-container d-flex mt-3">
+							<div class="post-text-container d-flex mt-3 mb-3">
 								<div class="post-text-icon"></div>
 								<div class="post-text d-flex justify-content-center post-text-background">
 									<div class="textWhite mt-2 pl-4 pr-4" style="word-break:break-all;">${togetherList.title}</div>
 								</div>
 							</div>
-							
-							<!-- 참석하기 버튼 -->
-							<div class="post-text-container d-flex mt-3 pb-3">
-								<div class="post-text-icon"></div>
-								<div class="post-text d-flex justify-content-end">
-									<button type="button" class="btn btn-primary attendBtn" data-togetherid="${togetherList.id}">참석하기</button>
-								</div>
+											
+							<!-- 함께하기 수락/거절 -->
+							<hr class="m-0">
+							<div class="d-flex mt-3">
+								<div class="textWhite pl-3 col-2">그루트</div>
+								<div class="togetherTextGray col-1 p-0">ENFP</div>
+								<div class="togetherTextGray col-9 p-0"><span class="textWhite">소개:</span> 마블빠돌이</div>
 							</div>
 							
-						
+							<div class="d-flex">
+								<div class="pl-3 col-3"></div>
+								<div class="togetherTextGray col-9 p-0"><span class="textWhite">타입:</span> 떠들면서 보는편</div>
+							</div>
 							
-							
+							<div class="d-flex pb-3">
+								<div class="col-9"></div>
+								<div class="d-flex col-3 row-1">
+									<button type="button" class="btn btn-sm btn-primary mr-2">함께하기</button>
+									<button type="button" class="btn btn-sm btn-secondary">거절하기</button>
+								</div>
+							</div>
+								
 						</div>
 					</c:forEach>
 				</c:when>
@@ -172,13 +182,13 @@
 			
 		});
 		
-		$(".attendBtn").on("click", function(){
+		$(".deleteBtn").on("click", function(){
 			
 			let togetherId = $(this).data("togetherid");
 			
 			$.ajax({
 				type:"get"
-				, url:"/suda/cafe/together/attend"
+				, url:"/suda/cafe/together/notAttend"
 				, data:{"togetherId":togetherId}
 				, success:function(data){
 					if(data.result == "success") {
