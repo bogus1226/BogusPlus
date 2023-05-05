@@ -26,12 +26,22 @@ public interface TogetherDAO {
 			@Param("userId") int userId
 			, @Param("cafeId") int cafeId);
 	
+	public List<Together> selectGetTogetherMyList(
+			@Param("userId") int userId
+			, @Param("cafeId") int cafeId);
+	
 	public int selectCountTogetherStatus(
 			@Param("togetherId") int togetherId);
 	
 	public Status getStatus(
 			@Param("userId") int userId
 			, @Param("togetherId") int togetherId);
+	
+	public Status getStatusByTogetherId(
+			@Param("togetherId") int togetherId);
+	
+	public List<Status> getStatusByTogetherIdList(
+			@Param("togetherId") int togetherId);
 	
 	public int insertAttendStatus(
 			@Param("togetherId") int togetherId
@@ -40,4 +50,18 @@ public interface TogetherDAO {
 	public int deleteAttendStatus(
 			@Param("togetherId") int togetherId
 			,@Param("userId") int userId);
+	
+	public int updateAcceptStatus(
+			@Param("togetherId") int togetherId
+			,@Param("userId") int userId);
+	
+	public int updateRefuseStatus(
+			@Param("togetherId") int togetherId
+			,@Param("userId") int userId);
+	
+	public int deleteTogether(
+			@Param("id") int id);
+	
+	public int deleteAttendStatusByTogetherId(
+			@Param("togetherId") int togetherId);
 }

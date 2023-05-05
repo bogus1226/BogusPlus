@@ -33,7 +33,7 @@
 				<a class="nav-link"><span class="select">수다</span></a>
 				<a href="/suda/cafe/together/view?cafeId=${cafeId}" class="nav-link">함께하기</a>
 				<a href="/suda/cafe/waiting/view?cafeId=${cafeId}" class="nav-link">대기중</a>
-				<a href="#" class="nav-link">참석완료</a>
+				<a href="/suda/cafe/attend/view?cafeId=${cafeId}" class="nav-link">참석완료</a>
 				<a href="/suda/cafe/mypage/view?cafeId=${cafeId}" class="nav-link">MyPage</a>
 				<a href="/suda/cafe/upload/view?cafeId=${cafeId}" class="nav-link">글쓰기</a>
 			</nav>
@@ -154,7 +154,6 @@
 			
 			$("#postDeleteBtn").data("postid", postId);
 			
-			//$("#updateBtn").attr("href", "url" + postId);	
 		});
 		
 		$("#postDeleteBtn").on("click", function(){

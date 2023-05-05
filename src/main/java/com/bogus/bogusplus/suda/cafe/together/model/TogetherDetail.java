@@ -1,5 +1,7 @@
 package com.bogus.bogusplus.suda.cafe.together.model;
 
+import java.util.List;
+
 import lombok.Data;
 
 @Data
@@ -14,6 +16,8 @@ public class TogetherDetail {
 	private String placeAddressX;
 	private String placeAddressY;
 	private String date;
+	private String mbti;
 	private int statusCount;
+	private List<Mypage> myPageList;
 
 }

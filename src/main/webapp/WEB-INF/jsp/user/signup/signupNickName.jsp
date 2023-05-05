@@ -21,27 +21,27 @@
 	<div id="wrap">
 		<c:import url="/WEB-INF/jsp/include/header.jsp"/>
 		
-		<form method="POST" action="/user/signup/catalogue/view">
-			<section class="main-contents">
-				<h5 class="pt-5"><b>닉네임 설정</b></h5>
-				<input type="text" class="form-control mt-3" placeholder="닉네임" id="nickNameInput">
-				<div class="textRed mt-1 d-none" id="nickNameNoneText">닉네임을 입력해주세요</div>
-				<div class="textRed mt-1 d-none" id="nickNameCountText">3글자 이상 입력해주세요</div>
-				<div class="textRed mt-1 d-none" id="nickNameSpaceText">공백없이 입력해주세요</div>
-				<hr>
-				<div class="d-flex justify-content-between">
-					<div>
-						<div class="textGray">키즈 프로필</div>
-						<div class="textGray">어린이를 위해 엄선된 콘텐츠과 기능</div>
-					</div>
-					<label class="switch">
-	          			<input type="checkbox" class="agreeSwitch" id="agreeSwitchInput">
-	          			<span class="slider round"></span>
-	       			</label>
+
+		<section class="main-contents">
+			<h5 class="pt-5"><b>닉네임 설정</b></h5>
+			<input type="text" class="form-control mt-3" placeholder="닉네임" id="nickNameInput">
+			<div class="textRed mt-1 d-none" id="nickNameNoneText">닉네임을 입력해주세요</div>
+			<div class="textRed mt-1 d-none" id="nickNameCountText">3글자 이상 입력해주세요</div>
+			<div class="textRed mt-1 d-none" id="nickNameSpaceText">공백없이 입력해주세요</div>
+			<hr>
+			<div class="d-flex justify-content-between">
+				<div>
+					<div class="textGray">키즈 프로필</div>
+					<div class="textGray">어린이를 위해 엄선된 콘텐츠과 기능</div>
 				</div>
-				<button type="button" class="blueBtn btn btn-block mt-3" id="saveBtn" data-email="${email}" data-password="${password}" data-catalogue="${catalogue}" data-icon="${icon}">저장</button>
-			</section>
-		</form>
+				<label class="switch">
+          			<input type="checkbox" class="agreeSwitch" id="agreeSwitchInput">
+          			<span class="slider round"></span>
+       			</label>
+			</div>
+			<button type="button" class="blueBtn btn btn-block mt-3" id="saveBtn" data-email="${email}" data-password="${password}" data-catalogue="${catalogue}" data-icon="${icon}">저장</button>
+		</section>
+
 		
 		<c:import url="/WEB-INF/jsp/include/footer.jsp"/>
 	</div>

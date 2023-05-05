@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.bogus.bogusplus.suda.dao.SudaDAO;
+import com.bogus.bogusplus.suda.model.Suda;
 
 @Service
 public class SudaBO {
@@ -21,5 +22,10 @@ public class SudaBO {
 		int count = sudaDAO.infoIsDuplicate(userId);
 		
 		return count!=0;
+	}
+	
+	public Suda getSudaByUserId(int userId) {
+	
+		return sudaDAO.selectSudaByUserId(userId);
 	}
 }

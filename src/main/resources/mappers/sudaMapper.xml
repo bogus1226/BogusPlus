@@ -35,4 +35,21 @@
 			`userId` = #{userId}
 	</select>
 	
+	<select id="selectSudaByUserId" parameterType="int" resultType="com.bogus.bogusplus.suda.model.Suda">
+		SELECT
+			`id`
+			, `userId`
+			, `mbti`
+			, `introduce`
+			, `type`
+			, `createdAt`
+			, `updatedAt`
+		FROM
+			`suda`
+		WHERE
+			`userId` = #{userId}
+	</select>
+	
+	
+	
 </mapper>

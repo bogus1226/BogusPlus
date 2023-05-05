@@ -35,7 +35,7 @@
 				<a href="/suda/cafe/mainpage/view?cafeId=${cafeId}" class="nav-link">수다</a>
 				<a href="/suda/cafe/together/view?cafeId=${cafeId}" class="nav-link">함께하기</a>
 				<a href="/suda/cafe/waiting/view?cafeId=${cafeId}" class="nav-link">대기중</a>
-				<a href="#" class="nav-link">참석완료</a>
+				<a href="/suda/cafe/attend/view?cafeId=${cafeId}" class="nav-link">참석완료</a>
 				<a class="nav-link"><span class="select">MyPage</span></a>
 				<a href="/suda/cafe/upload/view?cafeId=${cafeId}" class="nav-link">글쓰기</a>
 			</nav>
@@ -47,7 +47,15 @@
 							<div class="post-header d-flex align-items-center">
 								<div class="userName pl-3 nickNameSpace">${togetherList.nickName}</div>
 								<div class="textYellow attendSpace text-center">참석인원 (${togetherList.statusCount})</div>
+								
+								<div class="d-flex justify-content-end nickNameSpace">
+									<!-- Button trigger modal -->
+									<i class="bi bi-three-dots btn iconBtn iconSelectBtns" data-toggle="modal" data-target="#selectBtnDot" data-togetherid="${togetherList.id}"></i>
+									<!-- Button trigger modal -->
+								</div>
+								
 							</div>
+							
 				
 							<hr class="mt-1 mb-0">
 							
@@ -86,7 +94,7 @@
 								<div class="post-text-icon"></div>
 								<div class="post-text d-flex post-text-padding">
 									<div class="textWhite mt-3">MBTI</div>
-									<div class="togetherTextGray mt-3 ml-3" style="word-break:break-all;">ENFJ</div>
+									<div class="togetherTextGray mt-3 ml-3" style="word-break:break-all;">${togetherList.mbti}</div>
 								</div>
 							</div>
 							
@@ -97,27 +105,29 @@
 									<div class="textWhite mt-2 pl-4 pr-4" style="word-break:break-all;">${togetherList.title}</div>
 								</div>
 							</div>
-											
-							<!-- 함께하기 수락/거절 -->
-							<hr class="m-0">
-							<div class="d-flex mt-3">
-								<div class="textWhite pl-3 col-2">그루트</div>
-								<div class="togetherTextGray col-1 p-0">ENFP</div>
-								<div class="togetherTextGray col-9 p-0"><span class="textWhite">소개:</span> 마블빠돌이</div>
-							</div>
-							
-							<div class="d-flex">
-								<div class="pl-3 col-3"></div>
-								<div class="togetherTextGray col-9 p-0"><span class="textWhite">타입:</span> 떠들면서 보는편</div>
-							</div>
-							
-							<div class="d-flex pb-3">
-								<div class="col-9"></div>
-								<div class="d-flex col-3 row-1">
-									<button type="button" class="btn btn-sm btn-primary mr-2">함께하기</button>
-									<button type="button" class="btn btn-sm btn-secondary">거절하기</button>
+										
+							<c:forEach var="myPageList" items="${togetherList.myPageList}">	
+								<!-- 함께하기 수락/거절 -->
+								<hr class="m-0">
+								<div class="d-flex mt-3">
+									<div class="textWhite pl-3 col-2">${myPageList.nickName}</div>
+									<div class="togetherTextGray col-1 p-0">${myPageList.mbti}</div>
+									<div class="togetherTextGray col-9 p-0"><span class="textWhite">소개:</span>${myPageList.introduce}</div>
 								</div>
-							</div>
+								
+								<div class="d-flex">
+									<div class="pl-3 col-3"></div>
+									<div class="togetherTextGray col-9 p-0"><span class="textWhite">타입:</span>${myPageList.type}</div>
+								</div>
+								
+								<div class="d-flex pb-3">
+									<div class="col-9"></div>
+									<div class="d-flex col-3 row-1">
+										<button type="button" class="btn btn-sm btn-primary mr-2 acceptBtn" data-togetherid="${togetherList.id}" data-userid="${myPageList.userId}">함께하기</button>
+										<button type="button" class="btn btn-sm btn-secondary refuseBtn" data-togetherid="${togetherList.id}" data-userid="${myPageList.userId}">거절하기</button>
+									</div>
+								</div>
+							</c:forEach>
 								
 						</div>
 					</c:forEach>
@@ -160,10 +170,99 @@
 </div>
 <!-- Modal -->
 
+<!-- Modal -->
+<div class="modal fade" id="selectBtnDot" >
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-body d-flex justify-content-between">
+      	<div>
+			<a class="btn btn-sm mr-2 btn-primary" href="#" id="updateBtn">수정하기</a>
+			<button type="button" class="btn btn-sm btn-danger" id="togetherDeleteBtn" >삭제하기</button>
+		</div>
+		<button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">취소</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Modal -->
+
+
 
 <script>
 
 	$(document).ready(function(){
+		
+		$(".iconSelectBtns").on("click", function(){
+			let togetherId = $(this).data("togetherid");
+			
+			$("#togetherDeleteBtn").data("togetherid", togetherId);
+			
+		});
+		
+		$("#togetherDeleteBtn").on("click", function(){
+			let togetherId = $(this).data("togetherid");
+			
+			$.ajax({
+				type:"get"
+				, url:"/suda/cafe/together/delete"
+				, data:{"togetherId":togetherId}
+				, success:function(data){
+					if(data.result == "success") {
+						location.reload();
+					} else {
+						console.log("함께하기 삭제 실패");
+					}	
+				}
+				, error:function(){
+					console.log("함께하기 삭제 에러");
+				}
+				
+			});	
+		});
+		
+		$(".acceptBtn").on("click", function(){
+			let togetherId = $(this).data("togetherid");
+			let userId = $(this).data("userid");
+			
+			$.ajax({
+				type:"get"
+				, url:"/suda/cafe/together/accept"
+				, data:{"togetherId":togetherId, "userId":userId}
+				, success:function(data){
+					if(data.result == "success") {
+						location.reload();
+					} else {
+						console.log("함께하기 실패");
+					}	
+				}
+				, error:function(){
+					console.log("함께하기 에러");
+				}
+				
+			});	
+		});
+		
+		$(".refuseBtn").on("click", function(){
+			let togetherId = $(this).data("togetherid");
+			let userId = $(this).data("userid");
+			
+			$.ajax({
+				type:"get"
+				, url:"/suda/cafe/together/refuse"
+				, data:{"togetherId":togetherId, "userId":userId}
+				, success:function(data){
+					if(data.result == "success") {
+						location.reload();
+					} else {
+						console.log("거절하기 실패");
+					}	
+				}
+				, error:function(){
+					console.log("거절하기 에러");
+				}
+				
+			});	
+		});
 		
 		
 		$(".placeIcon").on("click", function(){

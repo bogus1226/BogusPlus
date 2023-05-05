@@ -35,7 +35,7 @@
 				<a href="/suda/cafe/mainpage/view?cafeId=${cafeId}" class="nav-link">수다</a>
 				<a class="nav-link"><span class="select">함께하기</span></a>
 				<a href="/suda/cafe/waiting/view?cafeId=${cafeId}" class="nav-link">대기중</a>
-				<a href="#" class="nav-link">참석완료</a>
+				<a href="/suda/cafe/attend/view?cafeId=${cafeId}" class="nav-link">참석완료</a>
 				<a href="/suda/cafe/mypage/view?cafeId=${cafeId}" class="nav-link">MyPage</a>
 				<a href="/suda/cafe/upload/view?cafeId=${cafeId}" class="nav-link">글쓰기</a>
 			</nav>
@@ -86,7 +86,7 @@
 								<div class="post-text-icon"></div>
 								<div class="post-text d-flex post-text-padding">
 									<div class="textWhite mt-3">MBTI</div>
-									<div class="togetherTextGray mt-3 ml-3" style="word-break:break-all;">ENFJ</div>
+									<div class="togetherTextGray mt-3 ml-3" style="word-break:break-all;">${togetherList.mbti}</div>
 								</div>
 							</div>
 							

@@ -88,4 +88,58 @@ public class TogetherRestController {
 		
 		return resultMap;
 	}
+	
+	@GetMapping("/accept")
+	public Map<String, String> acceptTogether(
+			@RequestParam("togetherId") int togetherId
+			, @RequestParam("userId") int userId) {
+		
+		int count = togetherBO.acceptTogether(togetherId, userId);
+		
+		Map<String, String> resultMap = new HashMap<>();
+		
+		if(count != 0) {
+			resultMap.put("result", "success");
+		} else {
+			resultMap.put("result", "fail");
+		}
+		
+		return resultMap;
+	}
+	
+	@GetMapping("/refuse")
+	public Map<String, String> refuseTogether(
+			@RequestParam("togetherId") int togetherId
+			, @RequestParam("userId") int userId) {
+		
+		int count = togetherBO.refuseTogether(togetherId, userId);
+		
+		Map<String, String> resultMap = new HashMap<>();
+		
+		if(count != 0) {
+			resultMap.put("result", "success");
+		} else {
+			resultMap.put("result", "fail");
+		}
+		
+		return resultMap;
+	}
+	
+	@GetMapping("/delete")
+	public Map<String, String> deleteTogether(
+			@RequestParam("togetherId") int togetherId
+			, HttpSession session ) {
+		
+		int count = togetherBO.deleteTogether(togetherId);
+		
+		Map<String, String> resultMap = new HashMap<>();
+		
+		if(count != 0) {
+			resultMap.put("result", "success");
+		} else {
+			resultMap.put("result", "fail");
+		}
+		
+		return resultMap;
+	}
 }

@@ -136,7 +136,7 @@ public class CafeController {
 		
 		Integer userId = (Integer)session.getAttribute("userId");
 		
-		List<TogetherDetail> togetherList = togetherBO.getTogetherWatingList(userId, cafeId);
+		List<TogetherDetail> togetherList = togetherBO.getTogetherMyPageList(userId, cafeId);
 		
 		Cafe cafe = cafeBO.getCafeById(cafeId);
 		
@@ -149,5 +149,28 @@ public class CafeController {
 		model.addAttribute("cafe", cafe);
 		
 		return "suda/cafe/cafeTogetherMyPage";
+	}
+	
+	@GetMapping("/attend/view")
+	public String cafeTogetherAttendPage(
+			@RequestParam("cafeId") int cafeId
+			, HttpSession session
+			, Model model) {
+		
+		Integer userId = (Integer)session.getAttribute("userId");
+		
+		List<TogetherDetail> togetherList = togetherBO.getTogetherAttendList(userId, cafeId);
+		
+		Cafe cafe = cafeBO.getCafeById(cafeId);
+		
+		if(togetherList != null) {
+			model.addAttribute("togetherList", togetherList);
+		}
+		
+		model.addAttribute("cafeId", cafeId);
+		model.addAttribute("userId", userId);
+		model.addAttribute("cafe", cafe);
+		
+		return "suda/cafe/cafeTogetherAttendPage";
 	}
 }
