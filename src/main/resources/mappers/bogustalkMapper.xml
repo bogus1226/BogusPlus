@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bogus.bogusplus.suda.cafe.together.bogustalk.dao.BogusTalkDAO">
+	
+	<select id="selectBogusTalkListByTogetherId" parameterType="int" resultType="com.bogus.bogusplus.suda.cafe.together.bogustalk.model.BogusTalk">
+		SELECT
+			`id`
+			, `userId`
+			, `togetherId`
+			, `talk`
+			, `createdAt` 
+		FROM
+			`bogustalk`
+		WHERE
+			`togetherId` = #{togetherId}
+	</select>
+
+	<insert id="insertTalk" parameterType="map">
+		INSERT INTO
+			`bogusTalk` 
+		(
+			`userId`
+			, `togetherId`
+			, `talk`
+			, `createdAt`
+			
+		)
+		VALUE
+		(
+			#{userId}
+			, #{togetherId}
+			, #{talk}
+			, now()
+
+		)
+	</insert>
+
+
+</mapper>

@@ -98,6 +98,89 @@
 								</div>
 							</div>
 							
+							<!-- 톡보기 버튼 -->
+							<div class="post-text-container d-flex">
+								<div class="post-text-icon"></div>
+								<div class="post-text d-flex justify-content-end">
+									<i class="bi bi-caret-down-fill iconBtn mr-2 downBtn" data-togetherid="${togetherList.id}"></i>
+									<i class="bi bi-caret-up-fill d-none iconBtn mr-2 upBtn" data-togetherid="${togetherList.id}"></i>
+								</div>
+							</div>
+							
+							
+							
+							<!-- 보거스 톡 -->
+							<div class="d-none" id="bogus-talk-wrap${togetherList.id}">
+								<div class="post-text-container d-flex pb-3">
+									
+									<div class="post-text-icon"></div>
+									
+									<div class="talk-box post-text-background">
+										<c:forEach var="bogusTalk" items="${togetherList.bogusTalkList}">
+											<c:choose>
+												<c:when test="${bogusTalk.userId eq userId}">
+													<!-- 나의 톡  -->
+													<div class="d-flex justify-content-end pt-2">
+														<div class="post-text d-flex justify-content-end mr-3">
+															<div class="my-talk-background">
+																<div class="textWhite" style="word-break:break-all;">${bogusTalk.talk}</div>
+															</div>
+														</div>
+													</div>
+													<!-- 나의 톡 -->
+												</c:when>
+												
+												<c:otherwise>
+													<!-- 상대방톡 -->
+													<div class="pt-2">
+														<div class="post-text">
+															<div class="post-text-background d-flex">
+																<div class="post-talk-space"></div>
+																<div class="d-flex">
+																	<div class="textWhite">${bogusTalk.nickName}</div>
+																</div>
+																<div class="post-talk-space"></div>
+															</div>
+														</div>
+													</div>
+													
+													<div class="">
+														<div class="post-text">
+															<div class="post-text-background d-flex">
+																<div class="post-talk-space"></div>
+																<div class="post-talk-background">
+																	<div class="textWhite" style="word-break:break-all;">${bogusTalk.talk}</div>
+																</div>
+																<div class="post-talk-space"></div>
+															</div>
+														</div>
+													</div>
+													<!-- 상대방톡 -->
+												</c:otherwise>
+											</c:choose>
+										</c:forEach>
+										
+										<form>
+											<div class="post-text-container d-flex pt-3">
+												<div class="post-text-icon"></div>
+												<div class="post-text d-flex post-text-background">
+													<div class="post-text-icon"></div>
+													<div class="input-group talk-group bg-secondary">
+														<input type="text" class="form-control" placeholder="내용을 입력해주세요" id="talkInput${togetherList.id}">
+														<div class="input-group-append">
+															<button class="btn btn-secondary talkBtn" type="submit" data-togetherid="${togetherList.id}">Talk</button>
+														</div>
+													</div>
+													<div class="post-text-icon"></div>
+												</div>
+											</div>
+										</form>
+									</div>
+									<div class="post-text-icon"></div>
+								</div>
+							</div>
+							
+							
 							<!-- 취소 버튼 -->
 							<div class="post-text-container d-flex mt-3 pb-3">
 								<div class="post-text-icon"></div>
@@ -105,9 +188,6 @@
 									<button type="button" class="btn deleteBtn btn-secondary" data-togetherid="${togetherList.id}">취소</button>
 								</div>
 							</div>
-							
-						
-							
 							
 						</div>
 					</c:forEach>
@@ -154,6 +234,53 @@
 <script>
 
 	$(document).ready(function(){
+		
+		$(".downBtn").on("click", function(){
+			
+			let togetherId = $(this).data("togetherid");
+			
+			$(this).addClass("d-none");
+			$(this).next().removeClass("d-none");  
+			
+			$("#bogus-talk-wrap" + togetherId).removeClass("d-none"); 
+		}); 
+		
+		$(".upBtn").on("click", function(){
+			
+			let togetherId = $(this).data("togetherid");
+			
+			$(this).addClass("d-none");
+			$(this).prev().removeClass("d-none");  	
+			
+			$("#bogus-talk-wrap" + togetherId).addClass("d-none"); 
+		}); 
+		
+		$(".talkBtn").on("click", function(){
+			let togetherId = $(this).data("togetherid");
+			let talk = $("#talkInput" + togetherId).val();
+			
+			if(talk.trim() == "") {
+				return;
+			}
+			
+			$.ajax({
+				type:"get"
+				, url:"/suda/cafe/together/talk"
+				, data:{"togetherId":togetherId, "talk":talk}
+				, success:function(data){
+					if(data.result == "success") {
+						location.reload();
+					} else {
+						console.log("톡 달기 실패");
+					}	
+				}
+				, error:function(){
+					console.log("톡 달기 에러");
+				}
+				
+			});	
+			
+		});
 		
 		
 		$(".placeIcon").on("click", function(){

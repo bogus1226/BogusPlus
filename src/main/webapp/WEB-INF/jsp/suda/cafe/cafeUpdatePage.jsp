@@ -16,7 +16,7 @@
 	<link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@700&display=swap" rel="stylesheet">
 	<!-- stylesheet -->
 	<link rel="stylesheet" href="/static/css/style.css" type="text/css">
-<title>까페 글쓰기</title>
+<title>게시물 수정하기</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" />
 </head>
 <body>
@@ -25,7 +25,7 @@
 		
 		<section class="post-container previw-container d-flex">
 		
-			<div class="preview d-none ml-5">
+			<div class="preview ml-5">
 				<div class="textWhite text-center mt-5">미리보기</div>
 				
 				<div class="previewBox sudaPost previewPost mt-2 mb-4">
@@ -33,44 +33,58 @@
 						<div class="userName ml-3">${userName}</div>
 					</div>
 					
-					<div class="preview-image d-none">
-						<img id="viewImage" src="">
-					</div>
-
-					<hr id="preview-hr" class="mt-1 mb-0">
-
+					<c:choose>
+						<c:when test="${not empty post.imagePath}">
+							<div class="preview-image">
+								<img id="viewImage" src="${post.imagePath}">
+							</div>
+						</c:when>
+						
+						<c:otherwise>
+							<hr id="preview-hr" class="mt-1 mb-0">
+						</c:otherwise>
+					</c:choose>
 					<div class="post-text-container d-flex">
 						<div class="post-text-icon"></div>
 						<div class="post-text d-flex justify-content-center">
-							<div class="previewText textWhite mt-1" style="word-break:break-all;"><span class="textPlaceHolder">내용을 입력해주세요</span></div>
+							<div class="previewText textWhite mt-1" style="word-break:break-all;">${post.content}</div>
 						</div>
 					</div>
 				</div>
 			</div>
 			
 			<section class="suda-main-contents">
-				<div class="fontBMJUA text-center">${cafe.name} <span class="myText">글쓰기</span></div>
+				<div class="fontBMJUA text-center">${cafe.name} <span class="myText">수정하기</span></div>
 				
 				<nav class="pt-2 nav-item d-flex" id="postNavLink">
 					<a class="nav-link"><span class="select">수다</span></a>
-					<a href="/suda/cafe/upload/together/view?cafeId=${cafe.id}" class="nav-link">함께하기</a>
-					<button type="button" class="btn btn-sm aTagBtn" id="previewBtn">미리보기</button>
 				</nav>
 				
-				<textarea cols="25" rows="7" class="form-control mt-3 fontBMJUA" placeholder="게시물 내용" id="contentArea"></textarea>
+				<textarea cols="25" rows="7" class="form-control mt-3 fontBMJUA" placeholder="게시물 내용" id="contentArea">${post.content}</textarea>
 				<div class="textRed mt-1 d-none" id="contentText">내용을 입력해주세요</div>
 				<div class="d-flex justify-content-between upload-last">
 					<div class="image-file-input d-flex">
 						<i id="imageIcon" class="bi bi-image iconGray mt-1"></i>
-						<div class="imageText"></div>
+						<c:choose>
+							<c:when test="${empty post.imagePath}">
+								<div class="imageText"></div>
+							</c:when>
+							<c:otherwise>
+								<div class="imageText" id="existingImage"></div>
+							</c:otherwise>
+						</c:choose>
 						<input id="fileInput" type="file" class="d-none">
-						<button type="button" class="btn btn-sm redBtn ml-2 deleteBtn d-none"><i class="bi bi-trash3-fill"></i></button>
+						<c:choose>
+							<c:when test="${not empty post.imagePath}">
+								<button type="button" class="btn btn-sm redBtn ml-2 deleteBtn"><i class="bi bi-trash3-fill"></i></button>
+							</c:when>
+							<c:otherwise>
+								<button type="button" class="btn btn-sm redBtn ml-2 deleteBtn d-none"><i class="bi bi-trash3-fill"></i></button>
+							</c:otherwise>
+						</c:choose>
 					</div>
 					
-					<div>
-						<button type="button" class="btn btn-secondary mt-3 mr-2" id="backButton">취소</button>
-						<button type="button" class="btn btn-primary mt-3" id="saveBtn" data-cafeid="${cafeId}">저장</button>
-					</div>
+					<button type="button" class="btn blueBtn mt-3" id="saveBtn" data-cafeid="${cafeId}" data-postid="${post.id}">저장</button>
 				</div>
 			</section>
 		</section>
@@ -85,21 +99,17 @@
 
 	$(document).ready(function(){
 		
-		let previewNumber = 0;
+		let imagePath = "${post.imagePath}";
 		
-		$("#backButton").click(function() {
-		    window.history.back();
-		});
+		if(imagePath != null) {
+			
+			imagePath = imagePath.split("/");
+			
+			$("#existingImage").text(imagePath[3]);
+		}
 		
-		$("#previewBtn").on("click", function(){
-			if(previewNumber == 0) {
-				$(".preview").removeClass("d-none");
-				previewNumber = 1;
-			} else {
-				$(".preview").addClass("d-none");
-				previewNumber = 0;
-			}
-		});
+		var fileCheck = 0;
+		
 		
 		$(".deleteBtn").on("click", function(){
 			$(".deleteBtn").addClass("d-none");
@@ -107,6 +117,8 @@
 			$(".preview-image").addClass("d-none");
 			$("#fileInput").val("");
 			$(".imageText").empty();
+			
+			fileCheck = 1;
 		});
 		
 		$("#contentArea").on("input", function(){
@@ -131,7 +143,8 @@
 			let content = $("#contentArea").val();
 			let file = $("#fileInput")[0];
 			let cafeId = $(this).data("cafeid");
-
+			let postId = $(this).data("postid");
+			
 			if(content.trim() == "") {
 				$("#contentText").removeClass("d-none");
 				return;
@@ -141,33 +154,56 @@
 			content = content.replaceAll("\u0020", "&nbsp;");
 			
 			var formData = new FormData();
+			formData.append("postId", postId);
 			formData.append("content", content);
 			formData.append("file", file.files[0]);
-			formData.append("cafeId", cafeId);
+			
+			console.log(file.files[0]);
 
-			$.ajax({
-				type:"post"
-				, url:"/suda/cafe/post/create"
-				, data:formData
-				, enctype:"multipart/form-data" 
-				, processData:false 
-				, contentType:false 
-				, success:function(data){
-					if(data.result == "success") {
-						location.href = "/suda/cafe/mainpage/view?cafeId=" + cafeId;
-					} else {
-						alert("글쓰기 실패");
-					}	
-				}
-				, error:function(){
-					alert("글쓰기 에러");
-				}
-				
-			});
+			if(fileCheck == 1) {
+				$.ajax({
+					type:"post"
+					, url:"/suda/cafe/post/update"
+					, data:formData
+					, enctype:"multipart/form-data" 
+					, processData:false 
+					, contentType:false 
+					, success:function(data){
+						if(data.result == "success") {
+							location.href = "/suda/cafe/mainpage/view?cafeId=" + cafeId;
+						} else {
+							console.log("수정하기(전체) 실패");
+						}	
+					}
+					, error:function(){
+						console.log("수정하기(전체) 에러");
+					}
+					
+				});	
+			} else if(fileCheck == 0) {
+				$.ajax({
+					type:"post"
+					, url:"/suda/cafe/post/update/imageNotChange"
+					, data:{"postId":postId, "content":content}
+					, success:function(data){
+						if(data.result == "success") {
+							location.href = "/suda/cafe/mainpage/view?cafeId=" + cafeId;
+						} else {
+							console.log("수정하기(이미지 제외) 실패");
+						}	
+					}
+					, error:function(){
+						console.log("수정하기(이미지 제외) 에러");
+					}
+					
+				});	
+			}
 			
 		});
 		
-		$("#fileInput").on("change", function(){		
+		$("#fileInput").on("change", function(){	
+			
+			fileCheck = 1;
 			
 			$(".deleteBtn").removeClass("d-none");
 			

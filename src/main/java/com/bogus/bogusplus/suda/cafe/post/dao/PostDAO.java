@@ -25,4 +25,12 @@ public interface PostDAO {
 	public Post selecetPostInfo(
 			@Param("id") int id); 
 	
+	public int updatePost(
+			@Param("content") String content
+			, @Param("imagePath") String imagePath
+			, @Param("id") int id);
+	
+	public int updatePostImageNotChange(
+			@Param("content") String content
+			, @Param("id") int id);
 }

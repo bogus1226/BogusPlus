@@ -9,6 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.bogus.bogusplus.suda.bo.SudaBO;
+import com.bogus.bogusplus.suda.cafe.post.comment.model.Comment;
+import com.bogus.bogusplus.suda.cafe.together.bogustalk.bo.BogusTalkBO;
+import com.bogus.bogusplus.suda.cafe.together.bogustalk.model.BogusTalk;
 import com.bogus.bogusplus.suda.cafe.together.dao.TogetherDAO;
 import com.bogus.bogusplus.suda.cafe.together.model.Mypage;
 import com.bogus.bogusplus.suda.cafe.together.model.Status;
@@ -30,6 +33,9 @@ public class TogetherBO {
 	
 	@Autowired
 	private SudaBO sudaBO;
+	
+	@Autowired
+	private BogusTalkBO bogusTalkBO;
 	
 	// together리스트 가져오는 공통 코드!
 	public TogetherDetail generateTogether(Together together) {
@@ -135,9 +141,13 @@ public class TogetherBO {
 		
 		List<TogetherDetail> togetherDetailList = new ArrayList<>();
 		
+		
+		
 		for(Together together:togetherList) {
 			
 			Status status = togetherDAO.getStatus(userId, together.getId());
+			
+			List<BogusTalk> bogusTalkList = bogusTalkBO.getBogusTalkListByTogetherId(together.getId());
 			
 			if(status != null) {
 				int statusNumber = status.getStatus();
@@ -145,6 +155,16 @@ public class TogetherBO {
 				if(statusNumber == 2) {
 					
 					TogetherDetail togetherDetail = generateTogether(together);
+					
+					if(bogusTalkList != null) {
+						
+						for(BogusTalk bogustalk:bogusTalkList) {
+							User userNickName = userBO.getUserById(bogustalk.getUserId()); 
+							bogustalk.setNickName(userNickName.getNickName());
+						}
+						
+						togetherDetail.setBogusTalkList(bogusTalkList);
+					}
 					
 					togetherDetailList.add(togetherDetail);
 				}
@@ -166,6 +186,8 @@ public class TogetherBO {
 		for(Together together:togetherList) {
 			
 			List<Status> statusList = togetherDAO.getStatusByTogetherIdList(together.getId());
+			
+			List<BogusTalk> bogusTalkList = bogusTalkBO.getBogusTalkListByTogetherId(together.getId());
 			
 			List<Mypage> myPageList = new ArrayList<>();
 			
@@ -190,9 +212,18 @@ public class TogetherBO {
 						myPageList.add(myPage);
 						
 						togetherDetail.setMyPageList(myPageList);	
-						
 					}
 				}
+			}
+			
+			if(bogusTalkList != null) {
+				
+				for(BogusTalk bogustalk:bogusTalkList) {
+					User userNickName = userBO.getUserById(bogustalk.getUserId()); 
+					bogustalk.setNickName(userNickName.getNickName());
+				}
+				
+				togetherDetail.setBogusTalkList(bogusTalkList);
 			}
 			
 			togetherDetailList.add(togetherDetail);	

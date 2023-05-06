@@ -71,7 +71,8 @@
 					<div class="textRed mt-1 d-none" id="contentText">내용을 입력해주세요</div>
 					
 					<div class="d-flex justify-content-end">
-						<button type="button" class="btn blueBtn mt-3" id="saveBtn" data-cafeid="${cafeId}">저장</button>
+						<button type="button" class="btn btn-secondary mt-3 mr-2" id="backButton">취소</button>
+						<button type="button" class="btn btn-primary mt-3" id="saveBtn" data-cafeid="${cafeId}">저장</button>
 					</div>
 				</div>
 			   
@@ -89,8 +90,8 @@
 		    	</div>
 		    	
 		    	<div class="d-flex justify-content-end mt-2">
-		    		<button type="button" class="btn blueBtn" id="placeSaveBtn">저장</button>
-		    		<button type="button" class="btn grayBtn ml-3" id="deleteBtn">취소</button>
+		    		<button type="button" class="btn btn-secondary" id="deleteBtn">취소</button>
+		    		<button type="button" class="btn btn-primary ml-2" id="placeSaveBtn">저장</button>
 		    	</div>
 			</div>
 			
@@ -104,6 +105,10 @@
 <script>
 
 	$(document).ready(function(){
+		
+		$("#backButton").click(function() {
+		    window.history.back();
+		});
 		
 		$("#titleInput").on("input", function(){
 			$("#titleText").addClass("d-none");
@@ -180,7 +185,7 @@
 					, "content":content}
 				, success:function(data){
 					if(data.result == "success") {
-						location.href = "/suda/cafe/mainpage/view?cafeId=" + cafeId;
+						location.href = "/suda/cafe/mypage/view?cafeId=" + cafeId;
 					} else {
 						console.log("함께하기 저장 실패");
 					}	

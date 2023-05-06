@@ -81,6 +81,21 @@ public class PostBO {
 		return postDAO.deletePost(postId);
 	}
 	
+	public Post getPostById(int postId) {
+		return postDAO.selecetPostInfo(postId);
+	}
+	
+	public int updatePost(String content, MultipartFile file, int userId, int postId) {
+		
+		String imagePath = FileManagerService.saveFile(userId, file);
+		
+		return postDAO.updatePost(content, imagePath, postId);
+	}
+	
+	public int updatePostImageNotChange(String content, int postId) {
+		
+		return postDAO.updatePostImageNotChange(content, postId);
+	}
 
 	
 }

@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.bogus.bogusplus.suda.cafe.bo.CafeBO;
 import com.bogus.bogusplus.suda.cafe.model.Cafe;
 import com.bogus.bogusplus.suda.cafe.post.bo.PostBO;
+import com.bogus.bogusplus.suda.cafe.post.model.Post;
 import com.bogus.bogusplus.suda.cafe.post.model.PostDetail;
 import com.bogus.bogusplus.suda.cafe.together.bo.TogetherBO;
 import com.bogus.bogusplus.suda.cafe.together.model.TogetherDetail;
@@ -172,5 +173,22 @@ public class CafeController {
 		model.addAttribute("cafe", cafe);
 		
 		return "suda/cafe/cafeTogetherAttendPage";
+	}
+	
+	@GetMapping("/update/view")
+	public String cafePostUpdate(
+			@RequestParam("cafeId") int cafeId
+			, @RequestParam("postId") int postId
+			, Model model) {
+		
+		Cafe cafe = cafeBO.getCafeById(cafeId);
+		
+		Post post = postBO.getPostById(postId);
+		
+		model.addAttribute("cafeId", cafeId);
+		model.addAttribute("cafe", cafe);
+		model.addAttribute("post", post);
+		
+		return "suda/cafe/cafeUpdatePage";
 	}
 }

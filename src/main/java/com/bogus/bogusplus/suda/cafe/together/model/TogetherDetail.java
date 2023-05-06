@@ -2,6 +2,8 @@ package com.bogus.bogusplus.suda.cafe.together.model;
 
 import java.util.List;
 
+import com.bogus.bogusplus.suda.cafe.together.bogustalk.model.BogusTalk;
+
 import lombok.Data;
 
 @Data
@@ -19,5 +21,6 @@ public class TogetherDetail {
 	private String mbti;
 	private int statusCount;
 	private List<Mypage> myPageList;
+	private List<BogusTalk> bogusTalkList;
 
 }

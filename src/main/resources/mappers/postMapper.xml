@@ -67,4 +67,23 @@
 			`id` = #{id}
 	</select>
 	
+	<update id="updatePost" parameterType="map">
+		UPDATE
+			`post`
+		SET
+			`content` = #{content}
+			, `imagePath` = #{imagePath}
+		WHERE
+			`id` = #{id}
+	</update>
+	
+	<update id="updatePostImageNotChange" parameterType="map">
+		UPDATE
+			`post`
+		SET
+			`content` = #{content}
+		WHERE
+			`id` = #{id}
+	</update>
+	
 </mapper>

@@ -61,4 +61,46 @@ public class PostRestController {
 		
 		return resultMap;
 	}
+	
+	@PostMapping("/update")
+	public Map<String, String> updatePost(
+			@RequestParam("content") String content
+			, @RequestParam(value="file", required=false) MultipartFile file
+			, @RequestParam("postId") int postId
+			, HttpSession session) {
+		
+		Integer userId = (Integer)session.getAttribute("userId");
+		
+		int count = postBO.updatePost(content, file, userId, postId);
+		
+		Map<String, String> resultMap = new HashMap<>();
+		
+		if(count != 0) {
+			resultMap.put("result", "success");
+		} else {
+			resultMap.put("result", "fail");
+		}
+		
+		return resultMap;
+	}
+	
+	
+	@PostMapping("/update/imageNotChange")
+	public Map<String, String> updatePostImageNotChange(
+			@RequestParam("content") String content
+			, @RequestParam("postId") int postId) {
+		
+		int count = postBO.updatePostImageNotChange(content, postId);
+		
+		Map<String, String> resultMap = new HashMap<>();
+		
+		if(count != 0) {
+			resultMap.put("result", "success");
+		} else {
+			resultMap.put("result", "fail");
+		}
+		
+		return resultMap;
+	}
+	
 }

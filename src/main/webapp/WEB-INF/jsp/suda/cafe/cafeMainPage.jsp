@@ -135,7 +135,7 @@
     <div class="modal-content">
       <div class="modal-body d-flex justify-content-between">
       	<div>
-			<a class="btn btn-sm mr-2 btn-primary" href="#" id="updateBtn">수정하기</a>
+			<a class="btn btn-sm mr-2 btn-primary" href="" id="updateBtn">수정하기</a>
 			<button type="button" class="btn btn-sm btn-danger" id="postDeleteBtn" >삭제하기</button>
 		</div>
 		<button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">취소</button>
@@ -153,6 +153,8 @@
 			let postId = $(this).data("postid");
 			
 			$("#postDeleteBtn").data("postid", postId);
+			
+			$("#updateBtn").attr("href", "/suda/cafe/update/view?cafeId=" + ${cafeId} + "&postId=" + postId);
 			
 		});
 		
