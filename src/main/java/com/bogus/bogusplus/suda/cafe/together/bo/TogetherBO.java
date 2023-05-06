@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.bogus.bogusplus.suda.bo.SudaBO;
-import com.bogus.bogusplus.suda.cafe.post.comment.model.Comment;
 import com.bogus.bogusplus.suda.cafe.together.bogustalk.bo.BogusTalkBO;
 import com.bogus.bogusplus.suda.cafe.together.bogustalk.model.BogusTalk;
 import com.bogus.bogusplus.suda.cafe.together.dao.TogetherDAO;

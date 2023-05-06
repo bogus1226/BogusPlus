@@ -24,8 +24,7 @@ public class BogusTalkBO {
 			int togetherId
 			, int userId
 			, String talk) {
-		
-		
+	
 		return bogusTalkDAO.insertTalk(togetherId, userId, talk);
 	}
 }
