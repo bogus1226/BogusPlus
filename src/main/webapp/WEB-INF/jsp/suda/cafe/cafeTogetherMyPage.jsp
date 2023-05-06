@@ -50,7 +50,7 @@
 								
 								<div class="d-flex justify-content-end nickNameSpace">
 									<!-- Button trigger modal -->
-									<i class="bi bi-three-dots btn iconBtn iconSelectBtns" data-toggle="modal" data-target="#selectBtnDot" data-togetherid="${togetherList.id}"></i>
+									<i class="bi bi-three-dots btn iconBtn iconSelectBtns" data-toggle="modal" data-target="#selectBtnDot" data-togetherid="${togetherList.id}" data-cafeid="${cafeId}"></i>
 									<!-- Button trigger modal -->
 								</div>
 								
@@ -258,7 +258,7 @@
     <div class="modal-content">
       <div class="modal-body d-flex justify-content-between">
       	<div>
-			<a class="btn btn-sm mr-2 btn-primary" href="#" id="updateBtn">수정하기</a>
+			<a class="btn btn-sm mr-2 btn-primary" href="" id="updateBtn">수정하기</a>
 			<button type="button" class="btn btn-sm btn-danger" id="togetherDeleteBtn" >삭제하기</button>
 		</div>
 		<button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">취소</button>
@@ -323,8 +323,10 @@
 		
 		$(".iconSelectBtns").on("click", function(){
 			let togetherId = $(this).data("togetherid");
+			let cafeId = $(this).data("cafeid");
 			
 			$("#togetherDeleteBtn").data("togetherid", togetherId);
+			$("#updateBtn").attr("href", "/suda/cafe/update/together/view?cafeId=" + cafeId + "&togetherId=" + togetherId);
 			
 		});
 		

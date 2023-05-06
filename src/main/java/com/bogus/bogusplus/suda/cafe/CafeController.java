@@ -191,4 +191,19 @@ public class CafeController {
 		
 		return "suda/cafe/cafeUpdatePage";
 	}
+	
+	@GetMapping("/update/together/view")
+	public String cafeUpdateTogether(
+			@RequestParam("cafeId") int cafeId
+			, @RequestParam("togetherId") int togetherId
+			, Model model) {
+		
+		
+		Cafe cafe = cafeBO.getCafeById(cafeId);
+		
+		model.addAttribute("cafeId", cafeId);
+		model.addAttribute("cafe", cafe);
+		
+		return "suda/cafe/cafeUpdateTogether";
+	}
 }
