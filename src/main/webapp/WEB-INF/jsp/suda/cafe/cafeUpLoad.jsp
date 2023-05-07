@@ -23,58 +23,65 @@
 	<div id="wrap">
 		<c:import url="/WEB-INF/jsp/include/main-header.jsp"/>
 		
-		<section class="post-container previw-container d-flex">
+		<div class="mt-3 d-none" id="movieSearchLine">
+			<input type="text" class="searchBox movieSearchInput" id="movieSearchInput" placeholder="영화 검색"></input>
+		</div>
 		
-			<div class="preview d-none ml-5">
-				<div class="textWhite text-center mt-5">미리보기</div>
-				
-				<div class="previewBox sudaPost previewPost mt-2 mb-4">
-					<div class="post-header d-flex align-items-center justify-content-between">
-						<div class="userName ml-3">${userName}</div>
-					</div>
+		<div class="searchMovieInfo"></div>
+		
+		<div class="movie-main-movieInfo">
+			<section class="post-container previw-container d-flex">
+			
+				<div class="preview d-none ml-5">
+					<div class="textWhite text-center mt-5">미리보기</div>
 					
-					<div class="preview-image d-none">
-						<img id="viewImage" src="">
-					</div>
-
-					<hr id="preview-hr" class="mt-1 mb-0">
-
-					<div class="post-text-container d-flex">
-						<div class="post-text-icon"></div>
-						<div class="post-text d-flex justify-content-center">
-							<div class="previewText textWhite mt-1" style="word-break:break-all;"><span class="textPlaceHolder">내용을 입력해주세요</span></div>
+					<div class="previewBox sudaPost previewPost mt-2 mb-4">
+						<div class="post-header d-flex align-items-center justify-content-between">
+							<div class="userName ml-3">${userName}</div>
+						</div>
+						
+						<div class="preview-image d-none">
+							<img id="viewImage" src="">
+						</div>
+	
+						<hr id="preview-hr" class="mt-1 mb-0">
+	
+						<div class="post-text-container d-flex">
+							<div class="post-text-icon"></div>
+							<div class="post-text d-flex justify-content-center">
+								<div class="previewText textWhite mt-1" style="word-break:break-all;"><span class="textPlaceHolder">내용을 입력해주세요</span></div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-			
-			<section class="suda-main-contents">
-				<div class="fontBMJUA text-center">${cafe.name} <span class="myText">글쓰기</span></div>
 				
-				<nav class="pt-2 nav-item d-flex" id="postNavLink">
-					<a class="nav-link"><span class="select">수다</span></a>
-					<a href="/suda/cafe/upload/together/view?cafeId=${cafe.id}" class="nav-link">함께하기</a>
-					<button type="button" class="btn btn-sm aTagBtn" id="previewBtn">미리보기</button>
-				</nav>
-				
-				<textarea cols="25" rows="7" class="form-control mt-3 fontBMJUA" placeholder="게시물 내용" id="contentArea"></textarea>
-				<div class="textRed mt-1 d-none" id="contentText">내용을 입력해주세요</div>
-				<div class="d-flex justify-content-between upload-last">
-					<div class="image-file-input d-flex">
-						<i id="imageIcon" class="bi bi-image iconGray mt-1"></i>
-						<div class="imageText"></div>
-						<input id="fileInput" type="file" class="d-none">
-						<button type="button" class="btn btn-sm redBtn ml-2 deleteBtn d-none"><i class="bi bi-trash3-fill"></i></button>
-					</div>
+				<section class="suda-main-contents">
+					<div class="fontBMJUA text-center">${cafe.name} <span class="myText">글쓰기</span></div>
 					
-					<div>
-						<button type="button" class="btn btn-secondary mt-3 mr-2" id="backButton">취소</button>
-						<button type="button" class="btn btn-primary mt-3" id="saveBtn" data-cafeid="${cafeId}">저장</button>
+					<nav class="pt-2 nav-item d-flex" id="postNavLink">
+						<a class="nav-link"><span class="select">수다</span></a>
+						<a href="/suda/cafe/upload/together/view?cafeId=${cafe.id}" class="nav-link">함께하기</a>
+						<button type="button" class="btn btn-sm aTagBtn" id="previewBtn">미리보기</button>
+					</nav>
+					
+					<textarea cols="25" rows="7" class="form-control mt-3 fontBMJUA" placeholder="게시물 내용" id="contentArea"></textarea>
+					<div class="textRed mt-1 d-none" id="contentText">내용을 입력해주세요</div>
+					<div class="d-flex justify-content-between upload-last">
+						<div class="image-file-input d-flex">
+							<i id="imageIcon" class="bi bi-image iconGray mt-1"></i>
+							<div class="imageText"></div>
+							<input id="fileInput" type="file" class="d-none">
+							<button type="button" class="btn btn-sm redBtn ml-2 deleteBtn d-none"><i class="bi bi-trash3-fill"></i></button>
+						</div>
+						
+						<div>
+							<button type="button" class="btn btn-secondary mt-3 mr-2" id="backButton">취소</button>
+							<button type="button" class="btn btn-primary mt-3" id="saveBtn" data-cafeid="${cafeId}">저장</button>
+						</div>
 					</div>
-				</div>
+				</section>
 			</section>
-		</section>
-		
+		</div>
 
 		<c:import url="/WEB-INF/jsp/include/footer.jsp"/>
 
@@ -201,28 +208,7 @@
 		});		
 		
 		
-		$("#profile-container").hover(
-			function() {
-				$("#profile-container").removeClass("d-none");
-				$("#profile").addClass("d-none");
-			},
-			function() {
-				$("#profile-container").addClass("d-none");
-				$("#profile").removeClass("d-none");
-			}
-		);
-				
-				
-		$("#profile").hover(
-			function() {
-				$("#profile-container").removeClass("d-none");
-				$("#profile").addClass("d-none");
-			},
-			function() {
-				$("#profile-container").addClass("d-none");
-				$("#profile").removeClass("d-none");
-			}
-		);
+
 
 	});
 </script>

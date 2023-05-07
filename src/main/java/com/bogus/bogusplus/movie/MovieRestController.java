@@ -39,4 +39,22 @@ public class MovieRestController {
 		
 		return resultMap;
 	}
+	
+	@GetMapping("/searchMovie")
+	public Map<String, Object> searchMovieList(
+			@RequestParam("search") String search) {
+		Map<String, Object> resultMap = new HashMap<>();
+		
+		List<TMDB> searchMovieList = tmdbBO.getSearchMovie(search);
+		
+		if(searchMovieList != null) {
+			resultMap.put("result", "success");
+		} else  {
+			resultMap.put("result", "fail");
+		}
+		
+		resultMap.put("searchMovieList", searchMovieList);
+		
+		return resultMap;
+	}
 }

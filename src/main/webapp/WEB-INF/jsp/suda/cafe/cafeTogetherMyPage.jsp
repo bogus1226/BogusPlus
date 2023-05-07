@@ -24,215 +24,223 @@
 <body>
 
 	<div id="wrap">
-	<c:import url="/WEB-INF/jsp/include/main-header.jsp"/>
+		<c:import url="/WEB-INF/jsp/include/main-header.jsp"/>
 		
-	<section class="post-container d-flex">
-			
-		<section class="suda-main-contents">
-			<div class="fontBMJUA text-center">${cafe.name}</div>
-				
-			<nav class="pt-2 nav-item d-flex" id="postNavLink">
-				<a href="/suda/cafe/mainpage/view?cafeId=${cafeId}" class="nav-link">수다</a>
-				<a href="/suda/cafe/together/view?cafeId=${cafeId}" class="nav-link">함께하기</a>
-				<a href="/suda/cafe/waiting/view?cafeId=${cafeId}" class="nav-link">대기중</a>
-				<a href="/suda/cafe/attend/view?cafeId=${cafeId}" class="nav-link">참석완료</a>
-				<a class="nav-link"><span class="select">MyPage</span></a>
-				<a href="/suda/cafe/upload/view?cafeId=${cafeId}" class="nav-link">글쓰기</a>
-			</nav>
-				
-			<c:choose>
-				<c:when test="${!empty togetherList}">
-					<c:forEach var="togetherList" items="${togetherList}">
-						<div class="sudaPost mt-2 mb-4">
-							<div class="post-header d-flex align-items-center">
-								<div class="userName pl-3 nickNameSpace">${togetherList.nickName}</div>
-								<div class="textYellow attendSpace text-center">참석인원 (${togetherList.statusCount})</div>
-								
-								<div class="d-flex justify-content-end nickNameSpace">
-									<!-- Button trigger modal -->
-									<i class="bi bi-three-dots btn iconBtn iconSelectBtns" data-toggle="modal" data-target="#selectBtnDot" data-togetherid="${togetherList.id}" data-cafeid="${cafeId}"></i>
-									<!-- Button trigger modal -->
-								</div>
-								
-							</div>
-							
-				
-							<hr class="mt-1 mb-0">
-							
-							<!-- 제목 -->
-							<div class="post-text-container d-flex">
-								<div class="post-text-icon"></div>
-								<div class="post-text d-flex justify-content-center">
-									<div class="textWhite mt-2" style="word-break:break-all;">${togetherList.title}</div>
-								</div>
-							</div>
-							
-							<!-- 장소 -->
-							<div class="post-text-container d-flex">
-								<div class="post-text-icon"></div>
-								<div class="post-text d-flex align-items-center">
-									<!-- Button trigger modal -->
-									<i class="bi bi-geo-alt placeIcon" data-toggle="modal" data-target="#selectBtns" 
-									data-place-x="${togetherList.placeAddressX}" data-place-y="${togetherList.placeAddressY}"></i>
-									<!-- Button trigger modal -->
-									<div class="textWhite ml-1">장소</div>
-									<div class="togetherTextGray ml-3" style="word-break:break-all;">${togetherList.placeName}</div>
-								</div>
-							</div>
-							
-							<!-- 날짜 -->
-							<div class="post-text-container d-flex">
-								<div class="post-text-icon"></div>
-								<div class="post-text d-flex post-text-padding">
-									<div class="textWhite mt-3">날짜</div>
-									<div class="togetherTextGray mt-3 ml-3" style="word-break:break-all;">${togetherList.date}</div>
-								</div>
-							</div>
-							
-							<!-- MBTI -->
-							<div class="post-text-container d-flex">
-								<div class="post-text-icon"></div>
-								<div class="post-text d-flex post-text-padding">
-									<div class="textWhite mt-3">MBTI</div>
-									<div class="togetherTextGray mt-3 ml-3" style="word-break:break-all;">${togetherList.mbti}</div>
-								</div>
-							</div>
-							
-							<!-- 내용 -->
-							<div class="post-text-container d-flex mt-3 mb-3">
-								<div class="post-text-icon"></div>
-								<div class="post-text d-flex justify-content-center post-text-background">
-									<div class="textWhite mt-2 pl-4 pr-4" style="word-break:break-all;">${togetherList.title}</div>
-								</div>
-							</div>
-							
-							<!-- 톡보기 버튼 -->
-							<div class="post-text-container d-flex">
-								<div class="post-text-icon"></div>
-								<div class="post-text d-flex justify-content-end">
-									<i class="bi bi-caret-down-fill iconBtn mr-2 downBtn" data-togetherid="${togetherList.id}"></i>
-									<i class="bi bi-caret-up-fill d-none iconBtn mr-2 upBtn" data-togetherid="${togetherList.id}"></i>
-								</div>
-							</div>
-							
-							
-							
-							<!-- 보거스 톡 -->
-							<div class="d-none" id="bogus-talk-wrap${togetherList.id}">
-								<div class="post-text-container d-flex pb-3">
+		<div class="mt-3 d-none" id="movieSearchLine">
+			<input type="text" class="searchBox movieSearchInput" id="movieSearchInput" placeholder="영화 검색"></input>
+		</div>
+		
+		<div class="searchMovieInfo"></div>
+		
+		<div class="movie-main-movieInfo">	
+			<section class="post-container d-flex">
+					
+				<section class="suda-main-contents">
+					<div class="fontBMJUA text-center">${cafe.name}</div>
+						
+					<nav class="pt-2 nav-item d-flex" id="postNavLink">
+						<a href="/suda/cafe/mainpage/view?cafeId=${cafeId}" class="nav-link">수다</a>
+						<a href="/suda/cafe/together/view?cafeId=${cafeId}" class="nav-link">함께하기</a>
+						<a href="/suda/cafe/waiting/view?cafeId=${cafeId}" class="nav-link">대기중</a>
+						<a href="/suda/cafe/attend/view?cafeId=${cafeId}" class="nav-link">참석완료</a>
+						<a class="nav-link"><span class="select">MyPage</span></a>
+						<a href="/suda/cafe/upload/view?cafeId=${cafeId}" class="nav-link">글쓰기</a>
+					</nav>
+						
+					<c:choose>
+						<c:when test="${!empty togetherList}">
+							<c:forEach var="togetherList" items="${togetherList}">
+								<div class="sudaPost mt-2 mb-4">
+									<div class="post-header d-flex align-items-center">
+										<div class="userName pl-3 nickNameSpace">${togetherList.nickName}</div>
+										<div class="textYellow attendSpace text-center">참석인원 (${togetherList.statusCount})</div>
+										
+										<div class="d-flex justify-content-end nickNameSpace">
+											<!-- Button trigger modal -->
+											<i class="bi bi-three-dots btn iconBtn iconSelectBtns" data-toggle="modal" data-target="#selectBtnDot" data-togetherid="${togetherList.id}" data-cafeid="${cafeId}"></i>
+											<!-- Button trigger modal -->
+										</div>
+										
+									</div>
 									
-									<div class="post-text-icon"></div>
+						
+									<hr class="mt-1 mb-0">
 									
-									<div class="talk-box post-text-background">
-										<c:forEach var="bogusTalk" items="${togetherList.bogusTalkList}">
-											<c:choose>
-												<c:when test="${bogusTalk.userId eq userId}">
-													<!-- 나의 톡  -->
-													<div class="d-flex justify-content-end pt-2">
-														<div class="post-text d-flex justify-content-end mr-3">
-															<div class="my-talk-background">
-																<div class="textWhite" style="word-break:break-all;">${bogusTalk.talk}</div>
+									<!-- 제목 -->
+									<div class="post-text-container d-flex">
+										<div class="post-text-icon"></div>
+										<div class="post-text d-flex justify-content-center">
+											<div class="textWhite mt-2" style="word-break:break-all;">${togetherList.title}</div>
+										</div>
+									</div>
+									
+									<!-- 장소 -->
+									<div class="post-text-container d-flex">
+										<div class="post-text-icon"></div>
+										<div class="post-text d-flex align-items-center">
+											<!-- Button trigger modal -->
+											<i class="bi bi-geo-alt placeIcon" data-toggle="modal" data-target="#selectBtns" 
+											data-place-x="${togetherList.placeAddressX}" data-place-y="${togetherList.placeAddressY}"></i>
+											<!-- Button trigger modal -->
+											<div class="textWhite ml-1">장소</div>
+											<div class="togetherTextGray ml-3" style="word-break:break-all;">${togetherList.placeName}</div>
+										</div>
+									</div>
+									
+									<!-- 날짜 -->
+									<div class="post-text-container d-flex">
+										<div class="post-text-icon"></div>
+										<div class="post-text d-flex post-text-padding">
+											<div class="textWhite mt-3">날짜</div>
+											<div class="togetherTextGray mt-3 ml-3" style="word-break:break-all;">${togetherList.date}</div>
+										</div>
+									</div>
+									
+									<!-- MBTI -->
+									<div class="post-text-container d-flex">
+										<div class="post-text-icon"></div>
+										<div class="post-text d-flex post-text-padding">
+											<div class="textWhite mt-3">MBTI</div>
+											<div class="togetherTextGray mt-3 ml-3" style="word-break:break-all;">${togetherList.mbti}</div>
+										</div>
+									</div>
+									
+									<!-- 내용 -->
+									<div class="post-text-container d-flex mt-3 mb-3">
+										<div class="post-text-icon"></div>
+										<div class="post-text d-flex justify-content-center post-text-background">
+											<div class="textWhite mt-2 pl-4 pr-4" style="word-break:break-all;">${togetherList.title}</div>
+										</div>
+									</div>
+									
+									<!-- 톡보기 버튼 -->
+									<div class="post-text-container d-flex">
+										<div class="post-text-icon"></div>
+										<div class="post-text d-flex justify-content-end">
+											<i class="bi bi-caret-down-fill iconBtn mr-2 downBtn" data-togetherid="${togetherList.id}"></i>
+											<i class="bi bi-caret-up-fill d-none iconBtn mr-2 upBtn" data-togetherid="${togetherList.id}"></i>
+										</div>
+									</div>
+									
+									
+									
+									<!-- 보거스 톡 -->
+									<div class="d-none" id="bogus-talk-wrap${togetherList.id}">
+										<div class="post-text-container d-flex pb-3">
+											
+											<div class="post-text-icon"></div>
+											
+											<div class="talk-box post-text-background">
+												<c:forEach var="bogusTalk" items="${togetherList.bogusTalkList}">
+													<c:choose>
+														<c:when test="${bogusTalk.userId eq userId}">
+															<!-- 나의 톡  -->
+															<div class="d-flex justify-content-end pt-2">
+																<div class="post-text d-flex justify-content-end mr-3">
+																	<div class="my-talk-background">
+																		<div class="textWhite" style="word-break:break-all;">${bogusTalk.talk}</div>
+																	</div>
+																</div>
 															</div>
-														</div>
-													</div>
-													<!-- 나의 톡 -->
-												</c:when>
+															<!-- 나의 톡 -->
+														</c:when>
+														
+														<c:otherwise>
+															<!-- 상대방톡 -->
+															<div class="pt-2">
+																<div class="post-text">
+																	<div class="post-text-background d-flex">
+																		<div class="post-talk-space"></div>
+																		<div class="d-flex">
+																			<div class="textWhite">${bogusTalk.nickName}</div>
+																		</div>
+																		<div class="post-talk-space"></div>
+																	</div>
+																</div>
+															</div>
+															
+															<div class="">
+																<div class="post-text">
+																	<div class="post-text-background d-flex">
+																		<div class="post-talk-space"></div>
+																		<div class="post-talk-background">
+																			<div class="textWhite" style="word-break:break-all;">${bogusTalk.talk}</div>
+																		</div>
+																		<div class="post-talk-space"></div>
+																	</div>
+																</div>
+															</div>
+															<!-- 상대방톡 -->
+														</c:otherwise>
+													</c:choose>
+												</c:forEach>
 												
-												<c:otherwise>
-													<!-- 상대방톡 -->
-													<div class="pt-2">
-														<div class="post-text">
-															<div class="post-text-background d-flex">
-																<div class="post-talk-space"></div>
-																<div class="d-flex">
-																	<div class="textWhite">${bogusTalk.nickName}</div>
+												<form>
+													<div class="post-text-container d-flex pt-3">
+														<div class="post-text-icon"></div>
+														<div class="post-text d-flex post-text-background">
+															<div class="post-text-icon"></div>
+															<div class="input-group talk-group bg-secondary">
+																<input type="text" class="form-control" placeholder="내용을 입력해주세요" id="talkInput${togetherList.id}">
+																<div class="input-group-append">
+																	<button class="btn btn-secondary talkBtn" type="submit" data-togetherid="${togetherList.id}">Talk</button>
 																</div>
-																<div class="post-talk-space"></div>
 															</div>
+															<div class="post-text-icon"></div>
 														</div>
 													</div>
-													
-													<div class="">
-														<div class="post-text">
-															<div class="post-text-background d-flex">
-																<div class="post-talk-space"></div>
-																<div class="post-talk-background">
-																	<div class="textWhite" style="word-break:break-all;">${bogusTalk.talk}</div>
-																</div>
-																<div class="post-talk-space"></div>
-															</div>
-														</div>
-													</div>
-													<!-- 상대방톡 -->
-												</c:otherwise>
-											</c:choose>
-										</c:forEach>
-										
-										<form>
-											<div class="post-text-container d-flex pt-3">
-												<div class="post-text-icon"></div>
-												<div class="post-text d-flex post-text-background">
-													<div class="post-text-icon"></div>
-													<div class="input-group talk-group bg-secondary">
-														<input type="text" class="form-control" placeholder="내용을 입력해주세요" id="talkInput${togetherList.id}">
-														<div class="input-group-append">
-															<button class="btn btn-secondary talkBtn" type="submit" data-togetherid="${togetherList.id}">Talk</button>
-														</div>
-													</div>
-													<div class="post-text-icon"></div>
-												</div>
+												</form>
 											</div>
-										</form>
+											<div class="post-text-icon"></div>
+										</div>
 									</div>
-									<div class="post-text-icon"></div>
-								</div>
-							</div>
+												
+									<c:forEach var="myPageList" items="${togetherList.myPageList}">	
+										<!-- 함께하기 수락/거절 -->
+										<hr class="m-0">
+										<div class="d-flex mt-3">
+											<div class="textWhite pl-3 col-2">${myPageList.nickName}</div>
+											<div class="togetherTextGray col-1 p-0">${myPageList.mbti}</div>
+											<div class="togetherTextGray col-9 p-0"><span class="textWhite">소개:</span>${myPageList.introduce}</div>
+										</div>
 										
-							<c:forEach var="myPageList" items="${togetherList.myPageList}">	
-								<!-- 함께하기 수락/거절 -->
-								<hr class="m-0">
-								<div class="d-flex mt-3">
-									<div class="textWhite pl-3 col-2">${myPageList.nickName}</div>
-									<div class="togetherTextGray col-1 p-0">${myPageList.mbti}</div>
-									<div class="togetherTextGray col-9 p-0"><span class="textWhite">소개:</span>${myPageList.introduce}</div>
-								</div>
-								
-								<div class="d-flex">
-									<div class="pl-3 col-3"></div>
-									<div class="togetherTextGray col-9 p-0"><span class="textWhite">타입:</span>${myPageList.type}</div>
-								</div>
-								
-								<div class="d-flex pb-3">
-									<div class="col-9"></div>
-									<div class="d-flex col-3 row-1">
-										<button type="button" class="btn btn-sm btn-primary mr-2 acceptBtn" data-togetherid="${togetherList.id}" data-userid="${myPageList.userId}">함께하기</button>
-										<button type="button" class="btn btn-sm btn-secondary refuseBtn" data-togetherid="${togetherList.id}" data-userid="${myPageList.userId}">거절하기</button>
-									</div>
+										<div class="d-flex">
+											<div class="pl-3 col-3"></div>
+											<div class="togetherTextGray col-9 p-0"><span class="textWhite">타입:</span>${myPageList.type}</div>
+										</div>
+										
+										<div class="d-flex pb-3">
+											<div class="col-9"></div>
+											<div class="d-flex col-3 row-1">
+												<button type="button" class="btn btn-sm btn-primary mr-2 acceptBtn" data-togetherid="${togetherList.id}" data-userid="${myPageList.userId}">함께하기</button>
+												<button type="button" class="btn btn-sm btn-secondary refuseBtn" data-togetherid="${togetherList.id}" data-userid="${myPageList.userId}">거절하기</button>
+											</div>
+										</div>
+									</c:forEach>
+										
 								</div>
 							</c:forEach>
-								
-						</div>
-					</c:forEach>
-				</c:when>
-				
-				<c:otherwise>
-					<div class="empty-text-container">
-						<div class="empty-box">
-							<div class="d-flex justify-content-center">
-								<i class="bi bi-emoji-dizzy emptyIcon"></i>
+						</c:when>
+						
+						<c:otherwise>
+							<div class="empty-text-container">
+								<div class="empty-box">
+									<div class="d-flex justify-content-center">
+										<i class="bi bi-emoji-dizzy emptyIcon"></i>
+									</div>
+									<div class="d-flex justify-content-center emptyText">
+										<div class="fontBMJUA">글쓰기로 게시물을 저장해주세요!</div>
+									</div>
+								</div>
 							</div>
-							<div class="d-flex justify-content-center emptyText">
-								<div class="fontBMJUA">글쓰기로 게시물을 저장해주세요!</div>
-							</div>
-						</div>
-					</div>
-				</c:otherwise>
-			</c:choose>
-		</section>
-	</section>
-		
-	<c:import url="/WEB-INF/jsp/include/footer.jsp"/>
-</div>
+						</c:otherwise>
+					</c:choose>
+				</section>
+			</section>
+		</div>
+			
+		<c:import url="/WEB-INF/jsp/include/footer.jsp"/>
+	</div>
 </body>
 
 <!-- Modal -->
@@ -435,28 +443,6 @@
 			
 		});
 		
-		$("#profile-container").hover(
-			function() {
-				$("#profile-container").removeClass("d-none");
-				$("#profile").addClass("d-none");
-			},
-			function() {
-				$("#profile-container").addClass("d-none");
-				$("#profile").removeClass("d-none");
-			}
-		);
-				
-				
-		$("#profile").hover(
-			function() {
-				$("#profile-container").removeClass("d-none");
-				$("#profile").addClass("d-none");
-			},
-			function() {
-				$("#profile-container").addClass("d-none");
-				$("#profile").removeClass("d-none");
-			}
-		);
 
 	});
 </script>

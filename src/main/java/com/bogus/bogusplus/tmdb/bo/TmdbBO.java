@@ -170,5 +170,41 @@ public class TmdbBO {
 		return infoList;
 	}
 
+	public List<TMDB> getSearchMovie(String search) {
+		
+		List<TMDB> infoList = null;
+		
+		try {
+			
+			infoList = new ArrayList<TMDB>();
+				
+			String apiURL = "https://api.themoviedb.org/3/search/movie?api_key=" + key
+					+ "&language=" + language + "&sort_by=popularity.desc&"
+					+ "with_watch_providers=" + provider + "&watch_region=KR&query=" + search;	
+			
+			JSONArray list = tmdbCalculator(apiURL);
+			
+			int countList = list.size();
+
+
+			for(int i = 0; i < countList; i++) {
+				TMDB tmdb = new TMDB();
+				JSONObject contents = (JSONObject) list.get(i);
+				
+				String poster_path = String.valueOf(contents.get("poster_path"));
+				tmdb.setPoster_path("https://image.tmdb.org/t/p/w342/" + poster_path);
+				infoList.add(tmdb);
+			}		
+
+		} catch (Exception e) {
+			
+			e.printStackTrace();
+		}
+		
+		return infoList;
+	}
+
+	
+
 
 }

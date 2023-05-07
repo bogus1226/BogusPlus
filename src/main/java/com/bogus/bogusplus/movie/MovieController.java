@@ -92,4 +92,10 @@ public class MovieController {
 		return "movie/mainPage";
 	}
 	
+	@GetMapping("/detail/recommend/view")
+	public String movieDetailRecommend() {
+		
+		return "movie/detailRecommend";
+	}
+	
 }

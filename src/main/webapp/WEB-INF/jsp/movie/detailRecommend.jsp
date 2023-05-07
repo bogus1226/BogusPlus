@@ -16,7 +16,7 @@
 	<link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@700&display=swap" rel="stylesheet">
 	<!-- stylesheet -->
 	<link rel="stylesheet" href="/static/css/style.css" type="text/css">
-<title>수다 메인페이지</title>
+<title>영화 상세화면(추천작)</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" />
 </head>
 <body>
@@ -29,41 +29,56 @@
 		
 		<div class="searchMovieInfo"></div>
 		
-		<div class="movie-main-movieInfo">
-			<div id="searchLine">
-				<div class="textWhite text-center mb-3">수다</div>
-				<input type="text" class="searchBox" id="cafeSearchInput" placeholder="까페 검색"></input>
+		<div class="movie-detail-container mt-5">
+			<div class="movieName">올빼미</div>
+			
+			<div class="d-flex mt-3">
+				<div class="age-limit-fifteen mr-3">15</div>
+				<div class="textWhite mr-3">2022</div>
+				<div class="textWhite">1시간 58분</div>
 			</div>
 			
-			<section class="sudaMainPageContents">
-				<div class="fontBMJUA mt-3 text-center"><span class="hotText">Hot</span> 수다 카페</div>
-				<a href="#" class="hotCafeBox btn btn-block textWhite mt-3">마블에 진심인 사람</a>
-				<a href="#" class="hotCafeBox btn btn-block textWhite mt-3">추리 장인</a>
-				<a href="#" class="hotCafeBox btn btn-block textWhite mt-3">무서운이야기</a>
-				
-				<c:choose>
-					<c:when test="${is_duplicate eq 0}">
-						<div class="cafe-create">
-							<div class="fontBMJUA mt-5 text-center ">까페 만들기</div>
-							<input type="text" class="form-control mt-2" placeholder="까페 이름" maxlength="32" id="cafeNameInput">
-							<div class="textRed mt-1 d-none" id="cafeNameText">까페 이름을 입력해주세요</div>
-							<div class="d-flex justify-content-end mt-3">
-								<button type="button" class="btn blueBtn col-2" id="saveBtn">저장</button>
-							</div>
-						</div>
-					</c:when>
-					
-					<c:otherwise>
-						<div class="my-cafe">
-							<div class="fontBMJUA mt-5 text-center"><span class="myText">My</span> 카페</div>
-							<a href="/suda/cafe/mainpage/view?cafeId=${cafeId}" class="hotCafeBox btn btn-block textWhite mt-2">${name}</a>
-						</div>
-					</c:otherwise>
-				</c:choose>
-			</section>
+			<div class="d-flex smallGray">
+				<div class="mr-2">드라마,</div>
+				<div class="mr-2">역사,</div>
+				<div>스릴러</div>
+			</div>
 			
-			<section class="searchInfo mb-5 d-none"></section>
-		
+			<div class="d-flex mt-4 movie-select-btns">
+				<button type="button" class="btn btn-light mr-4" id="playBtn">
+					<i class="bi bi-play-fill playIcon"></i>
+					<span class="textBlack ml-1">재생</span>
+				</button>
+				
+				<button type="button" class="btn" id="interestBtn">
+				    <i class="bi bi-plus-lg plusIcon"></i>
+				</button>
+			</div>
+			
+			<div class="textWhite mt-5 overview">밤에만 앞이 보이는 맹인 침술사 경수가 소현세자의 죽음을 목격하게 되고, 진실을 알리려는 찰나 더 큰 비밀과 음모가 드러나며, 목숨마저 위태로운 상황에 빠진다.</div>
+			
+			<div class="info-text-review d-flex justify-content-between mt-5">
+				<div class="d-flex mt-2">
+					<button type="button" class="btn notBackground detailText"><span class="select">추천작</span></button>
+					<button type="button" class="btn notBackground detailText">상세정보</button>
+					<button type="button" class="btn notBackground detailText">후기</button>
+				</div>
+				<div class="d-flex review mt-3">
+					<div class="textWhite mr-3">Bogus+ 후기</div>
+					<div class="textYellow mr-1">평점 10.0</div>
+				</div>
+			</div>
+			
+			<hr class="mt-1">
+			
+			<div class="recommend">
+				<img src="/static/image/ironman.jpg">
+				<img src="/static/image/ironman.jpg">
+				<img src="/static/image/ironman.jpg">
+				<img src="/static/image/ironman.jpg">
+				<img src="/static/image/ironman.jpg">
+			</div>
+			
 		</div>
 		
 		<c:import url="/WEB-INF/jsp/include/footer.jsp"/>
@@ -73,7 +88,12 @@
 <script>
 
 	$(document).ready(function(){
-			
+		
+		$("#wrap").css({
+			  "background-image": "url(https://image.tmdb.org/t/p/w1280//9j0V8Fw5u4cv9cESUXUmTGmpXU5.jpg)",
+			  "background-size": "cover"
+			});
+		
 		$("#cafeSearchInput").on("input", function(){
 			
 			let cafeSearch = $("#cafeSearchInput").val();

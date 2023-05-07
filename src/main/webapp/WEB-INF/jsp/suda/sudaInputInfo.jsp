@@ -23,16 +23,24 @@
 	<div id="wrap">
 		<c:import url="/WEB-INF/jsp/include/main-header.jsp"/>
 		
-		<section id="suda-input-info">
-			<div class="textWhite text-center">수다</div>
-			<input type="text" class="form-control mt-3" placeholder="MBTI" id="mbtiInput" maxlength="4" style="text-transform: uppercase;">
-			<div class="textRed mt-1 d-none" id="mbtiText">양식을 확인해주세요</div>
-			<input type="text" class="form-control mt-3" placeholder="내 소개   ex) 마블 빠돌이" id="introduceInput" maxlength="32">
-			<input type="text" class="form-control mt-3" placeholder="영화 보는타입   ex) 떠들면서 보는편!" id="typeInput" maxlength="32">
-			<div class="mt-3 d-flex justify-content-end">
-				<button type="button" class="btn blueBtn col-2" id="saveBtn">저장</button>
-			</div>
-		</section>
+		<div class="mt-3 d-none" id="movieSearchLine">
+			<input type="text" class="searchBox movieSearchInput" id="movieSearchInput" placeholder="영화 검색"></input>
+		</div>
+		
+		<div class="searchMovieInfo"></div>
+		
+		<div class="movie-main-movieInfo">
+			<section id="suda-input-info">
+				<div class="textWhite text-center">수다</div>
+				<input type="text" class="form-control mt-3" placeholder="MBTI" id="mbtiInput" maxlength="4" style="text-transform: uppercase;">
+				<div class="textRed mt-1 d-none" id="mbtiText">양식을 확인해주세요</div>
+				<input type="text" class="form-control mt-3" placeholder="내 소개   ex) 마블 빠돌이" id="introduceInput" maxlength="32">
+				<input type="text" class="form-control mt-3" placeholder="영화 보는타입   ex) 떠들면서 보는편!" id="typeInput" maxlength="32">
+				<div class="mt-3 d-flex justify-content-end">
+					<button type="button" class="btn blueBtn col-2" id="saveBtn">저장</button>
+				</div>
+			</section>
+		</div>
 		
 		<c:import url="/WEB-INF/jsp/include/footer.jsp"/>
 	</div>
@@ -42,28 +50,6 @@
 
 	$(document).ready(function(){
 		
-		$("#profile-container").hover(
-			function() {
-				$("#profile-container").removeClass("d-none");
-				$("#profile").addClass("d-none");
-			},
-			function() {
-				$("#profile-container").addClass("d-none");
-				$("#profile").removeClass("d-none");
-			}
-		);
-			
-			
-		$("#profile").hover(
-			function() {
-				$("#profile-container").removeClass("d-none");
-				$("#profile").addClass("d-none");
-			},
-			function() {
-				$("#profile-container").addClass("d-none");
-				$("#profile").removeClass("d-none");
-			}
-		);
 		
 		$("#mbtiInput").on("input", function(){
 			$("#mbtiText").addClass("d-none");

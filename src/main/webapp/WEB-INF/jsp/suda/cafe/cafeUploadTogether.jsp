@@ -31,73 +31,79 @@
 	<div id="wrap">
 		<c:import url="/WEB-INF/jsp/include/main-header.jsp"/>
 		
-		<section class="post-container previw-container">
-			
-			<section class="suda-main-contents">
-				<div class="fontBMJUA text-center">${cafe.name} <span class="myText">글쓰기</span></div>
+		<div class="mt-3 d-none" id="movieSearchLine">
+			<input type="text" class="searchBox movieSearchInput" id="movieSearchInput" placeholder="영화 검색"></input>
+		</div>
+		
+		<div class="searchMovieInfo"></div>
+		
+		<div class="movie-main-movieInfo">
+			<section class="post-container previw-container">
 				
-				<nav class="pt-2 nav-item d-flex" id="postNavLink">	
-					<a href="/suda/cafe/upload/view?cafeId=${cafe.id}" class="nav-link">수다</a>
-					<a class="nav-link"><span class="select">함께하기</span></a>
-				</nav>
-				
-				<input type="text" class="form-control fontBMJUA" id="titleInput" placeholder="제목을 입력해주세요">
-				<div class="textRed mt-1 d-none" id="titleText">제목을 입력해주세요!</div>
-				<div class="d-flex mt-2">
-					<div class="choosePlace d-flex align-items-center col-8">
-						<i class="bi bi-geo-alt placeIcon" id="placeBtn"></i>
-						<div class="fontBMJUA mt-2 ml-2 placeSelect">장소 선택</div>
+				<section class="suda-main-contents">
+					<div class="fontBMJUA text-center">${cafe.name} <span class="myText">글쓰기</span></div>
+					
+					<nav class="pt-2 nav-item d-flex" id="postNavLink">	
+						<a href="/suda/cafe/upload/view?cafeId=${cafe.id}" class="nav-link">수다</a>
+						<a class="nav-link"><span class="select">함께하기</span></a>
+					</nav>
+					
+					<input type="text" class="form-control fontBMJUA" id="titleInput" placeholder="제목을 입력해주세요">
+					<div class="textRed mt-1 d-none" id="titleText">제목을 입력해주세요!</div>
+					<div class="d-flex mt-2">
+						<div class="choosePlace d-flex align-items-center col-8">
+							<i class="bi bi-geo-alt placeIcon" id="placeBtn"></i>
+							<div class="fontBMJUA mt-2 ml-2 placeSelect">장소 선택</div>
+						</div>
+						
+						<div class="choosePlace d-flex align-items-center col-5">
+							<i class="bi bi-calendar calendarIcon"></i>
+							<input type="text" id="datepicker" class="datepicker-input">
+							<div class="fontBMJUA mt-2 ml-2 calendarSelect">날짜 선택</div>
+						</div>	
 					</div>
 					
-					<div class="choosePlace d-flex align-items-center col-5">
-						<i class="bi bi-calendar calendarIcon"></i>
-						<input type="text" id="datepicker" class="datepicker-input">
-						<div class="fontBMJUA mt-2 ml-2 calendarSelect">날짜 선택</div>
-					</div>	
-				</div>
-				
-				<div class="d-flex">
-					<div class="choosePlace d-flex align-items-center col-8">
-						<div class="textRed d-none" id="placeSelectText">장소를 선택해주세요!</div>
+					<div class="d-flex">
+						<div class="choosePlace d-flex align-items-center col-8">
+							<div class="textRed d-none" id="placeSelectText">장소를 선택해주세요!</div>
+						</div>
+						
+						<div class="choosePlace d-flex align-items-center col-5">
+							<div class="textRed d-none" id="dateSelcetText">날짜를 선택해주세요!</div>
+						</div>	
 					</div>
 					
-					<div class="choosePlace d-flex align-items-center col-5">
-						<div class="textRed d-none" id="dateSelcetText">날짜를 선택해주세요!</div>
-					</div>	
-				</div>
-				
-				<div class="textArea-container d-none">
-					<textarea cols="25" rows="7" class="form-control mt-3 fontBMJUA" placeholder="내용을 입력해주세요" id="contentArea"></textarea>
-					<div class="textRed mt-1 d-none" id="contentText">내용을 입력해주세요</div>
-					
-					<div class="d-flex justify-content-end">
-						<button type="button" class="btn btn-secondary mt-3 mr-2" id="backButton">취소</button>
-						<button type="button" class="btn btn-primary mt-3" id="saveBtn" data-cafeid="${cafeId}">저장</button>
-					</div>
-				</div>
-			   
-			</section>
-			
-			<div style="width:1140px;margin:auto;" class="placeBox mt-2 mb-5">
-				<div id="map" style="width:1140px;height:600px;">
-			        <div class="input-group search col-4">
-						<input id="address" type="text" class="form-control" placeholder="검색할 주소">
-						<div class="input-group-append">
-							<input id="submit" type="button" class="btn" value="검색">
+					<div class="textArea-container d-none">
+						<textarea cols="25" rows="7" class="form-control mt-3 fontBMJUA" placeholder="내용을 입력해주세요" id="contentArea"></textarea>
+						<div class="textRed mt-1 d-none" id="contentText">내용을 입력해주세요</div>
+						
+						<div class="d-flex justify-content-end">
+							<button type="button" class="btn btn-secondary mt-3 mr-2" id="backButton">취소</button>
+							<button type="button" class="btn btn-primary mt-3" id="saveBtn" data-cafeid="${cafeId}">저장</button>
 						</div>
 					</div>
-					<div class="placeText textRed d-none">주소를 정확히 입력해주세요!</div>
-		    	</div>
-		    	
-		    	<div class="d-flex justify-content-end mt-2">
-		    		<button type="button" class="btn btn-secondary" id="deleteBtn">취소</button>
-		    		<button type="button" class="btn btn-primary ml-2" id="placeSaveBtn">저장</button>
-		    	</div>
-			</div>
-			
-			
-		</section>
-
+				   
+				</section>
+				
+				<div style="width:1140px;margin:auto;" class="placeBox mt-2 mb-5">
+					<div id="map" style="width:1140px;height:600px;">
+				        <div class="input-group search col-4">
+							<input id="address" type="text" class="form-control" placeholder="검색할 주소">
+							<div class="input-group-append">
+								<input id="submit" type="button" class="btn" value="검색">
+							</div>
+						</div>
+						<div class="placeText textRed d-none">주소를 정확히 입력해주세요!</div>
+			    	</div>
+			    	
+			    	<div class="d-flex justify-content-end mt-2">
+			    		<button type="button" class="btn btn-secondary" id="deleteBtn">취소</button>
+			    		<button type="button" class="btn btn-primary ml-2" id="placeSaveBtn">저장</button>
+			    	</div>
+				</div>	
+			</section>
+		</div>
+		
 		<c:import url="/WEB-INF/jsp/include/footer.jsp"/>
 	</div>
 </body>

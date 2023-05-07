@@ -24,113 +24,121 @@
 <body>
 
 	<div id="wrap">
-	<c:import url="/WEB-INF/jsp/include/main-header.jsp"/>
+		<c:import url="/WEB-INF/jsp/include/main-header.jsp"/>
 		
-	<section class="post-container d-flex">
+		<div class="mt-3 d-none" id="movieSearchLine">
+			<input type="text" class="searchBox movieSearchInput" id="movieSearchInput" placeholder="영화 검색"></input>
+		</div>
+		
+		<div class="searchMovieInfo"></div>
 			
-		<section class="suda-main-contents">
-			<div class="fontBMJUA text-center">${cafe.name}</div>
-				
-			<nav class="pt-2 nav-item d-flex" id="postNavLink">
-				<a href="/suda/cafe/mainpage/view?cafeId=${cafeId}" class="nav-link">수다</a>
-				<a class="nav-link"><span class="select">함께하기</span></a>
-				<a href="/suda/cafe/waiting/view?cafeId=${cafeId}" class="nav-link">대기중</a>
-				<a href="/suda/cafe/attend/view?cafeId=${cafeId}" class="nav-link">참석완료</a>
-				<a href="/suda/cafe/mypage/view?cafeId=${cafeId}" class="nav-link">MyPage</a>
-				<a href="/suda/cafe/upload/view?cafeId=${cafeId}" class="nav-link">글쓰기</a>
-			</nav>
-				
-			<c:choose>
-				<c:when test="${!empty togetherList}">
-					<c:forEach var="togetherList" items="${togetherList}">
-						<div class="sudaPost mt-2 mb-4">
-							<div class="post-header d-flex align-items-center">
-								<div class="userName pl-3 nickNameSpace">${togetherList.nickName}</div>
-								<div class="textYellow attendSpace text-center">참석인원 (${togetherList.statusCount})</div>
-							</div>
-				
-							<hr class="mt-1 mb-0">
-							
-							<!-- 제목 -->
-							<div class="post-text-container d-flex">
-								<div class="post-text-icon"></div>
-								<div class="post-text d-flex justify-content-center">
-									<div class="textWhite mt-2" style="word-break:break-all;">${togetherList.title}</div>
-								</div>
-							</div>
-							
-							<!-- 장소 -->
-							<div class="post-text-container d-flex">
-								<div class="post-text-icon"></div>
-								<div class="post-text d-flex align-items-center">
-									<!-- Button trigger modal -->
-									<i class="bi bi-geo-alt placeIcon" data-toggle="modal" data-target="#selectBtns" 
-									data-place-x="${togetherList.placeAddressX}" data-place-y="${togetherList.placeAddressY}"></i>
-									<!-- Button trigger modal -->
-									<div class="textWhite ml-1">장소</div>
-									<div class="togetherTextGray ml-3" style="word-break:break-all;">${togetherList.placeName}</div>
-								</div>
-							</div>
-							
-							<!-- 날짜 -->
-							<div class="post-text-container d-flex">
-								<div class="post-text-icon"></div>
-								<div class="post-text d-flex post-text-padding">
-									<div class="textWhite mt-3">날짜</div>
-									<div class="togetherTextGray mt-3 ml-3" style="word-break:break-all;">${togetherList.date}</div>
-								</div>
-							</div>
-							
-							<!-- MBTI -->
-							<div class="post-text-container d-flex">
-								<div class="post-text-icon"></div>
-								<div class="post-text d-flex post-text-padding">
-									<div class="textWhite mt-3">MBTI</div>
-									<div class="togetherTextGray mt-3 ml-3" style="word-break:break-all;">${togetherList.mbti}</div>
-								</div>
-							</div>
-							
-							<!-- 내용 -->
-							<div class="post-text-container d-flex mt-3">
-								<div class="post-text-icon"></div>
-								<div class="post-text d-flex justify-content-center post-text-background">
-									<div class="textWhite mt-2 pl-4 pr-4" style="word-break:break-all;">${togetherList.title}</div>
-								</div>
-							</div>
-							
-							<!-- 참석하기 버튼 -->
-							<div class="post-text-container d-flex mt-3 pb-3">
-								<div class="post-text-icon"></div>
-								<div class="post-text d-flex justify-content-end">
-									<button type="button" class="btn btn-primary attendBtn" data-togetherid="${togetherList.id}">참석하기</button>
-								</div>
-							</div>
-							
+		<div class="movie-main-movieInfo">
+			<section class="post-container d-flex">
+					
+				<section class="suda-main-contents">
+					<div class="fontBMJUA text-center">${cafe.name}</div>
 						
-							
-							
-						</div>
-					</c:forEach>
-				</c:when>
-				
-				<c:otherwise>
-					<div class="empty-text-container">
-						<div class="empty-box">
-							<div class="d-flex justify-content-center">
-								<i class="bi bi-emoji-dizzy emptyIcon"></i>
+					<nav class="pt-2 nav-item d-flex" id="postNavLink">
+						<a href="/suda/cafe/mainpage/view?cafeId=${cafeId}" class="nav-link">수다</a>
+						<a class="nav-link"><span class="select">함께하기</span></a>
+						<a href="/suda/cafe/waiting/view?cafeId=${cafeId}" class="nav-link">대기중</a>
+						<a href="/suda/cafe/attend/view?cafeId=${cafeId}" class="nav-link">참석완료</a>
+						<a href="/suda/cafe/mypage/view?cafeId=${cafeId}" class="nav-link">MyPage</a>
+						<a href="/suda/cafe/upload/view?cafeId=${cafeId}" class="nav-link">글쓰기</a>
+					</nav>
+						
+					<c:choose>
+						<c:when test="${!empty togetherList}">
+							<c:forEach var="togetherList" items="${togetherList}">
+								<div class="sudaPost mt-2 mb-4">
+									<div class="post-header d-flex align-items-center">
+										<div class="userName pl-3 nickNameSpace">${togetherList.nickName}</div>
+										<div class="textYellow attendSpace text-center">참석인원 (${togetherList.statusCount})</div>
+									</div>
+						
+									<hr class="mt-1 mb-0">
+									
+									<!-- 제목 -->
+									<div class="post-text-container d-flex">
+										<div class="post-text-icon"></div>
+										<div class="post-text d-flex justify-content-center">
+											<div class="textWhite mt-2" style="word-break:break-all;">${togetherList.title}</div>
+										</div>
+									</div>
+									
+									<!-- 장소 -->
+									<div class="post-text-container d-flex">
+										<div class="post-text-icon"></div>
+										<div class="post-text d-flex align-items-center">
+											<!-- Button trigger modal -->
+											<i class="bi bi-geo-alt placeIcon" data-toggle="modal" data-target="#selectBtns" 
+											data-place-x="${togetherList.placeAddressX}" data-place-y="${togetherList.placeAddressY}"></i>
+											<!-- Button trigger modal -->
+											<div class="textWhite ml-1">장소</div>
+											<div class="togetherTextGray ml-3" style="word-break:break-all;">${togetherList.placeName}</div>
+										</div>
+									</div>
+									
+									<!-- 날짜 -->
+									<div class="post-text-container d-flex">
+										<div class="post-text-icon"></div>
+										<div class="post-text d-flex post-text-padding">
+											<div class="textWhite mt-3">날짜</div>
+											<div class="togetherTextGray mt-3 ml-3" style="word-break:break-all;">${togetherList.date}</div>
+										</div>
+									</div>
+									
+									<!-- MBTI -->
+									<div class="post-text-container d-flex">
+										<div class="post-text-icon"></div>
+										<div class="post-text d-flex post-text-padding">
+											<div class="textWhite mt-3">MBTI</div>
+											<div class="togetherTextGray mt-3 ml-3" style="word-break:break-all;">${togetherList.mbti}</div>
+										</div>
+									</div>
+									
+									<!-- 내용 -->
+									<div class="post-text-container d-flex mt-3">
+										<div class="post-text-icon"></div>
+										<div class="post-text d-flex justify-content-center post-text-background">
+											<div class="textWhite mt-2 pl-4 pr-4" style="word-break:break-all;">${togetherList.title}</div>
+										</div>
+									</div>
+									
+									<!-- 참석하기 버튼 -->
+									<div class="post-text-container d-flex mt-3 pb-3">
+										<div class="post-text-icon"></div>
+										<div class="post-text d-flex justify-content-end">
+											<button type="button" class="btn btn-primary attendBtn" data-togetherid="${togetherList.id}">참석하기</button>
+										</div>
+									</div>
+									
+								
+									
+									
+								</div>
+							</c:forEach>
+						</c:when>
+						
+						<c:otherwise>
+							<div class="empty-text-container">
+								<div class="empty-box">
+									<div class="d-flex justify-content-center">
+										<i class="bi bi-emoji-dizzy emptyIcon"></i>
+									</div>
+									<div class="d-flex justify-content-center emptyText">
+										<div class="fontBMJUA">글쓰기로 게시물을 저장해주세요!</div>
+									</div>
+								</div>
 							</div>
-							<div class="d-flex justify-content-center emptyText">
-								<div class="fontBMJUA">글쓰기로 게시물을 저장해주세요!</div>
-							</div>
-						</div>
-					</div>
-				</c:otherwise>
-			</c:choose>
-		</section>
-	</section>
+						</c:otherwise>
+					</c:choose>
+				</section>
+			</section>
+		</div>
 		
-	<c:import url="/WEB-INF/jsp/include/footer.jsp"/>
-</div>
+		<c:import url="/WEB-INF/jsp/include/footer.jsp"/>
+	</div>
 </body>
 
 <!-- Modal -->
@@ -195,28 +203,7 @@
 			
 		});
 		
-		$("#profile-container").hover(
-			function() {
-				$("#profile-container").removeClass("d-none");
-				$("#profile").addClass("d-none");
-			},
-			function() {
-				$("#profile-container").addClass("d-none");
-				$("#profile").removeClass("d-none");
-			}
-		);
-				
-				
-		$("#profile").hover(
-			function() {
-				$("#profile-container").removeClass("d-none");
-				$("#profile").addClass("d-none");
-			},
-			function() {
-				$("#profile-container").addClass("d-none");
-				$("#profile").removeClass("d-none");
-			}
-		);
+
 
 	});
 </script>

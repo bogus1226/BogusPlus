@@ -23,78 +23,84 @@
 	<div id="wrap">
 		<c:import url="/WEB-INF/jsp/include/main-header.jsp"/>
 		
-		<section class="post-container previw-container d-flex">
+		<div class="mt-3 d-none" id="movieSearchLine">
+			<input type="text" class="searchBox movieSearchInput" id="movieSearchInput" placeholder="영화 검색"></input>
+		</div>
 		
-			<div class="preview ml-5">
-				<div class="textWhite text-center mt-5">미리보기</div>
-				
-				<div class="previewBox sudaPost previewPost mt-2 mb-4">
-					<div class="post-header d-flex align-items-center justify-content-between">
-						<div class="userName ml-3">${userName}</div>
-					</div>
+		<div class="searchMovieInfo"></div>
+		
+		<div class="movie-main-movieInfo">
+			<section class="post-container previw-container d-flex">
+			
+				<div class="preview ml-5">
+					<div class="textWhite text-center mt-5">미리보기</div>
 					
-					<c:choose>
-						<c:when test="${not empty post.imagePath}">
-							<div class="preview-image">
-								<img id="viewImage" src="${post.imagePath}">
-							</div>
-						</c:when>
+					<div class="previewBox sudaPost previewPost mt-2 mb-4">
+						<div class="post-header d-flex align-items-center justify-content-between">
+							<div class="userName ml-3">${userName}</div>
+						</div>
 						
-						<c:otherwise>
-							<div class="preview-image d-none">
-								<img id="viewImage" src="">
+						<c:choose>
+							<c:when test="${not empty post.imagePath}">
+								<div class="preview-image">
+									<img id="viewImage" src="${post.imagePath}">
+								</div>
+							</c:when>
+							
+							<c:otherwise>
+								<div class="preview-image d-none">
+									<img id="viewImage" src="">
+								</div>
+								<hr id="preview-hr" class="mt-1 mb-0">
+							</c:otherwise>
+						</c:choose>
+						<div class="post-text-container d-flex">
+							<div class="post-text-icon"></div>
+							<div class="post-text d-flex justify-content-center">
+								<div class="previewText textWhite mt-1" style="word-break:break-all;">${post.content}</div>
 							</div>
-							<hr id="preview-hr" class="mt-1 mb-0">
-						</c:otherwise>
-					</c:choose>
-					<div class="post-text-container d-flex">
-						<div class="post-text-icon"></div>
-						<div class="post-text d-flex justify-content-center">
-							<div class="previewText textWhite mt-1" style="word-break:break-all;">${post.content}</div>
 						</div>
 					</div>
 				</div>
-			</div>
-			
-			<section class="suda-main-contents">
-				<div class="fontBMJUA text-center">${cafe.name} <span class="myText">수정하기</span></div>
 				
-				<nav class="pt-2 nav-item d-flex" id="postNavLink">
-					<a class="nav-link"><span class="select">수다</span></a>
-				</nav>
-				
-				<textarea cols="25" rows="7" class="form-control mt-3 fontBMJUA" placeholder="게시물 내용" id="contentArea">${post.content}</textarea>
-				<div class="textRed mt-1 d-none" id="contentText">내용을 입력해주세요</div>
-				<div class="d-flex justify-content-between upload-last">
-					<div class="image-file-input d-flex">
-						<i id="imageIcon" class="bi bi-image iconGray mt-1"></i>
-						<c:choose>
-							<c:when test="${empty post.imagePath}">
-								<div class="imageText"></div>
-							</c:when>
-							<c:otherwise>
-								<div class="imageText" id="existingImage"></div>
-							</c:otherwise>
-						</c:choose>
-						<input id="fileInput" type="file" class="d-none">
-						<c:choose>
-							<c:when test="${not empty post.imagePath}">
-								<button type="button" class="btn btn-sm redBtn ml-2 deleteBtn"><i class="bi bi-trash3-fill"></i></button>
-							</c:when>
-							<c:otherwise>
-								<button type="button" class="btn btn-sm redBtn ml-2 deleteBtn d-none"><i class="bi bi-trash3-fill"></i></button>
-							</c:otherwise>
-						</c:choose>
-					</div>
+				<section class="suda-main-contents">
+					<div class="fontBMJUA text-center">${cafe.name} <span class="myText">수정하기</span></div>
 					
-					<button type="button" class="btn blueBtn mt-3" id="saveBtn" data-cafeid="${cafeId}" data-postid="${post.id}">저장</button>
-				</div>
+					<nav class="pt-2 nav-item d-flex" id="postNavLink">
+						<a class="nav-link"><span class="select">수다</span></a>
+					</nav>
+					
+					<textarea cols="25" rows="7" class="form-control mt-3 fontBMJUA" placeholder="게시물 내용" id="contentArea">${post.content}</textarea>
+					<div class="textRed mt-1 d-none" id="contentText">내용을 입력해주세요</div>
+					<div class="d-flex justify-content-between upload-last">
+						<div class="image-file-input d-flex">
+							<i id="imageIcon" class="bi bi-image iconGray mt-1"></i>
+							<c:choose>
+								<c:when test="${empty post.imagePath}">
+									<div class="imageText"></div>
+								</c:when>
+								<c:otherwise>
+									<div class="imageText" id="existingImage"></div>
+								</c:otherwise>
+							</c:choose>
+							<input id="fileInput" type="file" class="d-none">
+							<c:choose>
+								<c:when test="${not empty post.imagePath}">
+									<button type="button" class="btn btn-sm redBtn ml-2 deleteBtn"><i class="bi bi-trash3-fill"></i></button>
+								</c:when>
+								<c:otherwise>
+									<button type="button" class="btn btn-sm redBtn ml-2 deleteBtn d-none"><i class="bi bi-trash3-fill"></i></button>
+								</c:otherwise>
+							</c:choose>
+						</div>
+						
+						<button type="button" class="btn blueBtn mt-3" id="saveBtn" data-cafeid="${cafeId}" data-postid="${post.id}">저장</button>
+					</div>
+				</section>
 			</section>
-		</section>
-		
+		</div>
 
 		<c:import url="/WEB-INF/jsp/include/footer.jsp"/>
-
 	</div>
 </body>
 
@@ -240,28 +246,6 @@
 		});		
 		
 		
-		$("#profile-container").hover(
-			function() {
-				$("#profile-container").removeClass("d-none");
-				$("#profile").addClass("d-none");
-			},
-			function() {
-				$("#profile-container").addClass("d-none");
-				$("#profile").removeClass("d-none");
-			}
-		);
-				
-				
-		$("#profile").hover(
-			function() {
-				$("#profile-container").removeClass("d-none");
-				$("#profile").addClass("d-none");
-			},
-			function() {
-				$("#profile-container").addClass("d-none");
-				$("#profile").removeClass("d-none");
-			}
-		);
 
 	});
 </script>
