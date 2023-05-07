@@ -206,8 +206,39 @@
 			`togetherId` = #{togetherId}
 	</delete>
 	
+	<select id="selectGetTogether" parameterType="map" resultType="com.bogus.bogusplus.suda.cafe.together.model.Together">
+		SELECT
+			`id`
+			, `userId`
+			, `cafeId`
+			, `title`
+			, `placeName`
+			, `placeAddressX`
+			, `placeAddressY`
+			, `date`
+			, `content`
+			, `createdAt`
+			, `updatedAt`
+		FROM
+			`together`
+		WHERE
+			`id` = #{id}
+	</select>
 	
-	
+	<update id="updateTogether" parameterType="map">
+		UPDATE
+			`together` 
+		SET
+			`title` = #{title}
+			, `placeName` = #{placeName}
+			, `placeAddressX` = #{placeAddressX}
+			, `placeAddressY` = #{placeAddressY}
+			, `date` = #{date}
+			, `content` = #{content}
+			, `updatedAt` = now()
+		WHERE
+			`id` = #{id}
+	</update>
 	
 	
 </mapper>

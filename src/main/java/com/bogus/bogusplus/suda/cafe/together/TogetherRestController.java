@@ -142,4 +142,27 @@ public class TogetherRestController {
 		
 		return resultMap;
 	}
+	
+	@PostMapping("/update")
+	public Map<String, String> updateTogether(
+			@RequestParam("togetherId") int togetherId
+			, @RequestParam("title") String title
+			, @RequestParam("placeName") String placeName
+			, @RequestParam("placeAddressX") String placeAddressX
+			, @RequestParam("placeAddressY") String placeAddressY
+			, @RequestParam("date") @DateTimeFormat(pattern="yy년 MM월 dd일") Date date
+			, @RequestParam("content") String content) {
+		
+		int count = togetherBO.updateTogether(togetherId, title, placeName, placeAddressX, placeAddressY, date, content);
+		
+		Map<String, String> resultMap = new HashMap<>();
+		
+		if(count != 0) {
+			resultMap.put("result", "success");
+		} else {
+			resultMap.put("result", "fail");
+		}
+		
+		return resultMap;
+	}
 }

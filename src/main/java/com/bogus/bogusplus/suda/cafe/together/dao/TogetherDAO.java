@@ -64,4 +64,16 @@ public interface TogetherDAO {
 	
 	public int deleteAttendStatusByTogetherId(
 			@Param("togetherId") int togetherId);
+	
+	public Together selectGetTogether(
+			@Param("id") int id);
+	
+	public int updateTogether(
+			@Param("id") int id
+			, @Param("title") String title
+			, @Param("placeName") String placeName
+			, @Param("placeAddressX") String placeAddressX
+			, @Param("placeAddressY") String placeAddressY
+			, @Param("date") Date date
+			, @Param("content") String content);
 }

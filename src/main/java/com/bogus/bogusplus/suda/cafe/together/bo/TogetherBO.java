@@ -267,5 +267,20 @@ public class TogetherBO {
 		return togetherDAO.deleteTogether(togetherId);
 	}
 
+	public Together getTogether(int togetherId) {
+		
+		return togetherDAO.selectGetTogether(togetherId);
+	}
 	
+	public int updateTogether(
+			int togetherId
+			, String title
+			, String placeName
+			, String placeAddressX
+			, String placeAddressY
+			, Date date
+			, String content) {
+		
+		return togetherDAO.updateTogether(togetherId, title, placeName, placeAddressX, placeAddressY, date, content);
+	}
 }

@@ -5,9 +5,15 @@
 		
 		var pointSelect = null;
 		
+		var placeName = null;
+		
 		var infoWindow = new naver.maps.InfoWindow({
 		    anchorSkew: true,
 		});
+		
+		function updatePlace(updatePlaceName){
+			placeName = updatePlaceName;
+		}
 		
 		function naverMap(naverMap, selectFunc){
 			map = naverMap;
@@ -124,8 +130,13 @@
 
 		        searchAddressToCoordinate($('#address').val());
 		    });
-
-		    searchAddressToCoordinate('정자동 178-1');
+		    
+			if(placeName != null) {
+		        searchAddressToCoordinate(placeName);
+		    } else {
+				searchAddressToCoordinate('정자동 178-1');
+			}
+  
 		}
 
 		function makeAddress(item) {

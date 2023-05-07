@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -40,18 +41,19 @@
 					<a class="nav-link"><span class="select">함께하기</span></a>
 				</nav>
 				
-				<input type="text" class="form-control fontBMJUA" id="titleInput" placeholder="제목을 입력해주세요">
+				<input type="text" class="form-control fontBMJUA" id="titleInput" placeholder="제목을 입력해주세요" value="${together.title}">
 				<div class="textRed mt-1 d-none" id="titleText">제목을 입력해주세요!</div>
 				<div class="d-flex mt-2">
 					<div class="choosePlace d-flex align-items-center col-8">
 						<i class="bi bi-geo-alt placeIcon" id="placeBtn"></i>
-						<div class="fontBMJUA mt-2 ml-2 placeSelect">장소 선택</div>
+						<div class="fontBMJUA mt-2 ml-2 placeSelect">${together.placeName}</div>
 					</div>
 					
+					<fmt:formatDate var="togetherDate" value="${together.date}" pattern="yyyy년 MM월 dd일"/>
 					<div class="choosePlace d-flex align-items-center col-5">
 						<i class="bi bi-calendar calendarIcon"></i>
 						<input type="text" id="datepicker" class="datepicker-input">
-						<div class="fontBMJUA mt-2 ml-2 calendarSelect">날짜 선택</div>
+						<div class="fontBMJUA mt-2 ml-2 calendarSelect">${togetherDate}</div>
 					</div>	
 				</div>
 				
@@ -66,12 +68,12 @@
 				</div>
 				
 				<div class="textArea-container d-none">
-					<textarea cols="25" rows="7" class="form-control mt-3 fontBMJUA" placeholder="내용을 입력해주세요" id="contentArea"></textarea>
+					<textarea cols="25" rows="7" class="form-control mt-3 fontBMJUA" placeholder="내용을 입력해주세요" id="contentArea">${together.content}</textarea>
 					<div class="textRed mt-1 d-none" id="contentText">내용을 입력해주세요</div>
 					
 					<div class="d-flex justify-content-end">
 						<button type="button" class="btn btn-secondary mt-3 mr-2" id="backButton">취소</button>
-						<button type="button" class="btn btn-primary mt-3" id="saveBtn" data-cafeid="${cafeId}">저장</button>
+						<button type="button" class="btn btn-primary mt-3" id="saveBtn" data-cafeid="${cafeId}" data-togetherid="${together.id}">저장</button>
 					</div>
 				</div>
 			   
@@ -117,7 +119,7 @@
 			$("#contentText").addClass("d-none");
 		});
 		
-		var dateString = null;
+		var dateString = "${togetherDate}";
 		
 		$("#saveBtn").on("click", function(){
 			
@@ -133,6 +135,7 @@
 			}
 			
 			let cafeId = $(this).data("cafeid");
+			let togetherId = $(this).data("togetherid");
 			
 			let content = $("#contentArea").val();
 			
@@ -174,8 +177,8 @@
 			
 			$.ajax({
 				type:"post"
-				, url:"/suda/cafe/together/create"
-				, data:{"cafeId":cafeId
+				, url:"/suda/cafe/together/update"
+				, data:{"togetherId":togetherId
 					, "title":title
 					, "placeName":placeName
 					, "placeAddressX":placeAddressX
@@ -203,6 +206,8 @@
 		
 		$("#datepicker").datepicker({minDate:0});
 		
+		let dateFullString = "${togetherDateInfo}";
+
 		$.datepicker.setDefaults({
 			  dateFormat: "yy년 mm월 dd일",
 			  monthNames: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
@@ -266,9 +271,13 @@
 			
 		});
 		
+		let placeX = ${together.placeAddressX};
+		let placeY = ${together.placeAddressY};
+		let placeName = "${together.placeName}";
+		
 		// 네이버 API 자바스크립트
 		var map = new naver.maps.Map("map", {
-		    center: new naver.maps.LatLng(37.3595316, 127.1052133),
+		    center: new naver.maps.LatLng(placeX, placeY),
 		    zoom: 15,
 		    mapTypeControl: true
 		    
@@ -276,8 +285,11 @@
 		
 
 		map.setCursor("pointer");
+		
+		// 초기값이아니라 전에 있던 데이터로 보여주기위한 코드!
+		updatePlace(placeName);
 
-		naver.maps.onJSContentLoaded = initGeocoder;
+	    naver.maps.onJSContentLoaded = initGeocoder;
 		
 		var placeString = null;
 		
@@ -290,6 +302,8 @@
 
 
 		// 네이버 API
+		
+		
 		
 				
 		$("#profile").hover(

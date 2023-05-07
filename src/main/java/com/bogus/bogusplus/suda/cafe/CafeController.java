@@ -17,6 +17,7 @@ import com.bogus.bogusplus.suda.cafe.post.bo.PostBO;
 import com.bogus.bogusplus.suda.cafe.post.model.Post;
 import com.bogus.bogusplus.suda.cafe.post.model.PostDetail;
 import com.bogus.bogusplus.suda.cafe.together.bo.TogetherBO;
+import com.bogus.bogusplus.suda.cafe.together.model.Together;
 import com.bogus.bogusplus.suda.cafe.together.model.TogetherDetail;
 
 
@@ -199,10 +200,13 @@ public class CafeController {
 			, Model model) {
 		
 		
+		Together together = togetherBO.getTogether(togetherId);
+		
 		Cafe cafe = cafeBO.getCafeById(cafeId);
 		
 		model.addAttribute("cafeId", cafeId);
 		model.addAttribute("cafe", cafe);
+		model.addAttribute("together", together);
 		
 		return "suda/cafe/cafeUpdateTogether";
 	}

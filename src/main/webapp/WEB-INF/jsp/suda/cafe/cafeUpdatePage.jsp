@@ -41,6 +41,9 @@
 						</c:when>
 						
 						<c:otherwise>
+							<div class="preview-image d-none">
+								<img id="viewImage" src="">
+							</div>
 							<hr id="preview-hr" class="mt-1 mb-0">
 						</c:otherwise>
 					</c:choose>
