@@ -881,6 +881,12 @@ a:hover {
 	
 }
 
+#playBtn > .textWhite {
+	font-size:17px;
+	font-family: 'BMJUA';
+	margin-top:3px;
+}
+
 .playIcon {
 	font-size:23px;
 	margin-top:1px;
@@ -914,7 +920,7 @@ a:hover {
 }
 
 .overview {
-	width:55%;
+	width:60%;
 }
 
 .notBackground {
@@ -950,7 +956,7 @@ a:hover {
 	color:#c9c7c7;
 }
 
-.recommend > img {
+.recommend > a > img {
 	width:260px;
 	height:200px;
 	margin-right:20px;
@@ -959,3 +965,4 @@ a:hover {
 .info-text-review {
 	background-color:rgba(0, 0, 0, 0.5);
 }
+

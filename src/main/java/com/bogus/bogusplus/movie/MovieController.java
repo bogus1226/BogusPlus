@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.bogus.bogusplus.tmdb.bo.TmdbBO;
 import com.bogus.bogusplus.tmdb.model.TMDB;
+import com.bogus.bogusplus.tmdb.model.TMDBMovieId;
 
 @Service
 @RequestMapping("/movie")
@@ -97,6 +98,18 @@ public class MovieController {
 	public String movieDetailRecommend(
 			@RequestParam("movieId") int movieId
 			, Model model) {
+		
+		TMDBMovieId tmdbMovieId = tmdbBO.movieGetVideoIdByMovieId(movieId);
+		
+		List<TMDB> recommendList = tmdbBO.getRecommendmovieIdByMovieId(movieId);
+		
+		if(recommendList != null) {
+			model.addAttribute("recommendList", recommendList);
+		}
+		
+		if(tmdbMovieId.getKey() != null) {
+			model.addAttribute("tmdbMovieId", tmdbMovieId);
+		}
 		
 		TMDB tmdb = tmdbBO.movieDetailTMDBInfoByMovieId(movieId);
 		

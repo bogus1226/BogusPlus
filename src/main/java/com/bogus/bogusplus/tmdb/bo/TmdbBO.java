@@ -6,7 +6,6 @@ import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import org.json.simple.JSONArray;
@@ -16,6 +15,7 @@ import org.json.simple.parser.ParseException;
 import org.springframework.stereotype.Service;
 
 import com.bogus.bogusplus.tmdb.model.TMDB;
+import com.bogus.bogusplus.tmdb.model.TMDBMovieId;
 
 @Service
 public class TmdbBO {
@@ -82,7 +82,6 @@ public class TmdbBO {
 				Integer movieId = Integer.parseInt(String.valueOf(contents.get("id"))); 
 		
 				tmdb.setPoster_path("https://image.tmdb.org/t/p/w342/" + poster_path);
-				
 				tmdb.setId(movieId);
 				
 				infoList.add(tmdb);
@@ -114,11 +113,14 @@ public class TmdbBO {
 			for (int i = 0; i < 10; i++) {
 				TMDB tmdb = new TMDB();
 				JSONObject contents = (JSONObject) list.get(i);
+				Integer movieId = Integer.parseInt(String.valueOf(contents.get("id")));
 
+				
 				String backdrop_path = String.valueOf(contents.get("backdrop_path"));
 				tmdb.setBackdrop_path("https://image.tmdb.org/t/p/w1280/" + backdrop_path);
 				tmdb.setTitle(String.valueOf(contents.get("title")));	
 				tmdb.setOverview(String.valueOf(contents.get("overview")));
+				tmdb.setId(movieId);
 				infoList.add(tmdb);
 			}
 			
@@ -197,7 +199,10 @@ public class TmdbBO {
 				TMDB tmdb = new TMDB();
 				JSONObject contents = (JSONObject) list.get(i);
 				
+				Integer movieId = Integer.parseInt(String.valueOf(contents.get("id")));
 				String poster_path = String.valueOf(contents.get("poster_path"));
+				
+				tmdb.setId(movieId);
 				tmdb.setPoster_path("https://image.tmdb.org/t/p/w342/" + poster_path);
 				infoList.add(tmdb);
 			}		
@@ -241,9 +246,11 @@ public class TmdbBO {
 			String release_date = String.valueOf(jsonObject.get("release_date"));
 			
 			// TMDB자체에서 명확하게 List<Object>이기때문에 그대로 놔뒀다!!
+			@SuppressWarnings("unchecked")
 			List<Object> genres = (List<Object>) jsonObject.get("genres");
-			
+	
 			String overview = String.valueOf(jsonObject.get("overview"));
+			Object runtime = String.valueOf(jsonObject.get("runtime"));
 			
 			movieInfo.setBackdrop_path("https://image.tmdb.org/t/p/w1280/" + backdrop_path);
 			movieInfo.setTitle(title);
@@ -251,8 +258,7 @@ public class TmdbBO {
 			movieInfo.setRelease_date(release_date);
 			movieInfo.setGenres(genres);
 			movieInfo.setOverview(overview);
-			
-				
+			movieInfo.setRuntime(runtime);				
 
 		} catch (Exception e) {
 			
@@ -263,6 +269,136 @@ public class TmdbBO {
 		
 	}
 	
+	public TMDBMovieId movieGetVideoIdByMovieId(int movieId) {
+		
+		TMDBMovieId movieInfo = null;
+		
+		try {
+			
+			movieInfo = new TMDBMovieId();
+				
+			String apiURL = "https://api.themoviedb.org/3/movie/"
+					+ movieId + "/videos?api_key=" + key + "&language=ko-KR";
+			
+			URL url = new URL(apiURL);
+			
+			BufferedReader bf;
+			
+			bf = new BufferedReader(new InputStreamReader(url.openStream(), "UTF-8"));
+			
+			String result = bf.readLine();
+			
+			JSONParser jsonParser = new JSONParser();
+			
+			JSONObject jsonObject = (JSONObject) jsonParser.parse(result);		
+			
+			JSONArray list = (JSONArray) jsonObject.get("results");
+			
+			
+			if(list.size() > 0) {
+				
+				for(int i = 0; i < list.size(); i ++) {
+					
+					JSONObject firstMovie = (JSONObject) list.get(i);
+					
+					if(String.valueOf(firstMovie.get("site")).equals("YouTube")) {
+						String key = String.valueOf(firstMovie.get("key"));
+						
+						movieInfo.setKey(key);
+						break;
+					}
+						
+				}
+				
+			} 
+			
 
+		} catch (Exception e) {
+			
+			e.printStackTrace();
+		}
+		
+		return movieInfo;
+		
+	}
+	
+	public List<TMDB> getRecommendmovieIdByMovieId(int movieId) {
+		
+		List<TMDB> movieInfoList = null;
+		
+		try {
+			
+			movieInfoList = new ArrayList<TMDB>();
+				
+			String apiURL = "https://api.themoviedb.org/3/movie/"
+					+ movieId + "/recommendations?api_key=" + key + "&language=ko-KR&watch_region=KR&with_watch_providers=337";
+			
+			
+			
+			URL url = new URL(apiURL);
+			
+			BufferedReader bf;
+			
+			bf = new BufferedReader(new InputStreamReader(url.openStream(), "UTF-8"));
+			
+			String result = bf.readLine();
+			
+			JSONParser jsonParser = new JSONParser();
+			
+			JSONObject jsonObject = (JSONObject) jsonParser.parse(result);		
+			
+			JSONArray list = (JSONArray) jsonObject.get("results");
+			
+			
+			if(list.size() < 6) {
+				
+				for(int i = 0; i < list.size(); i ++) {
+					TMDB tmdb = new TMDB();
+					
+					JSONObject recommendMovie = (JSONObject) list.get(i);
+					
+					Integer id = Integer.parseInt(String.valueOf(recommendMovie.get("id")));
+					String poster_path = String.valueOf(recommendMovie.get("poster_path"));
+					
+					if(!poster_path.equals("null")) {
+						tmdb.setPoster_path("https://image.tmdb.org/t/p/w342/" + poster_path);
+						tmdb.setId(id);
+						
+						movieInfoList.add(tmdb);
+					}
+					
+							
+				}
+				
+			} else {
+				
+				for(int i = 0; i < 5; i ++) {
+					TMDB tmdb = new TMDB();
+					
+					JSONObject recommendMovie = (JSONObject) list.get(i);
+					
+					Integer id = Integer.parseInt(String.valueOf(recommendMovie.get("id"))); 
+					String poster_path = String.valueOf(recommendMovie.get("poster_path"));
+					
+					if(!poster_path.equals("null")) {
+						tmdb.setPoster_path("https://image.tmdb.org/t/p/w342/" + poster_path);
+						tmdb.setId(id);
+						
+						movieInfoList.add(tmdb);
+					}
+							
+				}
+			}
+			
+
+		} catch (Exception e) {
+			
+			e.printStackTrace();
+		}
+		
+		return movieInfoList;
+		
+	}
+	
 
 }

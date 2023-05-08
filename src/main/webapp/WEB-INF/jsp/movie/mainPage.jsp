@@ -38,7 +38,7 @@
 			<div class="swiper swiper-box poster-contents mt-4">
 	   			<div class="swiper-wrapper posterBox">
 	   				<c:forEach var="popularPosterList" items="${mainPagePopularPosterList}">
-	        			<a href="#" class="swiper-slide">
+	        			<a href="/movie/detail/recommend/view?movieId=${popularPosterList.id}" class="swiper-slide">
 	        				<img src="${popularPosterList.backdrop_path}">
 	        				<span class="movie-title">${popularPosterList.title}<br><br><span class="movie-overview">${popularPosterList.overview}</span></span>
 	        			</a>
@@ -66,7 +66,7 @@
 						<div class="textWhite">한국 콘텐츠</div>
 						<div class="swiper-wrapper contents d-flex mt-2" id="append1">
 							<c:forEach var="koreaMovieList" items="${mainpageKoreaMovieList}">
-								<a href="#" class="movie-box swiper-slide"><img src="${koreaMovieList.poster_path}"></a>
+								<a href="/movie/detail/recommend/view?movieId=${koreaMovieList.id}" class="movie-box swiper-slide"><img src="${koreaMovieList.poster_path}"></a>
 							</c:forEach>
 						</div>
 						<div class="swiper-button-prev movieBackBtn" data-movie-info="1"></div>
@@ -77,7 +77,7 @@
 						<div class="textWhite">오늘의 <span class="logo">TOP</span> 콘텐츠</div>
 						<div class="swiper-wrapper contents d-flex mt-2" id="append2">
 							<c:forEach var="todayTopMovieList" items="${mainPageTodayTopMovieList}">
-								<a href="#" class="movie-box swiper-slide"><img src="${todayTopMovieList.poster_path}"></a>
+								<a href="/movie/detail/recommend/view?movieId=${todayTopMovieList.id}" class="movie-box swiper-slide"><img src="${todayTopMovieList.poster_path}"></a>
 							</c:forEach>
 						</div>
 						<div class="swiper-button-prev movieBackBtn" data-movie-info="2"></div>
@@ -88,7 +88,7 @@
 						<div class="textWhite">애니메이션 영화</div>
 						<div class="swiper-wrapper contents d-flex mt-2" id="append3">
 							<c:forEach var="animationMovieList" items="${mainPageAnimationMovieList}">
-								<a href="#" class="movie-box swiper-slide"><img src="${animationMovieList.poster_path}"></a>
+								<a href="/movie/detail/recommend/view?movieId=${animationMovieList.id}" class="movie-box swiper-slide"><img src="${animationMovieList.poster_path}"></a>
 							</c:forEach>
 						</div>
 						<div class="swiper-button-prev movieBackBtn" data-movie-info="3"></div>
@@ -99,7 +99,7 @@
 						<div class="textWhite">액션 <span class="icon">&</span> 스릴러</div>
 						<div class="swiper-wrapper contents d-flex mt-2" id="append4">
 							<c:forEach var="actionMovieList" items="${mainPageActionMovieList}">
-								<a href="#" class="movie-box swiper-slide"><img src="${actionMovieList.poster_path}"></a>
+								<a href="/movie/detail/recommend/view?movieId=${actionMovieList.id}" class="movie-box swiper-slide"><img src="${actionMovieList.poster_path}"></a>
 							</c:forEach>
 						</div>
 						<div class="swiper-button-prev movieBackBtn" data-movie-info="4"></div>
@@ -110,7 +110,7 @@
 						<div class="textWhite">코미디</div>
 						<div class="swiper-wrapper contents d-flex mt-2" id="append5">
 							<c:forEach var="comedyMovieList" items="${mainPageComedyMovieList}">
-								<a href="#" class="movie-box swiper-slide"><img src="${comedyMovieList.poster_path}"></a>
+								<a href="/movie/detail/recommend/view?movieId=${comedyMovieList.id}" class="movie-box swiper-slide"><img src="${comedyMovieList.poster_path}"></a>
 							</c:forEach>
 						</div>
 						<div class="swiper-button-prev movieBackBtn" data-movie-info="5"></div>
@@ -121,7 +121,7 @@
 						<div class="textWhite">로맨스</div>
 						<div class="swiper-wrapper contents d-flex mt-2" id="append6">
 							<c:forEach var="romanceMovieList" items="${mainPageRomanceMovieList}">
-								<a href="#" class="movie-box swiper-slide"><img src="${romanceMovieList.poster_path}"></a>
+								<a href="/movie/detail/recommend/view?movieId=${romanceMovieList.id}" class="movie-box swiper-slide"><img src="${romanceMovieList.poster_path}"></a>
 							</c:forEach>
 						</div>
 						<div class="swiper-button-prev movieBackBtn" data-movie-info="6"></div>
@@ -132,7 +132,7 @@
 						<div class="textWhite logo">SF</div>
 						<div class="swiper-wrapper contents d-flex mt-2" id="append7">
 							<c:forEach var="sfMovieList" items="${mainPageSFMovieList}">
-								<a href="#" class="movie-box swiper-slide"><img src="${sfMovieList.poster_path}"></a>
+								<a href="/movie/detail/recommend/view?movieId=${sfMovieList.id}" class="movie-box swiper-slide"><img src="${sfMovieList.poster_path}"></a>
 							</c:forEach>
 						</div>
 						<div class="swiper-button-prev movieBackBtn" data-movie-info="7"></div>
@@ -143,7 +143,7 @@
 						<div class="textWhite">호러</div>
 						<div class="swiper-wrapper contents d-flex mt-2" id="append8">
 							<c:forEach var="horrorMovieList" items="${mainPageHorrorMovieList}">
-								<a href="#" class="movie-box swiper-slide"><img src="${horrorMovieList.poster_path}"></a>
+								<a href="/movie/detail/recommend/view?movieId=${horrorMovieList.id}" class="movie-box swiper-slide"><img src="${horrorMovieList.poster_path}"></a>
 							</c:forEach>
 						</div>
 						<div class="swiper-button-prev movieBackBtn" data-movie-info="8"></div>
@@ -154,7 +154,7 @@
 						<div class="textWhite">가족</div>
 						<div class="swiper-wrapper contents d-flex mt-2" id="append9">
 							<c:forEach var="familyMovieList" items="${mainPageFamilyMovieList}">
-								<a href="#" class="movie-box swiper-slide"><img src="${familyMovieList.poster_path}"></a>
+								<a href="/movie/detail/recommend/view?movieId=${familyMovieList.id}" class="movie-box swiper-slide"><img src="${familyMovieList.poster_path}"></a>
 							</c:forEach>
 						</div>
 						<div class="swiper-button-prev movieBackBtn" data-movie-info="9"></div>
@@ -165,7 +165,7 @@
 						<div class="textWhite">모험</div>
 						<div class="swiper-wrapper contents d-flex mt-2" id="append10">
 							<c:forEach var="adventureMovieList" items="${mainPageAdventureMovieList}">
-								<a href="#" class="movie-box swiper-slide"><img src="${adventureMovieList.poster_path}"></a>
+								<a href="/movie/detail/recommend/view?movieId=${adventureMovieList.id}" class="movie-box swiper-slide"><img src="${adventureMovieList.poster_path}"></a>
 							</c:forEach>
 						</div>
 						<div class="swiper-button-prev movieBackBtn" data-movie-info="10"></div>
@@ -176,7 +176,7 @@
 						<div class="textWhite">판타지</div>
 						<div class="swiper-wrapper contents d-flex mt-2" id="append11">
 							<c:forEach var="fantasyMovieList" items="${mainPageFantasyMovieList}">
-								<a href="#" class="movie-box swiper-slide"><img src="${fantasyMovieList.poster_path}"></a>
+								<a href="/movie/detail/recommend/view?movieId=${fantasyMovieList.id}" class="movie-box swiper-slide"><img src="${fantasyMovieList.poster_path}"></a>
 							</c:forEach>
 						</div>
 						<div class="swiper-button-prev movieBackBtn" data-movie-info="11"></div>
@@ -187,7 +187,7 @@
 						<div class="textWhite">전쟁</div>
 						<div class="swiper-wrapper contents d-flex mt-2" id="append12">
 							<c:forEach var="warMovieList" items="${mainPageWarMovieList}">
-								<a href="#" class="movie-box swiper-slide"><img src="${warMovieList.poster_path}"></a>
+								<a href="/movie/detail/recommend/view?movieId=${warMovieList.id}" class="movie-box swiper-slide"><img src="${warMovieList.poster_path}"></a>
 							</c:forEach>
 						</div>
 						<div class="swiper-button-prev movieBackBtn" data-movie-info="12"></div>
@@ -198,7 +198,7 @@
 						<div class="textWhite">음악</div>
 						<div class="swiper-wrapper contents d-flex mt-2" id="append13">
 							<c:forEach var="musicMovieList" items="${mainPageMusicMovieList}">
-								<a href="#" class="movie-box swiper-slide"><img src="${musicMovieList.poster_path}"></a>
+								<a href="/movie/detail/recommend/view?movieId=${musicMovieList.id}" class="movie-box swiper-slide"><img src="${musicMovieList.poster_path}"></a>
 							</c:forEach>
 						</div>
 						<div class="swiper-button-prev movieBackBtn" data-movie-info="13"></div>
@@ -209,7 +209,7 @@
 						<div class="textWhite">범죄</div>
 						<div class="swiper-wrapper contents d-flex mt-2" id="append14">
 							<c:forEach var="crimeMovieList" items="${mainPageCrimeMovieList}">
-								<a href="#" class="movie-box swiper-slide"><img src="${crimeMovieList.poster_path}"></a>
+								<a href="/movie/detail/recommend/view?movieId=${crimeMovieList.id}" class="movie-box swiper-slide"><img src="${crimeMovieList.poster_path}"></a>
 							</c:forEach>
 						</div>
 						<div class="swiper-button-prev movieBackBtn" data-movie-info="14"></div>
@@ -220,7 +220,7 @@
 						<div class="textWhite">다큐멘터리</div>
 						<div class="swiper-wrapper contents d-flex mt-2" id="append15">
 							<c:forEach var="documentaryMovieList" items="${mainPageDocumentaryMovieList}">
-								<a href="#" class="movie-box swiper-slide"><img src="${documentaryMovieList.poster_path}"></a>
+								<a href="/movie/detail/recommend/view?movieId=${documentaryMovieList.id}" class="movie-box swiper-slide"><img src="${documentaryMovieList.poster_path}"></a>
 							</c:forEach>
 						</div>
 						<div class="swiper-button-prev movieBackBtn" data-movie-info="15"></div>
@@ -231,7 +231,7 @@
 						<div class="textWhite">역사</div>
 						<div class="swiper-wrapper contents d-flex mt-2" id="append16">
 							<c:forEach var="historyMovieList" items="${mainPageHistoryMovieList}">
-								<a href="#" class="movie-box swiper-slide"><img src="${historyMovieList.poster_path}"></a>
+								<a href="/movie/detail/recommend/view?movieId=${historyMovieList.id}" class="movie-box swiper-slide"><img src="${historyMovieList.poster_path}"></a>
 							</c:forEach>
 						</div>
 						<div class="swiper-button-prev movieBackBtn" data-movie-info="16"></div>
@@ -251,11 +251,13 @@
 	$(document).ready(function(){
 		
 		var movieNumberList = ["0", "1", "2", "16", "28,53", "35", "10749", "878", "27", "10751" 
-			,"12", "14", "10752" ,"10402", "80", "99", "36"];
+			,"12", "14", "10752" , "10402", "80", "99", "36"];
 		
 		var clickList = new Array(17);
 		
 		var backList = new Array(17);
+		
+		const basicUrl = "/movie/detail/recommend/view?movieId=";
 		
 		$(".movieBackBtn").on("click",  function(){
 			let movieInfo = $(this).data("movie-info");
@@ -309,7 +311,7 @@
 								
 								if(list[i].poster_path != null && !list[i].poster_path.endsWith("null")) {
 									
-									var aTagInfo = "<a href=\"#\" class=\"movie-box swiper-slide\"><img src=" + list[i].poster_path + "></a>";
+									var aTagInfo = "<a href=\"/movie/detail/recommend/view?movieId=" + list[i].id + "\" class=\"movie-box swiper-slide\"><img src=" + list[i].poster_path + "></a>";
 									
 									$(appendNumber).append(aTagInfo);
 								}

@@ -81,7 +81,8 @@
 								
 								if(list[i].poster_path != null && !list[i].poster_path.endsWith("null")) {
 									
-									html += "<a href=\"#\"><img src=" + list[i].poster_path + "></a>";
+									html += "<a href=\"/movie/detail/recommend/view?movieId=" + list[i].id + "\"><img src=" + list[i].poster_path + "></a>";
+									
 								}	
 							};
 							
