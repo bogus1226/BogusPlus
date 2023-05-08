@@ -1,6 +1,5 @@
 package com.bogus.bogusplus.tmdb.model;
 
-import java.util.Date;
 import java.util.List;
 
 import lombok.Data;
@@ -20,7 +19,7 @@ public class TMDB {
 	private Double popularity; // 인기
 	private String poster_path; // 포스터 경로
 	private List<Object> production_countries; // 생산 국가
-	private Date release_date; // 출시일
+	private String release_date; // 출시일
 	private Object runtime; // 실행 시간
 	private List<Object> spoken_languages; // 음성 언어
 	private String status; // 상태

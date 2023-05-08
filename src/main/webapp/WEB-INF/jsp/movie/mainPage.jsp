@@ -55,7 +55,7 @@
 						<div class="textWhite">시청 중인 콘텐츠</div>
 						<div class="swiper-wrapper contents d-flex mt-2" id="append0">
 							<c:forEach var="koreaMovieList" items="${mainpageKoreaMovieList}" varStatus="status">
-								<a href="/movie/detail/recommend/view" class="movie-box swiper-slide"><img src="${koreaMovieList.poster_path}"></a>
+								<a href="/movie/detail/recommend/view?movieId=${koreaMovieList.id}"  class="movie-box swiper-slide"><img src="${koreaMovieList.poster_path}"></a>
 							</c:forEach>
 						</div>
 						<div class="swiper-button-prev movieBackBtn" data-movie-info="0"></div>

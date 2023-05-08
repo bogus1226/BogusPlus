@@ -190,8 +190,9 @@
 														</div>
 													</div>
 												</form>
-											</div>
+											
 											<div class="post-text-icon"></div>
+											</div>
 										</div>
 									</div>
 												
@@ -302,9 +303,13 @@
 			$("#bogus-talk-wrap" + togetherId).addClass("d-none"); 
 		}); 
 		
-		$(".talkBtn").on("click", function(){
+		$(".talkBtn").on("click", function(e){
+			
+			e.preventDefault();
+			
 			let togetherId = $(this).data("togetherid");
 			let talk = $("#talkInput" + togetherId).val();
+			let cafeId = ${cafeId};
 			
 			if(talk.trim() == "") {
 				return;
@@ -316,6 +321,8 @@
 				, data:{"togetherId":togetherId, "talk":talk}
 				, success:function(data){
 					if(data.result == "success") {
+						/* $("#bogus-talk-wrap" + togetherId).load(window.location.href + " #bogus-talk-wrap" + togetherId);
+						$("#bogus-talk-wrap" + togetherId).removeClass("d-none");  */
 						location.reload();
 					} else {
 						console.log("톡 달기 실패");

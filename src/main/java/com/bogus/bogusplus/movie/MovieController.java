@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.bogus.bogusplus.tmdb.bo.TmdbBO;
 import com.bogus.bogusplus.tmdb.model.TMDB;
@@ -93,7 +94,13 @@ public class MovieController {
 	}
 	
 	@GetMapping("/detail/recommend/view")
-	public String movieDetailRecommend() {
+	public String movieDetailRecommend(
+			@RequestParam("movieId") int movieId
+			, Model model) {
+		
+		TMDB tmdb = tmdbBO.movieDetailTMDBInfoByMovieId(movieId);
+		
+		model.addAttribute("tmdb", tmdb);
 		
 		return "movie/detailRecommend";
 	}

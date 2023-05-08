@@ -6,6 +6,7 @@ import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.json.simple.JSONArray;
@@ -78,7 +79,12 @@ public class TmdbBO {
 				JSONObject contents = (JSONObject) list.get(i);
 				
 				String poster_path = String.valueOf(contents.get("poster_path"));
+				Integer movieId = Integer.parseInt(String.valueOf(contents.get("id"))); 
+		
 				tmdb.setPoster_path("https://image.tmdb.org/t/p/w342/" + poster_path);
+				
+				tmdb.setId(movieId);
+				
 				infoList.add(tmdb);
 			}		
 
@@ -204,6 +210,58 @@ public class TmdbBO {
 		return infoList;
 	}
 
+	
+	public TMDB movieDetailTMDBInfoByMovieId(int movieId) {
+		
+		TMDB movieInfo = null;
+		
+		try {
+			
+			movieInfo = new TMDB();
+				
+			String apiURL = "https://api.themoviedb.org/3/movie/"
+					+ movieId + "?api_key=" + key + "&language=ko-KR&watch_region=KR&"
+					+ "with_watch_providers=" + provider;
+			
+			URL url = new URL(apiURL);
+			
+			BufferedReader bf;
+			
+			bf = new BufferedReader(new InputStreamReader(url.openStream(), "UTF-8"));
+			
+			String result = bf.readLine();
+			
+			JSONParser jsonParser = new JSONParser();
+			
+			JSONObject jsonObject = (JSONObject) jsonParser.parse(result);		
+
+			String backdrop_path = String.valueOf(jsonObject.get("backdrop_path"));
+			String title = String.valueOf(jsonObject.get("title"));
+			Boolean adult = (Boolean) jsonObject.get("adult");
+			String release_date = String.valueOf(jsonObject.get("release_date"));
+			
+			// TMDB자체에서 명확하게 List<Object>이기때문에 그대로 놔뒀다!!
+			List<Object> genres = (List<Object>) jsonObject.get("genres");
+			
+			String overview = String.valueOf(jsonObject.get("overview"));
+			
+			movieInfo.setBackdrop_path("https://image.tmdb.org/t/p/w1280/" + backdrop_path);
+			movieInfo.setTitle(title);
+			movieInfo.setAdult(adult);
+			movieInfo.setRelease_date(release_date);
+			movieInfo.setGenres(genres);
+			movieInfo.setOverview(overview);
+			
+				
+
+		} catch (Exception e) {
+			
+			e.printStackTrace();
+		}
+		
+		return movieInfo;
+		
+	}
 	
 
 
