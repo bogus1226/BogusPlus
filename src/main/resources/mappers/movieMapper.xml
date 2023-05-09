@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bogus.bogusplus.movie.dao.MovieDAO">
+
+	<insert id="insertInterest" parameterType="map">
+		INSERT INTO
+			`interest`
+		(
+			`movieId`
+			, `userId`
+			, `posterPath`
+			, `createdAt`
+		)
+		VALUE
+		(
+			#{movieId}
+			, #{userId}
+			, #{posterPath}
+			, now()
+		)
+	</insert>
+	
+	<select id="selectIsDuplicateInterest" parameterType="map" resultType="int">
+		SELECT
+			count(1)
+		FROM
+			`interest`
+		WHERE
+			`movieId` = #{movieId}
+		AND
+			`userId` = #{userId}
+	</select>
+	
+	<delete id="deleteInterest" parameterType="int">
+		DELETE 
+		FROM
+			`interest`
+		WHERE
+			`movieId` = #{movieId}
+		AND
+			`userId` = #{userId}
+	</delete>
+	
+	<select id="selecetGetMovieInterest" parameterType="int" resultType="com.bogus.bogusplus.movie.model.Interest">
+		SELECT
+			`movieId`
+			, `userId`
+			, `posterPath`
+			, `createdAt`
+		FROM
+			`interest`
+		WHERE
+			`userId` = #{userId}
+		ORDER BY
+			`id`
+		DESC
+	</select>
+
+	
+	
+	
+</mapper>

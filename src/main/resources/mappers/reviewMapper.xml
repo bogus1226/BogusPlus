@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bogus.bogusplus.movie.review.dao.ReviewDAO">
+
+	<insert id="insertReview" parameterType="map">
+		INSERT INTO
+			`review`
+		(
+			`movieId`
+			, `userId`
+			, `content`
+			, `grade`
+			, `createdAt`
+		)
+		VALUE
+		(
+			#{movieId}
+			, #{userId}
+			, #{content}
+			, #{grade}
+			, now()
+		)
+	</insert>
+	
+	<select id="selectGetReviewListByMovieId" parameterType="int" resultType="com.bogus.bogusplus.movie.review.model.Review">
+		SELECT
+			`id`
+			, `movieId`
+			, `userId`
+			, `content`
+			, `grade`
+			, `createdAt`
+		FROM
+			`review`
+		WHERE
+			`movieId` = #{movieId}
+	</select>
+	
+	<select id="selectIsDuplicateReview" parameterType="map" resultType="int">
+		SELECT
+			count(1)
+		FROM
+			`review`
+		WHERE
+			`movieId` = #{movieId}
+		AND
+		  	`userId` = #{userId}
+	</select>
+	
+	<delete id="deleteReview" parameterType="int">
+		DELETE FROM
+			`review`
+		WHERE
+			`id` = #{id}
+	</delete>
+
+ 	<select id="selectCountReviewPointByMovieId" parameterType="int" resultType="int">
+		SELECT
+			SUM(`grade`)
+		FROM
+			`review`
+		WHERE
+			`movieId` = #{movieId}
+	</select>
+	
+	<select id="selectCountReviewByMovieId" parameterType="int" resultType="int">
+		SELECT
+			count(1)
+		FROM
+			`review`
+		WHERE
+			`movieId` = #{movieId}
+	</select>
+	
+	
+	
+</mapper>

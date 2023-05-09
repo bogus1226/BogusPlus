@@ -142,6 +142,11 @@ hr {
 	font-size:12px;
 }
 
+.textGreen {
+	color:#53b56d;
+	font-size:12px;
+}
+
 .main-contents > .form-control {
 	background-color:rgb(48, 51, 62);
 	height:45px;
@@ -892,11 +897,6 @@ a:hover {
 	margin-top:1px;
 }
 
-.plusIcon {
-	font-size:30px;
-	color:white;
-}
-
 
 #playBtn {
 	display: flex;
@@ -909,6 +909,11 @@ a:hover {
 	display: flex;
 	justify-content: center;
 	align-items: center;
+}
+
+.plusIcon {
+	font-size:30px;
+	color:white;
 }
 
 .plusIcon:hover {
@@ -930,6 +935,13 @@ a:hover {
 
 .detailText {
 	color:rgb(158, 158, 158);
+	font-size:20px;
+	font-family: 'BMJUA';
+	font-weight:bold;
+}
+
+.detailTextWhite {
+	color:white;
 	font-size:20px;
 	font-family: 'BMJUA';
 	font-weight:bold;
@@ -975,4 +987,21 @@ a:hover {
 	width:260px;
 	height:200px;
 }
+
+.review-back {
+	background-color:#1a1d29;
+}
+
+.reviewUpdateBox {
+	margin:auto;
+}
+
+select option[value=""][disabled] {
+	display: none;
+}
+
+select {
+  padding-top: 10px;
+}
+
 

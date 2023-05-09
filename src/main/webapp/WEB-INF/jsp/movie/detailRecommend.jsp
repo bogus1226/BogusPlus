@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -76,25 +77,44 @@
 								</button>
 							</c:otherwise>
 						</c:choose>
-						<button type="button" class="btn" id="interestBtn">
-						    <i class="bi bi-plus-lg plusIcon"></i>
-						</button>
+
+						<c:choose>
+							<c:when test="${interestIsDuplicate}">
+								<button type="button" class="btn btn-sm redBtn deleteBtn ml-2" id="deleteInterestBtn" data-movieid="${movieId}">
+								    <i class="bi bi-trash3-fill"></i>
+								</button>
+							</c:when>
+							<c:otherwise>
+								<button type="button" class="btn" id="interestBtn" data-movieid="${movieId}" data-poster-path="${tmdb.poster_path}">
+								    <i class="bi bi-plus-lg plusIcon"></i>
+								</button>
+							</c:otherwise>
+						</c:choose>
 					</div>
 					
-					<div class="textWhite mt-5 overview ml-2">${tmdb.overview}</div> <!-- ${tmdb.tagline}  -->
+					<div class="textWhite mt-5 overview ml-2">${tmdb.overview}</div>
 				</div>
 				
 				<div class="info-text-review d-flex justify-content-between mt-5">
 					<div class="d-flex mt-2">
-						<button type="button" class="btn notBackground detailText" id="recommendBtn"><span class="select">추천작</span></button>
+						<button type="button" class="btn notBackground detailTextWhite" id="recommendBtn">추천작</button>
 						<button type="button" class="btn notBackground detailText" id="movieInfoBtn">상세정보</button>
-						<button type="button" class="btn notBackground detailText">후기</button>
+						<button type="button" class="btn notBackground detailText" id="reviewBtn">후기</button>
 					</div>
+					
 					<div class="d-flex review mt-3">
 						<div class="textWhite mr-3">영화</div>
 						<div class="textYellow mr-4">평점 ${fn:substring(tmdb.vote_average, 0,3)}</div>
 						<div class="textWhite mr-3">Bogus+</div>
-						<div class="textYellow mr-1">평점 10.0</div>
+						<c:choose>
+							<c:when test="${reviewAverage eq 0}">
+								<div class="textYellow mr-1">등록된 리뷰가 없습니다</div>
+							</c:when>
+							<c:otherwise>
+								<div class="textYellow mr-1">평점 ${reviewAverage}</div>
+							</c:otherwise>
+						</c:choose>
+						
 					</div>
 				</div>
 				
@@ -126,6 +146,60 @@
 				</c:forEach>
 			</div>
 		</div>
+		
+		<div class="movie-detail-container mb-3 review-back review-select-box d-none movie-main-movieInfo">
+			
+			<c:choose>
+				<c:when test="${!empty reviewList}">
+					<c:forEach var="reviewList" items="${reviewList}">
+						<div class="d-flex pt-2 pb-2">
+							<div class="textWhite pl-2 pt-1 col-1 p-0">${reviewList.nickName}</div>
+							<div class="textWhite col-9 p-0 pt-1">${reviewList.content}</div>
+							<div class="d-flex col-2 p-0">
+								<div></div>
+								<fmt:formatDate var="reviewDate" value="${reviewList.date}" pattern="yyyy년 MM월 dd일"/>
+								<div class="textWhite pt-1 pl-5">${reviewDate}</div>
+								<c:if test="${reviewList.userId eq userId}">
+									<button type="button" class="btn btn-sm ml-3 redBtn deleteBtn" data-reviewid="${reviewList.id}"><i class="bi bi-trash3-fill"></i></button>
+								</c:if>
+							</div>
+						</div>
+						
+						<hr class="m-0">
+					</c:forEach> 
+				</c:when>
+				<c:otherwise>
+					<div class="textWhite text-center pt-2 review-select-box d-none">작성된 후기가 없습니다</div>
+				</c:otherwise>
+			</c:choose>
+			
+			<c:if test="${!isDuplicate}">
+				<div class="mt-3 col-4 reviewUpdateBox p-0 pb-4 cafe-create">
+					<input type="text" class="form-control" placeholder="후기를 입력해주세요" id="reviewInput">
+					<div class="textGreen mt-1 ml-1" id="reviewText">한번 작성한 리뷰는 수정할수없습니다</div>
+					<div class="textRed d-none mt-1 ml-1" id="reviewNonText">후기를 입력해주세요</div>
+					<div class="d-flex justify-content-between mt-2 cafe-create">
+						<select class="form-control col-3" id="pointSelect">
+			                <option value="" disabled selected>평점</option>
+			                <option>1</option>
+			                <option>2</option>
+			                <option>3</option>
+			                <option>4</option>
+			                <option>5</option>
+			                <option>6</option>
+			                <option>7</option>
+			                <option>8</option>
+			                <option>9</option>
+			                <option>10</option>
+	            		</select>
+						<button type="button" class="btn blueBtn" id="saveBtn" data-movieid="${movieId}">저장</button>
+					</div>
+					<div class="textRed ml-1 d-none" id="gradeSapce">평점을 선택해주세요</div>
+				</div>
+			</c:if>
+			
+
+		</div>
 		<c:import url="/WEB-INF/jsp/include/footer.jsp"/>
 	</div>
 </body>
@@ -149,94 +223,176 @@
 
 	$(document).ready(function(){
 		
-		$("#recommendBtn").on("click", function(){
-			$(".credits-select-box").addClass("d-none");
-			$(".recommend-select-box").removeClass("d-none");
-		});
-		
-		$("#movieInfoBtn").on("click", function(){
-			$(".recommend-select-box").addClass("d-none");
-			$(".credits-select-box").removeClass("d-none");
-		});
-		
-
-		$("#wrap").css({
-			  "background-image": "url(${tmdb.backdrop_path})",
-			  "background-size": "cover"
-			});
-		
-		$("#cafeSearchInput").on("input", function(){
+		$("#deleteInterestBtn").on("click", function(){
 			
-			let cafeSearch = $("#cafeSearchInput").val();
-			
-			if(cafeSearch == "") {
-				$(".sudaMainPageContents").removeClass("d-none");
-				$(".searchInfo").addClass("d-none");
-			} else {
-				$(".sudaMainPageContents").addClass("d-none");
-				$(".searchInfo").removeClass("d-none");
-			}
+			let movieId = $(this).data("movieid");
 			
 			$.ajax({
 				type:"get"
-				, url:"/suda/searchInfo"
-				, data:{"search":cafeSearch}
+				, url:"/movie/interest/delete"
+				, data:{"movieId":movieId}
 				, success:function(data){
 					if(data.result == "success") {
-						console.log("검색 성공");
-						
-						$(".searchInfo").empty();
-						
-						let list = data.searchList;
-						
-						for (var i = 0; i < list.length; i++) {
-							
-							var aTagInfo = "<a href=\"/suda/cafe/mainpage/view?cafeId=" + list[i].id + "\"" + "class=\"hotCafeBox btn btn-block textWhite mt-3\">" + list[i].name + "</a>";
-							
-							$(".searchInfo").append(aTagInfo);
-							
-						};
+						location.reload();
 					} else {
-						console.log("검색 결과 없음");
+						console.log("관심목록 취소 실패");
 					}	
 				}
 				, error:function(){
-					console.log("검색 에러");
+					console.log("관심목록 취소 에러");
 				}
 				
-			});	
+			});
 		});
 		
-		$("#cafeNameInput").on("input", function(){
-			$("#cafeNameText").addClass("d-none");
+		$("#interestBtn").on("click", function(){
+			
+			let movieId = $(this).data("movieid");
+			let posterPath = $(this).data("poster-path");
+			
+			$.ajax({
+				type:"get"
+				, url:"/movie/interest/add"
+				, data:{"movieId":movieId, "posterPath":posterPath}
+				, success:function(data){
+					if(data.result == "success") {
+						location.reload();
+					} else {
+						console.log("관심목록 추가 실패");
+					}	
+				}
+				, error:function(){
+					console.log("관심목록 추가 에러");
+				}
+				
+			});
+			
 		});
 		
-		$("#saveBtn").on("click", function(){
+		$(".deleteBtn").on("click", function(){
+			let reviewId = $(this).data("reviewid");
 			
-			let name = $("#cafeNameInput").val().trim();
+			$.ajax({
+				type:"get"
+				, url:"/movie/review/delete"
+				, data:{"reviewId":reviewId}
+				, success:function(data){
+					if(data.result == "success") {
+						location.reload();
+					} else {
+						console.log("리뷰 삭제 실패");
+					}	
+				}
+				, error:function(){
+					console.log("리뷰 삭제 에러");
+				}
+				
+			});
 			
-			if(name == "") {
-				$("#cafeNameText").removeClass("d-none");
+		});
+		
+		$("#pointSelect").on("change", function(){
+			$("#gradeSapce").addClass("d-none");
+		});
+		
+		$("#reviewInput").on("input", function(){
+			$("#reviewNonText").addClass("d-none");
+			$("#reviewText").removeClass("d-none");
+		});
+		
+ 		$("#saveBtn").on("click", function(){
+			let content = $("#reviewInput").val();
+			let grade = $("#pointSelect").val();
+			let movieId = $(this).data("movieid");
+			
+			if(content.trim() == "") {
+				$("#reviewText").addClass("d-none");
+				$("#reviewNonText").removeClass("d-none");
+				return;
+			}
+			
+			if(grade == null) {
+				$("#gradeSapce").removeClass("d-none");
 				return;
 			}
 			
 			$.ajax({
 				type:"get"
-				, url:"/suda/cafe/create"
-				, data:{"name":name}
+				, url:"/movie/review/add"
+				, data:{"movieId":movieId, "content":content, "grade":grade}
 				, success:function(data){
 					if(data.result == "success") {
 						location.reload();
 					} else {
-						console.log("까페 만들기 실패");
+						console.log("리뷰 실패");
 					}	
 				}
 				, error:function(){
-					console.log("까페 만들기 에러");
+					console.log("리뷰 에러");
 				}
 				
-			});	
+			});
+			
+		});	
+		
+		$("#recommendBtn").on("click", function(){
+			
+			$(".review-select-box").addClass("d-none");
+			$(".credits-select-box").addClass("d-none");
+			$(".recommend-select-box").removeClass("d-none");
+			
+			$(this).removeClass("detailText");
+			$(this).addClass("detailTextWhite");
+			
+			$("#movieInfoBtn").removeClass("detailTextWhite");
+			$("#movieInfoBtn").addClass("detailText");
+			
+			$("#reviewBtn").removeClass("detailTextWhite");
+			$("#reviewBtn").addClass("detailText");
+			
 		});
+		
+		$("#movieInfoBtn").on("click", function(){
+			
+			$(".review-select-box").addClass("d-none");
+			$(".recommend-select-box").addClass("d-none");
+			$(".credits-select-box").removeClass("d-none");
+			
+			$(this).removeClass("detailText");
+			$(this).addClass("detailTextWhite");
+			
+			$("#recommendBtn").removeClass("detailTextWhite");
+			$("#recommendBtn").addClass("detailText");
+			
+			$("#reviewBtn").removeClass("detailTextWhite");
+			$("#reviewBtn").addClass("detailText");
+		});
+		
+		$("#reviewBtn").on("click", function(){
+			
+			$(".review-select-box").removeClass("d-none");
+			$(".recommend-select-box").addClass("d-none");
+			$(".credits-select-box").addClass("d-none");
+			
+			$(this).removeClass("detailText");
+			$(this).addClass("detailTextWhite");
+			
+			$("#recommendBtn").removeClass("detailTextWhite");
+			$("#recommendBtn").addClass("detailText");
+			
+			$("#movieInfoBtn").removeClass("detailTextWhite");
+			$("#movieInfoBtn").addClass("detailText");
+		});
+		
+
+		$("#wrap").css({
+			  "background-image": "url(${tmdb.backdrop_path})",
+			  "background-size": "100%"
+			});
+		
+
+		
+		
 		
 		
 	});

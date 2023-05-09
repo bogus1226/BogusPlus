@@ -51,17 +51,19 @@
 			
 			<section class="movie-contents">
 				<div class="movie-conteiner">
-					<div class="swiper swiper-content">
-						<div class="textWhite">시청 중인 콘텐츠</div>
-						<div class="swiper-wrapper contents d-flex mt-2" id="append0">
-							<c:forEach var="koreaMovieList" items="${mainpageKoreaMovieList}" varStatus="status">
-								<a href="/movie/detail/recommend/view?movieId=${koreaMovieList.id}"  class="movie-box swiper-slide"><img src="${koreaMovieList.poster_path}"></a>
-							</c:forEach>
+				
+					<c:if test="${not empty interestList}">
+						<div class="swiper swiper-content">
+							<div class="textWhite">관심 콘텐츠</div>
+							<div class="swiper-wrapper contents d-flex mt-2" id="append0">
+								<c:forEach var="interestList" items="${interestList}">
+									<a href="/movie/detail/recommend/view?movieId=${interestList.movieId}"  class="movie-box swiper-slide"><img src="${interestList.posterPath}"></a>
+								</c:forEach>
+							</div>
+							<div class="swiper-button-prev movieBackBtn" data-movie-info="0"></div>
+		    				<div class="swiper-button-next movieNextBtn" data-movie-info="0"></div>
 						</div>
-						<div class="swiper-button-prev movieBackBtn" data-movie-info="0"></div>
-	    				<div class="swiper-button-next movieNextBtn" data-movie-info="0"></div>
-					</div>
-					
+					</c:if>
 					<div class="swiper swiper-content">
 						<div class="textWhite">한국 콘텐츠</div>
 						<div class="swiper-wrapper contents d-flex mt-2" id="append1">
@@ -276,6 +278,10 @@
 			
 			let movieInfo = $(this).data("movie-info");
 			
+			if(movieInfo == 0) {
+				return;
+			}
+			
 			let clickCount = clickList[movieInfo];
 			
 			if(clickCount == null) {
@@ -346,17 +352,7 @@
 		        prevEl: ".swiper-button-prev",
 		    },
 		    
-		    on: {
-		        slideChange: function () {
-		          if (swiperMovie.isEnd) {
-		            swiperMovie.params.slidesPerView = 7;
-		            swiperMovie.update();
-		          } else {
-		            swiperMovie.params.slidesPerView = 7.5;
-		            swiperMovie.update();
-		          }
-		        },
-		      },
+		   
 		});
 		
 		

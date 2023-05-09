@@ -116,8 +116,8 @@ public class TmdbBO {
 				JSONObject contents = (JSONObject) list.get(i);
 				Integer movieId = Integer.parseInt(String.valueOf(contents.get("id")));
 
-				
 				String backdrop_path = String.valueOf(contents.get("backdrop_path"));
+				
 				tmdb.setBackdrop_path("https://image.tmdb.org/t/p/w1280/" + backdrop_path);
 				tmdb.setTitle(String.valueOf(contents.get("title")));	
 				tmdb.setOverview(String.valueOf(contents.get("overview")));
@@ -240,7 +240,8 @@ public class TmdbBO {
 			JSONParser jsonParser = new JSONParser();
 			
 			JSONObject jsonObject = (JSONObject) jsonParser.parse(result);		
-
+			//ddd
+			String poster_path = String.valueOf(jsonObject.get("poster_path"));
 			String backdrop_path = String.valueOf(jsonObject.get("backdrop_path"));
 			String title = String.valueOf(jsonObject.get("title"));
 			Boolean adult = (Boolean) jsonObject.get("adult");
@@ -255,6 +256,7 @@ public class TmdbBO {
 			String overview = String.valueOf(jsonObject.get("overview"));
 			Object runtime = String.valueOf(jsonObject.get("runtime"));
 			
+			movieInfo.setPoster_path("https://image.tmdb.org/t/p/w342/" + poster_path);
 			movieInfo.setBackdrop_path("https://image.tmdb.org/t/p/w1280/" + backdrop_path);
 			movieInfo.setTitle(title);
 			movieInfo.setAdult(adult);
@@ -452,8 +454,7 @@ public class TmdbBO {
 						
 			}
 				
-			
-			
+				
 
 		} catch (Exception e) {
 			
@@ -463,6 +464,9 @@ public class TmdbBO {
 		return movieInfoList;
 		
 	}
+	
+
+	
 	
 
 }
