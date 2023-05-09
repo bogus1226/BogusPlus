@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.bogus.bogusplus.tmdb.bo.TmdbBO;
+import com.bogus.bogusplus.tmdb.model.Credits;
 import com.bogus.bogusplus.tmdb.model.TMDB;
 import com.bogus.bogusplus.tmdb.model.TMDBMovieId;
 
@@ -103,6 +104,8 @@ public class MovieController {
 		
 		List<TMDB> recommendList = tmdbBO.getRecommendmovieIdByMovieId(movieId);
 		
+		List<Credits> creditsList = tmdbBO.getMovieDetailCredits(movieId);
+		
 		if(recommendList != null) {
 			model.addAttribute("recommendList", recommendList);
 		}
@@ -114,6 +117,8 @@ public class MovieController {
 		TMDB tmdb = tmdbBO.movieDetailTMDBInfoByMovieId(movieId);
 		
 		model.addAttribute("tmdb", tmdb);
+		
+		model.addAttribute("creditsList", creditsList);
 		
 		return "movie/detailRecommend";
 	}

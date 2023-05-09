@@ -966,3 +966,13 @@ a:hover {
 	background-color:rgba(0, 0, 0, 0.5);
 }
 
+.movieCredits {
+	width:260px;
+	margin-right:24px;
+}
+
+.movieCredits > img {
+	width:260px;
+	height:200px;
+}
+

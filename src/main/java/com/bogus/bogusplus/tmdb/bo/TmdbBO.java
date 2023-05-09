@@ -14,6 +14,7 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import org.springframework.stereotype.Service;
 
+import com.bogus.bogusplus.tmdb.model.Credits;
 import com.bogus.bogusplus.tmdb.model.TMDB;
 import com.bogus.bogusplus.tmdb.model.TMDBMovieId;
 
@@ -244,7 +245,9 @@ public class TmdbBO {
 			String title = String.valueOf(jsonObject.get("title"));
 			Boolean adult = (Boolean) jsonObject.get("adult");
 			String release_date = String.valueOf(jsonObject.get("release_date"));
-			
+			String vote_average = String.valueOf(jsonObject.get("vote_average"));
+			String tagline = String.valueOf(jsonObject.get("tagline"));
+			  		
 			// TMDB자체에서 명확하게 List<Object>이기때문에 그대로 놔뒀다!!
 			@SuppressWarnings("unchecked")
 			List<Object> genres = (List<Object>) jsonObject.get("genres");
@@ -258,7 +261,9 @@ public class TmdbBO {
 			movieInfo.setRelease_date(release_date);
 			movieInfo.setGenres(genres);
 			movieInfo.setOverview(overview);
-			movieInfo.setRuntime(runtime);				
+			movieInfo.setRuntime(runtime);	
+			movieInfo.setVote_average(vote_average);
+			movieInfo.setTagline(tagline);
 
 		} catch (Exception e) {
 			
@@ -301,7 +306,7 @@ public class TmdbBO {
 					
 					JSONObject firstMovie = (JSONObject) list.get(i);
 					
-					if(String.valueOf(firstMovie.get("site")).equals("YouTube")) {
+					if(String.valueOf(firstMovie.get("site")).equals("YouTube") && String.valueOf(firstMovie.get("type")).equals("Trailer")) {
 						String key = String.valueOf(firstMovie.get("key"));
 						
 						movieInfo.setKey(key);
@@ -389,6 +394,65 @@ public class TmdbBO {
 							
 				}
 			}
+			
+
+		} catch (Exception e) {
+			
+			e.printStackTrace();
+		}
+		
+		return movieInfoList;
+		
+	}
+	
+	public List<Credits> getMovieDetailCredits(int movieId) {
+		
+		List<Credits> movieInfoList = null;
+		
+		try {
+			
+			movieInfoList = new ArrayList<Credits>();
+				
+			String apiURL = "https://api.themoviedb.org/3/movie/"
+					+ movieId + "/credits?api_key=" + key + "&language=ko-KR";
+			
+			URL url = new URL(apiURL);
+			
+			BufferedReader bf;
+			
+			bf = new BufferedReader(new InputStreamReader(url.openStream(), "UTF-8"));
+			
+			String result = bf.readLine();
+			
+			JSONParser jsonParser = new JSONParser();
+			
+			JSONObject jsonObject = (JSONObject) jsonParser.parse(result);		
+			
+			JSONArray list = (JSONArray) jsonObject.get("cast");
+			
+			
+			for(int i = 0; i < list.size(); i ++) {
+				Credits credits = new Credits();
+				
+				JSONObject recommendMovie = (JSONObject) list.get(i);
+				
+				String name = String.valueOf(recommendMovie.get("name"));
+				String character = String.valueOf(recommendMovie.get("character"));
+				String profile_path = String.valueOf(recommendMovie.get("profile_path"));
+				
+				if(!profile_path.equals("null")) {
+					
+					credits.setName(name);
+					credits.setCharacter(character);
+					credits.setProfile_path("https://image.tmdb.org/t/p/w342/" + profile_path);
+					
+					movieInfoList.add(credits);
+				}
+				
+						
+			}
+				
+			
 			
 
 		} catch (Exception e) {

@@ -23,20 +23,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" />
 </head>
 
-<script>
-	window.onload = function() {
-	    var videoModal = document.getElementById("videoModal");
-	    var videoIframe = videoModal.querySelector("#ytplayer");
-	    var videoId = "${tmdbMovieId.key}"; // 로드할 동영상 ID
-	
-	    videoIframe.src = "https://www.youtube.com/embed/" + videoId + "?autoplay=0";
-	}
-	
-
-</script>
 <body>
 	<div id="wrap">
-		<c:import url="/WEB-INF/jsp/include/main-header.jsp"/>
+		<div class="info-text-review pb-3">
+			<c:import url="/WEB-INF/jsp/include/main-header.jsp"/>
+		</div>
 		
 		<div class="mt-3 d-none" id="movieSearchLine">
 			<input type="text" class="searchBox movieSearchInput" id="movieSearchInput" placeholder="영화 검색"></input>
@@ -71,10 +62,12 @@
 					<div class="d-flex mt-4 movie-select-btns ml-2">
 						<c:choose>
 							<c:when test="${not empty tmdbMovieId.key}">
-								<button type="button" class="btn btn-light mr-4" id="playBtn">
-									<i class="bi bi-play-fill playIcon" data-toggle="modal" data-target="#videoModal"></i>
+								<!-- Button trigger modal -->
+								<button type="button" class="btn btn-light mr-4" id="playBtn" data-toggle="modal" data-target="#videoModal">
+									<i class="bi bi-play-fill playIcon"></i>	
 									<span class="textBlack ml-1">재생</span>
 								</button>
+								<!-- Button trigger modal -->
 							</c:when> 
 							<c:otherwise>
 								<button type="button" class="btn btn-danger mr-4" id="playBtn">
@@ -88,36 +81,49 @@
 						</button>
 					</div>
 					
-					<div class="textWhite mt-5 overview ml-2">${tmdb.overview}</div>
+					<div class="textWhite mt-5 overview ml-2">${tmdb.overview}</div> <!-- ${tmdb.tagline}  -->
 				</div>
 				
 				<div class="info-text-review d-flex justify-content-between mt-5">
 					<div class="d-flex mt-2">
-						<button type="button" class="btn notBackground detailText"><span class="select">추천작</span></button>
-						<button type="button" class="btn notBackground detailText">상세정보</button>
+						<button type="button" class="btn notBackground detailText" id="recommendBtn"><span class="select">추천작</span></button>
+						<button type="button" class="btn notBackground detailText" id="movieInfoBtn">상세정보</button>
 						<button type="button" class="btn notBackground detailText">후기</button>
 					</div>
 					<div class="d-flex review mt-3">
-						<div class="textWhite mr-3">Bogus+ 후기</div>
+						<div class="textWhite mr-3">영화</div>
+						<div class="textYellow mr-4">평점 ${fn:substring(tmdb.vote_average, 0,3)}</div>
+						<div class="textWhite mr-3">Bogus+</div>
 						<div class="textYellow mr-1">평점 10.0</div>
 					</div>
 				</div>
 				
 				<hr class="mt-1">
 				
-					<c:choose>
-						<c:when test="${not empty recommendList}">
-							<div class="recommend mb-3">
-								<c:forEach var="recommendList" items="${recommendList}">
-									<a href="/movie/detail/recommend/view?movieId=${recommendList.id}"><img src="${recommendList.poster_path}"></a>
-								</c:forEach>
-							</div>
-						</c:when>
-						<c:otherwise>
-							<div class="textWhite ml-2">추천작이 없습니다</div>
-						</c:otherwise>
-					</c:choose>
-				
+				<c:choose>
+					<c:when test="${not empty recommendList}">
+						<div class="recommend mb-3 recommend-select-box">
+							<c:forEach var="recommendList" items="${recommendList}">
+								<a href="/movie/detail/recommend/view?movieId=${recommendList.id}"><img src="${recommendList.poster_path}"></a>
+							</c:forEach>
+						</div>
+					</c:when>
+					<c:otherwise>
+						<div class="textWhite ml-2 recommend-select-box">추천작이 없습니다</div>
+					</c:otherwise>
+				</c:choose>
+			</div>
+		</div>
+		
+		<div class="credits-select-box d-none">
+			<div class="movie-detail-container mb-3 d-flex flex-wrap">
+				<c:forEach var="creditsList" items="${creditsList}">
+					<div class="movieCredits text-center info-text-review mb-3 mt-3">
+						<img src="${creditsList.profile_path}">
+						<div class="textWhite">${creditsList.character}</div>
+						<div class="textWhite">${creditsList.name}</div>
+					</div>	
+				</c:forEach>
 			</div>
 		</div>
 		<c:import url="/WEB-INF/jsp/include/footer.jsp"/>
@@ -125,16 +131,16 @@
 </body>
 
 <!-- Modal -->
-<div class="modal fade" id="videoModal" tabindex="-1" role="dialog" aria-labelledby="videoModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg" role="document">
-    <div class="modal-content">
-      <div class="modal-body">
-        <!-- YouTube 동영상을 보여줄 iframe 태그 -->
-        <iframe id="ytplayer" type="text/html" width="100%" height="360" src="" frameborder="0" allowfullscreen></iframe>
-      </div>
-    </div>
-  </div>
-</div>
+<div class="modal fade" id="videoModal">	
+	<div class="modal-dialog modal-lg">
+	    <div class="modal-content">
+	      	<div class="modal-body">
+		        <!--  YouTube 동영상을 보여줄 iframe 태그 -->
+		        <iframe id="ytplayer" src="https://www.youtube.com/embed/${tmdbMovieId.key}?autoplay=0"  width="100%" height="360"></iframe>
+	      	</div>
+	    </div>
+	</div>
+</div> 
 <!-- Modal -->
 
 
@@ -143,6 +149,17 @@
 
 	$(document).ready(function(){
 		
+		$("#recommendBtn").on("click", function(){
+			$(".credits-select-box").addClass("d-none");
+			$(".recommend-select-box").removeClass("d-none");
+		});
+		
+		$("#movieInfoBtn").on("click", function(){
+			$(".recommend-select-box").addClass("d-none");
+			$(".credits-select-box").removeClass("d-none");
+		});
+		
+
 		$("#wrap").css({
 			  "background-image": "url(${tmdb.backdrop_path})",
 			  "background-size": "cover"

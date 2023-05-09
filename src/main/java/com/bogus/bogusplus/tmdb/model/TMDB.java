@@ -23,10 +23,10 @@ public class TMDB {
 	private Object runtime; // 실행 시간
 	private List<Object> spoken_languages; // 음성 언어
 	private String status; // 상태
-	private Object tagline; // 슬로건
+	private String tagline; // 슬로건
 	private String title; // 제목
 	private Boolean video; // 비디오 유무
-	private int vote_average; // 투표 평균
+	private String vote_average; // 투표 평균
 	private Integer vote_count; // 투표수
 	
 	
