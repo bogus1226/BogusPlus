@@ -60,14 +60,11 @@
     filter: drop-shadow(5px 5px 5px #000);    
 }
 
-.movie-box {
-	width:200px;
-	height:200px;
-}
+
 
 .contents > .swiper-slide > img {
 	width:225px;
-	height:210px;
+	
 }
 
 .contents > .swiper-slide > img:hover {
@@ -91,7 +88,7 @@
 .swiper-content > .swiper-button-next {
 	color:transparent;
 	width:102px;
-	height:211px;
+	height:340px;
 	margin-top:37px;
 	top:0%;
 	right:0px;
@@ -109,7 +106,7 @@
 .swiper-content > .swiper-button-prev {
 	color:transparent;
 	width:103px;
-	height:210px;
+	height:340px;
 	margin-top:38px;
 	top:0%;
 	left:0px;

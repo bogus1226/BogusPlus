@@ -440,8 +440,7 @@ a:hover {
 }
 
 .movie-box > img {
-	width:325px;
-	height:170px;
+	height:330px;	
 }
 
 #searchLine {
@@ -969,8 +968,8 @@ a:hover {
 }
 
 .recommend > a > img {
-	width:260px;
-	height:200px;
+	width:200px;
+	height:300px;
 	margin-right:20px;
 }
 
@@ -979,13 +978,13 @@ a:hover {
 }
 
 .movieCredits {
-	width:260px;
+	width:200px;
+	height:300px;
 	margin-right:24px;
 }
 
 .movieCredits > img {
-	width:260px;
-	height:200px;
+	width:200px;
 }
 
 .review-back {

@@ -1,0 +1,26 @@
+@charset "UTF-8";
+
+.calendar > .textWhite {
+	font-size:35px;
+}
+
+.calendar-container {
+	
+	width:70%;
+	margin:auto;
+}
+
+#calendar-box {
+	background-color:#30333e;
+}
+
+.fc .fc-toolbar.fc-header-toolbar {
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+.fc-toolbar-chunk {
+	margin-left:10px;
+	margin-right:10px;
+	font-size: 1em;
+}
