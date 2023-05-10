@@ -64,7 +64,7 @@
 						<c:choose>
 							<c:when test="${not empty tmdbMovieId.key}">
 								<!-- Button trigger modal -->
-								<button type="button" class="btn btn-light mr-4" id="playBtn" data-toggle="modal" data-target="#videoModal">
+								<button type="button" class="btn btn-light mr-4 recordBtn" data-movieid="${movieId}" id="playBtn" data-toggle="modal" data-target="#videoModal">
 									<i class="bi bi-play-fill playIcon"></i>	
 									<span class="textBlack ml-1">재생</span>
 								</button>
@@ -222,6 +222,28 @@
 <script>
 
 	$(document).ready(function(){
+		
+		$(".recordBtn").on("click", function(){
+			
+			let movieId = $(this).data("movieid");
+			
+			$.ajax({
+				type:"get"
+				, url:"/movie/record"
+				, data:{"movieId":movieId}
+				, success:function(data){
+					if(data.result == "success") {
+						console.log("기록 성공");
+					} else {
+						console.log("기록 실패");
+					}	
+				}
+				, error:function(){
+					console.log("기록 에러");
+				}
+				
+			});
+		});
 		
 		$("#deleteInterestBtn").on("click", function(){
 			

@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import com.bogus.bogusplus.movie.model.Interest;
+import com.bogus.bogusplus.movie.model.Record;
 
 @Repository
 public interface MovieDAO {
@@ -24,4 +25,15 @@ public interface MovieDAO {
 			, @Param("userId") int userId);
 	
 	public List<Interest> selecetGetMovieInterest(int userId);
+	
+	public int insertRecord(
+			@Param("userId") int userId
+			, @Param("movieId") int movieId);
+	
+	public int selectIsDuplicateRecord(
+			@Param("userId") int userId
+			, @Param("movieId") int movieId);
+	
+	public List<Record> selectGetRecordListByUserId(
+			@Param("userId") int userId);
 }

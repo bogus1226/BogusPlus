@@ -58,7 +58,46 @@
 		DESC
 	</select>
 
+	<insert id="insertRecord" parameterType="map">
+		INSERT INTO
+			`record`
+		(
+			`movieId`
+			, `userId`
+			, `createdAt`
+		)
+		VALUE
+		(
+			#{movieId}
+			, #{userId}
+			, now()
+		)
+	</insert>
 	
+	<select id="selectIsDuplicateRecord" parameterType="map" resultType="int">
+		SELECT
+			count(1)
+		FROM
+			`record`
+		WHERE
+			DATE(`createdAt`) = CURDATE()
+		AND
+			`movieId` = #{movieId}
+		AND
+			`userId` = #{userId}
+	</select>
+	
+	<select id="selectGetRecordListByUserId" parameterType="int" resultType="com.bogus.bogusplus.movie.model.Record">
+		SELECT
+			`id`
+			, `movieId`
+			, `userId`
+			, DATE_FORMAT(`createdAt`, '%Y-%m-%d') AS `createdAt`
+		FROM
+			`record`
+		WHERE
+			`userId` = #{userId};
+	</select>
 	
 	
 </mapper>

@@ -112,4 +112,27 @@ public class MovieRestController {
 		return resultMap;
 	}
 	
+	@GetMapping("/record") 
+	public Map<String, Object> addRecord(
+			@RequestParam("movieId") int movieId
+			, HttpSession session
+			, Model model) {
+		
+		Integer userId = (Integer)session.getAttribute("userId");
+		
+		Map<String, Object> resultMap = new HashMap<>();
+		
+		int count = movieBO.addRecord(userId, movieId);
+		
+		if(count != 0) {
+			resultMap.put("result", "success");
+		} else {
+			resultMap.put("result", "fail");
+		}
+		
+		
+		return resultMap;
+	}
+	
+	
 }
