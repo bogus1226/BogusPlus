@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.bogus.bogusplus.movie.bo.MovieBO;
-import com.bogus.bogusplus.movie.model.Record;
+import com.bogus.bogusplus.movie.model.Calendar;
 
 @RestController
 @RequestMapping("/profile")
@@ -27,7 +27,7 @@ public class ProfileRestController {
 		
 		Integer userId = (Integer)session.getAttribute("userId");
 		
-		List<Record> recordList = movieBO.getRecordListByUserId(userId);
+		List<Calendar> recordList = movieBO.getRecordListByUserId(userId);
 		
 		Map<String, Object> recordMap = new HashMap<>();
 		

@@ -7,7 +7,6 @@ import java.util.Map;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -16,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.bogus.bogusplus.movie.bo.MovieBO;
 import com.bogus.bogusplus.tmdb.bo.TmdbBO;
 import com.bogus.bogusplus.tmdb.model.TMDB;
+import com.bogus.bogusplus.movie.model.Record;
 
 @RestController
 @RequestMapping("/movie")
@@ -70,8 +70,7 @@ public class MovieRestController {
 	public Map<String, Object> addInterest(
 			@RequestParam("movieId") int movieId
 			, @RequestParam("posterPath") String posterPath
-			, HttpSession session
-			, Model model) {
+			, HttpSession session) {
 		
 		Integer userId = (Integer)session.getAttribute("userId");
 		
@@ -93,8 +92,7 @@ public class MovieRestController {
 	@GetMapping("/interest/delete")
 	public Map<String, Object> deleteInterest(
 			@RequestParam("movieId") int movieId
-			, HttpSession session
-			, Model model) {
+			, HttpSession session) {
 		
 		Integer userId = (Integer)session.getAttribute("userId");
 		
@@ -115,14 +113,14 @@ public class MovieRestController {
 	@GetMapping("/record") 
 	public Map<String, Object> addRecord(
 			@RequestParam("movieId") int movieId
-			, HttpSession session
-			, Model model) {
+			, @RequestParam("movieName") String movieName
+			, HttpSession session) {
 		
 		Integer userId = (Integer)session.getAttribute("userId");
 		
 		Map<String, Object> resultMap = new HashMap<>();
 		
-		int count = movieBO.addRecord(userId, movieId);
+		int count = movieBO.addRecord(userId, movieId, movieName);
 		
 		if(count != 0) {
 			resultMap.put("result", "success");
@@ -130,6 +128,22 @@ public class MovieRestController {
 			resultMap.put("result", "fail");
 		}
 		
+		
+		return resultMap;
+	}
+	
+	@GetMapping("/record/calendar") 
+	public Map<String, Object> getRecordByDate(
+			@RequestParam("date") String date
+			, HttpSession session) {
+		
+		Integer userId = (Integer)session.getAttribute("userId");
+		
+		List<Record> recordList = movieBO.getRecordListByDate(userId, date);
+		
+		Map<String, Object> resultMap = new HashMap<>();
+		
+		resultMap.put("recordList", recordList);
 		
 		return resultMap;
 	}
