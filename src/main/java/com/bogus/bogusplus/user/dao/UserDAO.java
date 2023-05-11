@@ -35,4 +35,17 @@ public interface UserDAO {
 	
 	public User selectUserById(@Param("id") int id);
 	
+	public int updateProfile(
+			@Param("id") int id
+			, @Param("nickName") String nickName
+			, @Param("catalogue") int catalogue
+			, @Param("pin") String pin);
+	
+	public int updateProfileNotPin(
+			@Param("id") int id
+			, @Param("nickName") String nickName
+			, @Param("catalogue") int catalogue);
+	
+	public int updatePinNull(@Param("id") int id);
+	
 }

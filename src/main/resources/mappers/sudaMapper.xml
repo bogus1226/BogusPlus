@@ -50,6 +50,29 @@
 			`userId` = #{userId}
 	</select>
 	
+	<select id="togetherCountList" resultType="com.bogus.bogusplus.suda.model.TotalCount">
+		SELECT 
+			`cafeId`
+			, count(*) as `total`
+		FROM 
+			`together`
+		GROUP BY 
+			`cafeId`
+		ORDER BY 
+			`total` DESC;
+	</select>
+	
+	<select id="postCountList" resultType="com.bogus.bogusplus.suda.model.TotalCount">
+		SELECT 
+			`cafeId`
+			, count(*) as `total`
+		FROM 
+			`post`
+		GROUP BY 
+			`cafeId`
+		ORDER BY 
+			`total` DESC;
+	</select>
 	
 	
 </mapper>

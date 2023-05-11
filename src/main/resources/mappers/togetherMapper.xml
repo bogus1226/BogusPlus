@@ -240,5 +240,41 @@
 			`id` = #{id}
 	</update>
 	
+	<select id="selectGetStatusByUserId" parameterType="int" resultType="com.bogus.bogusplus.suda.cafe.together.model.Status">
+		SELECT
+			`id`
+			, `userId`
+			, `togetherId`
+			, `status`
+			, `createdAt`
+			, `updatedAt`
+		FROM
+			`status`
+		WHERE
+			`userId` = #{userId}
+		AND 
+			`status` = 2
+	</select>
+	
+	<select id="selectGetTogetherByUserId" parameterType="map" resultType="com.bogus.bogusplus.suda.cafe.together.model.Together">
+		SELECT
+			`id`
+			, `userId`
+			, `cafeId`
+			, `title`
+			, `placeName`
+			, `placeAddressX`
+			, `placeAddressY`
+			, `date`
+			, `content`
+			, `createdAt`
+			, `updatedAt`
+		FROM
+			`together`
+		WHERE
+			`userId` = #{userId}
+
+	</select>
+	
 	
 </mapper>

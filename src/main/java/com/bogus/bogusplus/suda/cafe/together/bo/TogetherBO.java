@@ -283,4 +283,15 @@ public class TogetherBO {
 		
 		return togetherDAO.updateTogether(togetherId, title, placeName, placeAddressX, placeAddressY, date, content);
 	}
+	
+	public List<Status> getStatusListByUserId(int userId){
+		
+		return togetherDAO.selectGetStatusByUserId(userId);
+	}
+	
+	public List<Together> getTogetherByUserId(int userId) {
+	
+		return togetherDAO.selectGetTogetherByUserId(userId);
+	}
+
 }

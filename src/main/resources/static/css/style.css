@@ -81,7 +81,7 @@ header {
 
 .profile-container {
 	width: 180px;
-	height: 225px;
+	height: 185px;
 	background-color: #101219;
 	border-left: 1px solid #706f6f;
 	border-bottom: 1px solid #706f6f;
@@ -132,9 +132,37 @@ hr {
 	color:white;
 }
 
+.blackLine {
+	background-color:#31343e;
+}
+
+.blackLineText {
+	color:#808187;
+	font-size:small;
+	font-weight:bold;
+}
+
 .textGray {
 	color:rgb(224, 224, 224);
 	font-size:small;
+}
+
+.textLight {
+	color:white;
+	font-size:small;
+	font-weight:bold;
+}
+
+.textBlue {
+	color:#4287f5;
+}
+
+.textBlue:hover {
+	color:#5d96f0;
+}
+
+.textBlue:active {
+	color:#3662a8;
 }
 
 .textRed {
@@ -367,6 +395,24 @@ a:hover {
 	font-family: 'BMJUA';
 }
 
+.testGraySmall {
+	color:#959596;
+	font-size:15px;
+	font-family:'BMJUA';
+}
+
+.textWhiteBig {
+	color:white;
+	font-size:25px;
+	font-family: 'BMJUA';
+}
+
+.textWhiteSmall {
+	color:white;
+	font-size:15px;
+	font-family: 'BMJUA';
+}
+
 .togetherTextGray {
 	color:rgb(158, 158, 158);
 	font-size:20px;
@@ -512,6 +558,11 @@ a:hover {
 	min-width:200px;
 	line-height:150%;
 	font-family: 'BMJUA';
+}
+
+.profileDeleteBtn {
+	background-color:transparent;
+	height:30px;
 }
 
 .movieSearchBtn {
@@ -776,6 +827,10 @@ a:hover {
 	box-shadow:none;
 }
 
+.contents-iconsize > .iconGray {
+	font-size:25px;
+}
+
 .iconGray {
 	color:rgb(158, 158, 158);
 	font-size:40px;
@@ -1003,4 +1058,33 @@ select {
   padding-top: 10px;
 }
 
+.calendar-a {
+ 	margin-top:29px;
+}
 
+.logout-a {
+	margin-top:60px;
+}
+
+.pin-content-modal > .modal-content {
+	width:52%;
+	margin-left:110px;
+}
+
+.contents-modal > .modal-content {
+	width:70%;
+	margin-left:75px;
+}
+
+
+#pinBtn > .modal-dialog-centered {
+    min-height: calc(80% - (1.75rem * 2));
+}
+
+.contentBox-modal {
+	width:247px;
+}
+
+#contentsBtn > .modal-dialog-centered {
+    min-height: calc(100% - (6.75rem * 2));
+}

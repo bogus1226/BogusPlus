@@ -38,8 +38,5 @@ public interface MovieDAO {
 	public List<Record> selectGetRecordListByUserId(
 			@Param("userId") int userId);
 	
-	public List<Record> selectGetRecorListByDate(
-			@Param("userId") int userId
-			, @Param("date") String date
-			, @Param("endDate") String endDate);
+
 }

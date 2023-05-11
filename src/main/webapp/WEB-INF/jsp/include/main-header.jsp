@@ -35,10 +35,10 @@
 						</div>
 					</div>
 					
-					<div class="profileText ml-3 mt-5">
-						<div>프로필 수정</div>
-						<div class="mt-2">달력</div>
-						<a class="mt-2" href="/user/signout">로그아웃</a>
+					<div class="profileText mt-3 ml-3">
+						<a href="/profile/update/view">프로필 수정</a>
+						<a class="calendar-a" href="/profile/calendar/view">달력</a>
+						<a class="logout-a" href="/user/signout">로그아웃</a>
 					</div>
 				</div>
 			</div>

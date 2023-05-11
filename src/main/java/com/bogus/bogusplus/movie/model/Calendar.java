@@ -9,5 +9,6 @@ public class Calendar {
 
 	private String title;
 	private Date start;
+	private String color;
 
 }

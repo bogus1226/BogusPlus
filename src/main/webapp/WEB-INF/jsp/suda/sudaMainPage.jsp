@@ -37,10 +37,16 @@
 			
 			<section class="sudaMainPageContents">
 				<div class="fontBMJUA mt-3 text-center"><span class="hotText">Hot</span> 수다 카페</div>
-				<a href="#" class="hotCafeBox btn btn-block textWhite mt-3">마블에 진심인 사람</a>
-				<a href="#" class="hotCafeBox btn btn-block textWhite mt-3">추리 장인</a>
-				<a href="#" class="hotCafeBox btn btn-block textWhite mt-3">무서운이야기</a>
-				
+				<c:choose>
+					<c:when test="${not empty cafeList}">
+						<c:forEach var="cafeList" items="${cafeList}">
+							<a href="/suda/cafe/mainpage/view?cafeId=${cafeList.id}" class="hotCafeBox btn btn-block textWhite mt-3">${cafeList.name}</a>
+						</c:forEach>
+					</c:when>
+					<c:otherwise>
+							<div class="text-center textWhite mt-3">Hot 까페 자리가 비었습니다!!</div>
+					</c:otherwise>
+				</c:choose>
 				<c:choose>
 					<c:when test="${is_duplicate eq 0}">
 						<div class="cafe-create">

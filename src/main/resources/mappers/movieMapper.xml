@@ -102,22 +102,6 @@
 			`userId` = #{userId}
 	</select>
 	
-	<select id="selectGetRecorListByDate" parameterType="map" resultType="com.bogus.bogusplus.movie.model.Record">
-		SELECT
-			`id`
-			, `movieId`
-			, `userId`
-			, `movieName`
-			, `createdAt`
-		FROM
-			`record`
-		WHERE
-			`userId` = #{userId}
-		AND
-			<![CDATA[`createdAt` >= #{date} ]]>
-		AND
-			<![CDATA[`createdAt` <=  #{endDate}	]]>
-			
-	</select>
+	
 	
 </mapper>

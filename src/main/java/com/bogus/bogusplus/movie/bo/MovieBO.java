@@ -10,12 +10,18 @@ import com.bogus.bogusplus.movie.dao.MovieDAO;
 import com.bogus.bogusplus.movie.model.Calendar;
 import com.bogus.bogusplus.movie.model.Interest;
 import com.bogus.bogusplus.movie.model.Record;
+import com.bogus.bogusplus.suda.cafe.together.bo.TogetherBO;
+import com.bogus.bogusplus.suda.cafe.together.model.Status;
+import com.bogus.bogusplus.suda.cafe.together.model.Together;
 
 @Service
 public class MovieBO {
 
 	@Autowired
 	private MovieDAO movieDAO;
+	
+	@Autowired
+	private TogetherBO togetherBO;
 	
 	public int addInterest(int movieId, int userId, String posterPath) {
 		
@@ -50,9 +56,34 @@ public class MovieBO {
 	
 	public List<Calendar> getRecordListByUserId(int userId) {
 		
-		List<Record> recordList = movieDAO.selectGetRecordListByUserId(userId);
-		
 		List<Calendar> calendarList = new ArrayList<>();
+		
+		
+		
+		List<Together> togetherList = togetherBO.getTogetherByUserId(userId);
+		for(Together together:togetherList) {
+			Calendar calendar = new Calendar();
+			calendar.setTitle(together.getPlaceName());
+			calendar.setStart(together.getDate());
+			calendar.setColor("#3db35c");
+			calendarList.add(calendar);
+		}
+		
+		List<Status> statusList = togetherBO.getStatusListByUserId(userId);
+		if(statusList != null) {
+			for(Status status:statusList) {
+				Together together = togetherBO.getTogether(status.getTogetherId());
+				Calendar calendar = new Calendar();
+				calendar.setTitle(together.getPlaceName());
+				calendar.setStart(together.getDate());
+				calendar.setColor("#3db35c");
+				
+				calendarList.add(calendar);
+			}	
+		}
+		
+		
+		List<Record> recordList = movieDAO.selectGetRecordListByUserId(userId);
 		for(Record recordd:recordList) {
 			Calendar calendar = new Calendar();
 			calendar.setTitle(recordd.getMovieName());
@@ -64,12 +95,7 @@ public class MovieBO {
 		return calendarList;
 	}
 	
-	public List<Record> getRecordListByDate(int userId, String date) {
-	
-		String endDate = date + " 23:59:59";
-		
-		return movieDAO.selectGetRecorListByDate(userId, date, endDate);
-	}
+
 	
 	
 }

@@ -45,46 +45,13 @@
 	
 </body>
 
-<!-- Modal -->
-<div class="modal fade" id="movieModal" >
-  	<div class="modal-dialog modal-dialog-centered">
-    	<div class="modal-content">
-      		<div class="modal-body d-flex justify-content-center">
-      			<div class="calenda-view-movie-list">
-					<a href="#" class="textWhite d-block">아이언맨</a>
-					<a href="#" class="textWhite d-block">아이언맨</a>
-				</div>	
-      		</div>
-    	</div>
-    	
-  	</div>
-</div> 
-<!-- Modal -->
+
 
 <script>
 
 	$(document).ready(function(){
 		
 		
-		$(document).on("click", ".calendarMovieIcon", function(){
-			let date = $(this).data("date");
-			
-			
-			$.ajax({
-				type:"get"
-				, url:"/movie/record/calendar"
-				, data:{"date":date}
-				, success:function(data){
-					console.log(data.recordList);
-					
-				}
-				, error:function(){
-					console.log("달력 영화 목록 가져오기 에러");
-				}
-				
-			});	
-			
-		});
 	
 		// calendar element 취득
 	    var calendarEl = document.getElementById('calendar');
@@ -116,13 +83,7 @@
     					}
 	    				, success:function(data){
 	    					console.log(data.recordList);
-	    					
 	    					successCallback(data.recordList);
-	    					
-	    					
-	
-	    					
-	    					
 	    					
 	    					
 	    				}, error:function(){

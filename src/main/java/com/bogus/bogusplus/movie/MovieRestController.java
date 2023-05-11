@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.bogus.bogusplus.movie.bo.MovieBO;
 import com.bogus.bogusplus.tmdb.bo.TmdbBO;
 import com.bogus.bogusplus.tmdb.model.TMDB;
-import com.bogus.bogusplus.movie.model.Record;
 
 @RestController
 @RequestMapping("/movie")
@@ -132,21 +131,7 @@ public class MovieRestController {
 		return resultMap;
 	}
 	
-	@GetMapping("/record/calendar") 
-	public Map<String, Object> getRecordByDate(
-			@RequestParam("date") String date
-			, HttpSession session) {
-		
-		Integer userId = (Integer)session.getAttribute("userId");
-		
-		List<Record> recordList = movieBO.getRecordListByDate(userId, date);
-		
-		Map<String, Object> resultMap = new HashMap<>();
-		
-		resultMap.put("recordList", recordList);
-		
-		return resultMap;
-	}
+
 	
 	
 }

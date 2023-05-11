@@ -76,4 +76,11 @@ public interface TogetherDAO {
 			, @Param("placeAddressY") String placeAddressY
 			, @Param("date") Date date
 			, @Param("content") String content);
+	
+	public List<Status> selectGetStatusByUserId(
+			@Param("userId") int userId);
+	
+	public List<Together> selectGetTogetherByUserId(int userId);
+
+	
 }

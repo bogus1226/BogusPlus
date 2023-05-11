@@ -40,5 +40,6 @@ public class CafeBO {
 		
 		return cafeDAO.selectCafeById(cafeId);
 	}
+	
 
 }

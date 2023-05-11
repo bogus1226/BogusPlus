@@ -1,5 +1,7 @@
 package com.bogus.bogusplus.suda;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,12 +49,14 @@ public class SudaController {
 		
 		Integer userId = (Integer)session.getAttribute("userId");
 		
+		List<Cafe> cafeList = sudaBO.popularCounting();
+		
 		int count = cafeBO.isduplicateCafe(userId);
 		
 		Cafe cafe = cafeBO.getCafeInfo(userId);
 		
 		model.addAttribute("is_duplicate", count);
-		
+		model.addAttribute("cafeList", cafeList);
 		
 		if(cafe != null) {
 			model.addAttribute("name", cafe.getName());

@@ -157,5 +157,24 @@ public class UserRestController {
 		return resultMap;
 	}
 	
+	@GetMapping("/pin/delete")
+	public Map<String, String> deletePin(HttpSession session) {
+		
+		Integer userId = (Integer)session.getAttribute("userId");
+		
+		int count = userBO.deletePin(userId);
+		
+		Map<String, String> resultMap = new HashMap<>();
+		
+		if(count != 0) {
+			resultMap.put("result", "success");
+		} else {
+			resultMap.put("result", "fail");
+		}
+		
+		return resultMap;
+		
+	}
+	
 
 }

@@ -115,5 +115,37 @@
 			`id` = #{id}
 	</select>
 	
+	<update id="updateProfile" parameterType="map">
+		UPDATE
+			`user`
+		SET
+			`nickName` = #{nickName}
+			, `catalogue` = #{catalogue}
+			, `pin` = #{pin}
+			, updatedAt = now()
+		WHERE
+			 `id` = #{id}
+	</update>
+	
+	<update id="updateProfileNotPin" parameterType="map">
+		UPDATE
+			`user`
+		SET
+			`nickName` = #{nickName}
+			, `catalogue` = #{catalogue}
+			, updatedAt = now()
+		WHERE
+			 `id` = #{id}
+	</update>
+	
+	<update id="updatePinNull" parameterType="map">
+		UPDATE
+			`user`
+		SET
+			`pin` = NULL
+			, updatedAt = now()
+		WHERE
+			 `id` = #{id}
+	</update>
 
 </mapper>

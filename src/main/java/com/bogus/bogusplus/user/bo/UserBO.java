@@ -66,5 +66,28 @@ public class UserBO {
 		return userDAO.selectUserById(userId);
 	}
 	
+	public int updateProfile(
+			int userId
+			, String nickName
+			, int catalogue
+			, String pin) {
+		
+		String encryptPin = EncryptService.md5(pin);
+		
+		return userDAO.updateProfile(userId, nickName, catalogue, encryptPin);
+	}
+	
+	public int updateProfileNotPin(
+			int userId
+			, String nickName
+			, int catalogue) {
+		
+		return userDAO.updateProfileNotPin(userId, nickName, catalogue);
+	}
+	
+	public int deletePin(int userId) {
+		
+		return userDAO.updatePinNull(userId);
+	}
 
 }
