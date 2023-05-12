@@ -138,7 +138,7 @@
 			 `id` = #{id}
 	</update>
 	
-	<update id="updatePinNull" parameterType="map">
+	<update id="updatePinNull" parameterType="int">
 		UPDATE
 			`user`
 		SET
@@ -147,5 +147,19 @@
 		WHERE
 			 `id` = #{id}
 	</update>
+	
+	
+	<select id="selectIsDuplicatePin" parameterType="map" resultType="int">
+		SELECT
+			count(1)
+		FROM
+			`user`
+		WHERE
+			`pin` = #{pin}
+		AND
+			`id` = #{id}
+	</select>
+	
+	
 
 </mapper>

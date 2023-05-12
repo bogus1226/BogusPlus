@@ -183,6 +183,7 @@
 				type:"get"
 				, url:"/user/pin/delete"
 				, success:function(data){
+
 					if(data.result == "success") {
 						$(".deleteBtn").addClass("d-none");
 						

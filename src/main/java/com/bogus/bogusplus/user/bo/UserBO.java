@@ -89,5 +89,12 @@ public class UserBO {
 		
 		return userDAO.updatePinNull(userId);
 	}
+	
+	public int isDuplicatePin(int userId, String pin) {
+		
+		String encryptPin = EncryptService.md5(pin);
+		
+		return userDAO.selectIsDuplicatePin(userId, encryptPin);
+	}
 
 }

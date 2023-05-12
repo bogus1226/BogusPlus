@@ -128,6 +128,13 @@ hr {
 	color:white;
 }
 
+.connectProfileContents {
+	width:20%;
+	height:300px;
+	margin:auto;
+	color:white;
+}
+
 .main-contents > a:hover {
 	color:white;
 }
@@ -703,6 +710,10 @@ a:hover {
 .suda-main-contents {
 	width:40%;
 	margin:auto;
+}
+
+.connectProfileBox {
+	margin-top:125px;
 }
 
 .previw-container > .suda-main-contents {

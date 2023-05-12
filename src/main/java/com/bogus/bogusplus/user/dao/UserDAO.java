@@ -48,4 +48,8 @@ public interface UserDAO {
 	
 	public int updatePinNull(@Param("id") int id);
 	
+	public int selectIsDuplicatePin(
+			@Param("id") int id
+			, @Param("pin") String pin);
+	
 }

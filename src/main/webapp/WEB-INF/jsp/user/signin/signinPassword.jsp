@@ -58,22 +58,41 @@
 				return;
 			}
 			
+			
 			$.ajax({
 				type:"post"
 				, url:"/user/signin"
 				, data:{"email":email, "password":password}
 				, success:function(data){
 					if(data.result == "success") {
-						location.href = "/movie/mainpage/view";
+						
+						$.ajax({
+							type:"get"
+							, url:"/user/pin/isduplicate"
+							, success:function(data) {
+								if(data.result == "success") {
+									location.href = "/profile/connect/view";
+								} else {
+									location.href = "/movie/mainpage/view";
+								}
+							}
+							, error:function() {
+								console.log("핀 여부 확인 에러");
+							}
+							
+								
+						});
+						
+						
 					} else if(data.EmailResult) {
 						$("#passwordIsDuplicateText").removeClass("d-none");
 					} else {
-						alert("로그인 실패");
+						console.log("로그인 실패");
 					}
 					
 				}
 				, error:function(){
-					alert("로그인 에러");
+					console.log("로그인 에러");
 				}
 				
 			});

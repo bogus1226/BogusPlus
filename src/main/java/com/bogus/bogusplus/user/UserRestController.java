@@ -158,19 +158,42 @@ public class UserRestController {
 	}
 	
 	@GetMapping("/pin/delete")
-	public Map<String, String> deletePin(HttpSession session) {
+	public Map<String, Object> deletePin(HttpSession session) {
 		
 		Integer userId = (Integer)session.getAttribute("userId");
 		
 		int count = userBO.deletePin(userId);
 		
-		Map<String, String> resultMap = new HashMap<>();
+		Map<String, Object> resultMap = new HashMap<>();
 		
 		if(count != 0) {
 			resultMap.put("result", "success");
 		} else {
 			resultMap.put("result", "fail");
 		}
+		
+		return resultMap;
+		
+	}
+	
+	@GetMapping("/pin/isduplicate")
+	public Map<String, Object> pinIsdiplicate(HttpSession session) {
+		
+		Integer userId = (Integer)session.getAttribute("userId");
+		
+		User user = userBO.getUserById(userId);
+		
+		Map<String, Object> resultMap = new HashMap<>();
+		
+		if(user.getPin() != null) {
+			resultMap.put("result", "success");
+		} else {
+			resultMap.put("result", "fail");
+		}
+		
+		
+		
+		
 		
 		return resultMap;
 		

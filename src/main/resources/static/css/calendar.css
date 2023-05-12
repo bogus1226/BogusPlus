@@ -23,7 +23,9 @@
 	font-size: 1em;
 }
 
-
+.fc-day {
+	background-color: #30333e !important;
+}
 .fc-day-today {
 	background-color: #5e647a !important;
 }
