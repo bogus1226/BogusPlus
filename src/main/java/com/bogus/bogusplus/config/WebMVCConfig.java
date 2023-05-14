@@ -26,8 +26,8 @@ public class WebMVCConfig implements WebMvcConfigurer{
 		PermissionInterceptor interceptor = new PermissionInterceptor();
 		
 		registry.addInterceptor(interceptor)
-		.addPathPatterns("/**") // 인터셉터를 거쳐서 처리할 페이지의 url 규칙
-		.excludePathPatterns("/user/signout", "/user/pin/delete", "/user/pin/isduplicate");
+		.addPathPatterns("/**"); // 인터셉터를 거쳐서 처리할 페이지의 url 규칙
+		
 		
 	}
 	

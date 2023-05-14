@@ -7,7 +7,7 @@
 					<nav class="ml-5 pt-2 nav-item d-flex" id="movieHeaderLink">
 						<a href="/movie/mainpage/view" class="nav-link"><i class="bi bi-house-fill mr-1"></i>홈</a>
 						<button type="button" class="btn movieSearchBtn movieSearchBtnText nav-link"><i class="bi bi-search mr-1"></i>검색</button>
-						<a href="#" class="nav-link"><i class="bi bi-caret-right-square-fill mr-1"></i>영화</a>
+						<a href="/movie/list/view" class="nav-link"><i class="bi bi-caret-right-square-fill mr-1"></i>영화</a>
 						<a href="/suda/info/isDuplicate" class="nav-link"><i class="bi bi-chat-fill mr-1"></i>수다 <span class="textYellow">(스포주의)</span></a>
 					</nav>
 				</div>

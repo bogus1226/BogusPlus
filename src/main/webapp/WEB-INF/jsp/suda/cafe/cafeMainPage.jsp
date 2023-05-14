@@ -74,12 +74,7 @@
 										<div class="post-text-icon"></div>
 										<div class="post-text d-flex justify-content-center">
 											<div class="textWhite mt-2" style="word-break:break-all;">${postDetail.content}</div>
-										</div>
-										
-										<div class="post-text-icon mt-2 d-flex justify-content-end align-items-end">
-											<i class="bi bi-caret-down-fill iconBtn mr-2"></i>
-										</div>
-										
+										</div>	
 									</div>
 									
 									<hr class="mt-1 mb-3">

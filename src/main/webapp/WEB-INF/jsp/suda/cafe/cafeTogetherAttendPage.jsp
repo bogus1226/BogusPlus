@@ -98,92 +98,80 @@
 									</div>
 									
 									<!-- 내용 -->
-									<div class="post-text-container d-flex mt-3">
+									<div class="post-text-container d-flex mt-3 mb-3">
 										<div class="post-text-icon"></div>
 										<div class="post-text d-flex justify-content-center post-text-background">
 											<div class="textWhite mt-2 pl-4 pr-4" style="word-break:break-all;">${togetherList.title}</div>
 										</div>
 									</div>
-									
-									<!-- 톡보기 버튼 -->
-									<div class="post-text-container d-flex">
-										<div class="post-text-icon"></div>
-										<div class="post-text d-flex justify-content-end">
-											<i class="bi bi-caret-down-fill iconBtn mr-2 downBtn" data-togetherid="${togetherList.id}"></i>
-											<i class="bi bi-caret-up-fill d-none iconBtn mr-2 upBtn" data-togetherid="${togetherList.id}"></i>
-										</div>
-									</div>
-									
-									
-									
+													
 									<!-- 보거스 톡 -->
-									<div class="d-none" id="bogus-talk-wrap${togetherList.id}">
-										<div class="post-text-container d-flex pb-3">
-											
-											<div class="post-text-icon"></div>
-											
-											<div class="talk-box post-text-background">
-												<c:forEach var="bogusTalk" items="${togetherList.bogusTalkList}">
-													<c:choose>
-														<c:when test="${bogusTalk.userId eq userId}">
-															<!-- 나의 톡  -->
-															<div class="d-flex justify-content-end pt-2">
-																<div class="post-text d-flex justify-content-end mr-3">
-																	<div class="my-talk-background">
+									<div class="post-text-container d-flex pb-3">
+										
+										<div class="post-text-icon"></div>
+										
+										<div class="talk-box post-text-background mt-2">
+											<c:forEach var="bogusTalk" items="${togetherList.bogusTalkList}">
+												<c:choose>
+													<c:when test="${bogusTalk.userId eq userId}">
+														<!-- 나의 톡  -->
+														<div class="d-flex justify-content-end pt-2">
+															<div class="post-text d-flex justify-content-end mr-3">
+																<div class="my-talk-background">
+																	<div class="textWhite" style="word-break:break-all;">${bogusTalk.talk}</div>
+																</div>
+															</div>
+														</div>
+														<!-- 나의 톡 -->
+													</c:when>
+													
+													<c:otherwise>
+														<!-- 상대방톡 -->
+														<div class="pt-2">
+															<div class="post-text">
+																<div class="post-text-background d-flex">
+																	<div class="post-talk-space"></div>
+																	<div class="d-flex">
+																		<div class="textWhite">${bogusTalk.nickName}</div>
+																	</div>
+																	<div class="post-talk-space"></div>
+																</div>
+															</div>
+														</div>
+														
+														<div class="">
+															<div class="post-text">
+																<div class="post-text-background d-flex">
+																	<div class="post-talk-space"></div>
+																	<div class="post-talk-background">
 																		<div class="textWhite" style="word-break:break-all;">${bogusTalk.talk}</div>
 																	</div>
+																	<div class="post-talk-space"></div>
 																</div>
 															</div>
-															<!-- 나의 톡 -->
-														</c:when>
-														
-														<c:otherwise>
-															<!-- 상대방톡 -->
-															<div class="pt-2">
-																<div class="post-text">
-																	<div class="post-text-background d-flex">
-																		<div class="post-talk-space"></div>
-																		<div class="d-flex">
-																			<div class="textWhite">${bogusTalk.nickName}</div>
-																		</div>
-																		<div class="post-talk-space"></div>
-																	</div>
-																</div>
-															</div>
-															
-															<div class="">
-																<div class="post-text">
-																	<div class="post-text-background d-flex">
-																		<div class="post-talk-space"></div>
-																		<div class="post-talk-background">
-																			<div class="textWhite" style="word-break:break-all;">${bogusTalk.talk}</div>
-																		</div>
-																		<div class="post-talk-space"></div>
-																	</div>
-																</div>
-															</div>
-															<!-- 상대방톡 -->
-														</c:otherwise>
-													</c:choose>
-												</c:forEach>
-												
-												<form>
-													<div class="post-text-container d-flex pt-3">
-														<div class="post-text-icon"></div>
-														<div class="post-text d-flex post-text-background">
-															<div class="post-text-icon"></div>
-															<div class="input-group talk-group bg-secondary">
-																<input type="text" class="form-control" placeholder="내용을 입력해주세요" id="talkInput${togetherList.id}">
-																<div class="input-group-append">
-																	<button class="btn btn-secondary talkBtn" type="submit" data-togetherid="${togetherList.id}">Talk</button>
-																</div>
-															</div>
-															<div class="post-text-icon"></div>
 														</div>
+														<!-- 상대방톡 -->
+													</c:otherwise>
+												</c:choose>
+											</c:forEach>
+											
+											<form>
+												<div class="post-text-container d-flex pt-3">
+													<div class="post-text-icon"></div>
+													<div class="post-text d-flex post-text-background">
+														<div class="post-text-icon"></div>
+														<div class="input-group talk-group bg-secondary">
+															<input type="text" class="form-control" placeholder="내용을 입력해주세요" id="talkInput${togetherList.id}">
+															<div class="input-group-append">
+																<button class="btn btn-secondary talkBtn" type="submit" data-togetherid="${togetherList.id}">Talk</button>
+															</div>
+														</div>
+														<div class="post-text-icon"></div>
 													</div>
-												</form>
-											</div>
-											<div class="post-text-icon"></div>
+												</div>
+											</form>
+										
+										<div class="post-text-icon"></div>
 										</div>
 									</div>
 									
@@ -250,7 +238,6 @@
 			$(this).addClass("d-none");
 			$(this).next().removeClass("d-none");  
 			
-			$("#bogus-talk-wrap" + togetherId).removeClass("d-none"); 
 		}); 
 		
 		$(".upBtn").on("click", function(){
@@ -260,7 +247,6 @@
 			$(this).addClass("d-none");
 			$(this).prev().removeClass("d-none");  	
 			
-			$("#bogus-talk-wrap" + togetherId).addClass("d-none"); 
 		}); 
 		
 		$(".talkBtn").on("click", function(){

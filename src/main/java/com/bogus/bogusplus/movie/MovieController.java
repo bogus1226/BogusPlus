@@ -164,4 +164,14 @@ public class MovieController {
 		return "movie/detailRecommend";
 	}
 	
+	@GetMapping("/list/view")
+	public String movieList(
+			Model model) {
+		
+		List<TMDB> mainpageKoreaMovieList = tmdbBO.getMainPageKoreaMovieList();
+		
+		model.addAttribute("mainpageKoreaMovieList", mainpageKoreaMovieList);
+		return "movie/movieList";
+	}
+	
 }

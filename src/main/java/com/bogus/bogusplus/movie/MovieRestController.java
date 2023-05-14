@@ -1,5 +1,6 @@
 package com.bogus.bogusplus.movie;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -129,6 +130,30 @@ public class MovieRestController {
 		
 		
 		return resultMap;
+	}
+	
+	@GetMapping("/list") 
+	public Map<String, Object> movieList(
+			@RequestParam("movieSelectNumber") int movieSelectNumber) {
+		
+		Map<String, Object> movieMap = new HashMap<>();
+		
+		List<TMDB> movieList = new ArrayList<>();
+		
+		String[] genresNumber = {"0", "1", "16", "28,53", "35", "10749", "878", "27"
+				, "10751", "12", "14" ,"10752", "10402", "80", "99", "36"};
+		
+		if(movieSelectNumber == 0) {
+			movieList = tmdbBO.getMainPageKoreaMovieList();
+		} else if(movieSelectNumber == 1) {
+			movieList = tmdbBO.getMainPageTodayTopMovieList();
+		} else {
+			movieList = tmdbBO.getMainPageGenresMovieList(genresNumber[movieSelectNumber]);
+		} 
+		
+		movieMap.put("movieList", movieList);
+		
+		return movieMap;
 	}
 	
 

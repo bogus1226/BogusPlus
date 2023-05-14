@@ -86,171 +86,289 @@
 	    				<div class="swiper-button-next movieNextBtn" data-movie-info="2"></div>
 					</div>
 					
-					<div class="swiper swiper-content">
-						<div class="textWhite">애니메이션 영화</div>
-						<div class="swiper-wrapper contents d-flex mt-2" id="append3">
-							<c:forEach var="animationMovieList" items="${mainPageAnimationMovieList}">
-								<a href="/movie/detail/recommend/view?movieId=${animationMovieList.id}" class="movie-box swiper-slide"><img src="${animationMovieList.poster_path}"></a>
-							</c:forEach>
-						</div>
-						<div class="swiper-button-prev movieBackBtn" data-movie-info="3"></div>
-	    				<div class="swiper-button-next movieNextBtn" data-movie-info="3"></div>
-					</div>
-					
-					<div class="swiper swiper-content">
-						<div class="textWhite">액션 <span class="icon">&</span> 스릴러</div>
-						<div class="swiper-wrapper contents d-flex mt-2" id="append4">
-							<c:forEach var="actionMovieList" items="${mainPageActionMovieList}">
-								<a href="/movie/detail/recommend/view?movieId=${actionMovieList.id}" class="movie-box swiper-slide"><img src="${actionMovieList.poster_path}"></a>
-							</c:forEach>
-						</div>
-						<div class="swiper-button-prev movieBackBtn" data-movie-info="4"></div>
-	    				<div class="swiper-button-next movieNextBtn" data-movie-info="4"></div>
-					</div>
-					
-					<div class="swiper swiper-content">
-						<div class="textWhite">코미디</div>
-						<div class="swiper-wrapper contents d-flex mt-2" id="append5">
-							<c:forEach var="comedyMovieList" items="${mainPageComedyMovieList}">
-								<a href="/movie/detail/recommend/view?movieId=${comedyMovieList.id}" class="movie-box swiper-slide"><img src="${comedyMovieList.poster_path}"></a>
-							</c:forEach>
-						</div>
-						<div class="swiper-button-prev movieBackBtn" data-movie-info="5"></div>
-	    				<div class="swiper-button-next movieNextBtn" data-movie-info="5"></div>
-					</div>
-					
-					<div class="swiper swiper-content">
-						<div class="textWhite">로맨스</div>
-						<div class="swiper-wrapper contents d-flex mt-2" id="append6">
-							<c:forEach var="romanceMovieList" items="${mainPageRomanceMovieList}">
-								<a href="/movie/detail/recommend/view?movieId=${romanceMovieList.id}" class="movie-box swiper-slide"><img src="${romanceMovieList.poster_path}"></a>
-							</c:forEach>
-						</div>
-						<div class="swiper-button-prev movieBackBtn" data-movie-info="6"></div>
-	    				<div class="swiper-button-next movieNextBtn" data-movie-info="6"></div>
-					</div>
-					
-					<div class="swiper swiper-content">
-						<div class="textWhite logo">SF</div>
-						<div class="swiper-wrapper contents d-flex mt-2" id="append7">
-							<c:forEach var="sfMovieList" items="${mainPageSFMovieList}">
-								<a href="/movie/detail/recommend/view?movieId=${sfMovieList.id}" class="movie-box swiper-slide"><img src="${sfMovieList.poster_path}"></a>
-							</c:forEach>
-						</div>
-						<div class="swiper-button-prev movieBackBtn" data-movie-info="7"></div>
-	    				<div class="swiper-button-next movieNextBtn" data-movie-info="7"></div>
-					</div>
-					
-					<div class="swiper swiper-content">
-						<div class="textWhite">호러</div>
-						<div class="swiper-wrapper contents d-flex mt-2" id="append8">
-							<c:forEach var="horrorMovieList" items="${mainPageHorrorMovieList}">
-								<a href="/movie/detail/recommend/view?movieId=${horrorMovieList.id}" class="movie-box swiper-slide"><img src="${horrorMovieList.poster_path}"></a>
-							</c:forEach>
-						</div>
-						<div class="swiper-button-prev movieBackBtn" data-movie-info="8"></div>
-	    				<div class="swiper-button-next movieNextBtn" data-movie-info="8"></div>
-					</div>
-					
-					<div class="swiper swiper-content">
-						<div class="textWhite">가족</div>
-						<div class="swiper-wrapper contents d-flex mt-2" id="append9">
-							<c:forEach var="familyMovieList" items="${mainPageFamilyMovieList}">
-								<a href="/movie/detail/recommend/view?movieId=${familyMovieList.id}" class="movie-box swiper-slide"><img src="${familyMovieList.poster_path}"></a>
-							</c:forEach>
-						</div>
-						<div class="swiper-button-prev movieBackBtn" data-movie-info="9"></div>
-	    				<div class="swiper-button-next movieNextBtn" data-movie-info="9"></div>
-					</div>
-					
-					<div class="swiper swiper-content">
-						<div class="textWhite">모험</div>
-						<div class="swiper-wrapper contents d-flex mt-2" id="append10">
-							<c:forEach var="adventureMovieList" items="${mainPageAdventureMovieList}">
-								<a href="/movie/detail/recommend/view?movieId=${adventureMovieList.id}" class="movie-box swiper-slide"><img src="${adventureMovieList.poster_path}"></a>
-							</c:forEach>
-						</div>
-						<div class="swiper-button-prev movieBackBtn" data-movie-info="10"></div>
-	    				<div class="swiper-button-next movieNextBtn" data-movie-info="10"></div>
-					</div>
-					
-					<div class="swiper swiper-content">
-						<div class="textWhite">판타지</div>
-						<div class="swiper-wrapper contents d-flex mt-2" id="append11">
-							<c:forEach var="fantasyMovieList" items="${mainPageFantasyMovieList}">
-								<a href="/movie/detail/recommend/view?movieId=${fantasyMovieList.id}" class="movie-box swiper-slide"><img src="${fantasyMovieList.poster_path}"></a>
-							</c:forEach>
-						</div>
-						<div class="swiper-button-prev movieBackBtn" data-movie-info="11"></div>
-	    				<div class="swiper-button-next movieNextBtn" data-movie-info="11"></div>
-					</div>
-					
-					<div class="swiper swiper-content">
-						<div class="textWhite">전쟁</div>
-						<div class="swiper-wrapper contents d-flex mt-2" id="append12">
-							<c:forEach var="warMovieList" items="${mainPageWarMovieList}">
-								<a href="/movie/detail/recommend/view?movieId=${warMovieList.id}" class="movie-box swiper-slide"><img src="${warMovieList.poster_path}"></a>
-							</c:forEach>
-						</div>
-						<div class="swiper-button-prev movieBackBtn" data-movie-info="12"></div>
-	    				<div class="swiper-button-next movieNextBtn" data-movie-info="12"></div>
-					</div>
-					
-					<div class="swiper swiper-content">
-						<div class="textWhite">음악</div>
-						<div class="swiper-wrapper contents d-flex mt-2" id="append13">
-							<c:forEach var="musicMovieList" items="${mainPageMusicMovieList}">
-								<a href="/movie/detail/recommend/view?movieId=${musicMovieList.id}" class="movie-box swiper-slide"><img src="${musicMovieList.poster_path}"></a>
-							</c:forEach>
-						</div>
-						<div class="swiper-button-prev movieBackBtn" data-movie-info="13"></div>
-	    				<div class="swiper-button-next movieNextBtn" data-movie-info="13"></div>
-					</div>
-					
-					<div class="swiper swiper-content">
-						<div class="textWhite">범죄</div>
-						<div class="swiper-wrapper contents d-flex mt-2" id="append14">
-							<c:forEach var="crimeMovieList" items="${mainPageCrimeMovieList}">
-								<a href="/movie/detail/recommend/view?movieId=${crimeMovieList.id}" class="movie-box swiper-slide"><img src="${crimeMovieList.poster_path}"></a>
-							</c:forEach>
-						</div>
-						<div class="swiper-button-prev movieBackBtn" data-movie-info="14"></div>
-	    				<div class="swiper-button-next movieNextBtn" data-movie-info="14"></div>
-					</div>
-					
-					<div class="swiper swiper-content">
-						<div class="textWhite">다큐멘터리</div>
-						<div class="swiper-wrapper contents d-flex mt-2" id="append15">
-							<c:forEach var="documentaryMovieList" items="${mainPageDocumentaryMovieList}">
-								<a href="/movie/detail/recommend/view?movieId=${documentaryMovieList.id}" class="movie-box swiper-slide"><img src="${documentaryMovieList.poster_path}"></a>
-							</c:forEach>
-						</div>
-						<div class="swiper-button-prev movieBackBtn" data-movie-info="15"></div>
-	    				<div class="swiper-button-next movieNextBtn" data-movie-info="15"></div>
-					</div>
-					
-					<div class="swiper swiper-content">
-						<div class="textWhite">역사</div>
-						<div class="swiper-wrapper contents d-flex mt-2" id="append16">
-							<c:forEach var="historyMovieList" items="${mainPageHistoryMovieList}">
-								<a href="/movie/detail/recommend/view?movieId=${historyMovieList.id}" class="movie-box swiper-slide"><img src="${historyMovieList.poster_path}"></a>
-							</c:forEach>
-						</div>
-						<div class="swiper-button-prev movieBackBtn" data-movie-info="16"></div>
-	    				<div class="swiper-button-next movieNextBtn" data-movie-info="16"></div>
-					</div>
 				</div>
 				
 				
 			</section>
 		</div>
-		<c:import url="/WEB-INF/jsp/include/footer.jsp"/>
+		
 	</div>
 </body>
 
 <script>
 
 	$(document).ready(function(){
+		
+		let scrollCounting = 0;
+		
+		$(window).scroll(function() {
+			  // 현재 스크롤 위치 계산
+			  var currentPosition = $(window).scrollTop();
+			  
+			  
+
+			  // 스크롤이 페이지 하단에 도달하면 추가 데이터 로드
+			  if (currentPosition == $(document).height() - $(window).height() && scrollCounting == 0) {
+				  $(".movie-conteiner").append(
+						  '<div class="swiper swiper-content">'
+							+ '<div class="textWhite">애니메이션 영화</div>'
+							+ '<div class="swiper-wrapper contents d-flex mt-2" id="append3">'
+								+ '<c:forEach var="animationMovieList" items="${mainPageAnimationMovieList}">'
+									+ '<a href="/movie/detail/recommend/view?movieId=${animationMovieList.id}" class="movie-box swiper-slide"><img src="${animationMovieList.poster_path}"></a>'
+								+ '</c:forEach>'
+							+ '</div>'
+							+ '<div class="swiper-button-prev movieBackBtn" data-movie-info="3"></div>'
+		    				+ '<div class="swiper-button-next movieNextBtn" data-movie-info="3"></div>'
+						+ '</div>');
+				  
+				  $(".movie-conteiner").append(
+						  '<div class="swiper swiper-content">'
+							+ '<div class="textWhite">액션 <span class="icon">&</span> 스릴러</div>'
+							+ '<div class="swiper-wrapper contents d-flex mt-2" id="append4">'
+								+ '<c:forEach var="actionMovieList" items="${mainPageActionMovieList}">'
+									+ '<a href="/movie/detail/recommend/view?movieId=${actionMovieList.id}" class="movie-box swiper-slide"><img src="${actionMovieList.poster_path}"></a>'
+								+ '</c:forEach>'
+							+ '</div>'
+							+ '<div class="swiper-button-prev movieBackBtn" data-movie-info="4"></div>'
+		    				+ '<div class="swiper-button-next movieNextBtn" data-movie-info="4"></div>'
+						+ '</div>');
+				  
+				  $(".movie-conteiner").append('<div class="swiper swiper-content">'
+							+ '<div class="textWhite">코미디</div>'
+							+ '<div class="swiper-wrapper contents d-flex mt-2" id="append5">'
+								+ '<c:forEach var="comedyMovieList" items="${mainPageComedyMovieList}">'
+									+ '<a href="/movie/detail/recommend/view?movieId=${comedyMovieList.id}" class="movie-box swiper-slide"><img src="${comedyMovieList.poster_path}"></a>'
+								+ '</c:forEach>'
+							+ '</div>'
+							+ '<div class="swiper-button-prev movieBackBtn" data-movie-info="5"></div>'
+							+ '<div class="swiper-button-next movieNextBtn" data-movie-info="5"></div>'
+						+ '</div>');
+				  
+				  swiperMovie = new Swiper(".swiper-content", {                 
+					    slidesPerView: 7.5,
+					    slidesPerGroup : 7,
+					    spaceBetween: 20,  
+					    observer: true,	
+					    
+					    navigation: {                      
+					        nextEl: ".swiper-button-next",
+					        prevEl: ".swiper-button-prev",
+					    },
+					    	   
+					});
+					
+					scrollCounting = 1;
+					
+			  } else if (currentPosition == $(document).height() - $(window).height() && scrollCounting == 1) {
+			    // 추가 데이터 로드하는 코드 
+				
+			    
+				$(".movie-conteiner").append('<div class="swiper swiper-content">'
+						+ '<div class="textWhite">로맨스</div>'
+						+ '<div class="swiper-wrapper contents d-flex mt-2" id="append6">'
+							+ '<c:forEach var="romanceMovieList" items="${mainPageRomanceMovieList}">'
+								+ '<a href="/movie/detail/recommend/view?movieId=${romanceMovieList.id}" class="movie-box swiper-slide"><img src="${romanceMovieList.poster_path}"></a>'
+							+ '</c:forEach>'
+						+ '</div>'
+						+ '<div class="swiper-button-prev movieBackBtn" data-movie-info="6"></div>'
+						+ '<div class="swiper-button-next movieNextBtn" data-movie-info="6"></div>'
+					+ '</div>');
+			    
+				$(".movie-conteiner").append('<div class="swiper swiper-content">'
+						+ '<div class="textWhite logo">SF</div>'
+						+ '<div class="swiper-wrapper contents d-flex mt-2" id="append7">'
+							+ '<c:forEach var="sfMovieList" items="${mainPageSFMovieList}">'
+								+ '<a href="/movie/detail/recommend/view?movieId=${sfMovieList.id}" class="movie-box swiper-slide"><img src="${sfMovieList.poster_path}"></a>'
+							+ '</c:forEach>'
+						+ '</div>'
+						+ '<div class="swiper-button-prev movieBackBtn" data-movie-info="7"></div>'
+						+ '<div class="swiper-button-next movieNextBtn" data-movie-info="7"></div>'
+					+ '</div>');
+			    
+				$(".movie-conteiner").append('<div class="swiper swiper-content">'
+						+ '<div class="textWhite">호러</div>'
+						+ '<div class="swiper-wrapper contents d-flex mt-2" id="append8">'
+							+ '<c:forEach var="horrorMovieList" items="${mainPageHorrorMovieList}">'
+								+ '<a href="/movie/detail/recommend/view?movieId=${horrorMovieList.id}" class="movie-box swiper-slide"><img src="${horrorMovieList.poster_path}"></a>'
+							+ '</c:forEach>'
+						+ '</div>'
+						+ '<div class="swiper-button-prev movieBackBtn" data-movie-info="8"></div>'
+						+ '<div class="swiper-button-next movieNextBtn" data-movie-info="8"></div>'
+					+ '</div>');
+			    
+				
+			    
+				swiperMovie = new Swiper(".swiper-content", {                 
+				    slidesPerView: 7.5,
+				    slidesPerGroup : 7,
+				    spaceBetween: 20,  
+				    observer: true,	
+				    
+				    navigation: {                      
+				        nextEl: ".swiper-button-next",
+				        prevEl: ".swiper-button-prev",
+				    },
+				    	   
+				});
+				
+				scrollCounting = 2;
+				
+			  } else if(currentPosition == $(document).height() - $(window).height() && scrollCounting == 2) {
+				  
+				  $(".movie-conteiner").append('<div class="swiper swiper-content">'
+							+ '<div class="textWhite">가족</div>'
+							+ '<div class="swiper-wrapper contents d-flex mt-2" id="append9">'
+								+ '<c:forEach var="familyMovieList" items="${mainPageFamilyMovieList}">'
+									+ '<a href="/movie/detail/recommend/view?movieId=${familyMovieList.id}" class="movie-box swiper-slide"><img src="${familyMovieList.poster_path}"></a>'
+								+ '</c:forEach>'
+							+ '</div>'
+							+ '<div class="swiper-button-prev movieBackBtn" data-movie-info="9"></div>'
+							+ '<div class="swiper-button-next movieNextBtn" data-movie-info="9"></div>'
+						+ '</div>');
+				    
+					$(".movie-conteiner").append(
+							  '<div class="swiper swiper-content">'
+								+ '<div class="textWhite">모험</div>'
+								+ '<div class="swiper-wrapper contents d-flex mt-2" id="append10">'
+									+ '<c:forEach var="adventureMovieList" items="${mainPageAdventureMovieList}">'
+										+ '<a href="/movie/detail/recommend/view?movieId=${adventureMovieList.id}" class="movie-box swiper-slide"><img src="${adventureMovieList.poster_path}"></a>'
+									+ '</c:forEach>'
+								+ '</div>'
+								+ '<div class="swiper-button-prev movieBackBtn" data-movie-info="10"></div>'
+			    				+ '<div class="swiper-button-next movieNextBtn" data-movie-info="10"></div>'
+							+ '</div>');
+				   
+				  $(".movie-conteiner").append(
+						  '<div class="swiper swiper-content">'
+							+ '<div class="textWhite">판타지</div>'
+							+ '<div class="swiper-wrapper contents d-flex mt-2" id="append11">'
+								+ '<c:forEach var="fantasyMovieList" items="${mainPageFantasyMovieList}">'
+									+ '<a href="/movie/detail/recommend/view?movieId=${fantasyMovieList.id}" class="movie-box swiper-slide"><img src="${fantasyMovieList.poster_path}"></a>'
+								+ '</c:forEach>'
+							+ '</div>'
+							+ '<div class="swiper-button-prev movieBackBtn" data-movie-info="11"></div>'
+		    				+ '<div class="swiper-button-next movieNextBtn" data-movie-info="11"></div>'
+						+ '</div>');
+				  
+
+				  swiperMovie = new Swiper(".swiper-content", {                 
+					    slidesPerView: 7.5,
+					    slidesPerGroup : 7,
+					    spaceBetween: 20,  
+					    observer: true,	
+					    
+					    navigation: {                      
+					        nextEl: ".swiper-button-next",
+					        prevEl: ".swiper-button-prev",
+					    },
+					    	   
+				  });
+				  
+				  scrollCounting = 3;
+				  
+			  } else if(currentPosition == $(document).height() - $(window).height() && scrollCounting == 3) {
+				  
+				  $(".movie-conteiner").append(
+						  '<div class="swiper swiper-content">'
+							+ '<div class="textWhite">전쟁</div>'
+							+ '<div class="swiper-wrapper contents d-flex mt-2" id="append12">'
+								+ '<c:forEach var="warMovieList" items="${mainPageWarMovieList}">'
+									+ '<a href="/movie/detail/recommend/view?movieId=${warMovieList.id}" class="movie-box swiper-slide"><img src="${warMovieList.poster_path}"></a>'
+								+ '</c:forEach>'
+							+ '</div>'
+							+ '<div class="swiper-button-prev movieBackBtn" data-movie-info="12"></div>'
+		    				+ '<div class="swiper-button-next movieNextBtn" data-movie-info="12"></div>'
+						+ '</div>');
+				  
+				  $(".movie-conteiner").append(
+						  '<div class="swiper swiper-content">'
+							+ '<div class="textWhite">음악</div>'
+							+ '<div class="swiper-wrapper contents d-flex mt-2" id="append13">'
+								+ '<c:forEach var="musicMovieList" items="${mainPageMusicMovieList}">'
+									+ '<a href="/movie/detail/recommend/view?movieId=${musicMovieList.id}" class="movie-box swiper-slide"><img src="${musicMovieList.poster_path}"></a>'
+								+ '</c:forEach>'
+							+ '</div>'
+							+ '<div class="swiper-button-prev movieBackBtn" data-movie-info="13"></div>'
+		    				+ '<div class="swiper-button-next movieNextBtn" data-movie-info="13"></div>'
+						+ '</div>');
+				  
+				  $(".movie-conteiner").append(
+						  '<div class="swiper swiper-content">'
+							+ '<div class="textWhite">범죄</div>'
+							+ '<div class="swiper-wrapper contents d-flex mt-2" id="append14">'
+								+ '<c:forEach var="crimeMovieList" items="${mainPageCrimeMovieList}">'
+									+ '<a href="/movie/detail/recommend/view?movieId=${crimeMovieList.id}" class="movie-box swiper-slide"><img src="${crimeMovieList.poster_path}"></a>'
+								+ '</c:forEach>'
+							+ '</div>'
+							+ '<div class="swiper-button-prev movieBackBtn" data-movie-info="14"></div>'
+		    				+ '<div class="swiper-button-next movieNextBtn" data-movie-info="14"></div>'
+						+ '</div>');
+				 
+				  swiperMovie = new Swiper(".swiper-content", {                 
+					    slidesPerView: 7.5,
+					    slidesPerGroup : 7,
+					    spaceBetween: 20,  
+					    observer: true,	
+					    
+					    navigation: {                      
+					        nextEl: ".swiper-button-next",
+					        prevEl: ".swiper-button-prev",
+					    },
+					    	   
+				  });
+				  
+				  scrollCounting = 4;
+				  
+			  } else if(currentPosition == $(document).height() - $(window).height() && scrollCounting == 4) {
+				  
+				  $(".movie-conteiner").append(
+						  '<div class="swiper swiper-content">'
+							+ '<div class="textWhite">다큐멘터리</div>'
+							+ '<div class="swiper-wrapper contents d-flex mt-2" id="append15">'
+								+ '<c:forEach var="documentaryMovieList" items="${mainPageDocumentaryMovieList}">'
+									+ '<a href="/movie/detail/recommend/view?movieId=${documentaryMovieList.id}" class="movie-box swiper-slide"><img src="${documentaryMovieList.poster_path}"></a>'
+								+ '</c:forEach>'
+							+ '</div>'
+							+ '<div class="swiper-button-prev movieBackBtn" data-movie-info="15"></div>'
+		    				+ '<div class="swiper-button-next movieNextBtn" data-movie-info="15"></div>'
+						+ '</div>');
+				  
+				  $(".movie-conteiner").append(
+						  '<div class="swiper swiper-content">'
+							+ '<div class="textWhite">역사</div>'
+							+ '<div class="swiper-wrapper contents d-flex mt-2" id="append16">'
+								+ '<c:forEach var="historyMovieList" items="${mainPageHistoryMovieList}">'
+									+ '<a href="/movie/detail/recommend/view?movieId=${historyMovieList.id}" class="movie-box swiper-slide"><img src="${historyMovieList.poster_path}"></a>'
+								+ '</c:forEach>'
+							+ '</div>'
+							+ '<div class="swiper-button-prev movieBackBtn" data-movie-info="16"></div>'
+		    				+ '<div class="swiper-button-next movieNextBtn" data-movie-info="16"></div>'
+						+ '</div>');
+				  
+				  $("#wrap").append(
+						  '<footer class="text-center">'
+							+ '<div class="footerLogo pt-2">Bogus+</div>'
+							+ '<div class="copyRight mt-3">©2023 Bogus and its related entities. All Rights Reserved</div>'
+							+ '<div class="copyRight">월트보거스컴퍼니코리아 유한책임회사  |  대표자:보거스  |  성남시 수정구  |   Email: help@boguspluse.kr  |  사업자등록번호: 000-11-23456</div>'
+						+ '</footer>');
+				  
+				  swiperMovie = new Swiper(".swiper-content", {                 
+					    slidesPerView: 7.5,
+					    slidesPerGroup : 7,
+					    spaceBetween: 20,  
+					    observer: true,	
+					    
+					    navigation: {                      
+					        nextEl: ".swiper-button-next",
+					        prevEl: ".swiper-button-prev",
+					    },
+					    	   
+				  });
+				  
+				  scrollCounting = 5;
+			  }
+				
+		});
 		
 		var movieNumberList = ["0", "1", "2", "16", "28,53", "35", "10749", "878", "27", "10751" 
 			,"12", "14", "10752" , "10402", "80", "99", "36"];
@@ -274,7 +392,7 @@
 	
 		});
 		
-		$(".movieNextBtn").on("click", function(){
+		$(document).on("click", ".movieNextBtn", function(){
 			
 			let movieInfo = $(this).data("movie-info");
 			
@@ -341,7 +459,7 @@
 		
 		
 		
-		var swiperMovie = new Swiper(".swiper-content", {                 
+		const swiperMovie = new Swiper(".swiper-content", {                 
 		    slidesPerView: 7.5,
 		    slidesPerGroup : 7,
 		    spaceBetween: 20,  
@@ -351,9 +469,10 @@
 		        nextEl: ".swiper-button-next",
 		        prevEl: ".swiper-button-prev",
 		    },
-		    
-		   
+		   		
 		});
+		
+		
 		
 		
 		

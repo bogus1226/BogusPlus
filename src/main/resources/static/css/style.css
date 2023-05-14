@@ -1024,6 +1024,9 @@ a:hover {
 	font-family: 'BMJUA';
 }
 
+.movieSelectBox-movieList > .form-control {
+	width:150px;
+}
 
 .detailText:hover {
 	color:#dbd9d9;
@@ -1038,6 +1041,14 @@ a:hover {
 	height:300px;
 	margin-right:20px;
 }
+
+.movieList > a > img {
+	width:225px;
+	height:300px;
+	margin-right:20px;
+	margin-top:30px;
+}
+
 
 .info-text-review {
 	background-color:rgba(0, 0, 0, 0.5);

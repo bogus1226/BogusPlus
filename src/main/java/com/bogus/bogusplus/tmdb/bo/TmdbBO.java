@@ -168,7 +168,7 @@ public class TmdbBO {
 		
 		List<TMDB> infoList = null;
 		
-		if(movieInfo.equals("0")|| movieInfo.equals("1")) {
+		if(movieInfo.equals("1")) {
 			infoList = apiGetTMDBInfo("with_original_language=ko", click);
 		} else if(movieInfo.equals("2")) {
 			infoList = apiGetTMDBInfo(null, click);
