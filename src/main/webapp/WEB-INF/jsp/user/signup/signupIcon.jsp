@@ -32,44 +32,44 @@
 				<div>
 					<div>보거스+ 추천</div>
 					<div class="d-flex mt-2">
-						<button type="button" class="iconBtn btn circle p-0" data-icon="/static/image/ironman.jpg"><img src="/static/image/ironman.jpg"></button>
-						<button type="button" class="iconBtn btn circle p-0 ml-3" data-icon="/static/image/spider.jpg"><img src="/static/image/spider.jpg"></button>
-						<a href="#" class="circle ml-3"></a>
-						<a href="#" class="circle ml-3"></a>
-						<a href="#" class="circle ml-3"></a>
+						<button type="button" class="iconBtn btn circle p-0" data-icon="/static/image/spider.jpg"><img src="/static/image/spider.jpg"></button>
+						<button type="button" class="iconBtn btn circle p-0 ml-3" data-icon="/static/image/groot.jpg"><img src="/static/image/groot.jpg"></button>
+						<button type="button" class="iconBtn btn circle p-0 ml-3" data-icon="/static/image/cat3.jpg"><img src="/static/image/cat3.jpg"></button>
+						<button type="button" class="iconBtn btn circle p-0 ml-3" data-icon="/static/image/dog1.jpg"><img src="/static/image/dog1.jpg"></button>
+						<button type="button" class="iconBtn btn circle p-0 ml-3" data-icon="/static/image/dog3.jpg"><img src="/static/image/dog3.jpg"></button>
 					</div>
 				</div>
 				
 				<div>
 					<div class="mt-4">마블</div>
 					<div class="d-flex mt-2">
-						<a href="#" class="circle"></a>
-						<a href="#" class="circle ml-3"></a>
-						<a href="#" class="circle ml-3"></a>
-						<a href="#" class="circle ml-3"></a>
-						<a href="#" class="circle ml-3"></a>
+						<button type="button" class="iconBtn btn circle p-0" data-icon="/static/image/ironman.jpg"><img src="/static/image/ironman.jpg"></button>
+						<button type="button" class="iconBtn btn circle p-0 ml-3" data-icon="/static/image/groot.jpg"><img src="/static/image/groot.jpg"></button>
+						<button type="button" class="iconBtn btn circle p-0 ml-3" data-icon="/static/image/spider.jpg"><img src="/static/image/spider.jpg"></button>
+						<button type="button" class="iconBtn btn circle p-0 ml-3" data-icon="/static/image/hulk.jpg"><img src="/static/image/hulk.jpg"></button>
+						<button type="button" class="iconBtn btn circle p-0 ml-3" data-icon="/static/image/black.jpg"><img src="/static/image/black.jpg"></button>
 					</div>
 				</div>
 				
 				<div>
 					<div class="mt-4">고양이</div>
 					<div class="d-flex mt-2">
-						<a href="#" class="circle"></a>
-						<a href="#" class="circle ml-3"></a>
-						<a href="#" class="circle ml-3"></a>
-						<a href="#" class="circle ml-3"></a>
-						<a href="#" class="circle ml-3"></a>
+						<button type="button" class="iconBtn btn circle p-0" data-icon="/static/image/cat1.jpg"><img src="/static/image/cat1.jpg"></button>
+						<button type="button" class="iconBtn btn circle p-0 ml-3" data-icon="/static/image/cat2.jpg"><img src="/static/image/cat2.jpg"></button>
+						<button type="button" class="iconBtn btn circle p-0 ml-3" data-icon="/static/image/cat3.jpg"><img src="/static/image/cat3.jpg"></button>
+						<button type="button" class="iconBtn btn circle p-0 ml-3" data-icon="/static/image/cat4.jpg"><img src="/static/image/cat4.jpg"></button>
+						<button type="button" class="iconBtn btn circle p-0 ml-3" data-icon="/static/image/cat5.jpg"><img src="/static/image/cat5.jpg"></button>
 					</div>
 				</div>
 				
 				<div>
 					<div class="mt-4">강아지</div>
 					<div class="d-flex mt-2">
-						<a href="#" class="circle"></a>
-						<a href="#" class="circle ml-3"></a>
-						<a href="#" class="circle ml-3"></a>
-						<a href="#" class="circle ml-3"></a>
-						<a href="#" class="circle ml-3"></a>
+						<button type="button" class="iconBtn btn circle p-0" data-icon="/static/image/dog1.jpg"><img src="/static/image/dog1.jpg"></button>
+						<button type="button" class="iconBtn btn circle p-0 ml-3" data-icon="/static/image/dog2.jpg"><img src="/static/image/dog2.jpg"></button>
+						<button type="button" class="iconBtn btn circle p-0 ml-3" data-icon="/static/image/dog3.jpg"><img src="/static/image/dog3.jpg"></button>
+						<button type="button" class="iconBtn btn circle p-0 ml-3" data-icon="/static/image/dog4.jpg"><img src="/static/image/dog4.jpg"></button>
+						<button type="button" class="iconBtn btn circle p-0 ml-3" data-icon="/static/image/dog5.jpg"><img src="/static/image/dog5.jpg"></button>
 					</div>
 				</div>
 			</div>
