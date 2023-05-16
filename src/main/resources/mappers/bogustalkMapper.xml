@@ -12,7 +12,7 @@
 			, `talk`
 			, `createdAt` 
 		FROM
-			`bogustalk`
+			`bogusTalk`
 		WHERE
 			`togetherId` = #{togetherId}
 	</select>
