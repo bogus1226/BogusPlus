@@ -101,6 +101,19 @@
 		
 		let scrollCounting = 0;
 		
+		const swiperMovie = new Swiper(".swiper-content", {                 
+		    slidesPerView: 7.5,
+		    slidesPerGroup : 7,
+		    spaceBetween: 20,  
+		    observer: true,	
+		    
+		    navigation: {                      
+		        nextEl: ".swiper-button-next",
+		        prevEl: ".swiper-button-prev",
+		    },
+		   		
+		});
+		
 		$(window).scroll(function() {
 			  // 현재 스크롤 위치 계산
 			  var currentPosition = $(window).scrollTop();
@@ -459,18 +472,7 @@
 		
 		
 		
-		const swiperMovie = new Swiper(".swiper-content", {                 
-		    slidesPerView: 7.5,
-		    slidesPerGroup : 7,
-		    spaceBetween: 20,  
-		    observer: true,	
-		    
-		    navigation: {                      
-		        nextEl: ".swiper-button-next",
-		        prevEl: ".swiper-button-prev",
-		    },
-		   		
-		});
+		
 		
 		
 		
