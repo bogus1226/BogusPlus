@@ -157,7 +157,7 @@
 							+ '<div class="swiper-button-next movieNextBtn" data-movie-info="5"></div>'
 						+ '</div>');
 				  
-				  swiperMovie = new Swiper(".swiper-content", {                 
+				  const swiperMovie = new Swiper(".swiper-content", {                 
 					    slidesPerView: 7.5,
 					    slidesPerGroup : 7,
 					    spaceBetween: 20,  
@@ -167,7 +167,7 @@
 					        nextEl: ".swiper-button-next",
 					        prevEl: ".swiper-button-prev",
 					    },
-					    	   
+					   		
 					});
 					
 					scrollCounting = 1;
@@ -211,7 +211,7 @@
 			    
 				
 			    
-				swiperMovie = new Swiper(".swiper-content", {                 
+				const swiperMovie = new Swiper(".swiper-content", {                 
 				    slidesPerView: 7.5,
 				    slidesPerGroup : 7,
 				    spaceBetween: 20,  
@@ -221,8 +221,10 @@
 				        nextEl: ".swiper-button-next",
 				        prevEl: ".swiper-button-prev",
 				    },
-				    	   
+				   		
 				});
+				    	   
+				
 				
 				scrollCounting = 2;
 				
@@ -264,7 +266,7 @@
 						+ '</div>');
 				  
 
-				  swiperMovie = new Swiper(".swiper-content", {                 
+				  const swiperMovie = new Swiper(".swiper-content", {                 
 					    slidesPerView: 7.5,
 					    slidesPerGroup : 7,
 					    spaceBetween: 20,  
@@ -274,8 +276,10 @@
 					        nextEl: ".swiper-button-next",
 					        prevEl: ".swiper-button-prev",
 					    },
+					   		
+					});
 					    	   
-				  });
+				  
 				  
 				  scrollCounting = 3;
 				  
@@ -317,7 +321,7 @@
 		    				+ '<div class="swiper-button-next movieNextBtn" data-movie-info="14"></div>'
 						+ '</div>');
 				 
-				  swiperMovie = new Swiper(".swiper-content", {                 
+				  const swiperMovie = new Swiper(".swiper-content", {                 
 					    slidesPerView: 7.5,
 					    slidesPerGroup : 7,
 					    spaceBetween: 20,  
@@ -327,8 +331,10 @@
 					        nextEl: ".swiper-button-next",
 					        prevEl: ".swiper-button-prev",
 					    },
+					   		
+					});
 					    	   
-				  });
+				  
 				  
 				  scrollCounting = 4;
 				  
@@ -365,7 +371,7 @@
 							+ '<div class="copyRight">월트보거스컴퍼니코리아 유한책임회사  |  대표자:보거스  |  성남시 수정구  |   Email: help@boguspluse.kr  |  사업자등록번호: 000-11-23456</div>'
 						+ '</footer>');
 				  
-				  swiperMovie = new Swiper(".swiper-content", {                 
+				  const swiperMovie = new Swiper(".swiper-content", {                 
 					    slidesPerView: 7.5,
 					    slidesPerGroup : 7,
 					    spaceBetween: 20,  
@@ -375,8 +381,8 @@
 					        nextEl: ".swiper-button-next",
 					        prevEl: ".swiper-button-prev",
 					    },
-					    	   
-				  });
+					   		
+					});
 				  
 				  scrollCounting = 5;
 			  }
