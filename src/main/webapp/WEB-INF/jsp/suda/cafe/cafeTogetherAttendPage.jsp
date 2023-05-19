@@ -101,7 +101,7 @@
 									<div class="post-text-container d-flex mt-3 mb-3">
 										<div class="post-text-icon"></div>
 										<div class="post-text d-flex justify-content-center post-text-background">
-											<div class="textWhite mt-2 pl-4 pr-4" style="word-break:break-all;">${togetherList.title}</div>
+											<div class="textWhite mt-2 pl-4 pr-4" style="word-break:break-all;">${togetherList.content}</div>
 										</div>
 									</div>
 													

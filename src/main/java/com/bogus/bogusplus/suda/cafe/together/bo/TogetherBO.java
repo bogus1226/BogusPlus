@@ -208,6 +208,8 @@ public class TogetherBO {
 						myPage.setType(suda.getType());
 						myPage.setUserId(status.getUserId());
 						
+						
+						
 						myPageList.add(myPage);
 						
 						togetherDetail.setMyPageList(myPageList);	
